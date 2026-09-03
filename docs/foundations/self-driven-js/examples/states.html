@@ -1,0 +1,15 @@
+<div class="tui-flex tui-flex-wrap tui-gap-2 tui-items-center" id="self-driven-states">
+  <button class="tui-button" type="button" aria-pressed="true">aria-pressed</button>
+  <button class="tui-button" type="button" data-pressed>data-pressed</button>
+  <button class="tui-button tui-pressed" type="button">.tui-pressed</button>
+  <button class="tui-button" type="button" aria-expanded="true">Expanded <span class="tui-caret"></span></button>
+  <button class="tui-button" type="button" aria-expanded="false">Collapsed <span class="tui-caret"></span></button>
+</div>
+<script>
+  document.querySelectorAll('#self-driven-states button').forEach((button) => button.addEventListener('click', () => {
+    if (button.hasAttribute('aria-expanded')) button.setAttribute('aria-expanded', button.getAttribute('aria-expanded') !== 'true');
+    else if (button.hasAttribute('aria-pressed')) button.setAttribute('aria-pressed', button.getAttribute('aria-pressed') !== 'true');
+    else if (button.hasAttribute('data-pressed')) button.removeAttribute('data-pressed');
+    else button.classList.toggle('tui-pressed');
+  }));
+</script>

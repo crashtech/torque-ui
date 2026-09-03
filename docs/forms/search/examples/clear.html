@@ -1,0 +1,12 @@
+<div class="tui-search" id="search-clear">
+  <input type="search" placeholder="Search" value="triangles" aria-label="Search">
+  <button class="tui-close" type="button" aria-label="Clear search"></button>
+</div>
+<script>
+  const search = document.getElementById('search-clear');
+  search.querySelector('.tui-close').addEventListener('click', () => {
+    const input = search.querySelector('input');
+    input.value = '';
+    input.focus();
+  });
+</script>

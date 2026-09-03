@@ -1,0 +1,44 @@
+/* Torque UI — Statistic Component
+ * Key metric display.
+ */
+
+
+  /* why: children are cap-trimmed, so the gap is measured cap-to-cap and
+     needs a full step to read as the old leading-inclusive spacing-2 */
+  .tui-statistic {
+    display: flex;
+    flex-direction: column;
+    gap: var(--tui-spacing-3);
+    padding: var(--tui-spacing-4);
+    background-color: var(--tui-surface-0);
+    border: 1px solid var(--tui-border);
+    border-radius: var(--tui-radius-lg);
+  }
+
+  .tui-statistic-value {
+    font-size: var(--tui-text-3xl);
+    font-weight: var(--tui-font-bold);
+    color: var(--tui-tone-ink, var(--tui-text-1));
+    line-height: 1;
+    text-box: trim-both cap alphabetic;
+  }
+
+  .tui-statistic-label {
+    font-size: var(--tui-text-sm);
+    text-box: trim-both cap alphabetic;
+    color: var(--tui-text-2);
+  }
+
+  .tui-statistic-delta {
+    font-size: var(--tui-text-xs);
+    text-box: trim-both cap alphabetic;
+    color: var(--tui-text-3);
+  }
+
+  .tui-statistic-delta-up {
+    color: var(--tui-positive-ink);
+  }
+
+  .tui-statistic-delta-down {
+    color: var(--tui-negative-ink);
+  }

@@ -1,0 +1,49 @@
+/* Torque UI — Ribbon
+ * Diagonal corner ribbon for cards/panels (NEW, SALE, PRO, etc.).
+ * Pure CSS, no JS.
+ */
+
+
+  /* why: the band is a fixed-length strip laid across the corner, so the
+     host clips its ends; any card, panel or segment holding a ribbon becomes
+     that clipping frame without extra markup */
+  :is(.tui-card, .tui-panel, .tui-segment):has(> .tui-ribbon) {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .tui-ribbon {
+    /* why: with a 10rem band the offset that lands the strip across the
+       corner (edges ~4rem from it) is -2.75rem; keep the two in step */
+    --tui-ribbon-offset: -2.75rem;
+
+    position: absolute;
+    inset-block-start: var(--tui-spacing-5);
+    inset-inline-end: var(--tui-ribbon-offset);
+    inline-size: 10rem;
+    text-align: center;
+    transform: rotate(45deg);
+    padding: var(--tui-spacing-1) 0;
+    font-size: var(--tui-text-xs);
+    font-weight: var(--tui-font-bold);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--tui-tone-fg, var(--tui-text-inverse));
+    background-color: var(--tui-tone, var(--tui-brand));
+    box-shadow: var(--tui-shadow-sm);
+    z-index: 1;
+  }
+
+  /* === Position variants === */
+  .tui-ribbon-top-right {
+    inset-block-start: var(--tui-spacing-5);
+    inset-inline-end: var(--tui-ribbon-offset);
+    transform: rotate(45deg);
+  }
+
+  .tui-ribbon-bottom-left {
+    inset-block: auto var(--tui-spacing-5);
+    inset-inline: var(--tui-ribbon-offset) auto;
+    transform: rotate(-45deg);
+  }
+

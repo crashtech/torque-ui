@@ -1,0 +1,72 @@
+/* Torque UI — Accessibility & Inclusive Design
+ * Group 3: reduced motion, forced colors, contrast, RTL/LTR, lang, i18n, typography polish.
+ * All guarded or progressive — safe on all target browsers.
+ */
+
+
+  /* === 1. Respect reduced-motion: kill animations/transitions for sensitive users ===
+     why: tui.themes is the last layer, so this wins over any earlier-layer
+     animation/transition declaration by layer order alone, regardless of
+     specificity — no forced-priority override needed. */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms;
+      animation-iteration-count: 1;
+      transition-duration: 0.01ms;
+      scroll-behavior: auto;
+    }
+  }
+
+  /* === 2. Windows forced-colors (high contrast) mode === */
+  @media (forced-colors: active) {
+    .tui-button,
+    :where(textarea, select, input:not([type="checkbox"], [type="radio"], [type="range"], [type="color"], [type="file"], [type="submit"], [type="reset"], [type="button"], [type="hidden"], [type="image"])),
+    .tui-card,
+    .tui-badge,
+    .tui-tag,
+    .tui-chip,
+    .tui-modal,
+    .tui-popover,
+    .tui-alert,
+    .tui-panel,
+    .tui-list-group,
+    .tui-toast,
+    .tui-menu,
+    .tui-tooltip {
+      /* Let the OS draw the border so forced-colors mode is honored */
+      border: 1px solid CanvasText;
+      box-shadow: none;
+    }
+
+    .tui-focus-ring,
+    *:focus-visible {
+      outline: var(--tui-focus-ring-width) solid Highlight;
+    }
+  }
+
+  /* === 3. Reduced data / live-data preference === */
+  @media (prefers-reduced-data: reduce) {
+    .tui-placeholder {
+      animation: none;
+    }
+
+    .tui-spinner {
+      animation-duration: 3s;
+    }
+  }
+
+  /* === 4. Language-aware typography tweaks via :lang() === */
+  :lang(ja),
+  :lang(zh),
+  :lang(ko) {
+    letter-spacing: 0.02em;
+    line-height: 1.8;
+    hanging-punctuation: allow-end;
+  }
+
+  /* CJK line-break and hyphenation */
+  :lang(ja) {
+    line-break: anywhere;
+  }

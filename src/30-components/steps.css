@@ -1,0 +1,73 @@
+/* Torque UI — Steps Component
+ * Progress indicator with radio buttons for state.
+ */
+
+
+  .tui-steps {
+    --tui-steps-gap: var(--tui-spacing-4);
+
+    display: flex;
+    align-items: center;
+    gap: var(--tui-steps-gap);
+    flex-wrap: wrap;
+  }
+
+  .tui-step {
+    --tui-step-size: var(--tui-spacing-8);
+
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--tui-spacing-2);
+    position: relative;
+  }
+
+  /* why: steps are equal flex tracks separated by --tui-steps-gap, so the next
+     circle's edge sits at 150% + gap - size/2 of this step; the connector runs
+     from this circle's edge to that edge with the same inset on both sides,
+     centred on the circle rather than on circle + label. */
+  .tui-step:not(:last-child)::after {
+    --_inset: var(--tui-step-connector-inset, var(--tui-spacing-2));
+
+    content: '';
+    position: absolute;
+    inset-block-start: calc(var(--tui-step-size) / 2);
+    inset-inline-start: calc(50% + var(--tui-step-size) / 2 + var(--_inset));
+    inline-size: calc(100% + var(--tui-steps-gap) - var(--tui-step-size) - 2 * var(--_inset));
+    block-size: 2px;
+    background-color: var(--tui-tone, var(--tui-border));
+    transform: translateY(-50%);
+  }
+
+  .tui-step-number {
+    inline-size: var(--tui-step-size);
+    block-size: var(--tui-step-size);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--tui-radius-full);
+    background-color: var(--tui-tone, var(--tui-surface-3));
+    color: var(--tui-tone-fg, var(--tui-text-2));
+    font-size: var(--tui-text-sm);
+    font-weight: var(--tui-font-semibold);
+    border: 2px solid var(--tui-tone, var(--tui-border));
+  }
+
+  .tui-step-label {
+    font-size: var(--tui-text-sm);
+    color: var(--tui-text-3);
+  }
+
+  .tui-step-complete .tui-step-label {
+    color: var(--tui-text-2);
+  }
+
+  .tui-step-active .tui-step-number {
+    box-shadow: 0 0 0 var(--tui-focus-halo-width) var(--tui-focus-ring);
+  }
+
+  .tui-step-active .tui-step-label {
+    color: var(--tui-text-1);
+    font-weight: var(--tui-font-medium);
+  }

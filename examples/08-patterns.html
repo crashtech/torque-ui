@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Torque UI — Patterns</title>
+  <link rel="stylesheet" href="/src/tui.css">
+</head>
+<body>
+  <div class="tui-reading-progress"></div>
+  <div class="tui-container">
+
+    <section class="tui-mb-6">
+      <h2>App shell</h2>
+      <p>Resize the browser below 768px to see the sidebar hide behind the header's menu toggle. Scroll this page to see its header shrink (<code>.tui-shell-header-shrink</code>) and the reading progress bar fill in at the top.</p>
+      <div style="block-size: 32rem; overflow: auto; border: 1px solid var(--tui-border); border-radius: var(--tui-radius-md);">
+        <div class="tui-shell">
+          <header class="tui-shell-header tui-shell-header-shrink">
+            <nav class="tui-navbar">
+              <a class="tui-navbar-brand" href="#">Torque UI</a>
+              <button class="tui-button tui-button-icon tui-navbar-toggle" popovertarget="shell-nav" aria-label="Menu">☰</button>
+            </nav>
+          </header>
+          <aside class="tui-shell-sidebar" aria-label="Sidebar">
+            <ul class="tui-list-group tui-list-group-flush">
+              <li><a class="tui-list-item tui-list-item-active" href="#">Dashboard</a></li>
+              <li><a class="tui-list-item" href="#">Reports</a></li>
+              <li><a class="tui-list-item" href="#">Settings</a></li>
+            </ul>
+          </aside>
+          <aside class="tui-offcanvas" id="shell-nav" popover aria-labelledby="shell-nav-title">
+            <div class="tui-flex tui-justify-between tui-items-center tui-mb-4">
+              <h3 class="tui-m-0" id="shell-nav-title">Menu</h3>
+              <button class="tui-close" popovertarget="shell-nav" popovertargetaction="hide" aria-label="Close"></button>
+            </div>
+            <ul class="tui-list-group tui-list-group-flush">
+              <li><a class="tui-list-item tui-list-item-active" href="#">Dashboard</a></li>
+              <li><a class="tui-list-item" href="#">Reports</a></li>
+              <li><a class="tui-list-item" href="#">Settings</a></li>
+            </ul>
+          </aside>
+          <main class="tui-shell-main">
+            <h3 class="tui-mt-0">Dashboard</h3>
+            <p>The main content area grows to fill the remaining space beside the sidebar.</p>
+          </main>
+          <footer class="tui-shell-footer">
+            <p class="tui-m-0">© Torque UI</p>
+          </footer>
+        </div>
+      </div>
+    </section>
+
+    <section class="tui-mb-6" id="shell-aside">
+      <h2>App shell with aside</h2>
+      <p>A <code>.tui-shell-aside</code> adds an end-side column; it hides below 768px like the sidebar.</p>
+      <div style="block-size: 20rem; overflow: auto; border: 1px solid var(--tui-border); border-radius: var(--tui-radius-md);">
+        <div class="tui-shell" style="--tui-shell-min-block-size: 100%;">
+          <header class="tui-shell-header"><nav class="tui-navbar"><a class="tui-navbar-brand" href="#">Inbox</a></nav></header>
+          <aside class="tui-shell-sidebar" aria-label="Folders">
+            <ul class="tui-list-group tui-list-group-flush">
+              <li><a class="tui-list-item tui-list-item-active" href="#">All</a></li>
+              <li><a class="tui-list-item" href="#">Starred</a></li>
+            </ul>
+          </aside>
+          <main class="tui-shell-main"><h3 class="tui-mt-0">Conversation</h3><p class="tui-m-0">Main sits between sidebar and aside.</p></main>
+          <aside class="tui-shell-aside tui-p-4" aria-label="Details"><h4 class="tui-mt-0">Details</h4><p class="tui-m-0 tui-text-sm">Contextual panel.</p></aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="tui-mb-6" id="shell-columns">
+      <h2>App shell column scrolling</h2>
+      <p>A column scrolls with the page and parks at the viewport's end once its last item reaches it; <code>.tui-shell-scroll</code> on a column makes it stick below the header and scroll on its own instead.</p>
+      <div style="block-size: 24rem; overflow: auto; border: 1px solid var(--tui-border); border-radius: var(--tui-radius-md);">
+        <div class="tui-shell" style="--tui-shell-min-block-size: 100%;">
+          <header class="tui-shell-header"><nav class="tui-navbar"><a class="tui-navbar-brand" href="#">Library</a></nav></header>
+          <aside class="tui-shell-sidebar tui-shell-scroll" aria-label="Self-scrolling">
+            <ul class="tui-list-group tui-list-group-flush">
+              <li><a class="tui-list-item" href="#">Item 1</a></li>
+              <li><a class="tui-list-item" href="#">Item 2</a></li>
+              <li><a class="tui-list-item" href="#">Item 3</a></li>
+              <li><a class="tui-list-item" href="#">Item 4</a></li>
+              <li><a class="tui-list-item" href="#">Item 5</a></li>
+              <li><a class="tui-list-item" href="#">Item 6</a></li>
+              <li><a class="tui-list-item" href="#">Item 7</a></li>
+              <li><a class="tui-list-item" href="#">Item 8</a></li>
+              <li><a class="tui-list-item" href="#">Item 9</a></li>
+              <li><a class="tui-list-item" href="#">Item 10</a></li>
+              <li><a class="tui-list-item" href="#">Item 11</a></li>
+              <li><a class="tui-list-item" href="#">Item 12</a></li>
+              <li><a class="tui-list-item" href="#">Item 13</a></li>
+              <li><a class="tui-list-item" href="#">Item 14</a></li>
+              <li><a class="tui-list-item" href="#">Item 15</a></li>
+              <li><a class="tui-list-item" href="#">Item 16</a></li>
+              <li><a class="tui-list-item" href="#">Item 17</a></li>
+              <li><a class="tui-list-item" href="#">Item 18</a></li>
+              <li><a class="tui-list-item" href="#">Item 19</a></li>
+              <li><a class="tui-list-item" href="#">Item 20</a></li>
+              <li><a class="tui-list-item" href="#">Item 21</a></li>
+              <li><a class="tui-list-item" href="#">Item 22</a></li>
+              <li><a class="tui-list-item" href="#">Item 23</a></li>
+              <li><a class="tui-list-item" href="#">Item 24</a></li>
+              <li><a class="tui-list-item" href="#">Item 25</a></li>
+              <li><a class="tui-list-item" href="#">Item 26</a></li>
+              <li><a class="tui-list-item" href="#">Item 27</a></li>
+              <li><a class="tui-list-item" href="#">Item 28</a></li>
+              <li><a class="tui-list-item" href="#">Item 29</a></li>
+              <li><a class="tui-list-item" href="#">Item 30</a></li>
+              <li><a class="tui-list-item" href="#">Item 31</a></li>
+              <li><a class="tui-list-item" href="#">Item 32</a></li>
+              <li><a class="tui-list-item" href="#">Item 33</a></li>
+              <li><a class="tui-list-item" href="#">Item 34</a></li>
+              <li><a class="tui-list-item" href="#">Item 35</a></li>
+              <li><a class="tui-list-item" href="#">Item 36</a></li>
+              <li><a class="tui-list-item" href="#">Item 37</a></li>
+              <li><a class="tui-list-item" href="#">Item 38</a></li>
+              <li><a class="tui-list-item" href="#">Item 39</a></li>
+              <li><a class="tui-list-item" href="#">Item 40</a></li>
+            </ul>
+          </aside>
+          <main class="tui-shell-main"><h3 class="tui-mt-0">Reading</h3><p class="tui-m-0" style="block-size: 200rem;">A long main column.</p></main>
+          <aside class="tui-shell-aside" aria-label="Page-following">
+            <ul class="tui-list-group tui-list-group-flush">
+              <li><a class="tui-list-item" href="#">Item 1</a></li>
+              <li><a class="tui-list-item" href="#">Item 2</a></li>
+              <li><a class="tui-list-item" href="#">Item 3</a></li>
+              <li><a class="tui-list-item" href="#">Item 4</a></li>
+              <li><a class="tui-list-item" href="#">Item 5</a></li>
+              <li><a class="tui-list-item" href="#">Item 6</a></li>
+              <li><a class="tui-list-item" href="#">Item 7</a></li>
+              <li><a class="tui-list-item" href="#">Item 8</a></li>
+              <li><a class="tui-list-item" href="#">Item 9</a></li>
+              <li><a class="tui-list-item" href="#">Item 10</a></li>
+              <li><a class="tui-list-item" href="#">Item 11</a></li>
+              <li><a class="tui-list-item" href="#">Item 12</a></li>
+              <li><a class="tui-list-item" href="#">Item 13</a></li>
+              <li><a class="tui-list-item" href="#">Item 14</a></li>
+              <li><a class="tui-list-item" href="#">Item 15</a></li>
+              <li><a class="tui-list-item" href="#">Item 16</a></li>
+              <li><a class="tui-list-item" href="#">Item 17</a></li>
+              <li><a class="tui-list-item" href="#">Item 18</a></li>
+              <li><a class="tui-list-item" href="#">Item 19</a></li>
+              <li><a class="tui-list-item" href="#">Item 20</a></li>
+              <li><a class="tui-list-item" href="#">Item 21</a></li>
+              <li><a class="tui-list-item" href="#">Item 22</a></li>
+              <li><a class="tui-list-item" href="#">Item 23</a></li>
+              <li><a class="tui-list-item" href="#">Item 24</a></li>
+              <li><a class="tui-list-item" href="#">Item 25</a></li>
+              <li><a class="tui-list-item" href="#">Item 26</a></li>
+              <li><a class="tui-list-item" href="#">Item 27</a></li>
+              <li><a class="tui-list-item" href="#">Item 28</a></li>
+              <li><a class="tui-list-item" href="#">Item 29</a></li>
+              <li><a class="tui-list-item" href="#">Item 30</a></li>
+              <li><a class="tui-list-item" href="#">Item 31</a></li>
+              <li><a class="tui-list-item" href="#">Item 32</a></li>
+              <li><a class="tui-list-item" href="#">Item 33</a></li>
+              <li><a class="tui-list-item" href="#">Item 34</a></li>
+              <li><a class="tui-list-item" href="#">Item 35</a></li>
+              <li><a class="tui-list-item" href="#">Item 36</a></li>
+              <li><a class="tui-list-item" href="#">Item 37</a></li>
+              <li><a class="tui-list-item" href="#">Item 38</a></li>
+              <li><a class="tui-list-item" href="#">Item 39</a></li>
+              <li><a class="tui-list-item" href="#">Item 40</a></li>
+            </ul>
+          </aside>
+          <footer class="tui-shell-footer"><p class="tui-m-0">© Torque UI</p></footer>
+        </div>
+      </div>
+    </section>
+
+    <section class="tui-mb-6" id="shell-persistent">
+      <h2>Persistent app shell</h2>
+      <p><code>.tui-shell-persistent</code> keeps both columns at every width; <code>--tui-shell-min-block-size</code> replaces the 100dvh default.</p>
+      <div style="overflow: auto; border: 1px solid var(--tui-border); border-radius: var(--tui-radius-md);">
+        <div class="tui-shell tui-shell-persistent" style="--tui-shell-min-block-size: 50vh;">
+          <aside class="tui-shell-sidebar tui-p-4" aria-label="Rail"><strong>Rail</strong></aside>
+          <main class="tui-shell-main"><p class="tui-m-0">Always three columns.</p></main>
+          <aside class="tui-shell-aside tui-p-4" aria-label="Panel"><strong>Panel</strong></aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="tui-mb-6">
+      <h2>Hero</h2>
+      <div class="tui-hero" style="background-color: var(--tui-surface-1); border-radius: var(--tui-radius-lg);">
+        <h1 class="tui-hero-title">Build faster with Torque UI</h1>
+        <p class="tui-hero-lead">A zero-JavaScript CSS framework for building accessible, responsive interfaces without a build step or a single line of client-side script.</p>
+        <div class="tui-hero-actions">
+          <a class="tui-button tui-button-primary" href="#">Get started</a>
+          <a class="tui-button" href="#">View docs</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="tui-mb-6">
+      <h2>Section</h2>
+      <div style="border: 1px solid var(--tui-border); border-radius: var(--tui-radius-md); padding-inline: var(--tui-spacing-6);">
+        <section class="tui-section">
+          <h3 class="tui-mt-0">First section</h3>
+          <p class="tui-m-0">Sections add generous vertical breathing room without needing manual margin utilities.</p>
+        </section>
+        <hr>
+        <section class="tui-section">
+          <h3 class="tui-mt-0">Second section</h3>
+          <p class="tui-m-0">Stack as many as you like — each one pads itself independently.</p>
+        </section>
+      </div>
+    </section>
+
+    <section class="tui-mb-6">
+      <h2>Media object</h2>
+      <div class="tui-media" style="max-width: 32rem;">
+        <img class="tui-avatar" src="https://i.pravatar.cc/64?img=5" alt="Avatar for Jamie Rivera">
+        <div class="tui-media-body">
+          <h4 class="tui-mt-0 tui-mb-1">Jamie Rivera</h4>
+          <p class="tui-m-0">This layout pairs a fixed-width figure with a body that takes up the remaining space and wraps normally.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="tui-mb-6">
+      <h2>Level</h2>
+      <div class="tui-level" style="padding: var(--tui-spacing-4); border: 1px solid var(--tui-border); border-radius: var(--tui-radius-md);">
+        <div class="tui-level-start">
+          <strong>42 results</strong>
+        </div>
+        <div class="tui-level-end">
+          <button class="tui-button tui-button-sm">Filter</button>
+          <button class="tui-button tui-button-sm tui-button-primary">Sort</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="tui-mb-6" id="level-variants">
+      <h2>Level variants</h2>
+      <div class="tui-level tui-level-nowrap tui-mb-4" style="padding: var(--tui-spacing-4); border: 1px solid var(--tui-border); border-radius: var(--tui-radius-md);">
+        <div class="tui-level-start"><strong>Nowrap level</strong></div>
+        <div class="tui-level-end"><button class="tui-button tui-button-sm">Filter</button></div>
+      </div>
+      <div class="tui-level tui-level-collapsible tui-mb-4" id="level-narrow" style="inline-size: 500px; max-inline-size: 100%; padding: var(--tui-spacing-4); border: 1px solid var(--tui-border); border-radius: var(--tui-radius-md);">
+        <div class="tui-level-start"><strong>Narrow collapsible</strong></div>
+        <div class="tui-level-end"><button class="tui-button tui-button-sm tui-level-optional">Export</button><button class="tui-button tui-button-sm tui-button-primary">Save</button></div>
+      </div>
+      <div class="tui-level tui-level-collapsible" id="level-wide" style="inline-size: 800px; max-inline-size: 100%; padding: var(--tui-spacing-4); border: 1px solid var(--tui-border); border-radius: var(--tui-radius-md);">
+        <div class="tui-level-start"><strong>Wide collapsible</strong></div>
+        <div class="tui-level-end"><button class="tui-button tui-button-sm tui-level-optional">Export</button><button class="tui-button tui-button-sm tui-button-primary">Save</button></div>
+      </div>
+    </section>
+
+    <section class="tui-mb-6" id="page-header">
+      <h2>Page header</h2>
+      <div class="tui-page-header">
+        <h3 class="tui-page-header-title">Contacts <span class="tui-page-header-lead">248 people · 12 companies</span></h3>
+        <div class="tui-page-header-actions">
+          <button class="tui-button tui-button-sm">Import</button>
+          <button class="tui-button tui-button-sm tui-button-primary">New contact</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="tui-mb-6" id="board">
+      <h2>Board</h2>
+      <div class="tui-board">
+        <section class="tui-board-column">
+          <header class="tui-board-header">Lead <span class="tui-badge">2</span></header>
+          <div class="tui-board-body">
+            <div class="tui-card"><div class="tui-card-body tui-p-3"><strong>Clínica Viva</strong></div></div>
+            <div class="tui-card"><div class="tui-card-body tui-p-3"><strong>Studio Prisma</strong></div></div>
+          </div>
+        </section>
+        <section class="tui-board-column">
+          <header class="tui-board-header">Proposal <span class="tui-badge">1</span></header>
+          <div class="tui-board-body">
+            <div class="tui-card"><div class="tui-card-body tui-p-3"><strong>Acme</strong></div></div>
+          </div>
+        </section>
+        <section class="tui-board-column">
+          <header class="tui-board-header">Contract</header>
+          <div class="tui-board-body">
+            <div class="tui-card"><div class="tui-card-body tui-p-3"><strong>Marina Flores</strong></div></div>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <section class="tui-mb-6" id="sheet">
+      <h2>Sheet</h2>
+      <button class="tui-button" popovertarget="search-sheet">Open search</button>
+      <div class="tui-sheet" id="search-sheet" popover aria-labelledby="search-sheet-title">
+        <div class="tui-p-4">
+          <div class="tui-level">
+            <h3 class="tui-m-0" id="search-sheet-title">Search</h3>
+            <button class="tui-close" popovertarget="search-sheet" popovertargetaction="hide" aria-label="Close"></button>
+          </div>
+          <div class="tui-input-group tui-mt-4">
+            <span class="tui-input-addon">⌕</span>
+            <input type="search" placeholder="Search everything…" aria-label="Search">
+          </div>
+        </div>
+        <ul class="tui-list-group tui-list-group-flush">
+          <li><a class="tui-list-item" href="#">Contract annual — Marina Flores</a></li>
+          <li><a class="tui-list-item" href="#">proposta-anual-v2.pdf</a></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="tui-mb-6" id="compositions">
+      <h2>Compositions</h2>
+      <p>Pricing table, comment thread, and testimonial — each built only from existing components: card, list group, media, avatar, badge, and button.</p>
+
+      <h3 class="tui-mb-3">Pricing table</h3>
+      <div class="tui-grid tui-mb-6" style="gap: var(--tui-spacing-4);">
+        <div class="tui-col-span-4">
+          <div class="tui-card">
+            <div class="tui-card-header"><h3 class="tui-m-0">Starter</h3></div>
+            <div class="tui-card-body">
+              <p class="tui-m-0"><span class="tui-text-2xl tui-font-bold">$9</span><span class="tui-text-sm tui-text-neutral">/mo</span></p>
+              <ul class="tui-list-group tui-list-group-flush" style="margin-inline: calc(-1 * var(--tui-spacing-6)); margin-block-start: var(--tui-spacing-4);">
+                <li class="tui-list-item">5 projects</li>
+                <li class="tui-list-item">10GB storage</li>
+                <li class="tui-list-item">Email support</li>
+              </ul>
+            </div>
+            <div class="tui-card-footer">
+              <button class="tui-button tui-button-block" type="button">Choose Starter</button>
+            </div>
+          </div>
+        </div>
+        <div class="tui-col-span-4">
+          <div class="tui-card tui-card-primary">
+            <div class="tui-card-header">
+              <h3 class="tui-m-0">Pro</h3>
+            </div>
+            <div class="tui-card-body">
+              <p class="tui-m-0"><span class="tui-text-2xl tui-font-bold">$29</span><span class="tui-text-sm tui-text-neutral">/mo</span> <span class="tui-badge tui-badge-primary">Popular</span></p>
+              <ul class="tui-list-group tui-list-group-flush" style="margin-inline: calc(-1 * var(--tui-spacing-6)); margin-block-start: var(--tui-spacing-4);">
+                <li class="tui-list-item">Unlimited projects</li>
+                <li class="tui-list-item">100GB storage</li>
+                <li class="tui-list-item">Priority support</li>
+              </ul>
+            </div>
+            <div class="tui-card-footer">
+              <button class="tui-button tui-button-primary tui-button-block" type="button">Choose Pro</button>
+            </div>
+          </div>
+        </div>
+        <div class="tui-col-span-4">
+          <div class="tui-card">
+            <div class="tui-card-header"><h3 class="tui-m-0">Enterprise</h3></div>
+            <div class="tui-card-body">
+              <p class="tui-m-0"><span class="tui-text-2xl tui-font-bold">$99</span><span class="tui-text-sm tui-text-neutral">/mo</span></p>
+              <ul class="tui-list-group tui-list-group-flush" style="margin-inline: calc(-1 * var(--tui-spacing-6)); margin-block-start: var(--tui-spacing-4);">
+                <li class="tui-list-item">Unlimited everything</li>
+                <li class="tui-list-item">1TB storage</li>
+                <li class="tui-list-item">Dedicated support</li>
+              </ul>
+            </div>
+            <div class="tui-card-footer">
+              <button class="tui-button tui-button-block" type="button">Contact sales</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="tui-mb-3">Comment thread</h3>
+      <div class="tui-card tui-mb-6" style="max-width: 32rem;">
+        <div class="tui-card-body">
+          <div class="tui-media">
+            <div class="tui-avatar">JL</div>
+            <div class="tui-media-body">
+              <p class="tui-m-0"><strong>Jordan Lee</strong> <span class="tui-badge tui-badge-primary">Author</span> <span class="tui-text-sm tui-text-neutral">2h ago</span></p>
+              <p class="tui-m-0">This layout looks great on mobile too!</p>
+              <div class="tui-media" style="margin-block-start: var(--tui-spacing-4); margin-inline-start: var(--tui-spacing-8);">
+                <div class="tui-avatar tui-avatar-sm">AK</div>
+                <div class="tui-media-body">
+                  <p class="tui-m-0"><strong>Amara Khan</strong> <span class="tui-text-sm tui-text-neutral">1h ago</span></p>
+                  <p class="tui-m-0">Agreed — the spacing feels just right.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="tui-mb-3">Testimonial</h3>
+      <div class="tui-card" style="max-width: 28rem;">
+        <div class="tui-card-body">
+          <p class="tui-text-lg" style="font-style: italic;">"Torque UI let us ship a fully accessible design system without writing a line of JavaScript."</p>
+          <div class="tui-media">
+            <img class="tui-avatar" src="https://i.pravatar.cc/64?img=8" alt="Avatar for Priya Natarajan">
+            <div class="tui-media-body">
+              <p class="tui-m-0 tui-font-semibold">Priya Natarajan</p>
+              <p class="tui-m-0 tui-text-sm tui-text-neutral">Head of Design, Nimbus Co <span class="tui-badge">Verified</span></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="tui-mb-6" id="split">
+      <h2>Split pane</h2>
+      <p>Drag the divider between the two panes — the first pane has a native resize handle.</p>
+      <div class="tui-split">
+        <div class="tui-split-pane">
+          <p class="tui-mt-0">Left pane. Drag my bottom-end corner to resize.</p>
+        </div>
+        <div class="tui-split-pane">
+          <p class="tui-mt-0">Right pane fills the remaining space.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="tui-mb-6" id="wizard">
+      <h2>Wizard</h2>
+      <p>A multi-step form: radio inputs pick the visible step, and a <code>.tui-steps</code> indicator lights up alongside it.</p>
+      <form class="tui-wizard" style="max-width: 32rem;">
+        <div class="tui-steps">
+          <div class="tui-step">
+            <span class="tui-step-number">1</span>
+            <span class="tui-step-label">Account</span>
+          </div>
+          <div class="tui-step">
+            <span class="tui-step-number">2</span>
+            <span class="tui-step-label">Profile</span>
+          </div>
+          <div class="tui-step">
+            <span class="tui-step-number">3</span>
+            <span class="tui-step-label">Review</span>
+          </div>
+        </div>
+
+        <label class="tui-sr-only" for="wiz-1">Step 1: Account</label>
+        <input class="tui-state-input tui-wizard-input" type="radio" name="wiz" id="wiz-1" checked>
+        <section class="tui-wizard-step">
+          <h3 class="tui-mt-0">Account</h3>
+          <p>Choose a username and password.</p>
+          <div class="tui-wizard-nav">
+            <span></span>
+            <label class="tui-button tui-button-primary" for="wiz-2">Next</label>
+          </div>
+        </section>
+
+        <label class="tui-sr-only" for="wiz-2">Step 2: Profile</label>
+        <input class="tui-state-input tui-wizard-input" type="radio" name="wiz" id="wiz-2">
+        <section class="tui-wizard-step">
+          <h3 class="tui-mt-0">Profile</h3>
+          <p>Tell us a little about yourself.</p>
+          <div class="tui-wizard-nav">
+            <label class="tui-button" for="wiz-1">Back</label>
+            <label class="tui-button tui-button-primary" for="wiz-3">Next</label>
+          </div>
+        </section>
+
+        <label class="tui-sr-only" for="wiz-3">Step 3: Review</label>
+        <input class="tui-state-input tui-wizard-input" type="radio" name="wiz" id="wiz-3">
+        <section class="tui-wizard-step">
+          <h3 class="tui-mt-0">Review</h3>
+          <p>Confirm your details and submit.</p>
+          <div class="tui-wizard-nav">
+            <label class="tui-button" for="wiz-2">Back</label>
+            <button class="tui-button tui-button-primary" type="submit">Submit</button>
+          </div>
+        </section>
+      </form>
+    </section>
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<div class="tui-field tui-max-w-sm">
+  <span id="select-picker-label">Shape</span>
+  <div class="tui-combobox" id="select-picker">
+    <button class="tui-combobox-value" type="button" aria-haspopup="listbox" aria-expanded="false" aria-controls="select-picker-list" aria-labelledby="select-picker-label" popovertarget="select-picker-list" data-placeholder="Choose a shape"></button>
+    <ul class="tui-listbox tui-popover" id="select-picker-list" role="listbox" popover>
+      <li class="tui-listbox-search"><div class="tui-search"><input type="search" placeholder="Filter" aria-label="Filter shapes"></div></li>
+      <li class="tui-option" role="option"><svg class="tui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 2 22h20z"/></svg> Triangle</li>
+      <li class="tui-option" role="option"><svg class="tui-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/></svg> Circle</li>
+      <li class="tui-listbox-empty">No matches</li>
+    </ul>
+  </div>
+</div>
+<script>
+  const picker = document.getElementById('select-picker');
+  const trigger = picker.querySelector('.tui-combobox-value');
+  const list = picker.querySelector('.tui-listbox');
+  const options = list.querySelectorAll('.tui-option');
+  list.addEventListener('toggle', (event) => trigger.setAttribute('aria-expanded', event.newState === 'open'));
+  list.querySelector('.tui-listbox-search input').addEventListener('input', (event) => {
+    const query = event.target.value.toLowerCase();
+    options.forEach((option) => { option.hidden = !option.textContent.toLowerCase().includes(query); });
+  });
+  list.addEventListener('click', (event) => {
+    const option = event.target.closest('.tui-option');
+    if (!option) return;
+    options.forEach((other) => other.setAttribute('aria-selected', other === option));
+    trigger.innerHTML = option.innerHTML;
+    list.hidePopover();
+  });
+</script>

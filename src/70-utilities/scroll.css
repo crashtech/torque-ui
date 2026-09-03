@@ -1,0 +1,46 @@
+/* Torque UI — Scroll-Driven Utilities */
+@supports (animation-timeline: scroll()) {
+  .tui-reading-progress {
+    position: fixed;
+    inset-block-start: 0;
+    inset-inline-start: 0;
+    block-size: 3px;
+    inline-size: 100%;
+    background-color: var(--tui-reading-progress-color, var(--tui-brand));
+    transform-origin: 0 50%;
+    animation: tui-grow-x linear both;
+    animation-timeline: scroll(root);
+    z-index: var(--tui-z-sticky);
+  }
+
+  @keyframes tui-grow-x {
+    from { scale: 0 1; }
+    to { scale: 1 1; }
+  }
+
+  .tui-shell-header-shrink {
+    animation: tui-shrink linear both;
+    animation-timeline: scroll(root);
+    animation-range: 0 8rem;
+  }
+
+  @keyframes tui-shrink {
+    to {
+      padding-block: var(--tui-spacing-1);
+      box-shadow: inset 0 -1px 0 var(--tui-border), var(--tui-shadow-md);
+    }
+  }
+
+  /* why: a scroll-driven animation takes its progress from the scroll
+     position, so the global animation-duration gate in 80-themes/a11y.css
+     never stops it — these two opt out here */
+  @media (prefers-reduced-motion: reduce) {
+    .tui-reading-progress {
+      display: none;
+    }
+
+    .tui-shell-header-shrink {
+      animation: none;
+    }
+  }
+}

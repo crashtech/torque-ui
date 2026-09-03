@@ -1,0 +1,12 @@
+<div class="tui-p-4 tui-bg-surface-0 tui-text-1 tui-stack">
+  <p class="tui-m-0">Rendered by <code>data-theme</code> on the root, whatever the OS says. <span class="tui-dark-only">🌙</span><span class="tui-light-only">☀️</span></p>
+  <button class="tui-button" type="button" id="dark-mode-persisted-toggle">Switch scheme</button>
+</div>
+<script>
+  const root = document.documentElement;
+  root.dataset.theme = localStorage.getItem('tui-theme') || 'dark';
+  document.getElementById('dark-mode-persisted-toggle').addEventListener('click', () => {
+    root.dataset.theme = root.dataset.theme === 'dark' ? 'light' : 'dark';
+    localStorage.setItem('tui-theme', root.dataset.theme);
+  });
+</script>

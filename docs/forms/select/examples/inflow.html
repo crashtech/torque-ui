@@ -1,0 +1,32 @@
+<div class="tui-field tui-max-w-sm" style="padding-block-end: 10rem;">
+  <label for="select-inflow-input">Shape</label>
+  <div class="tui-combobox" id="select-inflow">
+    <input class="tui-combobox-input" id="select-inflow-input" type="text" role="combobox" aria-expanded="false" aria-controls="select-inflow-list" aria-autocomplete="list" placeholder="Type to filter">
+    <ul class="tui-listbox" id="select-inflow-list" role="listbox" hidden>
+      <li class="tui-option" role="option"><svg class="tui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 2 22h20z"/></svg> Triangle</li>
+      <li class="tui-option" role="option"><svg class="tui-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/></svg> Circle</li>
+      <li class="tui-listbox-empty">No matches</li>
+    </ul>
+  </div>
+</div>
+<script>
+  const inflow = document.getElementById('select-inflow');
+  const input = inflow.querySelector('.tui-combobox-input');
+  const list = inflow.querySelector('.tui-listbox');
+  const options = list.querySelectorAll('.tui-option');
+  const show = (open) => { list.hidden = !open; input.setAttribute('aria-expanded', open); };
+  input.addEventListener('focus', () => show(true));
+  input.addEventListener('blur', () => show(false));
+  input.addEventListener('input', () => {
+    show(true);
+    options.forEach((option) => { option.hidden = !option.textContent.toLowerCase().includes(input.value.toLowerCase()); });
+  });
+  list.addEventListener('pointerdown', (event) => {
+    const option = event.target.closest('.tui-option');
+    if (!option) return;
+    event.preventDefault();
+    options.forEach((other) => other.setAttribute('aria-selected', other === option));
+    input.value = option.textContent.trim();
+    show(false);
+  });
+</script>

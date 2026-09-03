@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Torque UI — Utilities & Spacing</title>
+  <link rel="stylesheet" href="/src/tui.css">
+</head>
+<body>
+  <div class="tui-container">
+    <h1 class="tui-sr-only">Utilities & Spacing</h1>
+
+
+    <section class="tui-card tui-mb-6">
+      <div class="tui-card-header">
+        <h2 class="tui-m-0">Spacing Utilities</h2>
+      </div>
+      <div class="tui-card-body">
+        <h3 class="tui-mb-3">Margin Utilities</h3>
+        <div class="tui-card" style="border: 2px dashed var(--tui-brand); padding: 0.5rem; margin-bottom: 1rem;">
+          <div class="tui-m-0" style="background: var(--tui-brand-300); padding: 1rem; text-align: center; font-weight: bold; color: var(--tui-text-1);">m-0 (no margin)</div>
+        </div>
+        <div class="tui-card" style="border: 2px dashed var(--tui-brand); padding: 0.5rem; margin-bottom: 1rem;">
+          <div class="tui-m-4" style="background: var(--tui-brand-300); padding: 1rem; text-align: center; font-weight: bold; color: var(--tui-text-1);">m-4 (spacing-4)</div>
+        </div>
+        <div class="tui-card" style="border: 2px dashed var(--tui-brand); padding: 0.5rem; margin-bottom: 1rem;">
+          <div class="tui-mt-6" style="background: var(--tui-positive); padding: 1rem; text-align: center; font-weight: bold; color: var(--tui-positive-fg);">mt-6 (top margin only)</div>
+        </div>
+        <div class="tui-card" style="border: 2px dashed var(--tui-brand); padding: 0.5rem; margin-bottom: 1rem;">
+          <div class="tui-mb-6" style="background: var(--tui-warning); padding: 1rem; text-align: center; font-weight: bold; color: var(--tui-warning-fg);">mb-6 (bottom margin only)</div>
+        </div>
+        <div class="tui-card" style="border: 2px dashed var(--tui-brand); padding: 0.5rem; margin-bottom: 1rem;">
+          <div class="tui-ml-6" style="background: var(--tui-negative); padding: 1rem; text-align: center; font-weight: bold; color: var(--tui-negative-fg);">ml-6 (left margin only)</div>
+        </div>
+        <div class="tui-card" style="border: 2px dashed var(--tui-brand); padding: 0.5rem; margin-bottom: 1rem;">
+          <div class="tui-mr-6" style="background: var(--tui-info); padding: 1rem; text-align: center; font-weight: bold; color: var(--tui-info-fg);">mr-6 (right margin only)</div>
+        </div>
+
+        <h3 class="tui-mt-6 tui-mb-3">Padding Utilities</h3>
+        <div class="tui-card" style="border: 2px dashed var(--tui-brand); padding: 1rem;">
+          <div class="tui-p-6" style="background: var(--tui-brand-300); text-align: center; font-weight: bold; color: var(--tui-text-1);">p-6 (padding on all sides)</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="tui-card tui-mb-6">
+      <div class="tui-card-header">
+        <h2 class="tui-m-0">Text Utilities</h2>
+      </div>
+      <div class="tui-card-body">
+        <h3 class="tui-mb-3">Text Alignment</h3>
+        <div class="tui-text-left tui-mb-4" style="padding: 1rem; background: var(--tui-surface-1);">
+          <span class="tui-text-primary">Left aligned text</span>
+        </div>
+        <div class="tui-text-center tui-mb-4" style="padding: 1rem; background: var(--tui-surface-1);">
+          <span class="tui-text-positive">Center aligned text</span>
+        </div>
+        <div class="tui-text-right tui-mb-4" style="padding: 1rem; background: var(--tui-surface-1);">
+          <span class="tui-text-negative">Right aligned text</span>
+        </div>
+
+        <h3 class="tui-mb-3">Text Weight</h3>
+        <p class="tui-font-normal tui-mb-3">Normal weight (400)</p>
+        <p class="tui-font-medium tui-mb-3">Medium weight (500)</p>
+        <p class="tui-font-semibold tui-mb-3">Semibold weight (600)</p>
+        <p class="tui-font-bold tui-mb-4">Bold weight (700)</p>
+
+        <h3 class="tui-mb-3">Text Transform</h3>
+        <p class="tui-uppercase tui-mb-3">UPPERCASE TEXT</p>
+        <p class="tui-lowercase tui-mb-3">lowercase text</p>
+        <p class="tui-capitalize tui-mb-4">capitalize text</p>
+
+        <h3 class="tui-mb-3">Text Overflow</h3>
+        <div class="tui-text-ellipsis" style="width: 200px; background: var(--tui-surface-1); padding: 0.5rem; overflow: hidden; white-space: nowrap; border: 1px solid var(--tui-border);">
+          This is a very long text that should be truncated with ellipsis
+        </div>
+        <div class="tui-line-clamp-2 tui-mt-4" style="width: 300px; background: var(--tui-surface-1); padding: 0.5rem; border: 1px solid var(--tui-border);">
+          <p class="tui-mb-2">This is a long paragraph that will be clamped to 2 lines. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          <p class="tui-m-0">This paragraph should not be visible because the parent is clamped.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="tui-card tui-mb-6">
+      <div class="tui-card-header">
+        <h2 class="tui-m-0">Color Utilities</h2>
+      </div>
+      <div class="tui-card-body">
+        <h3 class="tui-mb-3">Text Colors</h3>
+        <div class="tui-flex tui-flex-wrap tui-mb-6" style="gap: 1rem;">
+          <span class="tui-text-primary" style="font-size: 1.5rem; font-weight: bold;">Primary</span>
+          <span class="tui-text-positive" style="font-size: 1.5rem; font-weight: bold;">Positive</span>
+          <span class="tui-text-negative" style="font-size: 1.5rem; font-weight: bold;">Negative</span>
+          <span class="tui-text-warning" style="font-size: 1.5rem; font-weight: bold;">Warning</span>
+          <span class="tui-text-info" style="font-size: 1.5rem; font-weight: bold;">Info</span>
+          <span class="tui-text-neutral" style="font-size: 1.5rem; font-weight: bold;">Neutral</span>
+          <span class="tui-text-inverse" style="font-size: 1.5rem; font-weight: bold; background: var(--tui-text-1); padding: 0.25rem 0.5rem;">Inverse</span>
+        </div>
+
+        <h3 class="tui-mb-3">Background Colors</h3>
+        <div class="tui-flex tui-flex-wrap tui-mb-6" style="gap: 1rem;">
+          <div class="tui-bg-primary" style="width: 120px; height: 60px; border-radius: 0.5rem; display: flex; align-items: center; justify-content: center; font-weight: bold; color: var(--tui-brand-fg);">Primary</div>
+          <div class="tui-bg-positive" style="width: 120px; height: 60px; border-radius: 0.5rem; display: flex; align-items: center; justify-content: center; font-weight: bold; color: var(--tui-positive-fg);">Positive</div>
+          <div class="tui-bg-negative" style="width: 120px; height: 60px; border-radius: 0.5rem; display: flex; align-items: center; justify-content: center; font-weight: bold; color: var(--tui-negative-fg);">Negative</div>
+          <div class="tui-bg-warning" style="width: 120px; height: 60px; border-radius: 0.5rem; display: flex; align-items: center; justify-content: center; font-weight: bold; color: var(--tui-warning-fg);">Warning</div>
+          <div class="tui-bg-info" style="width: 120px; height: 60px; border-radius: 0.5rem; display: flex; align-items: center; justify-content: center; font-weight: bold; color: var(--tui-info-fg);">Info</div>
+          <div class="tui-bg-neutral" style="width: 120px; height: 60px; border-radius: 0.5rem; display: flex; align-items: center; justify-content: center; font-weight: bold; color: #fff;">Neutral</div>
+        </div>
+
+        <h3 class="tui-mb-3">Light Backgrounds</h3>
+        <div class="tui-flex tui-flex-wrap tui-mb-6" style="gap: 1rem;">
+          <div class="tui-bg-primary-light" style="width: 120px; height: 60px; border-radius: 0.5rem; display: flex; align-items: center; justify-content: center; font-weight: bold; color: var(--tui-brand-ink);">Primary Light</div>
+          <div class="tui-bg-positive-light" style="width: 120px; height: 60px; border-radius: 0.5rem; display: flex; align-items: center; justify-content: center; font-weight: bold; color: var(--tui-positive-ink);">Positive Light</div>
+          <div class="tui-bg-negative-light" style="width: 120px; height: 60px; border-radius: 0.5rem; display: flex; align-items: center; justify-content: center; font-weight: bold; color: var(--tui-negative);">Negative Light</div>
+          <div class="tui-bg-warning-light" style="width: 120px; height: 60px; border-radius: 0.5rem; display: flex; align-items: center; justify-content: center; font-weight: bold;">Warning Light</div>
+          <div class="tui-bg-info-light" style="width: 120px; height: 60px; border-radius: 0.5rem; display: flex; align-items: center; justify-content: center; font-weight: bold; color: var(--tui-info-ink);">Info Light</div>
+        </div>
+
+        <h3 class="tui-mb-3">Border Colors</h3>
+        <div class="tui-flex tui-flex-wrap tui-mb-6" style="gap: 1rem;">
+          <div class="tui-border-primary" style="width: 120px; height: 60px; border-width: 3px; display: flex; align-items: center; justify-content: center; font-weight: bold; color: var(--tui-brand);">Primary</div>
+          <div class="tui-border-positive" style="width: 120px; height: 60px; border-width: 3px; display: flex; align-items: center; justify-content: center; font-weight: bold; color: var(--tui-positive);">Positive</div>
+          <div class="tui-border-negative" style="width: 120px; height: 60px; border-width: 3px; display: flex; align-items: center; justify-content: center; font-weight: bold; color: var(--tui-negative);">Negative</div>
+          <div class="tui-border-warning" style="width: 120px; height: 60px; border-width: 3px; display: flex; align-items: center; justify-content: center; font-weight: bold;">Warning</div>
+          <div class="tui-border-info" style="width: 120px; height: 60px; border-width: 3px; display: flex; align-items: center; justify-content: center; font-weight: bold; color: var(--tui-info);">Info</div>
+        </div>
+
+        <h3 class="tui-mb-3">Shadows</h3>
+        <div class="tui-flex tui-flex-wrap tui-mb-6" style="gap: 1rem;">
+          <div class="tui-shadow-sm" style="width: 100px; height: 100px; background: var(--tui-surface-0); border-radius: 0.5rem; display: flex; align-items: center; justify-content: center; font-weight: bold;">sm</div>
+          <div class="tui-shadow-md" style="width: 100px; height: 100px; background: var(--tui-surface-0); border-radius: 0.5rem; display: flex; align-items: center; justify-content: center; font-weight: bold;">md</div>
+          <div class="tui-shadow-lg" style="width: 100px; height: 100px; background: var(--tui-surface-0); border-radius: 0.5rem; display: flex; align-items: center; justify-content: center; font-weight: bold;">lg</div>
+          <div class="tui-shadow-xl" style="width: 100px; height: 100px; background: var(--tui-surface-0); border-radius: 0.5rem; display: flex; align-items: center; justify-content: center; font-weight: bold;">xl</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="tui-card tui-mb-6" id="sizing-section">
+      <div class="tui-card-header">
+        <h2 class="tui-m-0">Sizing, Sticky &amp; Auto Margins</h2>
+      </div>
+      <div class="tui-card-body">
+        <h3 class="tui-mb-3">Width</h3>
+        <div class="tui-flex tui-flex-col tui-gap-2 tui-mb-6">
+          <div class="tui-w-25 tui-bg-primary-light tui-p-2 tui-rounded-md">tui-w-25</div>
+          <div class="tui-w-50 tui-bg-primary-light tui-p-2 tui-rounded-md">tui-w-50</div>
+          <div class="tui-w-75 tui-bg-primary-light tui-p-2 tui-rounded-md">tui-w-75</div>
+          <div class="tui-w-100 tui-bg-primary-light tui-p-2 tui-rounded-md">tui-w-100</div>
+        </div>
+
+        <h3 class="tui-mb-3">Max width</h3>
+        <div class="tui-flex tui-flex-col tui-gap-2 tui-mb-6">
+          <div class="tui-max-w-xs tui-bg-surface-2 tui-p-2 tui-rounded-sm">tui-max-w-xs (20rem)</div>
+          <div class="tui-max-w-md tui-bg-surface-2 tui-p-2 tui-rounded-sm">tui-max-w-md (28rem)</div>
+          <div class="tui-max-w-xl tui-bg-surface-2 tui-p-2 tui-rounded-sm">tui-max-w-xl (36rem)</div>
+        </div>
+
+        <h3 class="tui-mb-3">Auto margins &amp; padding block</h3>
+        <div class="tui-flex tui-bg-surface-1 tui-p-2 tui-rounded-md tui-mb-6" id="auto-margin-demo">
+          <span class="tui-badge">start</span>
+          <span class="tui-badge tui-badge-primary tui-ms-auto">tui-ms-auto</span>
+        </div>
+        <div class="tui-flex tui-gap-3 tui-mb-6">
+          <div class="tui-pt-4 tui-bg-surface-2 tui-rounded-sm"><span class="tui-bg-primary-light tui-d-block tui-p-1">tui-pt-4</span></div>
+          <div class="tui-pb-4 tui-bg-surface-2 tui-rounded-sm"><span class="tui-bg-primary-light tui-d-block tui-p-1">tui-pb-4</span></div>
+        </div>
+
+        <h3 class="tui-mb-3">Opacity, dashed border, tracking, rounded</h3>
+        <div class="tui-flex tui-flex-wrap tui-gap-3 tui-mb-6">
+          <div><div class="tui-opacity-25 tui-bg-primary tui-p-4 tui-rounded-md" aria-hidden="true"></div><code>tui-opacity-25</code></div>
+          <div><div class="tui-opacity-50 tui-bg-primary tui-p-4 tui-rounded-md" aria-hidden="true"></div><code>tui-opacity-50</code></div>
+          <div><div class="tui-opacity-75 tui-bg-primary tui-p-4 tui-rounded-md" aria-hidden="true"></div><code>tui-opacity-75</code></div>
+          <div class="tui-border-dashed tui-border-primary tui-p-2 tui-rounded-md" style="border-width: 2px;">tui-border-dashed</div>
+          <div class="tui-tracking-wider tui-uppercase tui-text-xs tui-p-2">tui-tracking-wider</div>
+          <div class="tui-rounded-full tui-bg-surface-3 tui-p-2">tui-rounded-full</div>
+        </div>
+
+        <h3 class="tui-mb-3">Surface backgrounds &amp; text levels</h3>
+        <div class="tui-flex tui-flex-wrap tui-gap-3 tui-mb-6">
+          <div class="tui-bg-surface-0 tui-p-2 tui-rounded-md" style="border: 1px solid var(--tui-border);">surface-0</div>
+          <div class="tui-bg-surface-1 tui-p-2 tui-rounded-md">surface-1</div>
+          <div class="tui-bg-surface-2 tui-p-2 tui-rounded-md">surface-2</div>
+          <div class="tui-bg-surface-3 tui-p-2 tui-rounded-md">surface-3</div>
+          <span class="tui-text-1 tui-p-2">tui-text-1</span>
+          <span class="tui-text-2 tui-p-2">tui-text-2</span>
+          <span class="tui-text-3 tui-p-2">tui-text-3</span>
+        </div>
+
+        <h3 class="tui-mb-3">Sticky top</h3>
+        <div class="tui-overflow-auto tui-rounded-md" style="height: 120px; border: 1px solid var(--tui-border);">
+          <div class="tui-sticky-top tui-bg-surface-1 tui-p-2" id="sticky-demo">tui-sticky-top header</div>
+          <p class="tui-p-2">Row 1</p><p class="tui-p-2">Row 2</p><p class="tui-p-2">Row 3</p><p class="tui-p-2">Row 4</p><p class="tui-p-2">Row 5</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="tui-card tui-mb-6" id="gradient-section">
+      <div class="tui-card-header">
+        <h2 class="tui-m-0">Gradients, Avatar Palette &amp; Text on Fills</h2>
+      </div>
+      <div class="tui-card-body">
+        <h3 class="tui-mb-3">Gradient (flat until <code>--tui-brand-end</code> is set)</h3>
+        <div class="tui-flex tui-flex-wrap tui-gap-3 tui-mb-6">
+          <div class="tui-bg-gradient tui-p-4 tui-rounded-md" id="gradient-flat">tui-bg-gradient (flat)</div>
+          <div class="tui-bg-gradient tui-p-4 tui-rounded-md" id="gradient-set" style="--tui-brand-gradient: linear-gradient(135deg, var(--tui-brand), #7a00ff);">--tui-brand-gradient overridden</div>
+          <div class="tui-bg-gradient tui-tone-success tui-p-4 tui-rounded-md" id="gradient-tone" style="--tui-positive-gradient: linear-gradient(135deg, var(--tui-positive), #0ea5e9);">tui-bg-gradient tui-tone-success</div>
+        </div>
+
+        <h3 class="tui-mb-3">Avatar palette</h3>
+        <div class="tui-flex tui-flex-wrap tui-gap-3 tui-mb-6" id="avatar-palette">
+          <span class="tui-avatar tui-avatar-1">A1</span>
+          <span class="tui-avatar tui-avatar-2">A2</span>
+          <span class="tui-avatar tui-avatar-3">A3</span>
+          <span class="tui-avatar tui-avatar-4">A4</span>
+          <span class="tui-avatar tui-avatar-5">A5</span>
+          <span class="tui-avatar tui-avatar-6">A6</span>
+        </div>
+
+        <h3 class="tui-mb-3">Text on solid fills</h3>
+        <div class="tui-flex tui-flex-wrap tui-gap-3 tui-mb-6">
+          <div class="tui-bg-primary tui-text-brand-fg tui-p-2 tui-rounded-md" id="text-brand-fg">tui-text-brand-fg</div>
+          <div class="tui-bg-positive tui-text-positive-fg tui-p-2 tui-rounded-md">tui-text-positive-fg</div>
+          <div class="tui-bg-warning tui-text-warning-fg tui-p-2 tui-rounded-md">tui-text-warning-fg</div>
+          <div class="tui-tone-info tui-p-2 tui-rounded-md" style="background: var(--tui-tone);"><span class="tui-text-tone-fg">tui-text-tone-fg</span></div>
+        </div>
+
+        <h3 class="tui-mb-3">Chart series &amp; legend</h3>
+        <div class="tui-chart tui-mb-3" id="chart-demo">
+          <svg viewBox="0 0 320 90" role="img" aria-label="Messages per channel">
+            <g class="tui-chart-measure" opacity=".3"><line x1="80" y1="8" x2="80" y2="82" stroke="currentColor"/></g>
+            <g class="tui-chart-1"><rect x="80" y="10" width="200" height="12" fill="currentColor"/></g>
+            <g class="tui-chart-2"><rect x="80" y="28" width="140" height="12" fill="currentColor"/></g>
+            <g class="tui-chart-3"><rect x="80" y="46" width="90" height="12" fill="currentColor"/></g>
+            <g class="tui-chart-4"><rect x="80" y="64" width="60" height="12" fill="currentColor"/></g>
+            <g class="tui-text-3" font-size="10" fill="currentColor">
+              <text x="72" y="20" text-anchor="end">WhatsApp</text>
+              <text x="72" y="38" text-anchor="end">Instagram</text>
+              <text x="72" y="56" text-anchor="end">E-mail</text>
+              <text x="72" y="74" text-anchor="end">Interno</text>
+            </g>
+          </svg>
+        </div>
+        <div class="tui-legend" id="legend-demo">
+          <span class="tui-legend-item tui-chart-1"><span class="tui-legend-swatch"></span><span>WhatsApp</span></span>
+          <span class="tui-legend-item tui-chart-2"><span class="tui-legend-swatch"></span><span>Instagram</span></span>
+          <span class="tui-legend-item tui-chart-3"><span class="tui-legend-swatch"></span><span>E-mail</span></span>
+          <span class="tui-legend-item tui-chart-4"><span class="tui-legend-swatch"></span><span>Interno</span></span>
+          <span class="tui-legend-item tui-chart-measure"><span class="tui-legend-swatch"></span><span>Total</span></span>
+        </div>
+
+        <h3 class="tui-mb-3 tui-mt-6">Light frame &amp; thumbnail</h3>
+        <div class="tui-flex tui-flex-wrap tui-gap-4 tui-items-start">
+          <span class="tui-frame-light" id="frame-light-demo"><svg width="64" height="64" viewBox="0 0 8 8" aria-hidden="true"><path fill="#111" d="M0 0h3v3H0zM5 0h3v3H5zM0 5h3v3H0zM4 4h1v1H4zM6 5h2v1H6zM5 6h1v2H5zM7 7h1v1H7z"/></svg></span>
+          <figure class="tui-thumb" id="thumb-demo" style="width: 160px;">
+            <svg width="160" height="100" viewBox="0 0 16 10" aria-hidden="true"><rect width="16" height="10" fill="#0f766e"/><circle cx="12" cy="3" r="2" fill="#a3e635"/></svg>
+            <figcaption>IMG_2231.jpg</figcaption>
+          </figure>
+          <div class="tui-container-sm tui-bg-surface-2 tui-p-2 tui-rounded-md" id="container-sm-demo">tui-container-sm (28rem)</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="tui-card tui-mb-6">
+      <div class="tui-card-header">
+        <h2 class="tui-m-0">Overflow Utilities</h2>
+      </div>
+      <div class="tui-card-body">
+        <h3 class="tui-mb-3">Overflow Visible</h3>
+        <div class="tui-overflow-visible" style="width: 200px; height: 80px; background: var(--tui-surface-1); border: 1px solid var(--tui-border);">
+          <div style="width: 300px; height: 100px; background: var(--tui-brand-300); color: var(--tui-text-1); padding: 0.5rem; font-weight: bold;">Content overflows</div>
+        </div>
+
+        <h3 class="tui-mb-3">Overflow Hidden</h3>
+        <div class="tui-overflow-hidden tui-mb-3" style="width: 200px; height: 80px; background: var(--tui-surface-1); border: 1px solid var(--tui-border);">
+          <div style="width: 300px; height: 100px; background: var(--tui-positive); color: var(--tui-positive-fg); padding: 0.5rem; font-weight: bold;">Content hidden</div>
+        </div>
+
+        <h3 class="tui-mb-3">Overflow Auto</h3>
+        <div class="tui-overflow-auto tui-mb-3" style="width: 200px; height: 80px; background: var(--tui-surface-1); border: 1px solid var(--tui-border);">
+          <div style="width: 300px; height: 100px; background: var(--tui-warning); padding: 0.5rem; font-weight: bold; color: var(--tui-warning-fg);">Scrollable content</div>
+        </div>
+
+        <h3 class="tui-mb-3">Overflow Scroll</h3>
+        <div class="tui-overflow-scroll" style="width: 200px; height: 80px; background: var(--tui-surface-1); border: 1px solid var(--tui-border);">
+          <div style="width: 300px; height: 100px; background: var(--tui-negative); color: var(--tui-negative-fg); padding: 0.5rem; font-weight: bold;">Always scrollable</div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</body>
+</html>

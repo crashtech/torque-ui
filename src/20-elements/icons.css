@@ -1,0 +1,42 @@
+/* Torque UI — Icon Convention
+ * .tui-icon sizes an inline <svg> to the current font-size so icons scale
+ * with text and inherit color via fill: currentcolor.
+ */
+
+
+  .tui-icon {
+    display: inline-block;
+    inline-size: var(--tui-icon-size, 1em);
+    block-size: var(--tui-icon-size, 1em);
+    vertical-align: -0.125em;
+    flex-shrink: 0;
+  }
+
+  /* why: an outline icon carries fill="none" and draws with strokes; painting
+     currentcolor over it would turn it into a solid blob */
+  .tui-icon:not([fill]) {
+    fill: currentcolor;
+  }
+
+  .tui-icon-sm { --tui-icon-size: 0.75em; }
+
+  .tui-icon-lg { --tui-icon-size: 1.5em; }
+
+  /* === Caret ===
+   * A chevron that turns when its expandable parent opens — a dropdown
+   * button, a navbar item, the combobox. The glyph is the shared chevron
+   * token used as a mask, so it takes the text colour. */
+  .tui-caret {
+    display: inline-block;
+    inline-size: 0.75em;
+    block-size: 0.75em;
+    vertical-align: -0.125em;
+    flex-shrink: 0;
+    mask: var(--tui-icon-chevron) center / contain no-repeat;
+    background-color: currentcolor;
+    transition: rotate var(--tui-duration-fast);
+  }
+
+  :is([aria-expanded="true"], [data-expanded], .tui-expanded) .tui-caret {
+    rotate: 180deg;
+  }

@@ -1,0 +1,42 @@
+/* Torque UI — Placeholder / Skeleton
+ * Loading skeleton shimmer for content placeholders.
+ * Pure CSS, no JS. Respects prefers-reduced-motion.
+ */
+
+
+  .tui-placeholder {
+    display: block;
+    background: linear-gradient(
+      90deg,
+      var(--tui-surface-2) 25%,
+      var(--tui-surface-3) 50%,
+      var(--tui-surface-2) 75%
+    );
+    background-size: 200% 100%;
+    animation: tui-placeholder-shimmer 1.5s var(--tui-easing-out) infinite;
+    border-radius: var(--tui-radius-md);
+    min-block-size: 1rem;
+  }
+
+  .tui-placeholder-circle {
+    border-radius: var(--tui-radius-full);
+    aspect-ratio: 1;
+  }
+
+  .tui-placeholder-sm {
+    min-block-size: 0.75rem;
+  }
+
+  .tui-placeholder-lg {
+    min-block-size: 1.5rem;
+  }
+
+  @keyframes tui-placeholder-shimmer {
+    from {
+      background-position: 200% 0;
+    }
+
+    to {
+      background-position: -200% 0;
+    }
+  }

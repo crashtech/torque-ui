@@ -1,0 +1,26 @@
+{
+  "scripts": {
+    "start": "node test-server.mjs",
+    "test": "playwright test",
+    "test:a11y": "playwright test tests/examples-a11y.spec.js",
+    "test:a11y:ui": "playwright test --ui",
+    "test:a11y:report": "playwright show-report",
+    "test:visual": "playwright test tests/visual.spec.js",
+    "test:visual:update": "playwright test tests/visual.spec.js --update-snapshots",
+    "lint:css": "stylelint \"src/**/*.css\"",
+    "lint:css:fix": "stylelint \"src/**/*.css\" --fix",
+    "audit:css": "bash scripts/audit-css.sh",
+    "build": "bash scripts/build-single.sh",
+    "postinstall": "playwright install chromium"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "^4.13.0",
+    "@playwright/test": "^1.62.1",
+    "axe-playwright": "^2.2.2",
+    "playwright": "^1.62.1",
+    "stylelint": "^17.14.1",
+    "stylelint-config-standard": "^40.0.0",
+    "stylelint-csstree-validator": "^4.0.0",
+    "stylelint-use-logical": "^2.1.3"
+  }
+}

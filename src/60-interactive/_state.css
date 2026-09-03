@@ -1,0 +1,65 @@
+/* Torque UI — Shared state-input mechanism */
+
+/* why: state inputs must stay focusable; opacity:0 keeps them in the tab order, clip hides them */
+.tui-state-input {
+  position: absolute;
+  inline-size: 1px;
+  block-size: 1px;
+  margin: -1px;
+  overflow: clip;
+  clip-path: inset(50%);
+  opacity: 0;
+}
+
+.tui-state-input:focus-visible + * {
+  outline: var(--tui-focus-ring-width) solid var(--tui-focus-ring-strong);
+  outline-offset: 2px;
+}
+
+/* === Self-driven state ===
+ * A script expresses state as an ARIA attribute, a data-* attribute (by
+ * presence) or a class — in that order of precedence, the class winning.
+ * Each state is one registered integer, 0 or 1, so a developer's own CSS
+ * can read it; the framework paints the state through the same selectors. */
+@property --tui-expanded {
+  syntax: '<integer>';
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --tui-selected {
+  syntax: '<integer>';
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --tui-active {
+  syntax: '<integer>';
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --tui-pressed {
+  syntax: '<integer>';
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --tui-invalid {
+  syntax: '<integer>';
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --tui-disabled {
+  syntax: '<integer>';
+  inherits: false;
+  initial-value: 0;
+}
+
+:is([aria-expanded="true"], [data-expanded], .tui-expanded) { --tui-expanded: 1; }
+:is([aria-selected="true"], [aria-current], [data-selected], .tui-selected) { --tui-selected: 1; }
+:is([data-active], .tui-active) { --tui-active: 1; }
+:is([aria-pressed="true"], [aria-checked="true"], [data-pressed], .tui-pressed) { --tui-pressed: 1; }
+:is([aria-invalid="true"], [data-invalid], .tui-invalid) { --tui-invalid: 1; }
+:is([aria-disabled="true"], [data-disabled], .tui-disabled, :disabled) { --tui-disabled: 1; }

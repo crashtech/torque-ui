@@ -1,0 +1,20 @@
+/* Torque UI — Chart Tokens
+ * Categorical series palette and a muted single-measure colour for
+ * hand-authored SVG charts. Six hue families (blue, orange, teal, magenta,
+ * olive, purple) chosen so adjacent series stay apart under deuteranopia
+ * and protanopia; the dark values are lifted for contrast on dark surfaces.
+ */
+
+
+  :root {
+    --tui-chart-1: light-dark(#2563eb, #60a5fa);
+    --tui-chart-2: light-dark(#ea580c, #fb923c);
+    --tui-chart-3: light-dark(#0d9488, #2dd4bf);
+    --tui-chart-4: light-dark(#db2777, #f472b6);
+    --tui-chart-5: light-dark(#65a30d, #a3e635);
+    --tui-chart-6: light-dark(#7c3aed, #a78bfa);
+
+    /* why: a single-measure bar is not a series — it must read as
+       "the value", never as "series #n" next to a legend */
+    --tui-chart-measure: light-dark(color-mix(in srgb, var(--tui-neutral) 70%, black 30%), color-mix(in srgb, var(--tui-neutral) 60%, white 40%));
+  }

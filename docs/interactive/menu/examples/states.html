@@ -1,0 +1,16 @@
+<div class="tui-popover-static tui-menu" id="menu-states">
+  <a class="tui-menu-item" href="#menu-states" aria-current="page">Current page</a>
+  <a class="tui-menu-item" href="#menu-states">Another page</a>
+  <hr class="tui-menu-divider">
+  <button class="tui-menu-item" type="button" aria-disabled="true">Unavailable</button>
+</div>
+<script>
+  const menu = document.getElementById('menu-states');
+  menu.addEventListener('click', (event) => {
+    const link = event.target.closest('a.tui-menu-item');
+    if (!link) return;
+    event.preventDefault();
+    menu.querySelectorAll('a.tui-menu-item').forEach((other) => other.removeAttribute('aria-current'));
+    link.setAttribute('aria-current', 'page');
+  });
+</script>

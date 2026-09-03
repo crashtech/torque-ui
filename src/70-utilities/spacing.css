@@ -1,0 +1,114 @@
+/* Torque UI — Spacing Utilities
+ * .tui-m*, .tui-p*, .tui-gap-* utility classes.
+ */
+
+
+  /* === Margin === */
+  .tui-m-0  { margin: 0; }
+  .tui-m-1  { margin: var(--tui-spacing-1); }
+  .tui-m-2  { margin: var(--tui-spacing-2); }
+  .tui-m-3  { margin: var(--tui-spacing-3); }
+  .tui-m-4  { margin: var(--tui-spacing-4); }
+  .tui-m-6  { margin: var(--tui-spacing-6); }
+  .tui-m-8  { margin: var(--tui-spacing-8); }
+  .tui-m-12 { margin: var(--tui-spacing-12); }
+
+  .tui-mt-0  { margin-block-start: 0; }
+  .tui-mt-1  { margin-block-start: var(--tui-spacing-1); }
+  .tui-mt-2  { margin-block-start: var(--tui-spacing-2); }
+  .tui-mt-3  { margin-block-start: var(--tui-spacing-3); }
+  .tui-mt-4  { margin-block-start: var(--tui-spacing-4); }
+  .tui-mt-6  { margin-block-start: var(--tui-spacing-6); }
+  .tui-mt-8  { margin-block-start: var(--tui-spacing-8); }
+  .tui-mt-12 { margin-block-start: var(--tui-spacing-12); }
+
+  .tui-mb-0  { margin-block-end: 0; }
+  .tui-mb-1  { margin-block-end: var(--tui-spacing-1); }
+  .tui-mb-2  { margin-block-end: var(--tui-spacing-2); }
+  .tui-mb-3  { margin-block-end: var(--tui-spacing-3); }
+  .tui-mb-4  { margin-block-end: var(--tui-spacing-4); }
+  .tui-mb-6  { margin-block-end: var(--tui-spacing-6); }
+  .tui-mb-8  { margin-block-end: var(--tui-spacing-8); }
+  .tui-mb-12 { margin-block-end: var(--tui-spacing-12); }
+
+  /* === Margin inline (start/end) ===
+   * .tui-ms-N and .tui-me-N are canonical; .tui-ml-N and .tui-mr-N are
+   * deprecated aliases kept for one release, mapping to the same logical
+   * properties. */
+  .tui-ms-0  , .tui-ml-0  { margin-inline-start: 0; }
+  .tui-ms-1  , .tui-ml-1  { margin-inline-start: var(--tui-spacing-1); }
+  .tui-ms-2  , .tui-ml-2  { margin-inline-start: var(--tui-spacing-2); }
+  .tui-ms-3  , .tui-ml-3  { margin-inline-start: var(--tui-spacing-3); }
+  .tui-ms-4  , .tui-ml-4  { margin-inline-start: var(--tui-spacing-4); }
+  .tui-ms-6  , .tui-ml-6  { margin-inline-start: var(--tui-spacing-6); }
+
+  .tui-me-0  , .tui-mr-0  { margin-inline-end: 0; }
+  .tui-me-1  , .tui-mr-1  { margin-inline-end: var(--tui-spacing-1); }
+  .tui-me-2  , .tui-mr-2  { margin-inline-end: var(--tui-spacing-2); }
+  .tui-me-3  , .tui-mr-3  { margin-inline-end: var(--tui-spacing-3); }
+  .tui-me-4  , .tui-mr-4  { margin-inline-end: var(--tui-spacing-4); }
+  .tui-me-6  , .tui-mr-6  { margin-inline-end: var(--tui-spacing-6); }
+
+  /* === Auto margins (push in flex/grid) === */
+  .tui-ms-auto, .tui-ml-auto { margin-inline-start: auto; }
+  .tui-me-auto, .tui-mr-auto { margin-inline-end: auto; }
+  .tui-mt-auto { margin-block-start: auto; }
+  .tui-mb-auto { margin-block-end: auto; }
+  .tui-mx-auto { margin-inline: auto; }
+
+  /* === Padding === */
+  .tui-p-0  { padding: 0; }
+  .tui-p-1  { padding: var(--tui-spacing-1); }
+  .tui-p-2  { padding: var(--tui-spacing-2); }
+  .tui-p-3  { padding: var(--tui-spacing-3); }
+  .tui-p-4  { padding: var(--tui-spacing-4); }
+  .tui-p-6  { padding: var(--tui-spacing-6); }
+  .tui-p-8  { padding: var(--tui-spacing-8); }
+  .tui-p-12 { padding: var(--tui-spacing-12); }
+
+  /* === Padding inline (start/end) ===
+   * .tui-ps-N and .tui-pe-N are canonical; .tui-pl-N and .tui-pr-N are
+   * deprecated aliases kept for one release, mapping to the same logical
+   * properties. */
+  .tui-ps-0  , .tui-pl-0  { padding-inline-start: 0; }
+  .tui-ps-1  , .tui-pl-1  { padding-inline-start: var(--tui-spacing-1); }
+  .tui-ps-2  , .tui-pl-2  { padding-inline-start: var(--tui-spacing-2); }
+  .tui-ps-3  , .tui-pl-3  { padding-inline-start: var(--tui-spacing-3); }
+  .tui-ps-4  , .tui-pl-4  { padding-inline-start: var(--tui-spacing-4); }
+  .tui-ps-6  , .tui-pl-6  { padding-inline-start: var(--tui-spacing-6); }
+
+  .tui-pe-0  , .tui-pr-0  { padding-inline-end: 0; }
+  .tui-pe-1  , .tui-pr-1  { padding-inline-end: var(--tui-spacing-1); }
+  .tui-pe-2  , .tui-pr-2  { padding-inline-end: var(--tui-spacing-2); }
+  .tui-pe-3  , .tui-pr-3  { padding-inline-end: var(--tui-spacing-3); }
+  .tui-pe-4  , .tui-pr-4  { padding-inline-end: var(--tui-spacing-4); }
+  .tui-pe-6  , .tui-pr-6  { padding-inline-end: var(--tui-spacing-6); }
+
+  /* === Gap === */
+  .tui-gap-0  { gap: 0; }
+  .tui-gap-1  { gap: var(--tui-spacing-1); }
+  .tui-gap-2  { gap: var(--tui-spacing-2); }
+  .tui-gap-3  { gap: var(--tui-spacing-3); }
+  .tui-gap-4  { gap: var(--tui-spacing-4); }
+  .tui-gap-6  { gap: var(--tui-spacing-6); }
+  .tui-gap-8  { gap: var(--tui-spacing-8); }
+  .tui-gap-12 { gap: var(--tui-spacing-12); }
+
+  /* === Padding block (start/end) === */
+  .tui-pt-0  { padding-block-start: 0; }
+  .tui-pt-1  { padding-block-start: var(--tui-spacing-1); }
+  .tui-pt-2  { padding-block-start: var(--tui-spacing-2); }
+  .tui-pt-3  { padding-block-start: var(--tui-spacing-3); }
+  .tui-pt-4  { padding-block-start: var(--tui-spacing-4); }
+  .tui-pt-6  { padding-block-start: var(--tui-spacing-6); }
+  .tui-pt-8  { padding-block-start: var(--tui-spacing-8); }
+  .tui-pt-12 { padding-block-start: var(--tui-spacing-12); }
+
+  .tui-pb-0  { padding-block-end: 0; }
+  .tui-pb-1  { padding-block-end: var(--tui-spacing-1); }
+  .tui-pb-2  { padding-block-end: var(--tui-spacing-2); }
+  .tui-pb-3  { padding-block-end: var(--tui-spacing-3); }
+  .tui-pb-4  { padding-block-end: var(--tui-spacing-4); }
+  .tui-pb-6  { padding-block-end: var(--tui-spacing-6); }
+  .tui-pb-8  { padding-block-end: var(--tui-spacing-8); }
+  .tui-pb-12 { padding-block-end: var(--tui-spacing-12); }

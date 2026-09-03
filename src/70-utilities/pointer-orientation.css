@@ -1,0 +1,63 @@
+/* Torque UI — Pointer & Orientation Media Utilities
+ * Group 6: hover/pointer detection, orientation, aspect-ratio.
+ * Progressive — safe on all target browsers.
+ */
+
+
+  /* === 1. Touch-first: only show hover affordances on precise pointers === */
+  @media (hover: hover) and (pointer: fine) {
+    .tui-hoverable {
+      transition: transform var(--tui-duration-fast) var(--tui-easing-out),
+        box-shadow var(--tui-duration-fast) var(--tui-easing-out),
+        color var(--tui-duration-fast) var(--tui-easing-out),
+        background-color var(--tui-duration-fast) var(--tui-easing-out),
+        border-color var(--tui-duration-fast) var(--tui-easing-out);
+    }
+
+    .tui-hoverable:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--tui-shadow-md);
+    }
+  }
+
+  /* On coarse pointers, enlarge tap targets for accessibility */
+  .tui-tap-target {
+    --tui-tap-target: calc(var(--tui-spacing-10) + var(--tui-spacing-1));
+  }
+
+  @media (pointer: coarse) {
+    .tui-tap-target {
+      min-block-size: var(--tui-tap-target);
+      min-inline-size: var(--tui-tap-target);
+    }
+  }
+
+  /* === 2. Orientation-specific tweaks === */
+  @media (orientation: portrait) {
+    .tui-portrait-stack {
+      flex-direction: column;
+    }
+  }
+
+  @media (orientation: landscape) {
+    .tui-landscape-row {
+      flex-direction: row;
+    }
+  }
+
+  /* === 3. Aspect-ratio containers (Group 6) === */
+  .tui-ratio-16-9 {
+    aspect-ratio: 16 / 9;
+  }
+
+  .tui-ratio-4-3 {
+    aspect-ratio: 4 / 3;
+  }
+
+  .tui-ratio-1-1 {
+    aspect-ratio: 1 / 1;
+  }
+
+  .tui-ratio-21-9 {
+    aspect-ratio: 21 / 9;
+  }

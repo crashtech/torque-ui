@@ -1,0 +1,83 @@
+/* Torque UI — Alert Component
+ * Semantic tone via .tui-alert-success/-error/-warning/-info, driven by the
+ * --tui-tone hook (see 70-utilities/tone.css). A trailing .tui-dismiss +
+ * .tui-close pair (see 30-components/close.css) makes an alert dismissible;
+ * position: relative here has no visual effect on its own, so alerts
+ * without a close control render pixel-identical to before.
+ */
+
+
+  .tui-alert {
+    position: relative;
+    padding: var(--tui-spacing-4);
+    border-radius: var(--tui-radius-md);
+    background-color: var(--tui-tone-bg, var(--tui-surface-1));
+    color: var(--tui-tone-ink, var(--tui-text-1));
+    border: 1px solid var(--tui-tone, transparent);
+
+    & > * {
+      margin: 0;
+    }
+
+    & > * + * {
+      margin-block-start: var(--tui-spacing-3);
+    }
+
+    &:has(> .tui-close) {
+      padding-inline-end: var(--tui-spacing-8);
+    }
+
+    /* why: a compact control sized and inset to centre on the cap of the
+       first text line, so a single-line alert reads as one row */
+    & > .tui-close {
+      --tui-close-size: 1rem;
+
+      position: absolute;
+      inset-block-start: var(--tui-spacing-3);
+      inset-inline-end: var(--tui-spacing-3);
+      margin: 0;
+    }
+  }
+
+  /* === Callout Modifier ===
+   * Combine with .tui-alert: a left accent rule + icon column replace the
+   * uniform border and single-column layout. Text keeps .tui-alert's own
+   * ink color; only the background and corner radii are re-shaped here.
+   */
+  .tui-alert-callout {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: var(--tui-spacing-3);
+    border-inline-start: 4px solid var(--tui-tone, var(--tui-brand));
+    border-start-end-radius: var(--tui-radius-md);
+    border-end-end-radius: var(--tui-radius-md);
+    background-color: var(--tui-tone-bg, var(--tui-surface-1));
+
+    /* why: the stack rhythm inherited from .tui-alert would push the body
+       column below the icon; the body keeps its own, tighter rhythm */
+    & > * + * {
+      margin-block-start: 0;
+    }
+
+    /* why: the body text is trimmed to its cap height, so the icon column
+       is lifted by one spacing step to centre a 1.5rem icon (or a glyph on
+       the body leading) on the cap of the first line */
+    & > :first-child {
+      margin-block-start: -0.25rem;
+    }
+
+    & > :last-child > * {
+      margin: 0;
+    }
+
+    & > :last-child > * + * {
+      margin-block-start: var(--tui-spacing-2);
+    }
+  }
+
+  /* === Actions slot === */
+  .tui-alert-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--tui-spacing-2);
+  }

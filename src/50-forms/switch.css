@@ -1,0 +1,55 @@
+/* Torque UI — Switch/Toggle Component
+ * Checkbox-driven toggle with :checked animation.
+ */
+
+
+  .tui-switch {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--tui-spacing-2);
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .tui-switch-input {
+    appearance: none;
+    inline-size: 3rem;
+    block-size: 1.5rem;
+    background-color: var(--tui-surface-3);
+    border-radius: var(--tui-radius-full);
+    position: relative;
+    cursor: pointer;
+    transition: background-color var(--tui-duration-fast) var(--tui-easing-out);
+    flex-shrink: 0;
+    border: 2px solid var(--tui-border);
+  }
+
+  /* why: the 1.5rem track minus its 2px borders leaves 20px, so a 1rem knob
+     centres at 2px from each inner edge */
+  .tui-switch-input::before {
+    content: '';
+    position: absolute;
+    inset-block-start: 2px;
+    inset-inline-start: 2px;
+    inline-size: 1rem;
+    block-size: 1rem;
+    background-color: var(--tui-surface-0);
+    border-radius: var(--tui-radius-full);
+    transition: transform var(--tui-duration-fast) var(--tui-easing-out), box-shadow var(--tui-duration-fast) var(--tui-easing-out);
+    box-shadow: var(--tui-shadow-sm);
+  }
+
+  .tui-switch-input:checked {
+    background-color: var(--tui-tone, var(--tui-brand));
+    border-color: var(--tui-tone, var(--tui-brand));
+  }
+
+  .tui-switch-input:checked::before {
+    transform: translateX(1.5rem);
+    background-color: var(--tui-tone-fg, var(--tui-brand-fg));
+  }
+
+  .tui-switch-label {
+    font-size: var(--tui-text-base);
+    color: var(--tui-text-1);
+  }

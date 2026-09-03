@@ -1,0 +1,23 @@
+/* Torque UI — Validation States
+ * Only error (negative) states are shown. No positive/success coloring on inputs.
+ */
+
+
+  /* User-interacted invalid state (only after the user has typed something wrong) */
+  input:user-invalid,
+  textarea:user-invalid,
+  select:user-invalid,
+  :is(input, textarea, select):is([aria-invalid="true"], [data-invalid], .tui-invalid) {
+    border-color: var(--tui-negative);
+  }
+
+  /* why: server-side or script validation has no :user-invalid to key on; the
+     attribute the assistive tech reads paints the same state */
+  input:user-invalid:focus,
+  textarea:user-invalid:focus,
+  select:user-invalid:focus,
+  :is(input, textarea, select):is([aria-invalid="true"], [data-invalid], .tui-invalid):focus {
+    border-color: var(--tui-negative);
+    box-shadow: 0 0 0 var(--tui-focus-halo-width) color-mix(in srgb, var(--tui-negative) 30%, transparent);
+  }
+

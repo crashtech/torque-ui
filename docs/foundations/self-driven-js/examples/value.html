@@ -1,0 +1,20 @@
+<div class="tui-stack tui-max-w-md" id="self-driven-value">
+  <div class="tui-progress" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" aria-label="From aria-valuenow">
+    <div class="tui-progress-bar"></div>
+  </div>
+  <div class="tui-progress" role="progressbar" aria-valuenow="40" data-value="70" aria-valuemin="0" aria-valuemax="100" aria-label="data-value beats aria-valuenow">
+    <div class="tui-progress-bar"></div>
+  </div>
+  <div class="tui-progress" role="progressbar" aria-valuenow="40" data-value="70" aria-valuemin="0" aria-valuemax="100" aria-label="An inline property beats both" style="--tui-progress-value: 15">
+    <div class="tui-progress-bar"></div>
+  </div>
+  <button class="tui-button" type="button" id="self-driven-value-advance">Advance aria-valuenow</button>
+</div>
+<script>
+  // why: only the first bar follows — data-value and the inline property outrank the attribute
+  document.getElementById('self-driven-value-advance').addEventListener('click', () => {
+    document.querySelectorAll('#self-driven-value [aria-valuenow]').forEach((bar) => {
+      bar.setAttribute('aria-valuenow', (Number(bar.getAttribute('aria-valuenow')) + 15) % 105);
+    });
+  });
+</script>

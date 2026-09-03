@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Torque UI — Forms</title>
+  <link rel="stylesheet" href="/src/tui.css">
+</head>
+<body>
+  <div class="tui-container">
+    <h1 class="tui-sr-only">Forms</h1>
+
+
+    <section class="tui-card tui-mb-6">
+      <div class="tui-card-header">
+        <h2 class="tui-m-0">Form Layout</h2>
+      </div>
+      <div class="tui-card-body">
+        <h3 class="tui-mb-3">Default Form</h3>
+        <form class="tui-form">
+          <div class="tui-field">
+            <label>Full Name</label>
+            <input type="text" placeholder="Enter your name">
+            <span class="tui-help">This will be displayed on your profile.</span>
+          </div>
+          <div class="tui-field">
+            <label>Email</label>
+            <input type="email" placeholder="you@example.com">
+          </div>
+          <div class="tui-field">
+            <label>Message</label>
+            <textarea rows="4" placeholder="Write your message..."></textarea>
+          </div>
+          <input type="hidden" name="_source" value="04-forms-demo">
+          <button class="tui-button tui-button-primary">Submit</button>
+        </form>
+      </div>
+    </section>
+
+    <section class="tui-card tui-mb-6" id="auto-grow-section">
+      <div class="tui-card-header">
+        <h2 class="tui-m-0">Auto-Growing Field</h2>
+      </div>
+      <div class="tui-card-body">
+        <div class="tui-field">
+          <label>Notes</label>
+          <textarea class="tui-field-auto" rows="3" placeholder="Type more than three lines and the field grows..."></textarea>
+        </div>
+      </div>
+    </section>
+
+    <section class="tui-card tui-mb-6">
+      <div class="tui-card-header">
+        <h2 class="tui-m-0">Input Sizes</h2>
+      </div>
+      <div class="tui-card-body">
+        <div class="tui-form">
+          <div class="tui-field">
+            <label>Small Input</label>
+            <input class="tui-input-sm" type="text" placeholder="Small input">
+          </div>
+          <div class="tui-field">
+            <label>Default Input</label>
+            <input type="text" placeholder="Default input">
+          </div>
+          <div class="tui-field">
+            <label>Large Input</label>
+            <input class="tui-input-lg" type="text" placeholder="Large input">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="tui-card tui-mb-6">
+      <div class="tui-card-header">
+        <h2 class="tui-m-0">Input States</h2>
+      </div>
+      <div class="tui-card-body">
+        <div class="tui-form">
+          <div class="tui-field">
+            <label>Primary</label>
+            <input class="tui-input-primary" type="text" placeholder="Primary border">
+          </div>
+          <div class="tui-field">
+            <label>Success</label>
+            <input class="tui-input-success" type="text" placeholder="Valid input" value="Valid data">
+          </div>
+          <div class="tui-field">
+            <label>Error</label>
+            <input class="tui-input-error" type="text" placeholder="Invalid input" value="Bad data">
+            <span class="tui-error">Please fix this field.</span>
+          </div>
+          <div class="tui-field">
+            <label>Warning</label>
+            <input class="tui-input-warning" type="text" placeholder="Warning input">
+          </div>
+          <div class="tui-field">
+            <label>Info</label>
+            <input class="tui-input-info" type="text" placeholder="Info input">
+          </div>
+          <div class="tui-field">
+            <label>Disabled</label>
+            <input type="text" placeholder="Disabled" disabled>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="tui-card tui-mb-6" id="select-section">
+      <div class="tui-card-header">
+        <h2 class="tui-m-0">Select</h2>
+      </div>
+      <div class="tui-card-body">
+        <div class="tui-form">
+          <div class="tui-field">
+            <label>Default Select</label>
+            <select>
+              <option>Choose an option...</option>
+              <option>Option 1</option>
+              <option>Option 2</option>
+              <option>Option 3</option>
+            </select>
+          </div>
+          <div class="tui-field">
+            <label>Disabled Select</label>
+            <select disabled>
+              <option>Cannot select</option>
+            </select>
+          </div>
+          <div class="tui-field">
+            <label>Rich Select</label>
+            <select class="tui-select-rich">
+              <option>Choose an option...</option>
+              <option>Option 1</option>
+              <option>Option 2</option>
+              <option>Option 3</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="tui-card tui-mb-6">
+      <div class="tui-card-header">
+        <h2 class="tui-m-0">Datalist Combobox</h2>
+      </div>
+      <div class="tui-card-body">
+        <div class="tui-field">
+          <label for="lang-combobox">Favorite language</label>
+          <input type="text" list="langs" id="lang-combobox" placeholder="Start typing...">
+          <datalist id="langs">
+            <option value="CSS"></option>
+            <option value="HTML"></option>
+            <option value="JavaScript"></option>
+            <option value="TypeScript"></option>
+          </datalist>
+        </div>
+      </div>
+    </section>
+
+    <section class="tui-card tui-mb-6" id="select-icons-section">
+      <div class="tui-card-header">
+        <h2 class="tui-m-0">Icon Select</h2>
+      </div>
+      <div class="tui-card-body">
+        <div class="tui-field tui-max-w-sm">
+          <label for="select-icons">Shape</label>
+          <select id="select-icons" class="tui-select-rich">
+            <button type="button"><selectedcontent></selectedcontent></button>
+            <option><svg class="tui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 2 22h20z"/></svg> Triangle</option>
+            <option selected><svg class="tui-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/></svg> Circle</option>
+            <option><svg class="tui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 2 22h20z"/></svg> Another triangle</option>
+          </select>
+        </div>
+      </div>
+    </section>
+
+    <section class="tui-card tui-mb-6" id="combobox-section">
+      <div class="tui-card-header">
+        <h2 class="tui-m-0">Combobox <span class="tui-badge">self-driven JS</span></h2>
+      </div>
+      <div class="tui-card-body">
+        <div class="tui-form">
+          <div class="tui-field tui-max-w-sm">
+            <label for="combobox-search-input">Searchable</label>
+            <div class="tui-combobox" id="combobox-search">
+              <input class="tui-combobox-input" id="combobox-search-input" type="text" role="combobox" aria-expanded="false" aria-controls="combobox-search-list" aria-autocomplete="list" placeholder="Type to filter">
+              <ul class="tui-listbox tui-popover" id="combobox-search-list" role="listbox" popover>
+                <li class="tui-option" role="option" aria-selected="true"><svg class="tui-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/></svg> Circle</li>
+                <li class="tui-option" role="option"><svg class="tui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 2 22h20z"/></svg> Triangle</li>
+                <li class="tui-option" role="option" aria-disabled="true"><svg class="tui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 2 22h20z"/></svg> Unavailable</li>
+                <li class="tui-listbox-empty">No matches</li>
+              </ul>
+            </div>
+            <span class="tui-help">The script filters options with <code>hidden</code> and opens the list with <code>showPopover()</code>.</span>
+          </div>
+          <div class="tui-field tui-max-w-sm">
+            <label id="combobox-picker-label">Picker</label>
+            <div class="tui-combobox" id="combobox-picker">
+              <button class="tui-combobox-value" type="button" aria-haspopup="listbox" aria-expanded="false" aria-controls="combobox-picker-list" aria-labelledby="combobox-picker-label" popovertarget="combobox-picker-list" data-placeholder="Choose a shape"></button>
+              <ul class="tui-listbox tui-popover" id="combobox-picker-list" role="listbox" popover>
+                <li class="tui-listbox-search"><div class="tui-search"><input type="search" placeholder="Filter" aria-label="Filter shapes"></div></li>
+                <li class="tui-option" role="option"><svg class="tui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 2 22h20z"/></svg> Triangle</li>
+                <li class="tui-option" role="option"><svg class="tui-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/></svg> Circle</li>
+                <li class="tui-listbox-empty">No matches</li>
+              </ul>
+            </div>
+          </div>
+          <div class="tui-field tui-max-w-sm">
+            <label for="combobox-tags-input">Tags</label>
+            <div class="tui-combobox tui-combobox-tags" id="combobox-tags">
+              <span class="tui-chip">Circle <button class="tui-close" type="button" aria-label="Remove Circle"></button></span>
+              <span class="tui-chip">Triangle <button class="tui-close" type="button" aria-label="Remove Triangle"></button></span>
+              <input class="tui-combobox-input" id="combobox-tags-input" type="text" role="combobox" aria-expanded="false" aria-controls="combobox-tags-list" aria-autocomplete="list" placeholder="Add a shape">
+              <ul class="tui-listbox tui-popover" id="combobox-tags-list" role="listbox" aria-multiselectable="true" popover>
+                <li class="tui-option" role="option" aria-selected="true"><svg class="tui-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/></svg> Circle</li>
+                <li class="tui-option" role="option" aria-selected="true"><svg class="tui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 2 22h20z"/></svg> Triangle</li>
+                <li class="tui-option" role="option"><svg class="tui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 2 22h20z"/></svg> Square</li>
+                <li class="tui-listbox-empty">No matches</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="tui-card tui-mb-6" id="self-driven-forms-section">
+      <div class="tui-card-header">
+        <h2 class="tui-m-0">Attribute-driven states <span class="tui-badge">self-driven JS</span></h2>
+      </div>
+      <div class="tui-card-body">
+        <div class="tui-form">
+          <div class="tui-field tui-max-w-sm">
+            <label for="range-data">Range fill from data-value</label>
+            <input id="range-data" class="tui-range-fill" type="range" min="0" max="100" value="30" data-value="30">
+          </div>
+          <div class="tui-field tui-max-w-sm">
+            <label for="invalid-attr">Rejected by the server</label>
+            <input id="invalid-attr" type="email" value="someone@example" aria-invalid="true" aria-describedby="invalid-attr-error">
+            <span class="tui-error" id="invalid-attr-error">This address bounced.</span>
+          </div>
+          <div class="tui-field tui-max-w-sm">
+            <label for="search-clear-input">Search with a clear control</label>
+            <div class="tui-search" id="search-clear">
+              <input id="search-clear-input" type="search" placeholder="Search" value="triangles">
+              <button class="tui-close" type="button" aria-label="Clear search"></button>
+            </div>
+          </div>
+          <div class="tui-field">
+            <label for="stepper-bound-input">Stepper at its minimum</label>
+            <div class="tui-stepper" id="stepper-bound">
+              <button class="tui-stepper-btn" type="button" aria-label="Decrease" disabled>−</button>
+              <input class="tui-stepper-input" id="stepper-bound-input" type="number" value="0" min="0" max="10">
+              <button class="tui-stepper-btn" type="button" aria-label="Increase">+</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="tui-card tui-mb-6">
+      <div class="tui-card-header">
+        <h2 class="tui-m-0">Checkbox</h2>
+      </div>
+      <div class="tui-card-body">
+        <h3 class="tui-mb-3">Native (Unstyled)</h3>
+        <label>
+          <input type="checkbox" checked>
+          Bare checkbox — no component class
+        </label>
+
+        <h3 class="tui-mt-6 tui-mb-3">Default</h3>
+        <div class="tui-checkbox-group">
+          <label class="tui-checkbox">
+            <input class="tui-checkbox-input" type="checkbox" checked>
+            <span>Option 1</span>
+          </label>
+          <label class="tui-checkbox">
+            <input class="tui-checkbox-input" type="checkbox">
+            <span>Option 2</span>
+          </label>
+          <label class="tui-checkbox">
+            <input class="tui-checkbox-input" type="checkbox" checked>
+            <span>Option 3</span>
+          </label>
+        </div>
+
+        <h3 class="tui-mt-6 tui-mb-3">Inline Checkboxes</h3>
+        <div class="tui-checkbox-group tui-checkbox-group-inline">
+        <label class="tui-checkbox tui-checkbox-inline">
+          <input class="tui-checkbox-input" type="checkbox">
+          <span>React</span>
+        </label>
+        <label class="tui-checkbox tui-checkbox-inline">
+          <input class="tui-checkbox-input" type="checkbox">
+          <span>Vue</span>
+        </label>
+        <label class="tui-checkbox tui-checkbox-inline">
+          <input class="tui-checkbox-input" type="checkbox">
+          <span>Svelte</span>
+        </label>
+        </div>
+
+        <h3 class="tui-mt-6 tui-mb-3">Primary Checkbox</h3>
+        <label class="tui-checkbox">
+          <input class="tui-checkbox-input" type="checkbox" checked>
+          <span>Primary styled checkbox</span>
+        </label>
+
+        <h3 class="tui-mt-6 tui-mb-3">Success Checkbox</h3>
+        <label class="tui-checkbox tui-checkbox-success">
+          <input class="tui-checkbox-input" type="checkbox" checked>
+          <span>Success styled checkbox</span>
+        </label>
+      </div>
+    </section>
+
+    <section class="tui-card tui-mb-6">
+      <div class="tui-card-header">
+        <h2 class="tui-m-0">Radio Buttons</h2>
+      </div>
+      <div class="tui-card-body">
+        <h3 class="tui-mb-3">Native (Unstyled)</h3>
+        <label>
+          <input type="radio" name="native-demo" checked>
+          Bare radio — no component class
+        </label>
+
+        <h3 class="tui-mt-6 tui-mb-3">Default</h3>
+        <div class="tui-radio-group">
+          <label class="tui-radio">
+            <input class="tui-radio-input" type="radio" name="plan" checked>
+            <span>Free Plan</span>
+          </label>
+          <label class="tui-radio">
+            <input class="tui-radio-input" type="radio" name="plan">
+            <span>Pro Plan</span>
+          </label>
+          <label class="tui-radio">
+            <input class="tui-radio-input" type="radio" name="plan">
+            <span>Enterprise Plan</span>
+          </label>
+        </div>
+
+        <h3 class="tui-mt-6 tui-mb-3">Inline Radios</h3>
+        <div class="tui-radio-group tui-radio-group-inline">
+        <label class="tui-radio tui-radio-inline">
+          <input class="tui-radio-input" type="radio" name="color" checked>
+          <span>Red</span>
+        </label>
+        <label class="tui-radio tui-radio-inline">
+          <input class="tui-radio-input" type="radio" name="color">
+          <span>Green</span>
+        </label>
+        <label class="tui-radio tui-radio-inline">
+          <input class="tui-radio-input" type="radio" name="color">
+          <span>Blue</span>
+        </label>
+        </div>
+
+        <h3 class="tui-mt-6 tui-mb-3">Primary Radio</h3>
+        <label class="tui-radio">
+          <input class="tui-radio-input" type="radio" name="theme" checked>
+          <span>Primary styled radio</span>
+        </label>
+
+        <h3 class="tui-mt-6 tui-mb-3">Success Radio</h3>
+        <label class="tui-radio tui-radio-success">
+          <input class="tui-radio-input" type="radio" name="status" checked>
+          <span>Success styled radio</span>
+        </label>
+      </div>
+    </section>
+
+    <section class="tui-card tui-mb-6">
+      <div class="tui-card-header">
+        <h2 class="tui-m-0">Switch / Toggle</h2>
+      </div>
+      <div class="tui-card-body">
+        <h3 class="tui-mb-3">Default Switch</h3>
+        <label class="tui-switch">
+          <input class="tui-switch-input" type="checkbox" checked>
+          <span class="tui-switch-label">Dark Mode</span>
+        </label>
+
+        <h3 class="tui-mt-6 tui-mb-3">Switch Without Label</h3>
+        <label class="tui-switch">
+          <input class="tui-switch-input" type="checkbox">
+          <span class="tui-switch-label">Notifications</span>
+        </label>
+
+        <h3 class="tui-mt-6 tui-mb-3">Primary Switch</h3>
+        <label class="tui-switch">
+          <input class="tui-switch-input" type="checkbox" checked>
+          <span class="tui-switch-label">Primary styled toggle</span>
+        </label>
+      </div>
+    </section>
+
+    <section class="tui-card tui-mb-6">
+      <div class="tui-card-header">
+        <h2 class="tui-m-0">Range Slider</h2>
+      </div>
+      <div class="tui-card-body">
+        <input type="range" min="0" max="100" value="60">
+      </div>
+    </section>
+
+    <section class="tui-card tui-mb-6">
+      <div class="tui-card-header">
+        <h2 class="tui-m-0">Password</h2>
+      </div>
+      <div class="tui-card-body">
+        <div class="tui-field">
+          <label for="password-field">Password</label>
+          <div class="tui-password">
+            <input type="text" autocomplete="current-password" class="tui-password-input" id="password-field" placeholder="Enter password">
+            <input class="tui-state-input tui-password-toggle" type="checkbox" id="password-toggle">
+            <label class="tui-password-label" for="password-toggle">Show</label>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="tui-card tui-mb-6">
+      <div class="tui-card-header">
+        <h2 class="tui-m-0">Search Input</h2>
+      </div>
+      <div class="tui-card-body">
+        <div class="tui-search">
+          <input type="search" placeholder="Search...">
+        </div>
+        <div class="tui-search tui-mt-4" id="search-wide" style="--tui-search-inline-size: 30rem;">
+          <input type="search" placeholder="Wide search (--tui-search-inline-size)">
+        </div>
+      </div>
+    </section>
+
+    <section class="tui-card tui-mb-6" id="progress-values-section">
+      <div class="tui-card-header">
+        <h2 class="tui-m-0">Progress Values</h2>
+      </div>
+      <div class="tui-card-body">
+        <label for="progress-brand">Native progress, brand tone</label>
+        <progress id="progress-brand" class="tui-tone-brand" value="65" max="100"></progress>
+        <div class="tui-progress tui-mt-4" id="progress-hook" style="inline-size: 200px;" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" aria-label="Upload">
+          <div class="tui-progress-bar" style="--tui-progress-value: 40;"></div>
+        </div>
+        <p class="tui-mt-4 tui-mb-0">Inline: <progress class="tui-progress-inline tui-tone-success" id="progress-inline" value="3" max="10" aria-label="Sync"></progress> 3 / 10</p>
+        <div class="tui-mt-4" style="max-inline-size: 24rem;">
+          <div class="tui-poll-option" id="poll-yes" style="--tui-progress-value: 50;"><span>Yes</span><strong>50%</strong></div>
+          <div class="tui-poll-option tui-tone-success tui-mt-2" style="--tui-progress-value: 30;"><span>Maybe</span><strong>30%</strong></div>
+          <div class="tui-poll-option tui-tone-neutral tui-mt-2" style="--tui-progress-value: 20;"><span>No</span><strong>20%</strong></div>
+        </div>
+        <p class="tui-mt-4 tui-mb-0"><progress class="tui-waveform tui-progress-inline tui-tone-success" id="waveform" value="35" max="100" aria-label="Audio position"></progress> 0:42</p>
+      </div>
+    </section>
+
+    <section class="tui-card tui-mb-6">
+      <div class="tui-card-header">
+        <h2 class="tui-m-0">File Input</h2>
+      </div>
+      <div class="tui-card-body">
+        <div class="tui-field">
+          <label for="file-upload">Choose a file</label>
+          <input type="file" id="file-upload">
+        </div>
+      </div>
+    </section>
+
+    <section class="tui-card tui-mb-6">
+      <div class="tui-card-header">
+        <h2 class="tui-m-0">Date Input</h2>
+      </div>
+      <div class="tui-card-body">
+        <div class="tui-field">
+          <label>Select Date</label>
+          <input type="date">
+        </div>
+      </div>
+    </section>
+
+    <section class="tui-card tui-mb-6">
+      <div class="tui-card-header">
+        <h2 class="tui-m-0">Color Input</h2>
+      </div>
+      <div class="tui-card-body">
+        <div class="tui-field">
+          <label>Choose a color</label>
+          <input type="color" value="#6366f1">
+        </div>
+      </div>
+    </section>
+
+    <section class="tui-card tui-mb-6">
+      <div class="tui-card-header">
+        <h2 class="tui-m-0">Validation</h2>
+      </div>
+      <div class="tui-card-body">
+        <div class="tui-form">
+          <div class="tui-field">
+            <label>Required Field</label>
+            <input type="text" required placeholder="This field is required">
+          </div>
+          <div class="tui-field">
+            <label>Email (native validation)</label>
+            <input type="email" required placeholder="you@example.com">
+          </div>
+          <div class="tui-field">
+            <label>URL (native validation)</label>
+            <input type="url" required placeholder="https://example.com">
+          </div>
+          <div class="tui-field">
+            <label>Number Range</label>
+            <input type="number" min="1" max="100" required placeholder="1-100">
+          </div>
+        </div>
+        <p class="tui-mt-4 tui-text-sm tui-text-neutral">Fields turn green when valid, red when invalid (after interaction).</p>
+      </div>
+    </section>
+
+    <section class="tui-card tui-mb-6">
+      <div class="tui-card-header">
+        <h2 class="tui-m-0">Input Group</h2>
+      </div>
+      <div class="tui-card-body">
+        <h3 class="tui-mb-3">Leading Addon + Button</h3>
+        <form action="#" method="get">
+          <div class="tui-input-group tui-mb-6" style="max-width:24rem;">
+            <span class="tui-input-addon">$</span>
+            <input type="number" name="amount" aria-label="Amount">
+            <button class="tui-button tui-button-primary" type="button">Apply</button>
+          </div>
+        </form>
+
+        <h3 class="tui-mb-3">Trailing Addon</h3>
+        <form action="#" method="get">
+          <div class="tui-input-group" style="max-width:24rem;">
+            <input type="text" name="subdomain" aria-label="Subdomain" placeholder="yoursite">
+            <span class="tui-input-addon">.com</span>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <section class="tui-card tui-mb-6">
+      <div class="tui-card-header">
+        <h2 class="tui-m-0">Fieldset</h2>
+      </div>
+      <div class="tui-card-body">
+        <h3 class="tui-mb-3">Grouped Fields</h3>
+        <fieldset>
+          <legend>Shipping Address</legend>
+          <div class="tui-field">
+            <label>Street</label>
+            <input type="text" placeholder="123 Main St">
+          </div>
+          <div class="tui-field">
+            <label>City</label>
+            <input type="text" placeholder="Springfield">
+          </div>
+        </fieldset>
+
+        <h3 class="tui-mt-6 tui-mb-3">Inline Fieldset</h3>
+        <fieldset>
+          <legend>Notification Preferences</legend>
+          <div class="tui-fieldset-inline">
+            <label class="tui-checkbox">
+              <input class="tui-checkbox-input" type="checkbox" checked>
+              <span>Email</span>
+            </label>
+            <label class="tui-checkbox">
+              <input class="tui-checkbox-input" type="checkbox">
+              <span>SMS</span>
+            </label>
+            <label class="tui-checkbox">
+              <input class="tui-checkbox-input" type="checkbox">
+              <span>Push</span>
+            </label>
+          </div>
+        </fieldset>
+      </div>
+    </section>
+
+    <section class="tui-card tui-mb-6">
+      <div class="tui-card-header">
+        <h2 class="tui-m-0">Grid Form Layout</h2>
+      </div>
+      <div class="tui-card-body">
+        <form class="tui-form-grid">
+          <div class="tui-field">
+            <label>First Name</label>
+            <input type="text" placeholder="First name">
+          </div>
+          <div class="tui-field">
+            <label>Last Name</label>
+            <input type="text" placeholder="Last name">
+          </div>
+          <div class="tui-field">
+            <label>Email</label>
+            <input type="email" placeholder="Email">
+          </div>
+          <div class="tui-field">
+            <label>Phone</label>
+            <input type="tel" placeholder="Phone">
+          </div>
+        </form>
+      </div>
+    </section>
+
+  </div>
+</body>
+</html>

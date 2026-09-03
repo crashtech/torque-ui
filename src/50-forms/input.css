@@ -1,0 +1,17 @@
+/* Torque UI — Input Variants
+ * .tui-input-sm/-lg size modifiers. The -primary/-success/-error/-warning/
+ * -info state modifiers live in 70-utilities/tone.css as --tui-tone
+ * setters; the field itself (20-elements/inputs.css) reads the hook.
+ */
+
+
+  /* === Sizes === */
+  .tui-input-sm {
+    padding: var(--tui-spacing-1) var(--tui-spacing-2);
+    font-size: var(--tui-text-sm);
+  }
+
+  .tui-input-lg {
+    padding: var(--tui-spacing-3) var(--tui-spacing-4);
+    font-size: var(--tui-text-lg);
+  }

@@ -1,0 +1,47 @@
+/* Torque UI — Status Indicator
+ * Small pill/dot for live status. The dot's color comes from the --tui-tone
+ * hook (see 70-utilities/tone.css): -online/-done/-busy/-away/-error set a
+ * tone; -offline/-todo/-clear are intentionally unstyled here — they only
+ * ever restated the dot's own neutral default.
+ * Pure CSS, no JS. Respects prefers-reduced-motion.
+ */
+
+
+  .tui-status {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--tui-spacing-2);
+    font-size: var(--tui-text-sm);
+    font-weight: var(--tui-font-medium);
+    color: var(--tui-text-2);
+  }
+
+  .tui-status-dot {
+    display: inline-block;
+    vertical-align: middle;
+    inline-size: 0.5rem;
+    block-size: 0.5rem;
+    border-radius: var(--tui-radius-full);
+    background-color: var(--tui-tone, var(--tui-neutral-400));
+    flex-shrink: 0;
+  }
+
+  /* === Pulsing dot (live indicator) === */
+  .tui-status-pulse .tui-status-dot {
+    animation: tui-status-pulse var(--tui-duration-slower) var(--tui-easing-out) infinite;
+  }
+
+  @keyframes tui-status-pulse {
+    0% {
+      box-shadow: 0 0 0 0 color-mix(in srgb, var(--tui-positive) 40%, transparent);
+    }
+
+    70% {
+      box-shadow: 0 0 0 0.5rem transparent;
+    }
+
+    100% {
+      box-shadow: 0 0 0 0 transparent;
+    }
+  }
+

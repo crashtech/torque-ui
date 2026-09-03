@@ -1,0 +1,168 @@
+/* Torque UI — Inputs Element Defaults
+ * <input>, <textarea>, <select> styled by default.
+ * Checkbox/radio/range/color/file/submit/reset/button/hidden/image inputs
+ * are excluded — each owns its own look (component CSS or a dedicated rule below).
+ */
+
+
+  /* === Base Fields === */
+  :where(textarea, select, input:not([type="checkbox"], [type="radio"], [type="range"], [type="color"], [type="file"], [type="submit"], [type="reset"], [type="button"], [type="hidden"], [type="image"])) {
+    inline-size: 100%;
+    padding: var(--tui-spacing-2) var(--tui-spacing-3);
+    font-family: var(--tui-font-sans);
+    font-size: var(--tui-text-base);
+    line-height: var(--tui-leading-snug);
+    color: var(--tui-text-1);
+    background-color: var(--tui-surface-0);
+    border: 2px solid var(--tui-tone, var(--tui-border));
+    border-radius: var(--tui-radius-md);
+    transition: border-color var(--tui-duration-fast) var(--tui-easing-out), box-shadow var(--tui-duration-fast) var(--tui-easing-out);
+
+    &:hover {
+      border-color: var(--tui-border-strong);
+    }
+
+    &:focus {
+      outline: none;
+      border-color: var(--tui-tone, var(--tui-border-focus));
+      box-shadow: 0 0 0 var(--tui-focus-halo-width) var(--tui-tone-edge, var(--tui-focus-ring));
+    }
+
+    &:disabled {
+      background-color: var(--tui-surface-2);
+      color: var(--tui-text-3);
+      cursor: not-allowed;
+      opacity: 0.7;
+    }
+  }
+
+  input::placeholder,
+  textarea::placeholder {
+    color: var(--tui-text-3);
+    opacity: 1;
+  }
+
+  /* === Textarea === */
+
+  /* why: single-line fields share the button leading so both stand 42px
+     tall; typed prose keeps the body leading */
+  textarea {
+    resize: vertical;
+    min-block-size: 4rem;
+    line-height: var(--tui-leading-normal);
+  }
+
+  /* === Auto-Growing Field === */
+  @supports (field-sizing: content) {
+    .tui-field-auto {
+      field-sizing: content;
+    }
+
+    textarea.tui-field-auto {
+      min-block-size: 3lh;
+      max-block-size: var(--tui-textarea-max-block-size, 20lh);
+    }
+  }
+
+  /* === Select === */
+  select {
+    appearance: none;
+    cursor: pointer;
+    background-image: var(--tui-icon-chevron);
+    background-repeat: no-repeat;
+    background-position: right var(--tui-spacing-3) center;
+    padding-inline-end: var(--tui-spacing-8);
+  }
+
+  /* why: background-position has no logical keywords */
+  :dir(rtl) select {
+    background-position: left var(--tui-spacing-3) center;
+  }
+
+  /* === Datalist Combobox === */
+  input[list] {
+    padding-inline-end: var(--tui-spacing-2);
+  }
+
+  input[list]::-webkit-calendar-picker-indicator {
+    display: block;
+    inline-size: 0.75rem;
+    block-size: 0.75rem;
+    margin: 0;
+    padding: 0;
+    opacity: 1;
+    cursor: pointer;
+    background: var(--tui-icon-chevron) center / contain no-repeat;
+  }
+
+  /* === Date Input === */
+  input[type="date"],
+  input[type="time"],
+  input[type="datetime-local"] {
+    cursor: pointer;
+  }
+
+  /* === File Input === */
+  input[type="file"] {
+    padding: var(--tui-spacing-1);
+  }
+
+  /* === Range Input === */
+  input[type="range"] {
+    --tui-range-thumb: var(--tui-spacing-5);
+
+    appearance: none;
+    inline-size: 100%;
+    block-size: 6px;
+    padding: 0;
+    background: var(--tui-surface-3);
+    border: none;
+    border-radius: var(--tui-radius-full);
+    cursor: pointer;
+  }
+
+  input[type="range"]::-webkit-slider-thumb {
+    appearance: none;
+    inline-size: var(--tui-range-thumb);
+    block-size: var(--tui-range-thumb);
+    border-radius: 50%;
+    background: var(--tui-brand);
+    border: 2px solid var(--tui-surface-0);
+    box-shadow: var(--tui-shadow-sm);
+    cursor: pointer;
+    transition: box-shadow var(--tui-duration-fast) var(--tui-easing-out);
+  }
+
+  input[type="range"]::-webkit-slider-thumb:hover {
+    box-shadow: 0 0 0 4px var(--tui-focus-ring);
+  }
+
+  input[type="range"]::-moz-range-thumb {
+    inline-size: var(--tui-range-thumb);
+    block-size: var(--tui-range-thumb);
+    border-radius: 50%;
+    background: var(--tui-brand);
+    border: 2px solid var(--tui-surface-0);
+    box-shadow: var(--tui-shadow-sm);
+    cursor: pointer;
+  }
+
+  /* === Color Input === */
+  input[type="color"] {
+    inline-size: 3rem;
+    block-size: 3rem;
+    padding: 2px;
+    cursor: pointer;
+    background: var(--tui-surface-0);
+    border: 2px solid var(--tui-border);
+    border-radius: var(--tui-radius-md);
+  }
+
+  input[type="color"]:hover {
+    border-color: var(--tui-border-strong);
+  }
+
+  input[type="color"]:focus {
+    border-color: var(--tui-border-focus);
+    box-shadow: 0 0 0 var(--tui-focus-halo-width) var(--tui-focus-ring);
+  }

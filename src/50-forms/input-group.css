@@ -1,0 +1,49 @@
+/* Torque UI — Input Group
+ * .tui-input-group wraps an addon + field + button so their borders join
+ * into one continuous control with a single outer radius.
+ */
+
+
+  .tui-input-group {
+    display: flex;
+    align-items: stretch;
+    border-radius: var(--tui-input-group-radius, var(--tui-radius-md));
+
+    & > * {
+      margin: 0;
+      border-radius: 0;
+    }
+
+    & > :not(:first-child) { margin-inline-start: -2px; }
+
+    & > :first-child {
+      border-start-start-radius: inherit;
+      border-end-start-radius: inherit;
+    }
+
+    & > :last-child {
+      border-start-end-radius: inherit;
+      border-end-end-radius: inherit;
+    }
+
+    & > input,
+    & > select {
+      flex: 1;
+      min-inline-size: 0;
+    }
+
+    /* why: the focused control must paint above its neighbours' borders */
+    & > :focus-visible {
+      position: relative;
+      z-index: 1;
+    }
+  }
+
+  .tui-input-addon {
+    display: inline-flex;
+    align-items: center;
+    padding-inline: var(--tui-spacing-3);
+    color: var(--tui-text-2);
+    background-color: var(--tui-input-addon-bg, var(--tui-surface-2));
+    border: 2px solid var(--tui-border);
+  }

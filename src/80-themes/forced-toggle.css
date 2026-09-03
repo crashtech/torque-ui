@@ -1,0 +1,62 @@
+/* Torque UI — Forced Theme Toggle
+ * Checkbox-driven forced light/dark toggle (no JS).
+ * The toggle input needs class="tui-state-input tui-theme-toggle-input";
+ * the checked state must have a later-sibling .tui-page for the ~ combinator to reach it.
+ * Checked means "the opposite of what the OS asked for", so a dark-OS user can
+ * switch to light just as a light-OS user can switch to dark.
+ */
+
+
+  .tui-theme-toggle-input:checked ~ .tui-page {
+    color-scheme: dark;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .tui-theme-toggle-input:checked ~ .tui-page {
+      color-scheme: light;
+    }
+  }
+
+  /* why: .tui-state-input paints a ring on its next sibling, which here is the
+     whole page */
+  .tui-theme-toggle-input:focus-visible + .tui-page {
+    outline: none;
+  }
+
+  .tui-scheme-light {
+    color-scheme: light;
+  }
+
+  .tui-scheme-dark {
+    color-scheme: dark;
+  }
+
+  /* === Scheme-only visibility ===
+   * .tui-light-only / .tui-dark-only render only in the effective scheme —
+   * the OS preference inverted by a checked .tui-theme-toggle-input. Made for
+   * the sun/moon icons of a toggle label, which must show the scheme you would
+   * switch *to*. Pinned .tui-scheme-* scopes are not taken into account.
+   */
+  .tui-dark-only { display: none; }
+
+  :root:has(.tui-theme-toggle-input:checked) .tui-light-only { display: none; }
+  :root:has(.tui-theme-toggle-input:checked) .tui-dark-only { display: revert; }
+
+  @media (prefers-color-scheme: dark) {
+    .tui-light-only { display: none; }
+    .tui-dark-only { display: revert; }
+    :root:has(.tui-theme-toggle-input:checked) .tui-light-only { display: revert; }
+    :root:has(.tui-theme-toggle-input:checked) .tui-dark-only { display: none; }
+  }
+
+  /* === Script-set scheme ===
+   * why: the checkbox toggle cannot survive a reload; a script that persists
+   * the choice writes data-theme on <html> and the scheme, and the
+   * scheme-only helpers, follow it regardless of the OS preference */
+  :root[data-theme="dark"] { color-scheme: dark; }
+  :root[data-theme="light"] { color-scheme: light; }
+
+  :root[data-theme="dark"] .tui-light-only { display: none; }
+  :root[data-theme="dark"] .tui-dark-only { display: revert; }
+  :root[data-theme="light"] .tui-light-only { display: revert; }
+  :root[data-theme="light"] .tui-dark-only { display: none; }

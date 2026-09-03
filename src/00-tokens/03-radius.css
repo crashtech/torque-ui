@@ -1,0 +1,14 @@
+/* Torque UI — Border Radius Scale
+ */
+
+
+  :root {
+    --tui-radius-none: 0;
+    --tui-radius-sm: 0.125rem;   /* 2px */
+    --tui-radius-md: 0.375rem;   /* 6px */
+    --tui-radius-lg: 0.5rem;     /* 8px */
+    --tui-radius-xl: 0.75rem;    /* 12px */
+    --tui-radius-2xl: 1rem;      /* 16px */
+    --tui-radius-3xl: 1.5rem;    /* 24px */
+    --tui-radius-full: 9999px;
+  }

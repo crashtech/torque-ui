@@ -1,0 +1,28 @@
+/* Torque UI — Links Element Defaults
+ * <a> styled by default via :any-link (covers unvisited and visited).
+ */
+
+
+  /* === Unified link styling via :any-link === */
+  :any-link {
+    color: var(--tui-brand);
+    text-decoration: none;
+    transition: color var(--tui-duration-fast) var(--tui-easing-out);
+  }
+
+  :any-link:hover {
+    color: color-mix(in srgb, var(--tui-brand) 85%, black 15%);
+    text-decoration: underline;
+    text-underline-offset: 0.15em;
+  }
+
+  /* Visited links get a subtle desaturation */
+  a:visited {
+    color: color-mix(in srgb, var(--tui-brand) 70%, var(--tui-neutral) 30%);
+  }
+
+  /* === Scroll target offset === */
+  :target {
+    scroll-margin-block-start: var(--tui-spacing-8);
+    scroll-behavior: smooth;
+  }

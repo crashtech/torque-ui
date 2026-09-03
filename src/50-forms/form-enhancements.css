@@ -1,0 +1,144 @@
+/* Torque UI — Form Control Enhancements
+ * Group 2: accent-color, read-only/read-write, range feedback, placeholder-shown.
+ */
+
+
+  /* === 1. Native accent-color for any unstyled form control (Group 2) === */
+  input[type='checkbox'],
+  input[type='radio'],
+  input[type='range'],
+  input[type='color'],
+  progress,
+  meter {
+    accent-color: var(--tui-brand);
+  }
+
+  /* === 2. Read-only inputs (Group 2) === */
+
+  /* why: :read-only also matches every <select> and non-text input, so key on the attribute */
+  input[readonly],
+  textarea[readonly] {
+    background-color: var(--tui-surface-2);
+    color: var(--tui-text-3);
+  }
+
+  /* === 3. Range value feedback, opt-in (Group 2) === */
+  @property --tui-range-value {
+    syntax: '<percentage>';
+    inherits: false;
+    initial-value: 50%;
+  }
+
+  /* why: CSS cannot read a slider's value, so a script mirrors it into
+     data-value (0-100) and typed attr() turns that into the fill percentage */
+  @supports (width: attr(x type(<length>))) {
+    .tui-range-fill[data-value] {
+      /* stylelint-disable-next-line csstree/validator -- typed attr() is valid CSS Values 5 syntax (Chrome 133+); csstree's grammar doesn't yet know it */
+      --tui-range-value: calc(attr(data-value type(<number>)) * 1%);
+    }
+  }
+
+  .tui-range-fill {
+    transition: --tui-range-value var(--tui-duration-normal) var(--tui-easing-out);
+  }
+
+  .tui-range-fill:in-range {
+    background: linear-gradient(
+      to right,
+      var(--tui-brand) 0%,
+      var(--tui-brand) var(--tui-range-value, 50%),
+      var(--tui-surface-3) var(--tui-range-value, 50%)
+    );
+  }
+
+  /* why: gradient directions have no logical keywords, so the fill is
+     restated from the other edge for right-to-left documents */
+  :dir(rtl) .tui-range-fill:in-range {
+    background: linear-gradient(
+      to left,
+      var(--tui-brand) 0%,
+      var(--tui-brand) var(--tui-range-value, 50%),
+      var(--tui-surface-3) var(--tui-range-value, 50%)
+    );
+  }
+
+  .tui-range-fill:out-of-range {
+    background-color: var(--tui-surface-3);
+  }
+
+  /* === 4. Placeholder-shown: dim input when it only has a placeholder (Group 2) === */
+  input:placeholder-shown,
+  textarea:placeholder-shown,
+  select:placeholder-shown {
+    color: var(--tui-text-3);
+  }
+
+  /* === 5. File input button styling (Group 2) === */
+  input[type='file'] {
+    color: var(--tui-text-2);
+  }
+
+  input[type='file']::file-selector-button {
+    padding: var(--tui-spacing-2) var(--tui-spacing-3);
+    font-family: var(--tui-font-sans);
+    font-size: var(--tui-text-sm);
+    font-weight: var(--tui-font-semibold);
+    color: var(--tui-brand-fg);
+    background-color: var(--tui-brand);
+    border: none;
+    border-radius: var(--tui-radius-sm);
+    cursor: pointer;
+    margin-inline-end: var(--tui-spacing-3);
+    transition: background-color var(--tui-duration-fast) var(--tui-easing-out);
+  }
+
+  input[type='file']::file-selector-button:hover {
+    background-color: color-mix(in srgb, var(--tui-brand) 85%, black 15%);
+  }
+
+  /* === 6. Native progress and meter (Task 3.10) === */
+  progress {
+    inline-size: 100%;
+    block-size: 0.5rem;
+    appearance: none;
+    border: 0;
+    border-radius: var(--tui-radius-full);
+    background-color: var(--tui-surface-3);
+    overflow: clip;
+  }
+
+  progress::-webkit-progress-bar {
+    background-color: transparent;
+  }
+
+  /* why: one selector list would be dropped whole by Chromium because it
+     does not recognise ::-moz-progress-bar — each engine gets its own rule */
+  progress::-webkit-progress-value {
+    background-color: var(--tui-tone, var(--tui-brand));
+    border-radius: inherit;
+  }
+
+  progress::-moz-progress-bar {
+    background-color: var(--tui-tone, var(--tui-brand));
+    border-radius: inherit;
+  }
+
+  meter {
+    inline-size: 100%;
+    block-size: 0.5rem;
+  }
+
+  /* why: the native element's 100% width sits in this (forms) layer, above the
+     component rule, so the inline variant has to be restated here. */
+  progress.tui-progress-inline {
+    display: inline-block;
+    inline-size: var(--tui-progress-inline-size, 8rem);
+    vertical-align: middle;
+  }
+
+  /* === 7. Waveform: a native progress drawn as uniform bars === */
+  .tui-waveform {
+    block-size: 1.5rem;
+    border-radius: 0;
+    mask-image: repeating-linear-gradient(to right, black 0 2px, transparent 2px 5px);
+  }

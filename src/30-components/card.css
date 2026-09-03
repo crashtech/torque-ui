@@ -1,0 +1,99 @@
+/* Torque UI — Card Component
+ * Semantic UI-inspired: .tui-card container + .tui-card-* children
+ * Children spacing handled automatically via a grid-style adjacent-sibling rule.
+ */
+
+
+  /* === Base Card === */
+  .tui-card {
+    background-color: var(--tui-surface-0);
+    color: var(--tui-text-1);
+    border: 1px solid var(--tui-border);
+    border-radius: var(--tui-radius-lg);
+    box-shadow: var(--tui-shadow-sm);
+    transition: box-shadow var(--tui-duration-normal) var(--tui-easing-out);
+  }
+
+  /* why: a static card has nothing to invite; only cards that act (links,
+     buttons, labels) or opt in via .tui-hoverable lift on hover */
+  .tui-card:is(a, button, label) {
+    display: block;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  .tui-card:is(a, button, label):hover,
+  .tui-card.tui-hoverable:hover {
+    box-shadow: var(--tui-shadow-md);
+  }
+
+  /* === Card Header === */
+  .tui-card-header {
+    padding: var(--tui-spacing-4) var(--tui-spacing-6);
+    background-color: var(--tui-surface-1);
+    border-block-end: 1px solid var(--tui-border);
+    font-weight: var(--tui-font-semibold);
+    color: var(--tui-text-1);
+    text-wrap: balance;
+    border-start-start-radius: inherit;
+    border-start-end-radius: inherit;
+
+    & > * {
+      margin: 0;
+    }
+
+    & > * + * {
+      margin-block-start: var(--tui-spacing-4);
+    }
+
+    /* why: h1-h6 carry their own `color` in 20-elements/typography.css, which
+       beats an ancestor's color regardless of layer order since it targets
+       the heading directly — without this, a toned header's heading child
+       renders in the page's default text color instead of the tone. */
+    & :is(h1, h2, h3, h4, h5, h6) {
+      color: inherit;
+    }
+  }
+
+  /* === Card Body === */
+  .tui-card-body {
+    padding: var(--tui-spacing-6);
+    overflow-wrap: break-word;
+    text-wrap: pretty;
+    border-start-start-radius: inherit;
+    border-start-end-radius: inherit;
+    border-end-start-radius: inherit;
+    border-end-end-radius: inherit;
+
+    & > * {
+      margin: 0;
+    }
+
+    & > * + * {
+      margin-block-start: var(--tui-spacing-6);
+    }
+  }
+
+  /* === Card Footer === */
+  .tui-card-footer {
+    padding: var(--tui-spacing-4) var(--tui-spacing-6);
+    background-color: var(--tui-surface-1);
+    border-block-start: 1px solid var(--tui-border);
+    border-end-start-radius: inherit;
+    border-end-end-radius: inherit;
+    display: flex;
+    gap: var(--tui-spacing-2);
+    justify-content: flex-end;
+  }
+
+  /* === Primary Card Modifier === */
+  .tui-card-primary {
+    border-color: var(--tui-tone, var(--tui-brand));
+    box-shadow: 0 0 0 1px var(--tui-tone, var(--tui-brand)), var(--tui-shadow-md);
+  }
+
+  .tui-card-primary .tui-card-header {
+    background-color: var(--tui-tone, var(--tui-brand));
+    color: var(--tui-tone-fg, var(--tui-brand-fg));
+    border-block-end-color: color-mix(in srgb, var(--tui-tone, var(--tui-brand)) 90%, white 10%);
+  }

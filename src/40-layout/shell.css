@@ -1,0 +1,151 @@
+/* Torque UI — App Shell
+ * .tui-shell is a header/sidebar/main/aside/footer grid. Below 768px the
+ * sidebar and aside are hidden — their content is expected to also live in a
+ * .tui-offcanvas opened from a button in .tui-shell-header (see docs) — unless
+ * the shell carries .tui-shell-persistent. A column scrolls with the page and
+ * parks at the viewport's end; .tui-shell-scroll on it restores a column that
+ * sticks below the header and scrolls on its own.
+ */
+
+/* why: with a sticky header, a followed anchor would otherwise scroll its
+   heading underneath the bar */
+html:has(.tui-shell-header) {
+  scroll-padding-block-start: calc(var(--tui-shell-header-block-size, 4rem) + var(--tui-spacing-4));
+}
+
+.tui-shell {
+  display: grid;
+  min-block-size: var(--tui-shell-min-block-size, 100dvh);
+  grid-template-areas: 'header' 'main' 'footer';
+  grid-template-rows: auto 1fr auto;
+
+  /* why: Chrome clamps a sticky grid item to the grid container rather than
+     its grid area, so a column parking at the viewport's end would slide
+     under the header unless the header sits in the shell's padding instead
+     of its content box */
+  &:has(> .tui-shell-header) {
+    padding-block-start: var(--tui-shell-header-block-size, 4rem);
+  }
+}
+
+.tui-shell-header {
+  grid-area: header;
+  align-self: start;
+  margin-block-start: calc(-1 * var(--tui-shell-header-block-size, 4rem));
+  position: sticky;
+  inset-block-start: 0;
+  z-index: var(--tui-z-sticky);
+  background-color: var(--tui-surface-0);
+
+  /* why: drawn inside so the header stands exactly --tui-shell-header-block-size
+     tall, the height the shell reserves for it */
+  box-shadow: inset 0 -1px 0 var(--tui-border);
+
+  /* why: the header already draws the rule and the elevation; a navbar inside
+     it would double both */
+  & > .tui-navbar {
+    border-block-end: 0;
+    box-shadow: none;
+    background-color: transparent;
+  }
+}
+
+.tui-shell-sidebar {
+  grid-area: sidebar;
+  display: none;
+  border-inline-end: 1px solid var(--tui-border);
+  background-color: var(--tui-surface-1);
+}
+
+.tui-shell-aside {
+  grid-area: aside;
+  display: none;
+  border-inline-start: 1px solid var(--tui-border);
+  background-color: var(--tui-surface-1);
+}
+
+.tui-shell-main {
+  grid-area: main;
+  padding: var(--tui-spacing-6);
+  min-inline-size: 0;
+}
+
+.tui-shell-footer {
+  grid-area: footer;
+  position: relative;
+  z-index: 1;
+  padding: var(--tui-spacing-4) var(--tui-spacing-6);
+  background-color: var(--tui-surface-0);
+  border-block-start: 1px solid var(--tui-border);
+  color: var(--tui-text-3);
+}
+
+/* why: the sidebar/aside columns are laid out at >= 768px; .tui-shell-persistent
+   repeats the same template unconditionally so an app can keep them at every width */
+@media (width >= 768px) {
+  /* why: a shell with neither column keeps the single-column template, so a
+     plain page can still use the sticky header and footer */
+  .tui-shell:has(> .tui-shell-sidebar) {
+    grid-template-areas: 'header header' 'sidebar main' 'footer footer';
+    grid-template-columns: var(--tui-shell-sidebar-inline-size, 16rem) 1fr;
+  }
+
+  .tui-shell:has(> .tui-shell-sidebar):has(> .tui-shell-aside) {
+    grid-template-areas: 'header header header' 'sidebar main aside' 'footer footer footer';
+    grid-template-columns: var(--tui-shell-sidebar-inline-size, 16rem) 1fr var(--tui-shell-aside-inline-size, 18rem);
+  }
+
+  .tui-shell:has(> .tui-shell-aside):not(:has(> .tui-shell-sidebar)) {
+    grid-template-areas: 'header header' 'main aside' 'footer footer';
+    grid-template-columns: 1fr var(--tui-shell-aside-inline-size, 18rem);
+  }
+
+  /* why: a column shorter than the viewport is stretched to it (but never
+     past its row) so it stays pinned under the header instead of parking at
+     the viewport's end */
+  .tui-shell-sidebar,
+  .tui-shell-aside {
+    display: block;
+    position: sticky;
+    align-self: end;
+    inset-block-end: 0;
+    min-block-size: min(100%, calc(100dvh - var(--tui-shell-header-block-size, 4rem)));
+  }
+}
+
+.tui-shell-persistent {
+  &:has(> .tui-shell-sidebar) {
+    grid-template-areas: 'header header' 'sidebar main' 'footer footer';
+    grid-template-columns: var(--tui-shell-sidebar-inline-size, 16rem) 1fr;
+  }
+
+  &:has(> .tui-shell-sidebar):has(> .tui-shell-aside) {
+    grid-template-areas: 'header header header' 'sidebar main aside' 'footer footer footer';
+    grid-template-columns: var(--tui-shell-sidebar-inline-size, 16rem) 1fr var(--tui-shell-aside-inline-size, 18rem);
+  }
+
+  &:has(> .tui-shell-aside):not(:has(> .tui-shell-sidebar)) {
+    grid-template-areas: 'header header' 'main aside' 'footer footer';
+    grid-template-columns: 1fr var(--tui-shell-aside-inline-size, 18rem);
+  }
+
+  & > .tui-shell-sidebar,
+  & > .tui-shell-aside {
+    display: block;
+    position: sticky;
+    align-self: end;
+    inset-block-end: 0;
+    min-block-size: min(100%, calc(100dvh - var(--tui-shell-header-block-size, 4rem)));
+  }
+}
+
+/* why: at the end of the page the footer paints over a self-scrolling column,
+   so its scroll area keeps a footer's worth of end padding — the last item
+   can always be scrolled clear of it */
+.tui-shell > .tui-shell-scroll {
+  align-self: stretch;
+  inset-block: var(--tui-shell-header-block-size, 4rem) auto;
+  max-block-size: calc(100dvh - var(--tui-shell-header-block-size, 4rem));
+  overflow-y: auto;
+  padding-block-end: var(--tui-spacing-16);
+}

@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Torque UI — Color System</title>
+  <link rel="stylesheet" href="/src/tui.css">
+  <style>
+    .tui-hero {
+      text-align: center;
+      padding: 3rem 2rem;
+      border-radius: var(--tui-radius-xl);
+      margin-bottom: 2rem;
+    }
+    .color-swatch {
+      width: 100%;
+      height: 4rem;
+      border-radius: var(--tui-radius-md);
+      border: 1px solid var(--tui-border);
+    }
+    .color-swatch-label {
+      margin-top: 0.35rem;
+      text-align: center;
+      font-size: 0.75rem;
+      font-weight: var(--tui-font-medium);
+      color: var(--tui-text-1);
+    }
+    .usage-card {
+      padding: 1.5rem;
+      border-radius: var(--tui-radius-lg);
+      border: 1px solid var(--tui-border);
+    }
+    code {
+      font-family: var(--tui-font-mono);
+      font-size: 0.85em;
+    }
+  </style>
+</head>
+<body>
+  <div class="tui-container">
+
+    <div class="tui-hero tui-dark" style="background: linear-gradient(135deg, var(--tui-brand-100), var(--tui-brand-300));">
+      <h1 style="font-size: var(--tui-text-5xl); color: var(--tui-text-1); margin-bottom: 1rem;">Color System</h1>
+      <p style="font-size: var(--tui-text-lg); color: var(--tui-text-1); opacity: 0.9; max-width: 40rem; margin: 0 auto;">
+        One brand color. Everything derived. Change <code>--tui-brand</code> to re-theme the entire framework.
+      </p>
+    </div>
+
+    <section class="tui-card tui-mb-6">
+      <div class="tui-card-header">
+        <h2 class="tui-m-0">Brand Palette</h2>
+      </div>
+      <div class="tui-card-body">
+        <p class="tui-mb-4">All derived from <code>--tui-brand: #6366f1</code> via <code>color-mix()</code> in srgb space.</p>
+        <div class="tui-grid" style="gap: 0.75rem; margin-bottom: 1rem;">
+          <div class="tui-col-span-1">
+            <div class="color-swatch" style="background: var(--tui-brand-50);"></div>
+            <div class="color-swatch-label">50</div>
+          </div>
+          <div class="tui-col-span-1">
+            <div class="color-swatch" style="background: var(--tui-brand-100);"></div>
+            <div class="color-swatch-label">100</div>
+          </div>
+          <div class="tui-col-span-1">
+            <div class="color-swatch" style="background: var(--tui-brand-200);"></div>
+            <div class="color-swatch-label">200</div>
+          </div>
+          <div class="tui-col-span-1">
+            <div class="color-swatch" style="background: var(--tui-brand-300);"></div>
+            <div class="color-swatch-label">300</div>
+          </div>
+          <div class="tui-col-span-1">
+            <div class="color-swatch" style="background: var(--tui-brand-400);"></div>
+            <div class="color-swatch-label">400</div>
+          </div>
+          <div class="tui-col-span-1">
+            <div class="color-swatch" style="background: var(--tui-brand-500);"></div>
+            <div class="color-swatch-label">500</div>
+          </div>
+          <div class="tui-col-span-1">
+            <div class="color-swatch" style="background: var(--tui-brand-600);"></div>
+            <div class="color-swatch-label">600</div>
+          </div>
+          <div class="tui-col-span-1">
+            <div class="color-swatch" style="background: var(--tui-brand-700);"></div>
+            <div class="color-swatch-label">700</div>
+          </div>
+          <div class="tui-col-span-1">
+            <div class="color-swatch" style="background: var(--tui-brand-800);"></div>
+            <div class="color-swatch-label">800</div>
+          </div>
+          <div class="tui-col-span-1">
+            <div class="color-swatch" style="background: var(--tui-brand-900);"></div>
+            <div class="color-swatch-label">900</div>
+          </div>
+        </div>
+
+        <div class="tui-grid" style="gap: 0.75rem;">
+          <div class="tui-col-span-3">
+            <div class="color-swatch" style="background: var(--tui-brand-50);"></div>
+            <div class="color-swatch-label">50</div>
+          </div>
+          <div class="tui-col-span-3">
+            <div class="color-swatch" style="background: var(--tui-brand-100);"></div>
+            <div class="color-swatch-label">100</div>
+          </div>
+          <div class="tui-col-span-3">
+            <div class="color-swatch" style="background: var(--tui-brand-200);"></div>
+            <div class="color-swatch-label">200</div>
+          </div>
+          <div class="tui-col-span-3">
+            <div class="color-swatch" style="background: var(--tui-brand-300);"></div>
+            <div class="color-swatch-label">300</div>
+          </div>
+          <div class="tui-col-span-3">
+            <div class="color-swatch" style="background: var(--tui-brand-400);"></div>
+            <div class="color-swatch-label">400</div>
+          </div>
+          <div class="tui-col-span-3">
+            <div class="color-swatch" style="background: var(--tui-brand-500);"></div>
+            <div class="color-swatch-label">500</div>
+          </div>
+          <div class="tui-col-span-3">
+            <div class="color-swatch" style="background: var(--tui-brand-600);"></div>
+            <div class="color-swatch-label">600</div>
+          </div>
+          <div class="tui-col-span-3">
+            <div class="color-swatch" style="background: var(--tui-brand-700);"></div>
+            <div class="color-swatch-label">700</div>
+          </div>
+          <div class="tui-col-span-3">
+            <div class="color-swatch" style="background: var(--tui-brand-800);"></div>
+            <div class="color-swatch-label">800</div>
+          </div>
+          <div class="tui-col-span-3">
+            <div class="color-swatch" style="background: var(--tui-brand-900);"></div>
+            <div class="color-swatch-label">900</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="tui-card tui-mb-6">
+      <div class="tui-card-header">
+        <h2 class="tui-m-0">Semantic Colors</h2>
+      </div>
+      <div class="tui-card-body">
+        <p class="tui-mb-4">Derived from brand via <code>color-mix()</code> in oklch space with hue rotation.</p>
+        <div class="tui-grid" style="gap: 1rem;">
+          <div class="tui-col-span-3">
+            <div class="color-swatch" style="background: var(--tui-positive);"></div>
+            <div class="color-swatch-label">positive</div>
+            <div class="color-swatch tui-mt-2" style="background: var(--tui-positive-bg);"></div>
+            <div class="color-swatch-label tui-mt-2">positive-bg</div>
+          </div>
+          <div class="tui-col-span-3">
+            <div class="color-swatch" style="background: var(--tui-negative);"></div>
+            <div class="color-swatch-label">negative</div>
+            <div class="color-swatch tui-mt-2" style="background: var(--tui-negative-bg);"></div>
+            <div class="color-swatch-label tui-mt-2">negative-bg</div>
+          </div>
+          <div class="tui-col-span-3">
+            <div class="color-swatch" style="background: var(--tui-warning);"></div>
+            <div class="color-swatch-label">warning</div>
+            <div class="color-swatch tui-mt-2" style="background: var(--tui-warning-bg);"></div>
+            <div class="color-swatch-label tui-mt-2">warning-bg</div>
+          </div>
+          <div class="tui-col-span-3">
+            <div class="color-swatch" style="background: var(--tui-info);"></div>
+            <div class="color-swatch-label">info</div>
+            <div class="color-swatch tui-mt-2" style="background: var(--tui-info-bg);"></div>
+            <div class="color-swatch-label tui-mt-2">info-bg</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="tui-card tui-mb-6">
+      <div class="tui-card-header">
+        <h2 class="tui-m-0">Neutral Palette</h2>
+      </div>
+      <div class="tui-card-body">
+        <p class="tui-mb-4">Derived from <code>--tui-neutral: #6b7280</code> via <code>color-mix()</code>.</p>
+        <div class="tui-grid" style="gap: 0.75rem;">
+          <div class="tui-col-span-1">
+            <div class="color-swatch" style="background: var(--tui-neutral-50);"></div>
+            <div class="color-swatch-label">50</div>
+          </div>
+          <div class="tui-col-span-1">
+            <div class="color-swatch" style="background: var(--tui-neutral-100);"></div>
+            <div class="color-swatch-label">100</div>
+          </div>
+          <div class="tui-col-span-1">
+            <div class="color-swatch" style="background: var(--tui-neutral-200);"></div>
+            <div class="color-swatch-label">200</div>
+          </div>
+          <div class="tui-col-span-1">
+            <div class="color-swatch" style="background: var(--tui-neutral-300);"></div>
+            <div class="color-swatch-label">300</div>
+          </div>
+          <div class="tui-col-span-1">
+            <div class="color-swatch" style="background: var(--tui-neutral-400);"></div>
+            <div class="color-swatch-label">400</div>
+          </div>
+          <div class="tui-col-span-1">
+            <div class="color-swatch" style="background: var(--tui-neutral-500);"></div>
+            <div class="color-swatch-label">500</div>
+          </div>
+          <div class="tui-col-span-1">
+            <div class="color-swatch" style="background: var(--tui-neutral-600);"></div>
+            <div class="color-swatch-label">600</div>
+          </div>
+          <div class="tui-col-span-1">
+            <div class="color-swatch" style="background: var(--tui-neutral-700);"></div>
+            <div class="color-swatch-label">700</div>
+          </div>
+          <div class="tui-col-span-1">
+            <div class="color-swatch" style="background: var(--tui-neutral-800);"></div>
+            <div class="color-swatch-label">800</div>
+          </div>
+          <div class="tui-col-span-1">
+            <div class="color-swatch" style="background: var(--tui-neutral-900);"></div>
+            <div class="color-swatch-label">900</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="tui-card tui-mb-6">
+      <div class="tui-card-header">
+        <h2 class="tui-m-0">Surfaces</h2>
+      </div>
+      <div class="tui-card-body">
+        <div class="tui-grid" style="gap: 1rem;">
+          <div class="tui-col-span-2">
+            <div style="padding: 1.5rem; background: var(--tui-surface-0); border-radius: var(--tui-radius-lg); border: 1px solid var(--tui-border);">
+              <strong>Surface 0</strong><br>
+              <code>--tui-surface-0</code>
+            </div>
+          </div>
+          <div class="tui-col-span-2">
+            <div style="padding: 1.5rem; background: var(--tui-surface-1); border-radius: var(--tui-radius-lg); border: 1px solid var(--tui-border);">
+              <strong>Surface 1</strong><br>
+              <code>--tui-surface-1</code>
+            </div>
+          </div>
+          <div class="tui-col-span-2">
+            <div style="padding: 1.5rem; background: var(--tui-surface-2); border-radius: var(--tui-radius-lg); border: 1px solid var(--tui-border);">
+              <strong>Surface 2</strong><br>
+              <code>--tui-surface-2</code>
+            </div>
+          </div>
+          <div class="tui-col-span-2">
+            <div style="padding: 1.5rem; background: var(--tui-surface-3); border-radius: var(--tui-radius-lg); border: 1px solid var(--tui-border);">
+              <strong>Surface 3</strong><br>
+              <code>--tui-surface-3</code>
+            </div>
+          </div>
+          <div class="tui-col-span-2">
+            <div style="padding: 1.5rem; background: var(--tui-surface-4); border-radius: var(--tui-radius-lg); border: 1px solid var(--tui-border);">
+              <strong>Surface 4</strong><br>
+              <code>--tui-surface-4</code>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="tui-card tui-mb-6">
+      <div class="tui-card-header">
+        <h2 class="tui-m-0">Usage Guide</h2>
+      </div>
+      <div class="tui-card-body">
+        <div class="tui-grid" style="gap: 1.5rem;">
+          <div class="tui-col-span-6">
+            <div class="usage-card">
+              <h3 class="tui-mb-3">Re-theming (1 line)</h3>
+              <pre style="margin: 0; background: var(--tui-surface-1); padding: 1rem; border-radius: var(--tui-radius-md); overflow-x: auto;"><code>:root {
+  --tui-brand: #e11d48; /* Rose */
+}</code></pre>
+              <p class="tui-mt-3 tui-text-sm tui-text-2">Change ONE variable. All tints, shades, semantic colors, surfaces, and shadows update automatically.</p>
+            </div>
+          </div>
+          <div class="tui-col-span-6">
+            <div class="usage-card">
+              <h3 class="tui-mb-3">Button Usage</h3>
+              <pre style="margin: 0; background: var(--tui-surface-1); padding: 1rem; border-radius: var(--tui-radius-md); overflow-x: auto;"><code>&lt;button class="tui-button tui-button-primary"&gt;
+  Primary Button
+&lt;/button&gt;
+
+&lt;button class="tui-button tui-button-success"&gt;
+  Success Button
+&lt;/button&gt;</code></pre>
+            </div>
+          </div>
+          <div class="tui-col-span-6">
+            <div class="usage-card">
+              <h3 class="tui-mb-3">Alert Usage</h3>
+              <pre style="margin: 0; background: var(--tui-surface-1); padding: 1rem; border-radius: var(--tui-radius-md); overflow-x: auto;"><code>&lt;div class="tui-alert tui-alert-success"&gt;
+  &lt;h4&gt;Success!&lt;/h4&gt;
+  &lt;p&gt;Your changes have been saved.&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+          </div>
+          <div class="tui-col-span-6">
+            <div class="usage-card">
+              <h3 class="tui-mb-3">Badge Usage</h3>
+              <pre style="margin: 0; background: var(--tui-surface-1); padding: 1rem; border-radius: var(--tui-radius-md); overflow-x: auto;"><code>&lt;span class="tui-badge tui-badge-primary"&gt;
+  Primary
+&lt;/span&gt;
+
+&lt;span class="tui-badge tui-badge-success"&gt;
+  Success
+&lt;/span&gt;</code></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="tui-card tui-mb-6">
+      <div class="tui-card-header">
+        <h2 class="tui-m-0">Live Color Preview</h2>
+      </div>
+      <div class="tui-card-body">
+        <div class="tui-grid" style="gap: 1rem;">
+          <div class="tui-col-span-3">
+            <div class="tui-statistic tui-statistic-primary">
+              <div class="tui-statistic-value" style="font-size: 1rem;">Brand</div>
+              <div class="tui-statistic-label" style="color: var(--tui-brand);">#6366f1</div>
+            </div>
+          </div>
+          <div class="tui-col-span-3">
+            <div class="tui-statistic tui-statistic-success">
+              <div class="tui-statistic-value" style="font-size: 1rem;">Positive</div>
+              <div class="tui-statistic-label" style="color: var(--tui-positive);">Derived</div>
+            </div>
+          </div>
+          <div class="tui-col-span-3">
+            <div class="tui-statistic tui-statistic-error">
+              <div class="tui-statistic-value" style="font-size: 1rem;">Negative</div>
+              <div class="tui-statistic-label" style="color: var(--tui-negative);">Derived</div>
+            </div>
+          </div>
+          <div class="tui-col-span-3">
+            <div class="tui-statistic tui-statistic">
+              <div class="tui-statistic-value" style="font-size: 1rem;">Info</div>
+              <div class="tui-statistic-label" style="color: var(--tui-info);">Derived</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,27 @@
+/* Torque UI — Badge Component
+ * Semantic tone via .tui-badge-success/-error/-warning/-info/-primary,
+ * driven by the --tui-tone hook (see 70-utilities/tone.css).
+ */
+
+
+  .tui-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--tui-spacing-1);
+    padding: var(--tui-spacing-0-5) var(--tui-spacing-2);
+    font-size: var(--tui-text-sm);
+    font-weight: var(--tui-font-semibold);
+    line-height: 1;
+    white-space: nowrap;
+    border-radius: var(--tui-radius-full);
+    background-color: var(--tui-tone-soft, var(--tui-surface-3));
+    color: var(--tui-tone-ink, var(--tui-text-2));
+    border: 1px solid var(--tui-tone-edge, var(--tui-border));
+  }
+
+  /* === Solid variant === */
+  .tui-badge-solid {
+    background-color: var(--tui-tone, var(--tui-brand));
+    color: var(--tui-tone-fg, var(--tui-brand-fg));
+    border-color: transparent;
+  }

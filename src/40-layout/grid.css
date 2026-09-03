@@ -1,0 +1,76 @@
+/* Torque UI — Grid Layout
+ * 12-column responsive grid system.
+ */
+
+
+  .tui-grid {
+    display: grid;
+    gap: var(--tui-spacing-4);
+    grid-template-columns: repeat(12, 1fr);
+
+    /* why: a track's automatic minimum is the item's min-content, so one
+       unbreakable child (a nowrap code line) would silently widen the whole
+       grid past its container; a zero floor keeps tracks at their share and
+       long content wraps or scrolls inside the item instead */
+    & > :where(*) {
+      min-inline-size: 0;
+    }
+  }
+
+  .tui-col-span-1  { grid-column: span 1; }
+  .tui-col-span-2  { grid-column: span 2; }
+  .tui-col-span-3  { grid-column: span 3; }
+  .tui-col-span-4  { grid-column: span 4; }
+  .tui-col-span-5  { grid-column: span 5; }
+  .tui-col-span-6  { grid-column: span 6; }
+  .tui-col-span-7  { grid-column: span 7; }
+  .tui-col-span-8  { grid-column: span 8; }
+  .tui-col-span-9  { grid-column: span 9; }
+  .tui-col-span-10 { grid-column: span 10; }
+  .tui-col-span-11 { grid-column: span 11; }
+  .tui-col-span-12 { grid-column: span 12; }
+  .tui-col-span-full { grid-column: 1 / -1; }
+
+  /* why: a card grid that names no column count fits as many columns of at
+     least --tui-grid-min as the container allows, and re-wraps on its own */
+  .tui-grid-auto {
+    /* why: the gap must take part in the column arithmetic, so this utility
+       owns it through a hook instead of the .tui-gap-* classes */
+    gap: var(--tui-grid-gap, var(--tui-spacing-4));
+
+    --_track: calc((100% - (var(--tui-grid-max-cols, 6) - 1) * var(--tui-grid-gap, var(--tui-spacing-4))) / var(--tui-grid-max-cols, 6));
+
+    grid-template-columns: repeat(auto-fill, minmax(min(max(var(--tui-grid-min, 12rem), var(--_track)), 100%), 1fr));
+  }
+
+  /* === Responsive Grid ===
+   * why: a grid that names its column count per breakpoint is a card grid,
+   * not a 12-track layout — below its first breakpoint it stacks to one
+   * column instead of laying twelve unspanned children in a row */
+  .tui-grid:where([class*="tui-grid-sm-"], [class*="tui-grid-md-"], [class*="tui-grid-lg-"]) {
+    grid-template-columns: 1fr;
+  }
+
+  @media (width >= 480px) {
+    .tui-grid-sm-2  { grid-template-columns: repeat(2, 1fr); }
+    .tui-grid-sm-3  { grid-template-columns: repeat(3, 1fr); }
+    .tui-grid-sm-4  { grid-template-columns: repeat(4, 1fr); }
+    .tui-grid-sm-6  { grid-template-columns: repeat(6, 1fr); }
+    .tui-grid-sm-12 { grid-template-columns: repeat(12, 1fr); }
+  }
+
+  @media (width >= 768px) {
+    .tui-grid-md-2  { grid-template-columns: repeat(2, 1fr); }
+    .tui-grid-md-3  { grid-template-columns: repeat(3, 1fr); }
+    .tui-grid-md-4  { grid-template-columns: repeat(4, 1fr); }
+    .tui-grid-md-6  { grid-template-columns: repeat(6, 1fr); }
+    .tui-grid-md-12 { grid-template-columns: repeat(12, 1fr); }
+  }
+
+  @media (width >= 1024px) {
+    .tui-grid-lg-2  { grid-template-columns: repeat(2, 1fr); }
+    .tui-grid-lg-3  { grid-template-columns: repeat(3, 1fr); }
+    .tui-grid-lg-4  { grid-template-columns: repeat(4, 1fr); }
+    .tui-grid-lg-6  { grid-template-columns: repeat(6, 1fr); }
+    .tui-grid-lg-12 { grid-template-columns: repeat(12, 1fr); }
+  }

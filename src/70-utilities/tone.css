@@ -1,0 +1,186 @@
+/* Torque UI — Tone Hook Setters
+ * One block per semantic. Each selector list is every legacy variant class
+ * name that used to carry its own copy-pasted colour declarations (button,
+ * badge, chip, label, tag, input, alert, toast, ribbon, segment, statistic,
+ * timeline, progress, status, checkbox, radio, step…). Living in the
+ * utilities layer means a setter here always beats the leak reset in
+ * 30-components/tone.css, regardless of the component's own layer or the
+ * reset's specificity — later layer wins over specificity.
+ * `.tui-tone-<sem>` is a generic hook for markup that isn't one of the
+ * named legacy classes.
+ *
+ * why: the aliases sit inside :where() at zero specificity, so a generic
+ * .tui-tone-* class on the same element always overrides them no matter
+ * which block comes later in this file — .tui-card-primary.tui-tone-success
+ * renders positive, as documented.
+ */
+
+.tui-tone-success,
+:where(
+  .tui-button-success,
+  .tui-badge-success,
+  .tui-chip-success,
+  .tui-label-success,
+  .tui-input-success,
+  .tui-alert-success,
+  .tui-toast-success,
+  .tui-ribbon-success,
+  .tui-segment-success,
+  .tui-statistic-success,
+  .tui-timeline-item-success,
+  .tui-progress-success,
+  .tui-status-online,
+  .tui-status-done,
+  .tui-checkbox-success,
+  .tui-radio-success,
+  .tui-step-complete
+) {
+  --tui-tone: var(--tui-positive);
+  --tui-tone-fg: var(--tui-positive-fg);
+  --tui-tone-soft: var(--tui-positive-soft);
+  --tui-tone-edge: var(--tui-positive-edge);
+  --tui-tone-bg: var(--tui-positive-bg);
+  --tui-tone-ink: var(--tui-positive-ink);
+  --tui-tone-gradient: var(--tui-positive-gradient);
+}
+
+.tui-tone-negative,
+.tui-tone-error,
+:where(
+  .tui-button-error,
+  .tui-badge-error,
+  .tui-chip-error,
+  .tui-label-error,
+  .tui-input-error,
+  .tui-alert-error,
+  .tui-toast-error,
+  .tui-ribbon-error,
+  .tui-segment-error,
+  .tui-statistic-error,
+  .tui-timeline-item-error,
+  .tui-progress-error,
+  .tui-status-busy,
+  .tui-status-error
+) {
+  --tui-tone: var(--tui-negative);
+  --tui-tone-fg: var(--tui-negative-fg);
+  --tui-tone-soft: var(--tui-negative-soft);
+  --tui-tone-edge: var(--tui-negative-edge);
+  --tui-tone-bg: var(--tui-negative-bg);
+  --tui-tone-ink: var(--tui-negative-ink);
+  --tui-tone-gradient: var(--tui-negative-gradient);
+}
+
+.tui-tone-warning,
+:where(
+  .tui-button-warning,
+  .tui-badge-warning,
+  .tui-chip-warning,
+  .tui-alert-warning,
+  .tui-toast-warning,
+  .tui-ribbon-warning,
+  .tui-timeline-item-warning,
+  .tui-progress-warning,
+  .tui-input-warning,
+  .tui-status-away
+) {
+  --tui-tone: var(--tui-warning);
+  --tui-tone-fg: var(--tui-warning-fg);
+  --tui-tone-soft: var(--tui-warning-soft);
+  --tui-tone-edge: var(--tui-warning-edge);
+  --tui-tone-bg: var(--tui-warning-bg);
+  --tui-tone-ink: var(--tui-warning-ink);
+  --tui-tone-gradient: var(--tui-warning-gradient);
+}
+
+.tui-tone-info,
+:where(
+  .tui-button-info,
+  .tui-badge-info,
+  .tui-chip-info,
+  .tui-alert-info,
+  .tui-toast-info,
+  .tui-input-info
+) {
+  --tui-tone: var(--tui-info);
+  --tui-tone-fg: var(--tui-info-fg);
+  --tui-tone-soft: var(--tui-info-soft);
+  --tui-tone-edge: var(--tui-info-edge);
+  --tui-tone-bg: var(--tui-info-bg);
+  --tui-tone-ink: var(--tui-info-ink);
+  --tui-tone-gradient: var(--tui-info-gradient);
+}
+
+.tui-tone-brand,
+.tui-tone-primary,
+:where(
+  .tui-button-primary,
+  .tui-badge-primary,
+  .tui-chip-primary,
+  .tui-label-primary,
+  .tui-tag-primary,
+  .tui-segment-primary,
+  .tui-statistic-primary,
+  .tui-card-primary,
+  .tui-input-primary,
+  .tui-timeline-item-brand,
+  .tui-step-active
+) {
+  --tui-tone: var(--tui-brand);
+  --tui-tone-fg: var(--tui-brand-fg);
+  --tui-tone-soft: var(--tui-brand-soft);
+  --tui-tone-edge: var(--tui-brand-edge);
+  --tui-tone-bg: var(--tui-brand-bg);
+  --tui-tone-ink: var(--tui-brand-ink);
+  --tui-tone-gradient: var(--tui-brand-gradient);
+}
+
+.tui-tone-neutral,
+:where(.tui-ribbon-neutral) {
+  --tui-tone: var(--tui-neutral);
+  --tui-tone-fg: var(--tui-text-inverse);
+  --tui-tone-soft: var(--tui-neutral-soft);
+  --tui-tone-edge: var(--tui-neutral-edge);
+  --tui-tone-bg: var(--tui-neutral-bg);
+  --tui-tone-ink: var(--tui-neutral-ink);
+  --tui-tone-gradient: var(--tui-neutral-gradient);
+}
+
+/* === Named tones ===
+ * why: one setter per colour name plus a shared block that derives the rest
+ * of the hooks from --tui-tone with the same formulas the semantic tokens
+ * use, so .tui-tone-purple works anywhere .tui-tone-info does. */
+.tui-tone-red { --tui-tone: var(--tui-red); }
+.tui-tone-orange { --tui-tone: var(--tui-orange); }
+.tui-tone-yellow { --tui-tone: var(--tui-yellow); }
+.tui-tone-olive { --tui-tone: var(--tui-olive); }
+.tui-tone-green { --tui-tone: var(--tui-green); }
+.tui-tone-teal { --tui-tone: var(--tui-teal); }
+.tui-tone-blue { --tui-tone: var(--tui-blue); }
+.tui-tone-violet { --tui-tone: var(--tui-violet); }
+.tui-tone-purple { --tui-tone: var(--tui-purple); }
+.tui-tone-pink { --tui-tone: var(--tui-pink); }
+.tui-tone-brown { --tui-tone: var(--tui-brown); }
+.tui-tone-grey { --tui-tone: var(--tui-grey); }
+.tui-tone-black { --tui-tone: var(--tui-black); }
+
+.tui-tone-red,
+.tui-tone-orange,
+.tui-tone-yellow,
+.tui-tone-olive,
+.tui-tone-green,
+.tui-tone-teal,
+.tui-tone-blue,
+.tui-tone-violet,
+.tui-tone-purple,
+.tui-tone-pink,
+.tui-tone-brown,
+.tui-tone-grey,
+.tui-tone-black {
+  --tui-tone-fg: oklch(from var(--tui-tone) clamp(0, (var(--tui-contrast-pivot) - l) * 1000, 1) 0 h);
+  --tui-tone-soft: color-mix(in srgb, var(--tui-tone) 15%, transparent);
+  --tui-tone-edge: color-mix(in srgb, var(--tui-tone) 30%, transparent);
+  --tui-tone-bg: light-dark(color-mix(in srgb, var(--tui-tone) 2%, white 98%), color-mix(in srgb, var(--tui-tone) 15%, var(--tui-surface-1)));
+  --tui-tone-ink: light-dark(oklch(from var(--tui-tone) min(l, 0.45) c h), oklch(from var(--tui-tone) max(l, 0.8) c h));
+  --tui-tone-gradient: linear-gradient(135deg, var(--tui-tone), var(--tui-tone-end, var(--tui-tone)));
+}

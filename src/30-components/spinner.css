@@ -1,0 +1,30 @@
+/* Torque UI — Spinner Component */
+
+
+  .tui-spinner {
+    display: inline-block;
+    inline-size: 2.5rem;
+    block-size: 2.5rem;
+    border: 3px solid var(--tui-surface-3);
+    border-block-start-color: var(--tui-brand);
+    border-radius: 50%;
+    animation: tui-spin 0.75s linear infinite;
+  }
+
+  @keyframes tui-spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  .tui-spinner-sm {
+    inline-size: 1.5rem;
+    block-size: 1.5rem;
+    border-width: 2px;
+  }
+
+  .tui-spinner-lg {
+    inline-size: 4rem;
+    block-size: 4rem;
+    border-width: 4px;
+  }

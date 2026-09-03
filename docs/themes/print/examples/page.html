@@ -1,0 +1,19 @@
+<div class="tui-stack tui-p-3">
+  <nav class="tui-navbar">
+    <a class="tui-navbar-brand" href="#print-page-top">Torque UI</a>
+    <button class="tui-button tui-button-icon tui-navbar-toggle" popovertarget="print-page-nav" aria-label="Menu">☰</button>
+    <ul class="tui-navbar-menu tui-offcanvas-collapse" id="print-page-nav" popover>
+      <li><a class="tui-navbar-item tui-navbar-item-active" href="#print-page-top">Home</a></li>
+      <li><a class="tui-navbar-item" href="#print-page-top">Docs</a></li>
+    </ul>
+  </nav>
+  <details class="tui-collapse">
+    <summary class="tui-collapse-summary">Closed on screen, open on paper</summary>
+    <div class="tui-collapse-body"><p>This body is forced open by the print stylesheet on Chrome 131 and later.</p></div>
+  </details>
+  <div class="tui-card tui-max-w-md">
+    <div class="tui-card-body">
+      <p>A card is never split across a page break. External links print their address: <a href="https://example.com/docs">the documentation</a>.</p>
+    </div>
+  </div>
+</div>

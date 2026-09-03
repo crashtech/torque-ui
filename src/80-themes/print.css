@@ -1,0 +1,62 @@
+/* Torque UI — Print Stylesheet
+ * Drops screen-only chrome (toggles, floating actions, toasts, popovers,
+ * the reading progress bar) and forces disclosure widgets open so a
+ * printed page reads as a document, not a captured screenshot of a UI.
+ */
+@media print {
+  :root { color-scheme: light; }
+
+  .tui-navbar-toggle,
+  .tui-fab,
+  .tui-toast,
+  .tui-toast-stack,
+  .tui-reading-progress,
+  .tui-carousel-dots,
+  [popover],
+  [popovertarget] {
+    display: none;
+  }
+
+  .tui-collapse-body,
+  .tui-tab-panel {
+    display: block;
+  }
+
+  .tui-tab {
+    border-block-end-color: transparent;
+  }
+
+  .tui-carousel-track {
+    display: grid;
+    overflow: visible;
+  }
+
+  a[href^="http"]::after {
+    content: ' (' attr(href) ')';
+    font-size: var(--tui-text-xs);
+    color: var(--tui-text-3);
+  }
+
+  .tui-card,
+  .tui-list-group {
+    break-inside: avoid;
+  }
+
+  .tui-shell {
+    display: block;
+  }
+
+  .tui-shell-sidebar {
+    display: none;
+  }
+}
+
+/* why: an unknown pseudo-element invalidates the whole selector list it
+   appears in, so forcing open <details> content on the floor (Chrome 131+)
+   stays in its own rule; elsewhere closed accordion sections print closed */
+@media print {
+  .tui-collapse::details-content {
+    display: block;
+    content-visibility: visible;
+  }
+}

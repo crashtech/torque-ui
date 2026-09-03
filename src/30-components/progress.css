@@ -1,0 +1,113 @@
+/* Torque UI — Progress Component
+ * One registered number, --tui-progress-value, drives the bar, ring, meter
+ * and poll option. It is read from aria-valuenow, then data-value, where
+ * typed attr() exists; setting the property directly works everywhere.
+ */
+
+  @property --tui-progress-value {
+    syntax: '<number>';
+    inherits: true;
+    initial-value: 0;
+  }
+
+  /* why: a registered initial value must not depend on font size, so the
+     default is the 0.5rem of the spacing scale written as pixels */
+  @property --tui-progress-thickness {
+    syntax: '<length>';
+    inherits: true;
+    initial-value: 8px;
+  }
+
+  /* why: a value written as an attribute by a script is the same number the
+     assistive tech reads; data-value comes second so it beats aria-valuenow
+     by source order, and an inline style beats both */
+  @supports (width: attr(x type(<length>))) {
+    :is(.tui-progress, .tui-progress-ring, .tui-progress-meter, .tui-poll-option)[aria-valuenow] {
+      /* stylelint-disable-next-line csstree/validator -- typed attr() is valid CSS Values 5 syntax (Chrome 133+); csstree's grammar doesn't yet know it */
+      --tui-progress-value: attr(aria-valuenow type(<number>));
+    }
+
+    :is(.tui-progress, .tui-progress-ring, .tui-progress-meter, .tui-poll-option)[data-value] {
+      /* stylelint-disable-next-line csstree/validator -- typed attr() is valid CSS Values 5 syntax (Chrome 133+); csstree's grammar doesn't yet know it */
+      --tui-progress-value: attr(data-value type(<number>));
+    }
+  }
+
+
+  .tui-progress {
+    inline-size: 100%;
+    block-size: var(--tui-progress-thickness);
+    background-color: var(--tui-surface-3);
+    border-radius: var(--tui-radius-full);
+    overflow: hidden;
+  }
+
+  .tui-progress-bar {
+    inline-size: calc(var(--tui-progress-value, 0) * 1%);
+    block-size: 100%;
+    background-color: var(--tui-tone, var(--tui-brand));
+    border-radius: var(--tui-radius-full);
+    transition: inline-size var(--tui-duration-normal) var(--tui-easing-out);
+  }
+
+  /* === Sizes === */
+  .tui-progress-sm {
+    --tui-progress-thickness: 0.25rem;
+  }
+
+  .tui-progress-lg {
+    --tui-progress-thickness: 1rem;
+  }
+
+  /* === Progress Ring === */
+
+  /* why: the value is a registered number, so transitioning the property
+     itself animates the conic sweep — a gradient cannot interpolate on its own */
+  .tui-progress-ring {
+    --_v: var(--tui-progress-value, 0);
+
+    inline-size: var(--tui-progress-ring-size, 4rem);
+    aspect-ratio: 1;
+    border-radius: var(--tui-radius-full);
+    background: conic-gradient(var(--tui-tone, var(--tui-brand)) calc(var(--_v) * 1%), var(--tui-progress-ring-track, var(--tui-surface-3)) 0);
+    mask: radial-gradient(farthest-side, transparent calc(100% - var(--tui-progress-thickness)), black calc(100% - var(--tui-progress-thickness) + 1px));
+    transition: --tui-progress-value var(--tui-duration-normal) var(--tui-easing-out);
+  }
+
+  /* === Progress Meter (half-circle gauge) ===
+   * why: the conic sweep is centred on the bottom edge and starts at the
+   * left horizon, so 180° — half a turn — is the whole scale; the value
+   * therefore maps to (value / 2)% of the full turn, and the radial mask
+   * carves the same 0.5rem stroke the ring uses */
+  .tui-progress-meter {
+    --_v: var(--tui-progress-value, 0);
+
+    inline-size: var(--tui-progress-meter-size, 8rem);
+    aspect-ratio: 2 / 1;
+    background: conic-gradient(from -90deg at 50% 100%, var(--tui-tone, var(--tui-brand)) calc(var(--_v) * 0.5%), var(--tui-progress-meter-track, var(--tui-surface-3)) 0 50%, transparent 0);
+    mask: radial-gradient(farthest-side at 50% 100%, transparent calc(100% - var(--tui-progress-thickness)), black calc(100% - var(--tui-progress-thickness) + 1px), black calc(100% - 1px), transparent);
+    transition: --tui-progress-value var(--tui-duration-normal) var(--tui-easing-out);
+  }
+
+  /* === Value hook / inline === */
+
+  .tui-progress-inline {
+    display: inline-block;
+    inline-size: var(--tui-progress-inline-size, 8rem);
+    vertical-align: middle;
+  }
+
+  /* === Poll option: tone-soft fill behind the text, sized by --tui-progress-value === */
+  .tui-poll-option {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    gap: var(--tui-spacing-3);
+    padding: var(--tui-spacing-2) var(--tui-spacing-3);
+    border: 1px solid var(--tui-border);
+    border-radius: var(--tui-radius-md);
+    background-image: linear-gradient(var(--tui-tone-soft, var(--tui-brand-soft)), var(--tui-tone-soft, var(--tui-brand-soft)));
+    background-repeat: no-repeat;
+    background-size: calc(var(--tui-progress-value, 0) * 1%) 100%;
+    transition: --tui-progress-value var(--tui-duration-normal) var(--tui-easing-out);
+  }

@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Torque UI — Elements</title>
+  <link rel="stylesheet" href="/src/tui.css">
+</head>
+<body>
+  <div class="tui-container">
+    <h1 class="tui-sr-only">Elements</h1>
+
+
+    <section class="tui-card tui-mb-6">
+      <div class="tui-card-header">
+        <h2 class="tui-m-0">Native Elements — Buttons</h2>
+      </div>
+      <div class="tui-card-body">
+        <p class="tui-mb-4">Native <code>&lt;button&gt;</code> elements are styled out of the box.</p>
+        <div class="tui-flex tui-flex-wrap" style="gap: 1rem;">
+          <button>Default Button</button>
+          <button disabled>Disabled Button</button>
+          <input type="submit" value="Submit Input">
+          <input type="reset" value="Reset Input">
+          <input type="button" value="Custom Button">
+        </div>
+      </div>
+    </section>
+
+    <section class="tui-card tui-mb-6">
+      <div class="tui-card-header">
+        <h2 class="tui-m-0">Component Buttons</h2>
+      </div>
+      <div class="tui-card-body">
+        <h3 class="tui-mb-3">Variants</h3>
+        <div class="tui-flex tui-flex-wrap tui-mb-6" style="gap: 1rem;">
+          <button class="tui-button">Default</button>
+          <button class="tui-button tui-button-primary">Primary</button>
+          <button class="tui-button tui-button-secondary">Secondary</button>
+          <button class="tui-button tui-button-ghost">Ghost</button>
+          <button class="tui-button tui-button-success">Success</button>
+          <button class="tui-button tui-button-error">Error</button>
+          <button class="tui-button tui-button-warning">Warning</button>
+          <button class="tui-button tui-button-info">Info</button>
+        </div>
+
+        <h3 class="tui-mb-3">Sizes</h3>
+        <div class="tui-flex tui-flex-wrap tui-mb-6" style="gap: 1rem; align-items: center;">
+          <button class="tui-button tui-button-primary tui-button-sm">Small</button>
+          <button class="tui-button tui-button-primary">Default</button>
+          <button class="tui-button tui-button-primary tui-button-lg">Large</button>
+        </div>
+
+        <h3 class="tui-mb-3">Block Button</h3>
+        <button class="tui-button tui-button-primary tui-button-block tui-mb-6">Full Width Button</button>
+
+        <h3 class="tui-mb-3">Button Group</h3>
+        <div class="tui-button-group tui-mb-6">
+          <button class="tui-button">Day</button>
+          <button class="tui-button">Week</button>
+          <button class="tui-button">Month</button>
+        </div>
+
+        <h3 class="tui-mb-3">Split Button</h3>
+        <div class="tui-split-button tui-mb-6">
+          <button class="tui-button tui-button-primary">Deploy</button>
+          <button class="tui-button tui-button-primary tui-button-icon" popovertarget="split-menu" aria-label="More deploy options" aria-haspopup="menu">▾</button>
+        </div>
+        <div class="tui-popover tui-menu" id="split-menu" popover>
+          <button class="tui-menu-item" type="button">Deploy to staging</button>
+          <button class="tui-menu-item" type="button">Deploy to production</button>
+        </div>
+
+        <h3 class="tui-mb-3">Disabled Split Button</h3>
+        <div class="tui-split-button tui-mb-6" id="split-disabled">
+          <button class="tui-button tui-button-primary" disabled>Deploy</button>
+          <button class="tui-button tui-button-primary tui-button-icon" aria-label="More deploy options (disabled)">▾</button>
+        </div>
+
+        <h3 class="tui-mb-3">Link Buttons</h3>
+        <div class="tui-flex tui-flex-wrap tui-mb-6" style="gap: 1rem;">
+          <a class="tui-button tui-button-primary" href="#" id="link-button-primary">Primary link</a>
+          <a class="tui-button" href="#" id="link-button-default">Default link</a>
+          <a class="tui-button tui-button-ghost" href="#" id="link-button-ghost">Ghost link</a>
+        </div>
+
+        <h3 class="tui-mb-3">Gradient Button</h3>
+        <div class="tui-flex tui-flex-wrap tui-mb-6" style="gap: 1rem;">
+          <button class="tui-button tui-button-gradient" id="gradient-button">Gradient</button>
+          <button class="tui-button tui-button-gradient tui-button-success">Gradient success</button>
+        </div>
+
+        <h3 class="tui-mb-3">Floating Action Button</h3>
+        <p>Fixed to the bottom-end corner of the viewport.</p>
+        <button class="tui-button tui-button-primary tui-fab" aria-label="Create new item">+</button>
+      </div>
+    </section>
+
+    <section class="tui-card tui-mb-6">
+      <div class="tui-card-header">
+        <h2 class="tui-m-0">Tables</h2>
+      </div>
+      <div class="tui-card-body">
+        <h3 class="tui-mb-3">Default Table</h3>
+        <table class="tui-mb-6">
+          <thead>
+            <tr><th>Name</th><th>Role</th><th>Status</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Alice Chen</td><td>Designer</td><td>Active</td></tr>
+            <tr><td>Bob Martinez</td><td>Developer</td><td>Active</td></tr>
+            <tr><td>Carol Kim</td><td>PM</td><td>On Leave</td></tr>
+          </tbody>
+        </table>
+
+        <h3 class="tui-mb-3">Striped Table</h3>
+        <table class="tui-table-striped tui-mb-6">
+          <thead><tr><th>Name</th><th>Role</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td>Alice Chen</td><td>Designer</td><td>Active</td></tr>
+            <tr><td>Bob Martinez</td><td>Developer</td><td>Active</td></tr>
+            <tr><td>Carol Kim</td><td>PM</td><td>On Leave</td></tr>
+          </tbody>
+        </table>
+
+        <h3 class="tui-mb-3">Bordered Table</h3>
+        <table class="tui-table-bordered tui-mb-6">
+          <thead><tr><th>Name</th><th>Role</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td>Alice Chen</td><td>Designer</td><td>Active</td></tr>
+            <tr><td>Bob Martinez</td><td>Developer</td><td>Active</td></tr>
+            <tr><td>Carol Kim</td><td>PM</td><td>On Leave</td></tr>
+          </tbody>
+        </table>
+
+        <h3 class="tui-mb-3">Compact Table</h3>
+        <table class="tui-table-compact tui-mb-6">
+          <thead><tr><th>Name</th><th>Role</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td>Alice Chen</td><td>Designer</td><td>Active</td></tr>
+            <tr><td>Bob Martinez</td><td>Developer</td><td>Active</td></tr>
+            <tr><td>Carol Kim</td><td>PM</td><td>On Leave</td></tr>
+          </tbody>
+        </table>
+
+        <h3 class="tui-mb-3">Responsive Table</h3>
+        <p class="tui-mb-3">Wrap a wide table in <code>.tui-table-responsive</code> so it scrolls horizontally inside its own box instead of breaking the page layout.</p>
+        <div class="tui-table-responsive tui-mb-6">
+          <table style="white-space: nowrap;">
+            <thead>
+              <tr>
+                <th>ID</th><th>First Name</th><th>Last Name</th><th>Email</th><th>Phone</th>
+                <th>Department</th><th>Job Title</th><th>Location</th><th>Start Date</th>
+                <th>Status</th><th>Manager</th><th>Salary</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1001</td><td>Alice</td><td>Chen</td><td>alice.chen@example.com</td><td>555-0101</td>
+                <td>Engineering</td><td>Senior Designer</td><td>San Francisco, CA</td><td>2020-01-15</td>
+                <td>Active</td><td>Dana Moore</td><td>$128,000</td>
+              </tr>
+              <tr>
+                <td>1002</td><td>Bob</td><td>Martinez</td><td>bob.martinez@example.com</td><td>555-0102</td>
+                <td>Product</td><td>Staff Developer</td><td>Austin, TX</td><td>2019-06-03</td>
+                <td>Active</td><td>Priya Anand</td><td>$142,500</td>
+              </tr>
+              <tr>
+                <td>1003</td><td>Carol</td><td>Kim</td><td>carol.kim@example.com</td><td>555-0103</td>
+                <td>Operations</td><td>Program Manager</td><td>Remote</td><td>2021-09-20</td>
+                <td>On Leave</td><td>Dana Moore</td><td>$118,750</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 class="tui-mb-3">Sticky Header</h3>
+        <p class="tui-mb-3">Add <code>.tui-table-sticky</code> so the header row stays pinned while a fixed-height wrapper scrolls.</p>
+        <div class="tui-mb-6" style="max-height: 12rem; overflow-y: auto;">
+          <table class="tui-table-sticky">
+            <thead><tr><th>Name</th><th>Role</th><th>Status</th></tr></thead>
+            <tbody>
+              <tr><td>Alice Chen</td><td>Designer</td><td>Active</td></tr>
+              <tr><td>Bob Martinez</td><td>Developer</td><td>Active</td></tr>
+              <tr><td>Carol Kim</td><td>PM</td><td>On Leave</td></tr>
+              <tr><td>Dana Moore</td><td>Engineering Lead</td><td>Active</td></tr>
+              <tr><td>Priya Anand</td><td>Staff Developer</td><td>Active</td></tr>
+              <tr><td>Evan Wright</td><td>Support</td><td>Active</td></tr>
+              <tr><td>Farah Osei</td><td>QA Lead</td><td>On Leave</td></tr>
+              <tr><td>George Petrov</td><td>Designer</td><td>Active</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 class="tui-mb-3">Selectable Rows</h3>
+        <p class="tui-mb-3">Add <code>.tui-table-selectable</code> so a row with a checked checkbox gets a highlighted background.</p>
+        <table class="tui-table-selectable tui-mb-6">
+          <thead><tr><th scope="col"><span class="tui-sr-only">Select</span></th><th>Name</th><th>Role</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td><input type="checkbox" class="tui-checkbox-input" aria-label="Select Alice Chen"></td><td>Alice Chen</td><td>Designer</td><td>Active</td></tr>
+            <tr><td><input type="checkbox" class="tui-checkbox-input" aria-label="Select Bob Martinez"></td><td>Bob Martinez</td><td>Developer</td><td>Active</td></tr>
+            <tr><td><input type="checkbox" class="tui-checkbox-input" aria-label="Select Carol Kim"></td><td>Carol Kim</td><td>PM</td><td>On Leave</td></tr>
+          </tbody>
+        </table>
+
+        <h3 class="tui-mb-3">Sortable Headers</h3>
+        <p class="tui-mb-3"><code>th[aria-sort]</code> shows a static direction indicator; the sort itself is driven by a link or form since Torque UI ships no JavaScript.</p>
+        <table>
+          <thead>
+            <tr>
+              <th aria-sort="ascending"><a href="#">Name</a></th>
+              <th aria-sort="descending"><a href="#">Role</a></th>
+              <th aria-sort="none"><a href="#">Status</a></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Alice Chen</td><td>Designer</td><td>Active</td></tr>
+            <tr><td>Bob Martinez</td><td>Developer</td><td>Active</td></tr>
+            <tr><td>Carol Kim</td><td>PM</td><td>On Leave</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="tui-card tui-mb-6">
+      <div class="tui-card-header">
+        <h2 class="tui-m-0">Lists</h2>
+      </div>
+      <div class="tui-card-body">
+        <h3 class="tui-mb-3">Unordered List</h3>
+        <ul class="tui-mb-4">
+          <li>CSS Grid for 2D layouts</li>
+          <li>Flexbox for 1D layouts
+            <ul>
+              <li>row direction</li>
+              <li>column direction</li>
+            </ul>
+          </li>
+          <li>@layer for cascade control</li>
+        </ul>
+
+        <h3 class="tui-mb-3">Ordered List</h3>
+        <ol class="tui-mb-4">
+          <li>Set up design tokens</li>
+          <li>Build reboot/reset styles</li>
+          <li>Create components</li>
+        </ol>
+
+        <h3 class="tui-mb-3">Definition List</h3>
+        <dl>
+          <dt><code>color-mix()</code></dt>
+          <dd>A CSS function that mixes two colors in a given color space.</dd>
+          <dt><code>:has()</code></dt>
+          <dd>The "parent selector" — matches elements based on their descendants.</dd>
+          <dt><code>@layer</code></dt>
+          <dd>Declares a cascade layer for predictable specificity.</dd>
+        </dl>
+      </div>
+    </section>
+
+    <section class="tui-card tui-mb-6">
+      <div class="tui-card-header">
+        <h2 class="tui-m-0">Images & Figures</h2>
+      </div>
+      <div class="tui-card-body">
+        <figure class="tui-mb-4">
+          <img src="https://picsum.photos/seed/torque/600/300" alt="Placeholder" style="width: 100%; max-width: 600px;">
+          <figcaption>A responsive image with automatic border-radius.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="tui-card tui-mb-6">
+      <div class="tui-card-header">
+        <h2 class="tui-m-0">Links</h2>
+      </div>
+      <div class="tui-card-body">
+        <p>Native <a href="#">links</a> are styled with the brand color and a hover effect. <a href="#" class="tui-text-positive">Positive link</a> <a href="#" class="tui-text-negative">Negative link</a> <a href="#" class="tui-text-warning">Warning link</a></p>
+      </div>
+    </section>
+
+    <section class="tui-card tui-mb-6">
+      <div class="tui-card-header">
+        <h2 class="tui-m-0">Icons</h2>
+      </div>
+      <div class="tui-card-body tui-icon-demo">
+        <h3 class="tui-mb-3">Icon in a Button</h3>
+        <div class="tui-flex tui-flex-wrap tui-mb-6" style="gap: 1rem;">
+          <button class="tui-button tui-button-primary" type="button">
+            <svg class="tui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 2 22h20z"></path></svg>
+            Icon Button
+          </button>
+        </div>
+
+        <h3 class="tui-mb-3">Standalone Sizes</h3>
+        <div class="tui-flex tui-flex-wrap" style="gap: 1rem; align-items: center;">
+          <svg class="tui-icon tui-icon-sm" viewBox="0 0 24 24" role="img" aria-label="Small triangle icon"><path d="M12 2 2 22h20z"></path></svg>
+          <svg class="tui-icon" viewBox="0 0 24 24" role="img" aria-label="Default triangle icon"><path d="M12 2 2 22h20z"></path></svg>
+          <svg class="tui-icon tui-icon-lg" viewBox="0 0 24 24" role="img" aria-label="Large triangle icon"><path d="M12 2 2 22h20z"></path></svg>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</body>
+</html>

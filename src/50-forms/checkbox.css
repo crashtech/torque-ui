@@ -1,0 +1,58 @@
+/* Torque UI — Checkbox Component
+ * Hidden checkbox + label with :checked styling.
+ */
+
+
+  .tui-checkbox {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--tui-spacing-2);
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .tui-checkbox-input {
+    appearance: none;
+    inline-size: 1.25rem;
+    block-size: 1.25rem;
+    border: 2px solid var(--tui-border);
+    border-radius: var(--tui-radius-sm);
+    background-color: var(--tui-surface-0);
+    cursor: pointer;
+    transition: border-color var(--tui-duration-fast) var(--tui-easing-out), background-color var(--tui-duration-fast) var(--tui-easing-out);
+    flex-shrink: 0;
+  }
+
+  .tui-checkbox-input:hover {
+    border-color: var(--tui-border-strong);
+  }
+
+  .tui-checkbox-input:checked {
+    background-color: var(--tui-tone, var(--tui-brand));
+    border-color: var(--tui-tone, var(--tui-brand));
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='white' d='M10 3L4.5 8.5 2 6l-1 1 3.5 3.5 6.5-6.5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 0.75rem;
+  }
+
+  .tui-checkbox span {
+    font-size: var(--tui-text-base);
+    color: var(--tui-text-1);
+  }
+
+  .tui-checkbox-inline {
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .tui-checkbox-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--tui-spacing-2);
+  }
+
+  .tui-checkbox-group-inline {
+    flex-flow: row wrap;
+    gap: var(--tui-spacing-4);
+  }

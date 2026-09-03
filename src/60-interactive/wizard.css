@@ -1,0 +1,46 @@
+/* Torque UI — Wizard */
+.tui-wizard {
+  --_pad: var(--tui-wizard-padding, var(--tui-spacing-6));
+
+  display: flex;
+  flex-direction: column;
+  gap: var(--tui-spacing-6);
+  padding: var(--_pad);
+  border: 1px solid var(--tui-border);
+  border-radius: var(--tui-wizard-radius, var(--tui-radius-md));
+}
+
+.tui-wizard-step {
+  display: none;
+}
+
+.tui-wizard-input:checked + .tui-wizard-step {
+  display: flex;
+  flex-direction: column;
+  gap: var(--tui-spacing-4);
+}
+
+.tui-wizard-nav {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--tui-spacing-3);
+}
+
+/* why: explicit .tui-step-complete / .tui-step-active always win over the
+   auto-lighting, whatever the source order — the :not() guard locks it.
+   --tui-tone-fg must be set alongside --tui-tone or .tui-step-number text falls back to --tui-text-2 on the brand fill (3.05:1 contrast) */
+.tui-wizard:has(.tui-wizard-input:nth-of-type(1):checked) .tui-step:nth-child(-n+1):not(.tui-step-complete, .tui-step-active),
+.tui-wizard:has(.tui-wizard-input:nth-of-type(2):checked) .tui-step:nth-child(-n+2):not(.tui-step-complete, .tui-step-active),
+.tui-wizard:has(.tui-wizard-input:nth-of-type(3):checked) .tui-step:nth-child(-n+3):not(.tui-step-complete, .tui-step-active),
+.tui-wizard:has(.tui-wizard-input:nth-of-type(4):checked) .tui-step:nth-child(-n+4):not(.tui-step-complete, .tui-step-active),
+.tui-wizard:has(.tui-wizard-input:nth-of-type(5):checked) .tui-step:nth-child(-n+5):not(.tui-step-complete, .tui-step-active),
+.tui-wizard:has(.tui-wizard-input:nth-of-type(6):checked) .tui-step:nth-child(-n+6):not(.tui-step-complete, .tui-step-active),
+.tui-wizard:has(.tui-wizard-input:nth-of-type(7):checked) .tui-step:nth-child(-n+7):not(.tui-step-complete, .tui-step-active),
+.tui-wizard:has(.tui-wizard-input:nth-of-type(8):checked) .tui-step:nth-child(-n+8):not(.tui-step-complete, .tui-step-active) {
+  --tui-tone: var(--tui-brand);
+  --tui-tone-fg: var(--tui-brand-fg);
+  --tui-tone-soft: var(--tui-brand-soft);
+  --tui-tone-edge: var(--tui-brand-edge);
+  --tui-tone-bg: var(--tui-brand-bg);
+  --tui-tone-ink: var(--tui-brand-ink);
+}

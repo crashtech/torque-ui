@@ -1,0 +1,61 @@
+/* Torque UI — Pagination Component
+ * Page navigation with CSS-only active state.
+ */
+
+
+  .tui-pagination {
+    display: flex;
+    align-items: center;
+    gap: var(--tui-spacing-1);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .tui-pagination > li {
+    list-style: none;
+  }
+
+  .tui-pagination a,
+  .tui-pagination span {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-inline-size: 2.5rem;
+    block-size: 2.5rem;
+    padding: var(--tui-spacing-1) var(--tui-spacing-2);
+    font-size: var(--tui-text-sm);
+    font-weight: var(--tui-font-medium);
+    color: var(--tui-text-2);
+    text-decoration: none;
+    border-radius: var(--tui-radius-md);
+    border: 1px solid var(--tui-border);
+    background-color: var(--tui-surface-0);
+    transition: background-color var(--tui-duration-fast) var(--tui-easing-out), border-color var(--tui-duration-fast) var(--tui-easing-out), color var(--tui-duration-fast) var(--tui-easing-out), box-shadow var(--tui-duration-fast) var(--tui-easing-out), translate var(--tui-duration-fast) var(--tui-easing-out);
+  }
+
+  .tui-pagination a:hover,
+  .tui-pagination span:hover {
+    background-color: var(--tui-surface-2);
+    color: var(--tui-text-1);
+    border-color: var(--tui-border-strong);
+  }
+
+  .tui-pagination a.tui-link-active,
+  .tui-pagination-item-active {
+    background-color: var(--tui-brand);
+    color: var(--tui-brand-fg);
+    border-color: var(--tui-brand);
+  }
+
+  .tui-pagination a.tui-link-active:hover,
+  .tui-pagination-item-active:hover {
+    background-color: color-mix(in srgb, var(--tui-brand) 90%, white 10%);
+    color: var(--tui-brand-fg);
+  }
+
+  .tui-pagination a[aria-disabled="true"] {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+  }

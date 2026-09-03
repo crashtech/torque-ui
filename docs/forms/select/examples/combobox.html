@@ -1,0 +1,33 @@
+<div class="tui-field tui-max-w-sm">
+  <label for="select-combobox-input">Shape</label>
+  <div class="tui-combobox" id="select-combobox">
+    <input class="tui-combobox-input" id="select-combobox-input" type="text" role="combobox" aria-expanded="false" aria-controls="select-combobox-list" aria-autocomplete="list" placeholder="Type to filter">
+    <ul class="tui-listbox tui-popover" id="select-combobox-list" role="listbox" popover>
+      <li class="tui-option" role="option" aria-selected="true"><svg class="tui-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/></svg> Circle</li>
+      <li class="tui-option" role="option"><svg class="tui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 2 22h20z"/></svg> Triangle</li>
+      <li class="tui-option" role="option" aria-disabled="true"><svg class="tui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 2 22h20z"/></svg> Unavailable</li>
+      <li class="tui-listbox-empty">No matches</li>
+    </ul>
+  </div>
+</div>
+<script>
+  const combobox = document.getElementById('select-combobox');
+  const input = combobox.querySelector('.tui-combobox-input');
+  const list = combobox.querySelector('.tui-listbox');
+  const options = list.querySelectorAll('.tui-option');
+  const open = () => { if (!list.matches(':popover-open')) list.showPopover(); };
+  // why: the input sits outside the popover, so opening on focus would be undone by the same click's light dismiss
+  input.addEventListener('click', open);
+  input.addEventListener('input', () => {
+    open();
+    options.forEach((option) => { option.hidden = !option.textContent.toLowerCase().includes(input.value.toLowerCase()); });
+  });
+  list.addEventListener('toggle', (event) => input.setAttribute('aria-expanded', event.newState === 'open'));
+  list.addEventListener('click', (event) => {
+    const option = event.target.closest('.tui-option');
+    if (!option || option.getAttribute('aria-disabled') === 'true') return;
+    options.forEach((other) => other.setAttribute('aria-selected', other === option));
+    input.value = option.textContent.trim();
+    list.hidePopover();
+  });
+</script>

@@ -1,0 +1,101 @@
+/* Torque UI — Tabs */
+.tui-tabs {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+/* why: the rule must span the full row, labels alone stop at the last tab */
+.tui-tabs::after {
+  content: '';
+  flex: 1;
+  border-block-end: var(--tui-tab-rule, 2px solid var(--tui-border));
+}
+
+/* why: display is pinned so a <button> tab (inline-flex from the element
+   defaults) trims exactly like a <label> or <a> tab */
+.tui-tab {
+  display: block;
+  padding: var(--tui-spacing-4);
+  text-box: trim-both cap alphabetic;
+  color: var(--tui-tab-color, var(--tui-text-2));
+  font-weight: var(--tui-font-medium);
+  border-block-end: var(--tui-tab-rule, 2px solid var(--tui-border));
+  cursor: pointer;
+  transition: color var(--tui-duration-fast), border-color var(--tui-duration-fast);
+
+  &:hover { color: var(--tui-tab-active-color, var(--tui-brand)); }
+}
+
+/* why: a link can be a tab (category pages that navigate); the link
+   defaults from 20-elements/links.css are undone here, in a later layer */
+a.tui-tab {
+  text-decoration: none;
+}
+
+.tui-tab:is([aria-current], [aria-selected="true"], [data-selected], .tui-selected) {
+  color: var(--tui-tab-active-color, var(--tui-brand));
+  border-block-end-color: var(--tui-tab-active-color, var(--tui-brand));
+}
+
+/* why: a script-driven strip uses <button role="tab">; the button element
+   defaults are undone so it sits flush with label and link tabs */
+button.tui-tab {
+  font: inherit;
+  font-weight: var(--tui-font-medium);
+  background-color: transparent;
+  border: 0;
+  border-block-end: var(--tui-tab-rule, 2px solid var(--tui-border));
+  border-radius: 0;
+  box-shadow: none;
+
+  &:hover {
+    background-color: transparent;
+    box-shadow: none;
+    translate: none;
+  }
+}
+
+/* === Trailing slot === */
+.tui-tabs-end {
+  order: 0;
+  margin-inline-start: auto;
+  display: flex;
+  align-items: center;
+  gap: var(--tui-spacing-2);
+  padding-inline-start: var(--tui-spacing-3);
+  border-block-end: var(--tui-tab-rule, 2px solid var(--tui-border));
+}
+
+/* why: the slot now carries the rule to the end of the row, so the filler
+   collapses; the slot's own padding keeps it off the last tab */
+.tui-tabs:has(> .tui-tabs-end)::after {
+  flex: 0 0 0;
+}
+
+/* === Sticky tab row === */
+.tui-tabs-sticky > .tui-tab,
+.tui-tabs-sticky > .tui-tabs-end,
+.tui-tabs-sticky::after {
+  position: sticky;
+  inset-block-start: 0;
+  background-color: var(--tui-surface-0);
+  z-index: var(--tui-z-sticky);
+}
+
+.tui-tab-panel {
+  order: 1;
+  flex-basis: 100%;
+  display: none;
+  padding-block: var(--tui-tab-panel-padding, var(--tui-spacing-4));
+}
+
+.tui-tab-input:checked + .tui-tab {
+  color: var(--tui-tab-active-color, var(--tui-brand));
+  border-block-end-color: var(--tui-tab-active-color, var(--tui-brand));
+}
+
+.tui-tab-input:checked + .tui-tab + .tui-tab-panel { display: block; }
+
+/* why: a script-driven panel is shown by default and hidden with the hidden
+   attribute, which the utilities layer honours above this rule */
+.tui-tab-panel[role="tabpanel"] { display: block; }

@@ -1,0 +1,118 @@
+/* Torque UI — Toast / Notification
+ * Fixed-position notification banner (bottom-right).
+ * Pure CSS, no JS. Respects prefers-reduced-motion.
+ */
+
+
+  /* A toast outside a stack positions itself; a toast inside .tui-toast-stack
+     is positioned by the stack instead (see below). */
+  .tui-toast:not(.tui-toast-stack > *) {
+    position: fixed;
+    inset-block-end: var(--tui-spacing-4);
+    inset-inline-end: var(--tui-spacing-4);
+  }
+
+  .tui-toast {
+    max-inline-size: 24rem;
+    min-inline-size: 16rem;
+    background-color: var(--tui-surface-0);
+    border: 1px solid var(--tui-border);
+    border-radius: var(--tui-radius-lg);
+    box-shadow: var(--tui-shadow-lg);
+    padding: var(--tui-spacing-4);
+    display: flex;
+    align-items: flex-start;
+    gap: var(--tui-spacing-3);
+    z-index: var(--tui-z-toast);
+    animation: tui-toast-in var(--tui-duration-normal) var(--tui-easing-out);
+  }
+
+  /* why: only a toned toast gets the thicker start-edge accent — an
+     untoned toast keeps the plain, uniform 1px border above. */
+  .tui-toast:is(.tui-toast-success, .tui-toast-error, .tui-toast-warning, .tui-toast-info) {
+    border-inline-start: 4px solid var(--tui-tone);
+  }
+
+  /* Stack multiple toasts bottom-right without the old nth-sibling top math */
+  .tui-toast-stack {
+    position: fixed;
+    inset-block-end: var(--tui-spacing-4);
+    inset-inline-end: var(--tui-spacing-4);
+    display: grid;
+    gap: var(--tui-spacing-2);
+    z-index: var(--tui-z-toast);
+  }
+
+  .tui-toast-icon {
+    flex-shrink: 0;
+    inline-size: 1.5rem;
+    block-size: 1.5rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--tui-radius-full);
+    font-size: var(--tui-text-sm);
+    background-color: var(--tui-tone, var(--tui-surface-2));
+    color: var(--tui-tone-fg, var(--tui-text-2));
+  }
+
+  .tui-toast-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: var(--tui-spacing-2);
+  }
+
+  .tui-toast-title {
+    font-size: var(--tui-text-sm);
+    text-box: trim-both cap alphabetic;
+    font-weight: var(--tui-font-semibold);
+    color: var(--tui-text-1);
+    margin: 0;
+  }
+
+  .tui-toast-desc {
+    font-size: var(--tui-text-xs);
+    text-box: trim-both cap alphabetic;
+    color: var(--tui-text-2);
+    margin: 0;
+  }
+
+  /* Slide-in animation */
+  @keyframes tui-toast-in {
+    from {
+      opacity: 0;
+      transform: translateY(0.5rem);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* .tui-toast-auto dismisses itself after --tui-toast-delay with no JS,
+     via a delayed forwards-filling animation. */
+  .tui-toast-auto {
+    animation: tui-toast-out var(--tui-duration-normal) var(--tui-easing-in) var(--tui-toast-delay, 5s) forwards;
+  }
+
+  @keyframes tui-toast-out {
+    to {
+      opacity: 0;
+      translate: 0 var(--tui-spacing-2);
+      visibility: hidden;
+      display: none;
+    }
+  }
+
+  /* why: the global reduced-motion rule (80-themes/a11y.css) only shortens
+     animation-duration to 0.01ms — it would still auto-dismiss the toast
+     almost instantly. Reduced-motion users get no auto-dismiss instead,
+     keeping the toast until they dismiss it themselves. */
+  @media (prefers-reduced-motion: reduce) {
+    .tui-toast-auto {
+      animation: none;
+    }
+  }
+

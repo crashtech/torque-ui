@@ -1,0 +1,14 @@
+<ul class="tui-listbox tui-max-w-sm" role="listbox" aria-label="Shapes" id="listbox-states">
+  <li class="tui-option" role="option" aria-selected="true"><svg class="tui-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/></svg> Circle</li>
+  <li class="tui-option" role="option" data-active><svg class="tui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 2 22h20z"/></svg> Triangle</li>
+  <li class="tui-option" role="option"><svg class="tui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 2 22h20z"/></svg> Square</li>
+  <li class="tui-option" role="option" aria-disabled="true"><svg class="tui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 2 22h20z"/></svg> Unavailable</li>
+</ul>
+<script>
+  const listbox = document.getElementById('listbox-states');
+  listbox.addEventListener('click', (event) => {
+    const option = event.target.closest('.tui-option');
+    if (!option || option.getAttribute('aria-disabled') === 'true') return;
+    listbox.querySelectorAll('.tui-option').forEach((other) => other.setAttribute('aria-selected', other === option));
+  });
+</script>

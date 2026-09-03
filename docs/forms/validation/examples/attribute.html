@@ -1,0 +1,12 @@
+<div class="tui-field tui-max-w-sm">
+  <label for="validation-attribute-email">Email</label>
+  <input id="validation-attribute-email" type="email" value="someone@example" aria-invalid="true" aria-describedby="validation-attribute-error">
+  <span class="tui-error" id="validation-attribute-error">This address bounced.</span>
+</div>
+<script>
+  const email = document.getElementById('validation-attribute-email');
+  email.addEventListener('input', () => {
+    // why: stands in for the server's answer — it wants a dotted domain
+    email.setAttribute('aria-invalid', !/@[^@]+\.[a-z]+$/i.test(email.value));
+  });
+</script>

@@ -1,0 +1,26 @@
+/* Torque UI — Rating */
+.tui-rating {
+  display: inline-flex;
+  flex-direction: row;
+  gap: var(--tui-rating-gap, var(--tui-spacing-1));
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: var(--tui-rating-size, var(--tui-text-2xl));
+  color: var(--tui-rating-idle, var(--tui-border));
+}
+
+.tui-rating-star {
+  cursor: pointer;
+  transition: color var(--tui-duration-fast), scale var(--tui-duration-fast);
+}
+
+/* why: a star is lit when it or any later star is checked/hovered */
+.tui-rating-input:checked + .tui-rating-star,
+.tui-rating-star:has(~ .tui-rating-input:checked),
+.tui-rating-star:hover,
+.tui-rating-star:has(~ .tui-rating-star:hover) {
+  color: var(--tui-rating-active, var(--tui-warning));
+}
+
+.tui-rating-star:hover { scale: 1.1; }

@@ -1,0 +1,17 @@
+/* Torque UI — Overflow Utilities
+ * Overflow property helpers.
+ */
+
+
+  .tui-overflow-visible   { overflow: visible; }
+  .tui-overflow-hidden    { overflow: hidden; }
+  .tui-overflow-scroll    { overflow: scroll; }
+  .tui-overflow-auto      { overflow: auto; }
+  .tui-overflow-x-visible { overflow-x: visible; }
+  .tui-overflow-x-hidden  { overflow-x: hidden; }
+  .tui-overflow-x-scroll  { overflow-x: scroll; }
+  .tui-overflow-x-auto    { overflow-x: auto; }
+  .tui-overflow-y-visible { overflow-y: visible; }
+  .tui-overflow-y-hidden  { overflow-y: hidden; }
+  .tui-overflow-y-scroll  { overflow-y: scroll; }
+  .tui-overflow-y-auto    { overflow-y: auto; }

@@ -1,0 +1,43 @@
+/* Torque UI — Divider Component
+ * Horizontal or vertical separator.
+ */
+
+
+  .tui-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--tui-spacing-4);
+    margin: var(--tui-spacing-6) 0;
+    color: var(--tui-text-3);
+    font-size: var(--tui-text-sm);
+
+    &:first-child { margin-block-start: 0; }
+    &:last-child { margin-block-end: 0; }
+  }
+
+  .tui-divider::before,
+  .tui-divider::after {
+    content: '';
+    flex: 1;
+    block-size: 1px;
+    background-color: var(--tui-divider-line, var(--tui-border));
+  }
+
+  /* A tone class on the divider colours the line and its text */
+  .tui-divider[class*="tui-tone-"] {
+    --tui-divider-line: var(--tui-tone-edge);
+
+    color: var(--tui-tone-ink);
+  }
+
+  .tui-divider-vertical {
+    display: block;
+    inline-size: 1px;
+    block-size: 1em;
+    margin: 0 var(--tui-spacing-2);
+    background-color: var(--tui-border);
+
+    &:first-child { margin-inline-start: 0; }
+    &:last-child { margin-inline-end: 0; }
+  }

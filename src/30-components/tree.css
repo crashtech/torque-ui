@@ -1,0 +1,53 @@
+/* Torque UI — Tree
+ * A nested <ul> of <li> where a branch is a <details class="tui-tree-node">
+ * (its <summary> toggles a nested <ul>) and a leaf is an <a> or <span>
+ * with .tui-tree-leaf. Distinct from .tui-collapse: a tree node has no
+ * open/close transition, just a rotating disclosure triangle.
+ */
+
+.tui-tree,
+.tui-tree ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* why: the nested <ul> has no class, so the bare-list <li> rhythm would leak in */
+.tui-tree li {
+  margin: 0;
+}
+
+/* why: the parent row pads spacing-2 before its 0.5rem disclosure triangle,
+   so the glyph centre sits at 0.75rem — the guide line starts there */
+.tui-tree ul {
+  padding-inline-start: var(--tui-tree-indent, var(--tui-spacing-5));
+  border-inline-start: 1px solid var(--tui-tree-guide, var(--tui-border));
+  margin-inline-start: var(--tui-spacing-3);
+}
+
+.tui-tree-node > summary,
+.tui-tree-leaf {
+  display: flex;
+  align-items: center;
+  gap: var(--tui-spacing-2);
+  padding: var(--tui-spacing-1) var(--tui-spacing-2);
+  border-radius: var(--tui-radius-sm);
+  color: var(--tui-text-1);
+  text-decoration: none;
+  cursor: pointer;
+  list-style: none;
+
+  &::-webkit-details-marker { display: none; }
+
+  &:hover { background-color: var(--tui-surface-1); }
+}
+
+.tui-tree-node > summary::before {
+  content: '▸';
+  color: var(--tui-text-3);
+  transition: rotate var(--tui-duration-fast);
+}
+
+.tui-tree-node[open] > summary::before {
+  rotate: 90deg;
+}

@@ -1,0 +1,28 @@
+/* Torque UI — Flag Component
+ * Country/region flags as inline icons.
+ */
+
+
+  .tui-flag {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    inline-size: 2rem;
+    block-size: 1.5rem;
+    border-radius: var(--tui-radius-sm);
+    font-size: var(--tui-text-xs);
+    font-weight: var(--tui-font-bold);
+    color: var(--tui-text-inverse);
+
+    /* why: fixed black outline (stacked shadows, not a single blur) for
+       legibility over arbitrary inline flag colours, including light ones —
+       flag backgrounds don't follow the light/dark theme, so this can't use
+       a light-dark() shadow token without changing appearance. */
+    text-shadow:
+      -1px -1px 1px rgb(0 0 0 / 0.7),
+      1px -1px 1px rgb(0 0 0 / 0.7),
+      -1px 1px 1px rgb(0 0 0 / 0.7),
+      1px 1px 1px rgb(0 0 0 / 0.7);
+    overflow: hidden;
+    border: 1px solid var(--tui-border);
+  }

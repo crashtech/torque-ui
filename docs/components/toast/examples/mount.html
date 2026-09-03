@@ -1,0 +1,12 @@
+<button class="tui-button" type="button" id="toast-mount-notify">Save</button>
+<div class="tui-toast-stack" aria-live="polite" id="toast-mount-stack"></div>
+<script>
+  document.getElementById('toast-mount-notify').addEventListener('click', () => {
+    const stack = document.getElementById('toast-mount-stack');
+    stack.insertAdjacentHTML('beforeend', `
+      <div class="tui-toast tui-toast-success" role="status">
+        <div class="tui-toast-content"><p class="tui-toast-title">Saved</p><p class="tui-toast-desc">Appended by a script just now.</p></div>
+      </div>`);
+    setTimeout(() => stack.lastElementChild.remove(), 3000);
+  });
+</script>

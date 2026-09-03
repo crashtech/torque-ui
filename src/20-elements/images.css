@@ -1,0 +1,21 @@
+/* Torque UI — Images Element Defaults
+ * <img>, <figure>, <figcaption> styled by default.
+ */
+
+
+  img {
+    max-inline-size: 100%;
+    block-size: auto;
+    border-radius: var(--tui-radius-md);
+  }
+
+  figure {
+    margin: 0 0 var(--tui-spacing-4) 0;
+  }
+
+  figcaption {
+    font-size: var(--tui-text-sm);
+    color: var(--tui-text-3);
+    text-align: center;
+    margin-block-start: var(--tui-spacing-2);
+  }

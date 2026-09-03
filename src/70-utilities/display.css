@@ -1,0 +1,53 @@
+/* Torque UI — Display Utilities
+ * Display property helpers.
+ */
+
+.tui-sr-only {
+  position: absolute;
+  inline-size: 1px;
+  block-size: 1px;
+  margin: -1px;
+  overflow: clip;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+  /* why: every component that sets its own display (menu rows, list items,
+     chips, panels) would beat the UA's [hidden] rule; this layer sits above
+     them all, so a script's el.hidden = true always works. until-found keeps
+     the UA's content-visibility so find-in-page can still reveal it */
+  [hidden]:not([hidden="until-found"]) { display: none; }
+
+  .tui-d-none      { display: none; }
+  .tui-d-block     { display: block; }
+  .tui-d-inline    { display: inline; }
+  .tui-d-inline-block { display: inline-block; }
+  .tui-d-flex      { display: flex; }
+  .tui-d-inline-flex { display: inline-flex; }
+  .tui-d-grid      { display: grid; }
+  .tui-d-inline-grid { display: inline-grid; }
+  .tui-d-table     { display: table; }
+  .tui-d-table-row { display: table-row; }
+  .tui-d-table-cell { display: table-cell; }
+
+  /* === Responsive Display === */
+  @media (width >= 480px) {
+    .tui-d-sm-none      { display: none; }
+    .tui-d-sm-block     { display: block; }
+    .tui-d-sm-flex      { display: flex; }
+    .tui-d-sm-grid      { display: grid; }
+  }
+
+  @media (width >= 768px) {
+    .tui-d-md-none      { display: none; }
+    .tui-d-md-block     { display: block; }
+    .tui-d-md-flex      { display: flex; }
+    .tui-d-md-grid      { display: grid; }
+  }
+
+  @media (width >= 1024px) {
+    .tui-d-lg-none      { display: none; }
+    .tui-d-lg-block     { display: block; }
+    .tui-d-lg-flex      { display: flex; }
+    .tui-d-lg-grid      { display: grid; }
+  }

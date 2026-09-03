@@ -1,0 +1,90 @@
+/* Torque UI — Color Utilities
+ * .tui-text-*, .tui-bg-* utility classes.
+ */
+
+  /* === Text Colors ===
+   * why: coloured text sits on a surface, so it reads the ink — the raw
+   * tone is a fill colour and a bright one (yellow) is unreadable as text */
+  .tui-text-primary   { color: var(--tui-brand-ink); }
+  .tui-text-positive  { color: var(--tui-positive-ink); }
+  .tui-text-negative  { color: var(--tui-negative-ink); }
+  .tui-text-warning   { color: var(--tui-warning-ink); }
+  .tui-text-info      { color: var(--tui-info-ink); }
+  .tui-text-neutral   { color: var(--tui-neutral-ink); }
+  .tui-text-inverse   { color: var(--tui-text-inverse); }
+  .tui-text-1         { color: var(--tui-text-1); }
+  .tui-text-2         { color: var(--tui-text-2); }
+  .tui-text-3         { color: var(--tui-text-3); }
+
+  /* === Text on solid fills === */
+  .tui-text-brand-fg    { color: var(--tui-brand-fg); }
+  .tui-text-positive-fg { color: var(--tui-positive-fg); }
+  .tui-text-negative-fg { color: var(--tui-negative-fg); }
+  .tui-text-warning-fg  { color: var(--tui-warning-fg); }
+  .tui-text-info-fg     { color: var(--tui-info-fg); }
+  .tui-text-tone-fg     { color: var(--tui-tone-fg, var(--tui-text-1)); }
+
+  /* === Chart series (fill="currentColor" in SVG) === */
+  .tui-chart-1       { color: var(--tui-chart-1); }
+  .tui-chart-2       { color: var(--tui-chart-2); }
+  .tui-chart-3       { color: var(--tui-chart-3); }
+  .tui-chart-4       { color: var(--tui-chart-4); }
+  .tui-chart-5       { color: var(--tui-chart-5); }
+  .tui-chart-6       { color: var(--tui-chart-6); }
+  .tui-chart-measure { color: var(--tui-chart-measure); }
+
+  /* === Background Colors === */
+  .tui-bg-primary   { background-color: var(--tui-brand); }
+  .tui-bg-positive  { background-color: var(--tui-positive); }
+  .tui-bg-negative  { background-color: var(--tui-negative); }
+  .tui-bg-warning   { background-color: var(--tui-warning); }
+  .tui-bg-info      { background-color: var(--tui-info); }
+  .tui-bg-neutral   { background-color: var(--tui-neutral); }
+
+  /* === Surface Backgrounds === */
+  .tui-bg-surface-0 { background-color: var(--tui-surface-0); }
+  .tui-bg-surface-1 { background-color: var(--tui-surface-1); }
+  .tui-bg-surface-2 { background-color: var(--tui-surface-2); }
+  .tui-bg-surface-3 { background-color: var(--tui-surface-3); }
+
+  /* === Gradient (tone-aware; flat until --tui-<tone>-end is set) === */
+  .tui-bg-gradient {
+    background-color: var(--tui-tone, var(--tui-brand));
+    background-image: var(--tui-tone-gradient, var(--tui-brand-gradient));
+    color: var(--tui-tone-fg, var(--tui-brand-fg));
+  }
+
+  /* === Avatar palette === */
+
+  /* === Light Backgrounds === */
+  .tui-bg-primary-light   { background-color: rgb(from var(--tui-brand) r g b / 0.1); }
+  .tui-bg-positive-light  { background-color: rgb(from var(--tui-positive) r g b / 0.1); }
+  .tui-bg-negative-light  { background-color: rgb(from var(--tui-negative) r g b / 0.1); }
+  .tui-bg-warning-light   { background-color: rgb(from var(--tui-warning) r g b / 0.1); }
+  .tui-bg-info-light      { background-color: rgb(from var(--tui-info) r g b / 0.1); }
+
+  /* === Border Colors === */
+  .tui-border-primary   { border-color: var(--tui-brand); }
+  .tui-border-positive  { border-color: var(--tui-positive); }
+  .tui-border-negative  { border-color: var(--tui-negative); }
+  .tui-border-warning   { border-color: var(--tui-warning); }
+  .tui-border-info      { border-color: var(--tui-info); }
+  .tui-border-dashed    { border-style: dashed; }
+
+  /* === Shadow === */
+  .tui-shadow-sm  { box-shadow: var(--tui-shadow-sm); }
+  .tui-shadow-md  { box-shadow: var(--tui-shadow-md); }
+  .tui-shadow-lg  { box-shadow: var(--tui-shadow-lg); }
+  .tui-shadow-xl  { box-shadow: var(--tui-shadow-xl); }
+
+  /* === Opacity === */
+  .tui-opacity-25 { opacity: 0.25; }
+  .tui-opacity-50 { opacity: 0.5; }
+  .tui-opacity-75 { opacity: 0.75; }
+
+  /* === Border radius === */
+  .tui-rounded-none { border-radius: var(--tui-radius-none); }
+  .tui-rounded-sm   { border-radius: var(--tui-radius-sm); }
+  .tui-rounded-md   { border-radius: var(--tui-radius-md); }
+  .tui-rounded-lg   { border-radius: var(--tui-radius-lg); }
+  .tui-rounded-full { border-radius: var(--tui-radius-full); }

@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Torque UI — Dark Mode</title>
+  <link rel="stylesheet" href="/src/tui.css">
+  <style>
+    .tui-hero {
+      text-align: center;
+      padding: 3rem 2rem;
+      border-radius: var(--tui-radius-xl);
+      margin-bottom: 2rem;
+    }
+    .tui-dark {
+      background-color: var(--tui-surface-0);
+      color: var(--tui-text-1);
+    }
+    .tui-light {
+      background-color: #fff;
+      color: var(--tui-text-1);
+    }
+    .tui-theme-toggle-wrapper {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      z-index: var(--tui-z-modal);
+    }
+    .tui-theme-toggle-input {
+      position: fixed;
+      inset-block-start: 4px;
+      inset-inline-start: 4px;
+    }
+    .tui-theme-toggle-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      background-color: var(--tui-surface-2);
+      border: 2px solid var(--tui-border);
+      border-radius: var(--tui-radius-full);
+      cursor: pointer;
+      font-size: var(--tui-text-sm);
+      font-weight: var(--tui-font-medium);
+      color: var(--tui-text-1);
+      transition: all var(--tui-duration-fast) var(--tui-easing-out);
+    }
+    .tui-theme-toggle-label:hover {
+      border-color: var(--tui-brand);
+    }
+  </style>
+</head>
+<body>
+  <input class="tui-state-input tui-theme-toggle-input" type="checkbox" id="theme-toggle">
+  <div class="tui-theme-toggle-wrapper">
+    <label class="tui-theme-toggle-label" for="theme-toggle">
+      <span>Toggle Dark Mode</span>
+    </label>
+  </div>
+
+  <div class="tui-page" style="min-height: 100vh;">
+
+    <div class="tui-hero tui-dark">
+      <h1 style="font-size: var(--tui-text-5xl); color: var(--tui-text-1); margin-bottom: 1rem;">Dark Mode</h1>
+      <p style="font-size: var(--tui-text-lg); color: var(--tui-text-2); max-width: 40rem; margin: 0 auto;">
+        Toggle the switch above to force dark mode. The framework adapts surfaces, text, and borders automatically.
+      </p>
+    </div>
+
+    <div class="tui-container">
+
+      <section class="tui-card tui-mb-6">
+        <div class="tui-card-header">
+          <h2 class="tui-m-0">Dark Mode Surfaces</h2>
+        </div>
+        <div class="tui-card-body">
+          <div class="tui-grid" style="gap: 1rem;">
+            <div class="tui-col-span-6">
+              <div style="padding: 1.5rem; background: var(--tui-surface-0); border-radius: var(--tui-radius-lg); border: 1px solid var(--tui-border);">
+                <strong>Surface 0</strong><br>
+                <code style="font-size: 0.75rem;">--tui-surface-0</code>
+              </div>
+            </div>
+            <div class="tui-col-span-6">
+              <div style="padding: 1.5rem; background: var(--tui-surface-1); border-radius: var(--tui-radius-lg); border: 1px solid var(--tui-border);">
+                <strong>Surface 1</strong><br>
+                <code style="font-size: 0.75rem;">--tui-surface-1</code>
+              </div>
+            </div>
+            <div class="tui-col-span-6">
+              <div style="padding: 1.5rem; background: var(--tui-surface-2); border-radius: var(--tui-radius-lg); border: 1px solid var(--tui-border);">
+                <strong>Surface 2</strong><br>
+                <code style="font-size: 0.75rem;">--tui-surface-2</code>
+              </div>
+            </div>
+            <div class="tui-col-span-6">
+              <div style="padding: 1.5rem; background: var(--tui-surface-3); border-radius: var(--tui-radius-lg); border: 1px solid var(--tui-border);">
+                <strong>Surface 3</strong><br>
+                <code style="font-size: 0.75rem;">--tui-surface-3</code>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="tui-card tui-mb-6">
+        <div class="tui-card-header">
+          <h2 class="tui-m-0">Dark Mode Text</h2>
+        </div>
+        <div class="tui-card-body">
+          <div class="tui-grid" style="gap: 1rem;">
+            <div class="tui-col-span-4">
+              <div style="padding: 1.5rem; background: var(--tui-surface-0); border-radius: var(--tui-radius-lg); border: 1px solid var(--tui-border);">
+                <strong style="color: var(--tui-text-1);">Text 1</strong> (Primary)<br>
+                <code style="font-size: 0.75rem;">--tui-text-1</code>
+              </div>
+            </div>
+            <div class="tui-col-span-4">
+              <div style="padding: 1.5rem; background: var(--tui-surface-0); border-radius: var(--tui-radius-lg); border: 1px solid var(--tui-border);">
+                <strong style="color: var(--tui-text-2);">Text 2</strong> (Secondary)<br>
+                <code style="font-size: 0.75rem;">--tui-text-2</code>
+              </div>
+            </div>
+            <div class="tui-col-span-4">
+              <div style="padding: 1.5rem; background: var(--tui-surface-0); border-radius: var(--tui-radius-lg); border: 1px solid var(--tui-border);">
+                <strong style="color: var(--tui-text-3);">Text 3</strong> (Muted)<br>
+                <code style="font-size: 0.75rem;">--tui-text-3</code>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="tui-card tui-mb-6">
+        <div class="tui-card-header">
+          <h2 class="tui-m-0">Dark Mode Components</h2>
+        </div>
+        <div class="tui-card-body">
+          <div class="tui-grid" style="gap: 1rem;">
+            <div class="tui-col-span-6">
+              <div class="tui-card tui-mb-4">
+                <div class="tui-card-header">
+                  <h3 class="tui-m-0">Card in Dark Mode</h3>
+                </div>
+                <div class="tui-card-body">
+                  <p>Cards adapt their surface colors automatically.</p>
+                </div>
+              </div>
+            </div>
+            <div class="tui-col-span-6">
+              <div class="tui-panel">
+                <div class="tui-panel-header">Panel in Dark Mode</div>
+                <div class="tui-panel-body">
+                  <p>Panels use surface tokens for seamless dark mode.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="tui-mt-6">
+            <h3 class="tui-mb-3">Alerts in Dark Mode</h3>
+            <div class="tui-alert tui-alert-success tui-mb-3">
+              <h4>Success!</h4>
+              <p>Alert background adapts to dark mode.</p>
+            </div>
+            <div class="tui-alert tui-alert-error tui-mb-3">
+              <h4>Error!</h4>
+              <p>Error alert maintains readability.</p>
+            </div>
+            <div class="tui-alert tui-alert-warning tui-mb-3">
+              <h4>Warning!</h4>
+              <p>Warning alert with dark mode compatible colors.</p>
+            </div>
+            <div class="tui-alert tui-alert-info">
+              <h4>Info!</h4>
+              <p>Info alert in dark mode.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="tui-card tui-mb-6">
+        <div class="tui-card-header">
+          <h2 class="tui-m-0">Dark Mode Borders & Shadows</h2>
+        </div>
+        <div class="tui-card-body">
+          <div class="tui-grid" style="gap: 1rem;">
+            <div class="tui-col-span-4">
+              <div style="padding: 1.5rem; background: var(--tui-surface-0); border: 1px solid var(--tui-border); border-radius: var(--tui-radius-lg);">
+                <strong>Border</strong><br>
+                <code style="font-size: 0.75rem;">--tui-border</code>
+              </div>
+            </div>
+            <div class="tui-col-span-4">
+              <div style="padding: 1.5rem; background: var(--tui-surface-0); border: 1px solid var(--tui-border-strong); border-radius: var(--tui-radius-lg);">
+                <strong>Border Strong</strong><br>
+                <code style="font-size: 0.75rem;">--tui-border-strong</code>
+              </div>
+            </div>
+            <div class="tui-col-span-4">
+              <div style="padding: 1.5rem; background: var(--tui-surface-0); border: 2px solid var(--tui-border-focus); border-radius: var(--tui-radius-lg);">
+                <strong>Border Focus</strong><br>
+                <code style="font-size: 0.75rem;">--tui-border-focus</code>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="tui-card tui-mb-6">
+        <div class="tui-card-header">
+          <h2 class="tui-m-0">Dark Mode Forms</h2>
+        </div>
+        <div class="tui-card-body">
+          <div class="tui-form">
+            <div class="tui-field">
+              <label class="tui-label">Input in Dark Mode</label>
+              <input type="text" placeholder="Text input">
+            </div>
+            <div class="tui-field">
+              <label class="tui-label">Select in Dark Mode</label>
+              <select>
+                <option>Choose...</option>
+                <option>Option 1</option>
+                <option>Option 2</option>
+              </select>
+            </div>
+            <div class="tui-field">
+              <label class="tui-checkbox">
+                <input class="tui-checkbox-input" type="checkbox">
+                <span>Checkbox in dark mode</span>
+              </label>
+            </div>
+            <div class="tui-field">
+              <label class="tui-switch">
+                <input class="tui-switch-input" type="checkbox">
+                <span class="tui-switch-label">Toggle in dark mode</span>
+              </label>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </div>
+</body>
+</html>

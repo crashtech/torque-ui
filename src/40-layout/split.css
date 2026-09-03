@@ -1,0 +1,28 @@
+/* Torque UI — Split Pane */
+.tui-split {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  block-size: var(--tui-split-block-size, 24rem);
+  border: 1px solid var(--tui-border);
+  border-radius: var(--tui-radius-md);
+  overflow: hidden;
+}
+
+.tui-split-pane {
+  overflow: auto;
+  padding: var(--tui-spacing-4);
+  min-inline-size: var(--tui-split-min, 8rem);
+  block-size: 100%;
+}
+
+/* why: the resizer writes an explicit width on the first pane; the frame
+   clips and the second pane may shrink to nothing, so nothing spills out */
+.tui-split-pane:first-child {
+  resize: horizontal;
+  max-inline-size: 80%;
+  border-inline-end: 1px solid var(--tui-border);
+}
+
+.tui-split-pane:last-child {
+  min-inline-size: 0;
+}

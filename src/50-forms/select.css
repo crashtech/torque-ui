@@ -1,0 +1,65 @@
+/* Torque UI — Rich Select
+ * .tui-select-rich opts a <select> into the browser's customisable
+ * select picker (Chrome 134+). Degrades to the native select elsewhere.
+ */
+
+
+  @supports (appearance: base-select) {
+    .tui-select-rich,
+    .tui-select-rich::picker(select) {
+      /* stylelint-disable-next-line csstree/validator -- appearance: base-select is valid CSS customisable-select syntax (Chrome 134+); csstree's grammar doesn't yet know it */
+      appearance: base-select;
+    }
+
+    /* why: base-select renders its own picker icon; the chevron the bare
+       select paints would sit next to it */
+    .tui-select-rich {
+      background-image: none;
+      padding-inline-end: var(--tui-spacing-3);
+    }
+
+    .tui-select-rich::picker(select) {
+      padding: var(--tui-spacing-1);
+      border: 1px solid var(--tui-border);
+      border-radius: var(--tui-radius-md);
+      box-shadow: var(--tui-shadow-lg);
+      background-color: var(--tui-surface-0);
+    }
+
+    .tui-select-rich option {
+      padding: var(--tui-spacing-2) var(--tui-spacing-3);
+      border-radius: var(--tui-radius-sm);
+    }
+
+    .tui-select-rich option:checked {
+      background-color: var(--tui-brand-soft);
+    }
+
+    .tui-select-rich::checkmark {
+      content: '✓';
+    }
+
+    /* why: with base-select an <option> may hold an icon before its text;
+       the row is a flex line so the .tui-icon and the label align, and the
+       <selectedcontent> inside the select's <button> clones that row so the
+       closed control shows the same icon */
+    .tui-select-rich option,
+    /* stylelint-disable-next-line selector-type-no-unknown -- selectedcontent is the customisable-select element (Chrome 134+) */
+    .tui-select-rich selectedcontent {
+      display: flex;
+      align-items: center;
+      gap: var(--tui-spacing-2);
+    }
+
+    .tui-select-rich > button {
+      display: flex;
+      inline-size: 100%;
+      padding: 0;
+      font: inherit;
+      color: inherit;
+      text-align: start;
+      background: none;
+      border: 0;
+      box-shadow: none;
+    }
+  }

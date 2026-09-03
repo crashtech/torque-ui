@@ -1,0 +1,129 @@
+/* Torque UI — Combobox
+ * .tui-combobox is the field a script turns into a searchable select, a
+ * button-triggered picker or a multi-select with tags. The wrapper carries
+ * the field border and focus ring; a .tui-combobox-input (role="combobox")
+ * or a .tui-combobox-value <button> sits inside; the .tui-listbox that
+ * follows is documented in 60-interactive/listbox.css. Open state is read
+ * from aria-expanded on the trigger; the script owns every other behaviour.
+ */
+
+
+  .tui-combobox {
+    position: relative;
+    display: flex;
+    align-items: center;
+    inline-size: 100%;
+    padding-inline-end: var(--tui-spacing-8);
+    color: var(--tui-text-1);
+    background-color: var(--tui-surface-0);
+    border: 2px solid var(--tui-tone, var(--tui-border));
+    border-radius: var(--tui-radius-md);
+    transition: border-color var(--tui-duration-fast) var(--tui-easing-out), box-shadow var(--tui-duration-fast) var(--tui-easing-out);
+
+    &:hover {
+      border-color: var(--tui-border-strong);
+    }
+
+    &:focus-within {
+      border-color: var(--tui-tone, var(--tui-border-focus));
+      box-shadow: 0 0 0 var(--tui-focus-halo-width) var(--tui-tone-edge, var(--tui-focus-ring));
+    }
+
+    /* why: the chevron is painted by the wrapper, not the control inside, so
+       an input and a button trigger get the same indicator; it turns while
+       the trigger says it is expanded */
+    &::after {
+      content: '';
+      position: absolute;
+      inset-inline-end: var(--tui-spacing-3);
+      inset-block-start: 50%;
+      translate: 0 -50%;
+      inline-size: 0.75rem;
+      block-size: 0.75rem;
+      mask: var(--tui-icon-chevron) center / contain no-repeat;
+      background-color: var(--tui-icon-color, var(--tui-neutral));
+      pointer-events: none;
+      transition: rotate var(--tui-duration-fast);
+    }
+
+    &:has(> :is([aria-expanded="true"], [data-expanded], .tui-expanded))::after {
+      rotate: 180deg;
+    }
+
+    &:has(> :disabled) {
+      background-color: var(--tui-surface-2);
+      color: var(--tui-text-3);
+      cursor: not-allowed;
+      opacity: 0.7;
+    }
+  }
+
+  /* why: the wrapper carries the border and focus ring, so the input inside
+     must drop its own — the same trick as .tui-composer-input */
+  .tui-combobox-input {
+    flex: 1;
+    min-inline-size: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+
+    &:focus {
+      outline: none;
+      box-shadow: none;
+    }
+  }
+
+  /* A <button> trigger for the non-typing picker: fills the field, starts
+     its text, and shows data-placeholder while it holds no option */
+  .tui-combobox-value {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: var(--tui-spacing-2);
+    min-inline-size: 0;
+    padding: var(--tui-spacing-2) var(--tui-spacing-3);
+    font: var(--tui-text-base) / var(--tui-leading-snug) var(--tui-font-sans);
+    color: inherit;
+    text-align: start;
+    background: none;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+    cursor: pointer;
+
+    &:hover {
+      background: none;
+      box-shadow: none;
+      translate: none;
+    }
+
+    &:focus-visible {
+      outline: none;
+    }
+
+    &:empty::before {
+      content: attr(data-placeholder);
+      color: var(--tui-text-3);
+    }
+  }
+
+  /* === Tag mode ===
+   * The wrapper wraps .tui-chip tokens and the input onto as many rows as
+   * they need; the input takes whatever width is left on the last row. */
+  .tui-combobox-tags {
+    flex-wrap: wrap;
+    gap: var(--tui-spacing-1);
+    padding: var(--tui-spacing-1);
+    padding-inline-end: var(--tui-spacing-8);
+
+    & > .tui-combobox-input {
+      flex: 1 1 8ch;
+      min-inline-size: 8ch;
+      padding: var(--tui-spacing-1) var(--tui-spacing-2);
+    }
+
+    & > .tui-chip > .tui-close {
+      --tui-close-size: 1rem;
+    }
+  }

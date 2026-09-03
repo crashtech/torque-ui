@@ -1,0 +1,43 @@
+/* Torque UI — Close Button
+ * Shared dismiss control. Works on a <button> (used by the modal component)
+ * or a <label for="…"> paired with a hidden .tui-dismiss checkbox (alert,
+ * toast, chip below). The × glyph is decorative; the element itself carries
+ * the accessible name via aria-label.
+ */
+
+
+  .tui-close {
+    display: inline-grid;
+    place-items: center;
+    inline-size: var(--tui-close-size, 2rem);
+    block-size: var(--tui-close-size, 2rem);
+    padding: 0;
+    border: 0;
+    background: none;
+    color: var(--tui-close-color, var(--tui-text-3));
+    border-radius: var(--tui-radius-md);
+    cursor: pointer;
+    transition: background-color var(--tui-duration-fast), color var(--tui-duration-fast);
+
+    &::before {
+      content: '×';
+      font-size: var(--tui-text-lg);
+      line-height: 1;
+    }
+
+    &:hover {
+      background-color: var(--tui-surface-2);
+      color: var(--tui-text-1);
+    }
+  }
+
+  /* why: shared across alert/toast/chip so each dismissible component only
+     has to add the .tui-dismiss + .tui-close markup pair. */
+  :is(.tui-alert, .tui-toast, .tui-chip) {
+    transition: opacity var(--tui-duration-fast), display var(--tui-duration-fast) allow-discrete;
+
+    &:has(> .tui-dismiss:checked) {
+      opacity: 0;
+      display: none;
+    }
+  }

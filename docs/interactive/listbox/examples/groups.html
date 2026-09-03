@@ -1,0 +1,25 @@
+<ul class="tui-listbox tui-max-w-sm" role="listbox" aria-label="Cities" id="listbox-groups">
+  <li class="tui-listbox-search"><div class="tui-search"><input type="search" placeholder="Filter" aria-label="Filter cities"></div></li>
+  <li class="tui-listbox-group" role="group" aria-labelledby="listbox-groups-eu">
+    <span class="tui-listbox-group-label" id="listbox-groups-eu">Europe</span>
+    <ul class="tui-listbox-group" role="presentation">
+      <li class="tui-option" role="option">Lisbon</li>
+      <li class="tui-option" role="option">Madrid</li>
+    </ul>
+  </li>
+  <li class="tui-listbox-group" role="group" aria-labelledby="listbox-groups-am">
+    <span class="tui-listbox-group-label" id="listbox-groups-am">Americas</span>
+    <ul class="tui-listbox-group" role="presentation">
+      <li class="tui-option" role="option">Bogotá</li>
+    </ul>
+  </li>
+  <li class="tui-listbox-empty">No matches</li>
+</ul>
+<script>
+  const groups = document.getElementById('listbox-groups');
+  groups.querySelector('.tui-listbox-search input').addEventListener('input', (event) => {
+    const query = event.target.value.toLowerCase();
+    groups.querySelectorAll('.tui-option').forEach((option) => { option.hidden = !option.textContent.toLowerCase().includes(query); });
+    groups.querySelectorAll('[role="group"]').forEach((group) => { group.hidden = !group.querySelector('.tui-option:not([hidden])'); });
+  });
+</script>

@@ -1,0 +1,19 @@
+<div class="tui-tabs" id="tabs-script">
+  <div role="tablist" aria-label="Report" class="tui-flex">
+    <button class="tui-tab" type="button" role="tab" id="tabs-script-summary" aria-selected="true" aria-controls="tabs-script-summary-panel">Summary</button>
+    <button class="tui-tab" type="button" role="tab" id="tabs-script-detail" aria-selected="false" aria-controls="tabs-script-detail-panel" tabindex="-1">Detail</button>
+  </div>
+  <div class="tui-tab-panel" role="tabpanel" id="tabs-script-summary-panel" aria-labelledby="tabs-script-summary"><p class="tui-m-0">Summary panel.</p></div>
+  <div class="tui-tab-panel" role="tabpanel" id="tabs-script-detail-panel" aria-labelledby="tabs-script-detail" hidden><p class="tui-m-0">Detail panel.</p></div>
+</div>
+<script>
+  const strip = document.getElementById('tabs-script');
+  strip.querySelectorAll('[role="tab"]').forEach((tab) => tab.addEventListener('click', () => {
+    strip.querySelectorAll('[role="tab"]').forEach((other) => {
+      const selected = other === tab;
+      other.setAttribute('aria-selected', selected);
+      other.tabIndex = selected ? 0 : -1;
+      document.getElementById(other.getAttribute('aria-controls')).hidden = !selected;
+    });
+  }));
+</script>

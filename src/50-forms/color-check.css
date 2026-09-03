@@ -1,0 +1,56 @@
+/* Torque UI — Color Check (color swatch picker)
+ * Radios rendered as color swatches. Hidden input + :checked styling.
+ * Pure CSS, no JS.
+ */
+
+
+  .tui-color-check-group {
+    display: inline-flex;
+    gap: var(--tui-spacing-2);
+    flex-wrap: wrap;
+  }
+
+  .tui-color-check {
+    position: relative;
+    display: inline-flex;
+    cursor: pointer;
+  }
+
+  .tui-color-check-input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .tui-color-check-swatch {
+    inline-size: 1.75rem;
+    block-size: 1.75rem;
+    border-radius: var(--tui-radius-full);
+    border: 2px solid var(--tui-border);
+    background-color: var(--tui-swatch, var(--tui-neutral-400));
+    transition: transform var(--tui-duration-fast) var(--tui-easing-out), box-shadow var(--tui-duration-fast) var(--tui-easing-out);
+  }
+
+  .tui-color-check:hover .tui-color-check-swatch {
+    transform: scale(1.1);
+  }
+
+  /* Checked: ring around swatch + check mark */
+  .tui-color-check-input:checked + .tui-color-check-swatch {
+    border-color: var(--tui-surface-0);
+    box-shadow: 0 0 0 2px var(--tui-surface-0), 0 0 0 4px var(--tui-brand);
+  }
+
+  .tui-color-check-input:checked + .tui-color-check-swatch::after {
+    content: '';
+    display: block;
+    inline-size: 0.6rem;
+    block-size: 0.3rem;
+    border-inline-start: 2px solid var(--tui-text-inverse);
+    border-block-end: 2px solid var(--tui-text-inverse);
+    transform: rotate(-45deg) translate(0.05rem, -0.1rem);
+  }
+
+  .tui-color-check-input:focus-visible + .tui-color-check-swatch {
+    box-shadow: 0 0 0 2px var(--tui-surface-0), 0 0 0 4px var(--tui-focus-ring-strong);
+  }

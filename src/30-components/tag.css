@@ -1,0 +1,57 @@
+/* Torque UI — Tag Component
+ * Small inline labels for categorization.
+ */
+
+
+  .tui-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--tui-spacing-1);
+    padding: var(--tui-spacing-0-5) var(--tui-spacing-2);
+    font-size: var(--tui-text-sm);
+    font-weight: var(--tui-font-medium);
+    line-height: 1;
+    white-space: nowrap;
+    border-radius: var(--tui-radius-md);
+    background-color: var(--tui-tone-soft, var(--tui-surface-2));
+    color: var(--tui-tone-ink, var(--tui-text-2));
+    border: 1px solid var(--tui-tone-edge, var(--tui-border));
+  }
+
+  /* why: tags only had -primary; the remaining tones are set here (components
+     layer, after tone.css's leak reset) rather than in 70-utilities/tone.css */
+  .tui-tag-success {
+    --tui-tone: var(--tui-positive);
+    --tui-tone-fg: var(--tui-positive-fg);
+    --tui-tone-soft: var(--tui-positive-soft);
+    --tui-tone-edge: var(--tui-positive-edge);
+    --tui-tone-bg: var(--tui-positive-bg);
+    --tui-tone-ink: var(--tui-positive-ink);
+  }
+
+  .tui-tag-error {
+    --tui-tone: var(--tui-negative);
+    --tui-tone-fg: var(--tui-negative-fg);
+    --tui-tone-soft: var(--tui-negative-soft);
+    --tui-tone-edge: var(--tui-negative-edge);
+    --tui-tone-bg: var(--tui-negative-bg);
+    --tui-tone-ink: var(--tui-negative-ink);
+  }
+
+  .tui-tag-warning {
+    --tui-tone: var(--tui-warning);
+    --tui-tone-fg: var(--tui-warning-fg);
+    --tui-tone-soft: var(--tui-warning-soft);
+    --tui-tone-edge: var(--tui-warning-edge);
+    --tui-tone-bg: var(--tui-warning-bg);
+    --tui-tone-ink: var(--tui-warning-ink);
+  }
+
+  .tui-tag-info {
+    --tui-tone: var(--tui-info);
+    --tui-tone-fg: var(--tui-info-fg);
+    --tui-tone-soft: var(--tui-info-soft);
+    --tui-tone-edge: var(--tui-info-edge);
+    --tui-tone-bg: var(--tui-info-bg);
+    --tui-tone-ink: var(--tui-info-ink);
+  }

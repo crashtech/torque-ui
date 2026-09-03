@@ -1,0 +1,22 @@
+/* Torque UI — Spacing Scale
+ * 4px base unit. All spacing derives from this.
+ */
+
+
+  :root {
+    --tui-spacing-0: 0;
+    --tui-spacing-0-5: 0.125rem;   /* 2px */
+    --tui-spacing-1: 0.25rem;     /* 4px */
+    --tui-spacing-2: 0.5rem;      /* 8px */
+    --tui-spacing-3: 0.75rem;     /* 12px */
+    --tui-spacing-4: 1rem;        /* 16px */
+    --tui-spacing-5: 1.25rem;     /* 20px */
+    --tui-spacing-6: 1.5rem;      /* 24px */
+    --tui-spacing-8: 2rem;        /* 32px */
+    --tui-spacing-10: 2.5rem;     /* 40px */
+    --tui-spacing-12: 3rem;       /* 48px */
+    --tui-spacing-16: 4rem;       /* 64px */
+    --tui-spacing-20: 5rem;       /* 80px */
+    --tui-spacing-24: 6rem;       /* 96px */
+    --tui-spacing-32: 8rem;       /* 128px */
+  }

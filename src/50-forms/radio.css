@@ -1,0 +1,55 @@
+/* Torque UI — Radio Component
+ * Hidden radio + label with :checked styling.
+ */
+
+
+  .tui-radio {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--tui-spacing-2);
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .tui-radio-input {
+    appearance: none;
+    inline-size: 1.25rem;
+    block-size: 1.25rem;
+    border: 2px solid var(--tui-border);
+    border-radius: var(--tui-radius-full);
+    background-color: var(--tui-surface-0);
+    cursor: pointer;
+    transition: border-color var(--tui-duration-fast) var(--tui-easing-out), background-color var(--tui-duration-fast) var(--tui-easing-out);
+    flex-shrink: 0;
+  }
+
+  .tui-radio-input:hover {
+    border-color: var(--tui-border-strong);
+  }
+
+  .tui-radio-input:checked {
+    border-color: var(--tui-tone, var(--tui-brand));
+    background-color: var(--tui-tone, var(--tui-brand));
+    background-image: radial-gradient(circle, var(--tui-tone-fg, var(--tui-brand-fg)) 30%, transparent 35%);
+  }
+
+  .tui-radio span {
+    font-size: var(--tui-text-base);
+    color: var(--tui-text-1);
+  }
+
+  .tui-radio-inline {
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .tui-radio-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--tui-spacing-2);
+  }
+
+  .tui-radio-group-inline {
+    flex-flow: row wrap;
+    gap: var(--tui-spacing-4);
+  }

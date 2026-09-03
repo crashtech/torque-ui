@@ -1,0 +1,120 @@
+/* Torque UI — Avatar Component
+ * Circle images/text with size variants.
+ */
+
+
+  .tui-avatar {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--tui-radius-full);
+    font-weight: var(--tui-font-semibold);
+    font-family: var(--tui-font-sans);
+    overflow: hidden;
+    flex-shrink: 0;
+    background-color: var(--tui-surface-3);
+    color: var(--tui-text-2);
+    border: 2px solid var(--tui-surface-0);
+    box-shadow: var(--tui-shadow-sm);
+    inline-size: 3rem;
+    block-size: 3rem;
+    font-size: var(--tui-text-sm);
+  }
+
+  .tui-avatar-sm {
+    inline-size: 2rem;
+    block-size: 2rem;
+    font-size: var(--tui-text-xs);
+  }
+
+  .tui-avatar-md {
+    inline-size: 2.5rem;
+    block-size: 2.5rem;
+    font-size: var(--tui-text-sm);
+  }
+
+  .tui-avatar-lg {
+    inline-size: 4rem;
+    block-size: 4rem;
+    font-size: var(--tui-text-lg);
+  }
+
+  .tui-avatar-xl {
+    inline-size: 6rem;
+    block-size: 6rem;
+    font-size: var(--tui-text-2xl);
+  }
+
+  .tui-avatar-group {
+    display: inline-flex;
+
+    & > .tui-avatar {
+      box-shadow: 0 0 0 2px var(--tui-avatar-ring, var(--tui-surface-0));
+    }
+
+    & > .tui-avatar + .tui-avatar {
+      margin-inline-start: calc(-1 * var(--tui-avatar-overlap, var(--tui-spacing-2)));
+    }
+  }
+
+  .tui-avatar-square {
+    border-radius: var(--tui-radius-md);
+  }
+
+  /* Fixed palettes — the app picks the class (e.g. by hashing a name) */
+  .tui-avatar-1 {
+    background-color: var(--tui-avatar-1);
+    color: var(--tui-text-inverse);
+  }
+
+  .tui-avatar-2 {
+    background-color: var(--tui-avatar-2);
+    color: var(--tui-text-inverse);
+  }
+
+  .tui-avatar-3 {
+    background-color: var(--tui-avatar-3);
+    color: var(--tui-text-inverse);
+  }
+
+  .tui-avatar-4 {
+    background-color: var(--tui-avatar-4);
+    color: var(--tui-text-inverse);
+  }
+
+  .tui-avatar-5 {
+    background-color: var(--tui-avatar-5);
+    color: var(--tui-text-inverse);
+  }
+
+  .tui-avatar-6 {
+    background-color: var(--tui-avatar-6);
+    color: var(--tui-text-inverse);
+  }
+
+  .tui-avatar-status {
+    position: relative;
+    display: inline-flex;
+
+    & > .tui-status-dot,
+    & > .tui-avatar-badge {
+      position: absolute;
+      inset-block-end: 0;
+      inset-inline-end: 0;
+      box-shadow: 0 0 0 2px var(--tui-surface-0);
+    }
+  }
+
+  /* A glyph badge in the status slot (origin, role…); tone via .tui-tone-* */
+  .tui-avatar-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    inline-size: 1rem;
+    block-size: 1rem;
+    font-size: 0.6rem;
+    line-height: 1;
+    border-radius: var(--tui-radius-full);
+    background-color: var(--tui-tone, var(--tui-neutral));
+    color: var(--tui-tone-fg, var(--tui-text-inverse));
+  }

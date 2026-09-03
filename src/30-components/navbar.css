@@ -1,0 +1,84 @@
+/* Torque UI — Navbar Component
+ */
+
+
+  .tui-navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--tui-spacing-4);
+    padding: var(--tui-spacing-4) var(--tui-spacing-6);
+    background-color: var(--tui-surface-0);
+    border-block-end: 1px solid var(--tui-border);
+    box-shadow: var(--tui-shadow-sm);
+  }
+
+  .tui-navbar-brand {
+    font-size: var(--tui-text-xl);
+    font-weight: var(--tui-font-bold);
+    color: var(--tui-brand);
+    text-decoration: none;
+  }
+
+  .tui-navbar-brand:hover {
+    color: color-mix(in srgb, var(--tui-brand) 90%, white 10%);
+  }
+
+  /* why: a logo brand is an inline svg/img sized by the bar, not by the font */
+  .tui-navbar-brand > :is(svg, img) {
+    display: block;
+    block-size: 2rem;
+    inline-size: auto;
+  }
+
+  /* === Actions slot ===
+   * Search, badges, icon buttons and toggles pushed to the end of the bar,
+   * after the menu. Auto margin so it stays at the end whether or not the
+   * menu is present or collapsed into its drawer.
+   */
+  .tui-navbar-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--tui-spacing-2);
+    margin-inline-start: auto;
+  }
+
+  .tui-navbar-menu {
+    display: flex;
+    align-items: center;
+    gap: var(--tui-spacing-1);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .tui-navbar-item {
+    display: inline-flex;
+    align-items: center;
+    padding: var(--tui-spacing-2) var(--tui-spacing-3);
+    font-size: var(--tui-text-sm);
+    font-weight: var(--tui-font-medium);
+    color: var(--tui-text-2);
+    text-decoration: none;
+    border-radius: var(--tui-radius-md);
+    transition: background-color var(--tui-duration-fast) var(--tui-easing-out), border-color var(--tui-duration-fast) var(--tui-easing-out), color var(--tui-duration-fast) var(--tui-easing-out), box-shadow var(--tui-duration-fast) var(--tui-easing-out), translate var(--tui-duration-fast) var(--tui-easing-out);
+  }
+
+  .tui-navbar-item:hover {
+    background-color: var(--tui-surface-2);
+    color: var(--tui-text-1);
+  }
+
+  .tui-navbar-item-active {
+    background-color: color-mix(in srgb, var(--tui-brand) 15%, transparent);
+    color: var(--tui-tone-ink, var(--tui-brand-ink));
+  }
+
+  @media (width < 768px) {
+    /* why: .tui-navbar-menu's own `display: flex` (an author style) beats the UA's implicit closed-popover `display: none` by cascade origin, so this reasserts it below the breakpoint */
+    .tui-navbar-menu[popover]:not(:popover-open) { display: none; }
+  }
+
+  @media (width >= 768px) {
+    .tui-navbar-toggle { display: none; }
+  }

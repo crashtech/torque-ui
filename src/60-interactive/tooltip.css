@@ -1,0 +1,70 @@
+/* Torque UI — Tooltip
+ * The trigger is a real, focusable element (button/link) carrying aria-describedby;
+ * the tip is a real element with role="tooltip", shown on hover or keyboard focus.
+ * Contract: the trigger must be focusable and its aria-describedby must match the tip's id.
+ */
+.tui-tooltip-host {
+  position: relative;
+  display: inline-flex;
+}
+
+.tui-tooltip {
+  position: absolute;
+  inset-block-end: calc(100% + var(--tui-spacing-2));
+  inset-inline-start: 50%;
+  translate: -50% 0;
+  max-inline-size: var(--tui-tooltip-max-inline-size, 20rem);
+  padding: var(--tui-spacing-2);
+  font-size: var(--tui-text-sm);
+  text-wrap: balance;
+  text-box: trim-both cap alphabetic;
+
+  /* why: the tip inverts the theme — its background is the text colour, so
+     its text is the surface colour; --tui-text-inverse stays white in both
+     schemes (it sits on colored fills) and would vanish on a light tip */
+  color: var(--tui-tooltip-fg, var(--tui-surface-0));
+  background-color: var(--tui-tooltip-bg, var(--tui-text-1));
+  border-radius: var(--tui-radius-sm);
+  z-index: var(--tui-z-tooltip);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--tui-duration-fast), visibility 0s var(--tui-duration-fast);
+}
+
+.tui-tooltip-host:is(:hover, :has(:focus-visible)) > .tui-tooltip {
+  opacity: 1;
+  visibility: visible;
+  transition-delay: var(--tui-tooltip-delay, 0s);
+}
+
+/* why: without anchor positioning, the tip can only sit above the trigger via inset math, so the
+   floor (Chrome 123-124, Safari 17.5, Firefox) gets a fixed above-placement with no flip fallback */
+@supports (anchor-name: --x) {
+  .tui-tooltip-host > [aria-describedby] { anchor-name: --tui-tip; }
+
+  /* why: anchor names are global, so several tooltips on one page would all
+     resolve to the last trigger; scoping the name to each host keeps every
+     tip on its own trigger (Chrome 131+; a single tooltip works either way) */
+  .tui-tooltip-host {
+    /* stylelint-disable-next-line csstree/validator -- anchor-scope is valid CSS anchor positioning syntax (Chrome 131+); csstree's grammar doesn't yet know it */
+    anchor-scope: --tui-tip;
+  }
+
+  .tui-tooltip {
+    /* why: .tui-tooltip-host's containing block is exactly the size of the trigger, so a
+       position-area anchored to a position:absolute box has no room to expand into and
+       collapses onto the trigger; position:fixed gives it the viewport as containing block,
+       the same trick the UA stylesheet uses for [popover] */
+    position: fixed;
+    position-anchor: --tui-tip;
+    inset: auto;
+    translate: none;
+    /* stylelint-disable-next-line csstree/validator -- position-area is valid CSS anchor positioning syntax (Chrome 125+/Safari 26+); csstree's grammar doesn't yet know it */
+    position-area: block-start;
+    /* stylelint-disable-next-line csstree/validator -- anchor-center is valid CSS anchor positioning syntax; csstree's grammar doesn't yet know it */
+    justify-self: anchor-center;
+    /* stylelint-disable-next-line csstree/validator -- position-try-fallbacks is valid CSS anchor positioning syntax; csstree's grammar doesn't yet know it */
+    position-try-fallbacks: flip-block;
+    margin-block-end: var(--tui-spacing-2);
+  }
+}

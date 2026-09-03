@@ -1,0 +1,212 @@
+/* Torque UI — Typography Element Defaults
+ * Headings, paragraphs, and inline text elements styled by default.
+ */
+
+
+  /* === Headings === */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin: 0 0 var(--tui-spacing-4) 0;
+    font-family: var(--tui-font-sans);
+    text-box: trim-both cap alphabetic;
+    font-weight: var(--tui-font-bold);
+    line-height: var(--tui-leading-tight);
+    color: var(--tui-text-1);
+  }
+
+  h1 {
+    font-size: var(--tui-text-4xl);
+  }
+
+  h2 {
+    font-size: var(--tui-text-3xl);
+  }
+
+  h3 {
+    font-size: var(--tui-text-2xl);
+  }
+
+  h4 {
+    font-size: var(--tui-text-xl);
+  }
+
+  h5 {
+    font-size: var(--tui-text-lg);
+  }
+
+  h6 {
+    font-size: var(--tui-text-base);
+  }
+
+  /* === Balanced heading wrapping === */
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+
+  /* === Paragraphs === */
+  p {
+    margin: 0 0 var(--tui-spacing-6) 0;
+    text-wrap: pretty;
+    text-box: trim-both cap alphabetic;
+  }
+
+  /* === Blockquote === */
+  blockquote {
+    margin: 0 0 var(--tui-spacing-6) 0;
+    padding: var(--tui-spacing-4) var(--tui-spacing-6);
+    text-box: trim-both cap alphabetic;
+    border-inline-start: 4px solid var(--tui-border-strong);
+    font-style: italic;
+    color: var(--tui-text-2);
+    background-color: var(--tui-surface-1);
+  }
+
+  /* === Code === */
+  code,
+  kbd,
+  pre,
+  samp {
+    font-family: var(--tui-font-mono);
+    font-size: var(--tui-text-sm);
+  }
+
+  code {
+    padding: var(--tui-spacing-0-5) var(--tui-spacing-1);
+    color: var(--tui-text-1);
+    background-color: var(--tui-surface-2);
+    border-radius: var(--tui-radius-sm);
+  }
+
+  /* why: no text-box trim here — trimming a scroll container leaves the
+     untrimmed line boxes as scrollable overflow, so every block would grow
+     a permanent scrollbar */
+  pre {
+    margin: 0 0 var(--tui-spacing-6) 0;
+    padding: var(--tui-spacing-4);
+    overflow-x: auto;
+    background-color: var(--tui-surface-2);
+    border-radius: var(--tui-radius-md);
+  }
+
+  pre code {
+    padding: 0;
+    background: none;
+    border-radius: 0;
+  }
+
+  /* === Keyboard key === */
+  kbd {
+    display: inline-block;
+    padding: var(--tui-spacing-1);
+    font: var(--tui-text-sm) var(--tui-font-mono);
+    text-box: trim-both cap alphabetic;
+    border: 1px solid var(--tui-border-strong);
+    border-block-end-width: 2px;
+    border-radius: var(--tui-radius-sm);
+    background-color: var(--tui-surface-1);
+  }
+
+  /* === Code block === */
+
+  .tui-code-block {
+    position: relative;
+    padding: var(--tui-spacing-4);
+    border-radius: var(--tui-radius-md);
+    background-color: var(--tui-surface-1);
+    overflow-x: auto;
+
+    &[data-lang]::before {
+      content: attr(data-lang);
+      position: absolute;
+      inset-block-start: var(--tui-spacing-1);
+      inset-inline-end: var(--tui-spacing-2);
+      font-size: var(--tui-text-xs);
+      color: var(--tui-text-3);
+      text-transform: uppercase;
+    }
+  }
+
+  .tui-code-block-lines {
+    counter-reset: line;
+
+    & > code {
+      display: block;
+      counter-increment: line;
+
+      &::before {
+        content: counter(line);
+        display: inline-block;
+        inline-size: 2ch;
+        margin-inline-end: var(--tui-spacing-3);
+        color: var(--tui-text-3);
+        text-align: end;
+      }
+    }
+  }
+
+  /* === Horizontal Rule === */
+  hr {
+    margin: var(--tui-spacing-6) 0;
+    border: none;
+    border-block-start: 1px solid var(--tui-border);
+
+    &:first-child { margin-block-start: 0; }
+    &:last-child { margin-block-end: 0; }
+  }
+
+  /* === Flow rhythm ends at the edges ===
+   * why: block elements carry a trailing margin for running text (headings
+   * spacing-4, everything else spacing-6, both measured cap-to-baseline since
+   * text is trimmed); as the last child of any box that margin would pad the
+   * container, so it is dropped. */
+  :is(h1, h2, h3, h4, h5, h6, p, ul, ol, dl, figure, blockquote, pre, table):last-child {
+    margin-block-end: 0;
+  }
+
+  /* === Small === */
+  small {
+    font-size: var(--tui-text-sm);
+    color: var(--tui-text-3);
+  }
+
+  /* === Strong === */
+  strong {
+    font-weight: var(--tui-font-bold);
+  }
+
+  /* === Mark (highlight) === */
+  mark {
+    padding: var(--tui-spacing-0-5) var(--tui-spacing-0-5);
+    color: var(--tui-text-1);
+    background-color: color-mix(in srgb, var(--tui-warning) 90%, white 10%);
+    border-radius: var(--tui-radius-sm);
+  }
+
+  /* === Abbreviation === */
+  abbr[title] {
+    cursor: help;
+    text-decoration: underline dotted;
+  }
+
+  /* === Sub/Sup === */
+  sub,
+  sup {
+    position: relative;
+    vertical-align: baseline;
+    font-size: var(--tui-text-xs);
+    line-height: 0;
+  }
+
+  sub {
+    inset-block-end: -0.25em;
+  }
+
+  sup {
+    inset-block-start: -0.5em;
+  }

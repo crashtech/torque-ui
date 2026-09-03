@@ -1,0 +1,40 @@
+/* Torque UI — High Contrast Theme
+ * @media (prefers-contrast: more) overrides.
+ */
+
+
+  @media (prefers-contrast: more) {
+    :root {
+      --tui-border: var(--tui-hc-border);
+      --tui-border-strong: var(--tui-hc-border);
+      --tui-text-1: var(--tui-hc-text-1);
+      --tui-text-2: var(--tui-hc-text-2);
+      --tui-text-3: var(--tui-hc-text-3);
+      --tui-surface-0: var(--tui-hc-surface-0);
+      --tui-surface-1: var(--tui-hc-surface-1);
+      --tui-surface-2: var(--tui-hc-surface-2);
+    }
+
+    .tui-button {
+      border-width: 2px;
+      border-style: solid;
+    }
+
+    .tui-badge,
+    .tui-tag,
+    .tui-chip {
+      border-width: 2px;
+      border-style: solid;
+    }
+
+    .tui-card,
+    .tui-panel,
+    .tui-alert {
+      border-width: 2px;
+      border-color: var(--tui-text-2);
+    }
+
+    a {
+      text-decoration: underline;
+    }
+  }

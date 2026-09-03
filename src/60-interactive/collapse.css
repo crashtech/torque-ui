@@ -1,0 +1,67 @@
+/* Torque UI — Collapse & Accordion */
+.tui-collapse-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--tui-collapse-padding, var(--tui-spacing-4) var(--tui-spacing-6));
+  font-weight: var(--tui-font-semibold);
+  cursor: pointer;
+  list-style: none;
+
+  &::-webkit-details-marker { display: none; }
+
+  &::after {
+    content: '+';
+    color: var(--tui-text-3);
+    transition: rotate var(--tui-duration-fast);
+  }
+}
+
+.tui-collapse[open] > .tui-collapse-summary {
+  background-color: var(--tui-collapse-open-bg, var(--tui-surface-1));
+
+  &::after {
+    content: '−';
+    rotate: 180deg;
+  }
+}
+
+.tui-collapse-body { padding: var(--tui-collapse-padding, var(--tui-spacing-4) var(--tui-spacing-6)); }
+
+/* why: `inherit` on a logical border-radius property does not read a <details> ancestor's computed radius in Chromium, so the corner rules below read this custom property instead */
+.tui-accordion {
+  --_radius: var(--tui-radius-lg);
+
+  border: 1px solid var(--tui-accordion-border, var(--tui-border));
+  border-radius: var(--_radius);
+
+  & > .tui-collapse + .tui-collapse { border-block-start: 1px solid var(--tui-accordion-border, var(--tui-border)); }
+
+  & > .tui-collapse:first-child > .tui-collapse-summary {
+    border-start-start-radius: var(--_radius);
+    border-start-end-radius: var(--_radius);
+  }
+
+  & > .tui-collapse:last-child:not([open]) > .tui-collapse-summary {
+    border-end-start-radius: var(--_radius);
+    border-end-end-radius: var(--_radius);
+  }
+
+  & > .tui-collapse:last-child[open] > .tui-collapse-body {
+    border-end-start-radius: var(--_radius);
+    border-end-end-radius: var(--_radius);
+  }
+}
+
+/* why: unknown pseudo-elements invalidate a selector list, so this stays in its own block */
+@supports (interpolate-size: allow-keywords) {
+  .tui-collapse { interpolate-size: allow-keywords; }
+
+  .tui-collapse::details-content {
+    block-size: 0;
+    overflow: clip;
+    transition: block-size var(--tui-duration-normal) var(--tui-easing-out), content-visibility var(--tui-duration-normal) allow-discrete;
+  }
+
+  .tui-collapse[open]::details-content { block-size: auto; }
+}

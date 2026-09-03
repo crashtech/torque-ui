@@ -1,0 +1,109 @@
+/* Torque UI — Stepper (Numeric Input with +/-)
+ * Number input flanked by increment/decrement buttons.
+ * Pure CSS presentation; value changes still need form semantics (native input handles it).
+ */
+
+
+  .tui-stepper {
+    display: inline-flex;
+    align-items: stretch;
+    border: 2px solid var(--tui-border);
+    border-radius: var(--tui-radius-md);
+    overflow: hidden;
+    background-color: var(--tui-surface-0);
+    transition: border-color var(--tui-duration-fast) var(--tui-easing-out), box-shadow var(--tui-duration-fast) var(--tui-easing-out);
+  }
+
+  .tui-stepper:focus-within {
+    border-color: var(--tui-border-focus);
+    box-shadow: 0 0 0 var(--tui-focus-halo-width) var(--tui-focus-ring);
+  }
+
+  .tui-stepper-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    inline-size: 2.5rem;
+    background-color: var(--tui-surface-2);
+    color: var(--tui-text-2);
+    font-size: var(--tui-text-lg);
+    font-weight: var(--tui-font-semibold);
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    cursor: pointer;
+    transition: background-color var(--tui-duration-fast) var(--tui-easing-out), color var(--tui-duration-fast) var(--tui-easing-out);
+    user-select: none;
+  }
+
+
+  .tui-stepper-btn:hover {
+    background-color: var(--tui-surface-3);
+    color: var(--tui-text-1);
+    translate: none;
+  }
+
+  .tui-stepper-btn:active {
+    background-color: var(--tui-surface-4);
+  }
+
+  /* why: the script that steps the value disables the button at min or max */
+  .tui-stepper-btn:disabled {
+    background-color: var(--tui-surface-2);
+    color: var(--tui-text-3);
+    cursor: not-allowed;
+    opacity: 1;
+  }
+
+  .tui-stepper-btn:focus-visible {
+    outline: var(--tui-focus-ring-width) solid var(--tui-focus-ring-strong);
+    outline-offset: calc(-1 * var(--tui-focus-ring-width));
+  }
+
+  .tui-stepper-input {
+    inline-size: 3.5rem;
+    text-align: center;
+    border: none;
+    background: transparent;
+    font-family: var(--tui-font-sans);
+    font-size: var(--tui-text-base);
+    color: var(--tui-text-1);
+    /* stylelint-disable property-no-vendor-prefix */
+    -moz-appearance: textfield;
+    /* stylelint-enable property-no-vendor-prefix */
+  }
+
+  .tui-stepper-input:focus {
+    outline: none;
+    background-color: var(--tui-surface-1);
+  }
+
+  /* Hide native number spinners (we provide our own) */
+  .tui-stepper-input::-webkit-outer-spin-button,
+  .tui-stepper-input::-webkit-inner-spin-button {
+    /* stylelint-disable property-no-vendor-prefix */
+    -webkit-appearance: none;
+    /* stylelint-enable property-no-vendor-prefix */
+    margin: 0;
+  }
+
+  /* Sizes */
+  .tui-stepper-sm .tui-stepper-btn {
+    inline-size: 2rem;
+    font-size: var(--tui-text-base);
+  }
+
+  .tui-stepper-sm .tui-stepper-input {
+    inline-size: 3rem;
+    font-size: var(--tui-text-sm);
+  }
+
+  .tui-stepper-lg .tui-stepper-btn {
+    inline-size: 3rem;
+    font-size: var(--tui-text-xl);
+  }
+
+  .tui-stepper-lg .tui-stepper-input {
+    inline-size: 4.5rem;
+    font-size: var(--tui-text-lg);
+  }

@@ -1,0 +1,11 @@
+/* Torque UI — Z-Index Scale
+ */
+
+
+  :root {
+    --tui-z-sticky: 200;
+    --tui-z-dropdown: 300;
+    --tui-z-modal: 500;
+    --tui-z-tooltip: 700;
+    --tui-z-toast: 800;
+  }

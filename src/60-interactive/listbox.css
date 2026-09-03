@@ -1,0 +1,164 @@
+/* Torque UI — Listbox
+ * .tui-listbox (role="listbox") is a column of .tui-option rows a script
+ * selects, highlights and filters: alone as an in-flow picker, or as the
+ * dropdown of a .tui-combobox. Selected, disabled and active states come
+ * from ARIA, data-* or a class (see 60-interactive/_state.css); the empty
+ * row appears by CSS once every option is hidden.
+ */
+
+.tui-listbox {
+  display: grid;
+  margin: 0;
+  padding: var(--tui-listbox-padding, var(--tui-spacing-1));
+  max-block-size: var(--tui-listbox-max-block-size, 20rem);
+  overflow: auto;
+  list-style: none;
+  color: var(--tui-text-1);
+  background-color: var(--tui-popover-bg, var(--tui-surface-0));
+  border: 1px solid var(--tui-popover-border, var(--tui-border));
+  border-radius: var(--tui-radius-md);
+}
+
+/* why: the row resets the button element defaults so a <button> option
+   looks exactly like an <li> option; the start padding reserves the tick */
+.tui-option {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: var(--tui-spacing-2);
+  padding: var(--tui-spacing-2) var(--tui-spacing-3);
+  padding-inline-start: var(--tui-spacing-8);
+  font: inherit;
+  color: inherit;
+  text-align: start;
+  background: none;
+  border: 0;
+  border-radius: var(--tui-radius-sm);
+  box-shadow: none;
+  cursor: pointer;
+  transition: background-color var(--tui-duration-fast);
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset-inline-start: var(--tui-spacing-3);
+    inset-block-start: 50%;
+    translate: 0 -50%;
+    inline-size: 1rem;
+    block-size: 1rem;
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3'%3E%3Cpath d='m5 12 5 5L20 7'/%3E%3C/svg%3E") center / 0.75rem no-repeat;
+    background-color: currentcolor;
+    opacity: 0;
+  }
+
+  &:hover,
+  &:is([data-active], .tui-active) {
+    background-color: var(--tui-option-active-bg, var(--tui-surface-2));
+    box-shadow: none;
+    translate: none;
+  }
+
+  &:is([aria-selected="true"], [data-selected], .tui-selected) {
+    background-color: var(--tui-option-selected-bg, var(--tui-tone-soft, var(--tui-brand-soft)));
+    color: var(--tui-tone-ink, var(--tui-brand-ink));
+
+    &::before { opacity: 1; }
+  }
+
+  &:is([aria-disabled="true"], [data-disabled], .tui-disabled, :disabled) {
+    color: var(--tui-text-3);
+    cursor: not-allowed;
+    opacity: 1;
+
+    &:hover { background-color: transparent; }
+  }
+}
+
+/* why: in a multi-select the tick sits in a box, so an unselected row still
+   reads as a checkbox the user can tick */
+[aria-multiselectable="true"] .tui-option::before {
+  border: 2px solid var(--tui-border);
+  border-radius: var(--tui-radius-sm);
+  background-color: transparent;
+  opacity: 1;
+  mask: none;
+}
+
+[aria-multiselectable="true"] .tui-option:is([aria-selected="true"], [data-selected], .tui-selected)::before {
+  background: var(--tui-tone, var(--tui-brand)) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3'%3E%3Cpath d='m5 12 5 5L20 7'/%3E%3C/svg%3E") center / 0.75rem no-repeat;
+  border-color: var(--tui-tone, var(--tui-brand));
+}
+
+/* === Groups === */
+.tui-listbox-group {
+  display: grid;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tui-listbox-group-label {
+  padding: var(--tui-spacing-2) var(--tui-spacing-3);
+  font-size: var(--tui-text-xs);
+  font-weight: var(--tui-font-semibold);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  text-box: trim-both cap alphabetic;
+  color: var(--tui-text-3);
+}
+
+/* === Search row ===
+ * Pinned to the top of the scrolling list for the button-trigger variant,
+ * where the filter field lives inside the dropdown. */
+.tui-listbox-search {
+  position: sticky;
+  inset-block-start: calc(-1 * var(--tui-listbox-padding, var(--tui-spacing-1)));
+  z-index: 1;
+  margin-block-end: var(--tui-spacing-1);
+  padding-block: var(--tui-spacing-1);
+  background-color: var(--tui-popover-bg, var(--tui-surface-0));
+}
+
+/* === Empty row ===
+ * Shown by CSS alone when a filtering script has hidden every option. */
+.tui-listbox-empty {
+  display: none;
+  padding: var(--tui-spacing-2) var(--tui-spacing-3);
+  color: var(--tui-text-3);
+  text-box: trim-both cap alphabetic;
+}
+
+.tui-listbox:not(:has(.tui-option:not([hidden]))) .tui-listbox-empty {
+  display: block;
+}
+
+/* === Inside a combobox ===
+ * As a popover the list hangs off the whole field (not just the trigger, so
+ * an input can open it with showPopover()) and matches its width; in flow
+ * it sits under the field and toggles with the hidden attribute. */
+.tui-combobox > .tui-listbox:not([popover]) {
+  position: absolute;
+
+  /* why: absolute insets measure from the padding box; the 2px border of
+     the field is folded in so the list is exactly as wide as the field */
+  inset-block-start: calc(100% + 2px + var(--tui-spacing-1));
+  inset-inline: -2px;
+  z-index: var(--tui-z-dropdown);
+  box-shadow: var(--tui-shadow-lg);
+}
+
+@supports (anchor-name: --x) {
+  .tui-combobox {
+    anchor-name: --tui-combobox;
+    /* stylelint-disable-next-line csstree/validator -- anchor-scope is valid CSS anchor positioning syntax (Chrome 131+); csstree's grammar doesn't yet know it */
+    anchor-scope: --tui-combobox;
+  }
+
+  .tui-combobox > [popover].tui-listbox {
+    position-anchor: --tui-combobox;
+    /* stylelint-disable-next-line csstree/validator -- anchor-size() is valid CSS anchor positioning syntax; csstree's grammar doesn't yet know it */
+    inline-size: anchor-size(width);
+    max-inline-size: none;
+  }
+}

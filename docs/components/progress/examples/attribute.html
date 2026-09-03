@@ -1,0 +1,17 @@
+<div class="tui-stack tui-max-w-md">
+  <div class="tui-progress" id="progress-attribute-bar" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" aria-label="Sync">
+    <div class="tui-progress-bar"></div>
+  </div>
+  <div class="tui-flex tui-gap-4 tui-items-center">
+    <div class="tui-progress-ring" id="progress-attribute-ring" role="meter" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" aria-label="Quota"></div>
+    <div class="tui-poll-option tui-flex-1" data-value="62"><span>Yes</span><span>62%</span></div>
+    <button class="tui-button" type="button" id="progress-attribute-advance">Advance</button>
+  </div>
+</div>
+<script>
+  document.getElementById('progress-attribute-advance').addEventListener('click', () => {
+    for (const element of document.querySelectorAll('#progress-attribute-bar, #progress-attribute-ring')) {
+      element.setAttribute('aria-valuenow', (Number(element.getAttribute('aria-valuenow')) + 15) % 105);
+    }
+  });
+</script>

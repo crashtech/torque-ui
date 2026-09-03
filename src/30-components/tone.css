@@ -1,0 +1,33 @@
+/* Torque UI — Tone Hook Leak Reset
+ * Stops an ancestor's tone (e.g. .tui-alert-success) from bleeding into an
+ * unrelated descendant component (e.g. a plain .tui-badge inside the alert).
+ * Each tone-aware component resets its own hook variables to the
+ * guaranteed-invalid value here; a setter class (utilities layer, see
+ * 70-utilities/tone.css) still wins regardless of specificity because
+ * utilities is a later layer than components.
+ *
+ * why: .tui-progress-success etc. carry the tone on the .tui-progress
+ * wrapper, not .tui-progress-bar — resetting .tui-progress-bar itself would
+ * only re-break the wrapper's inherited tone.
+ *
+ * why: button, textarea, select, and most input types are included
+ * alongside the classed components because 20-elements/buttons.css and
+ * 20-elements/inputs.css read var(--tui-tone) on the bare elements
+ * themselves — without a reset here, a plain <button> or <input> nested in
+ * e.g. .tui-alert-success would inherit and render in that tone.
+ * checkbox/radio/range/color/file/hidden/image are excluded from that
+ * input clause: those types don't read --tui-tone directly (their
+ * checked-state color reads it from the .tui-checkbox/.tui-radio/
+ * .tui-switch wrapper, already in this list) — resetting the input itself
+ * would win over that inherited wrapper value and break it.
+ */
+
+:where(button, .tui-button, textarea, select, input:not([type="checkbox"], [type="radio"], [type="range"], [type="color"], [type="file"], [type="hidden"], [type="image"]), progress, .tui-badge, .tui-chip, .tui-tag, .tui-label, .tui-alert, .tui-toast, .tui-status, .tui-ribbon, .tui-timeline-item, .tui-statistic, .tui-segment, .tui-step, .tui-progress, .tui-progress-ring, .tui-card, .tui-checkbox, .tui-radio, .tui-switch, .tui-list-item, .tui-navbar-item) {
+  --tui-tone: initial;
+  --tui-tone-fg: initial;
+  --tui-tone-soft: initial;
+  --tui-tone-edge: initial;
+  --tui-tone-bg: initial;
+  --tui-tone-ink: initial;
+  --tui-tone-gradient: initial;
+}

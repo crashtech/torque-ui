@@ -1,0 +1,54 @@
+/* Torque UI — Search Input
+ * <input type="search"> styled with wrapper.
+ */
+
+
+  .tui-search {
+    position: relative;
+    inline-size: 100%;
+    max-inline-size: var(--tui-search-inline-size, 24rem);
+  }
+
+  .tui-search > input {
+    padding-inline-end: var(--tui-spacing-10);
+  }
+
+  .tui-search::after {
+    content: '';
+    position: absolute;
+    inset-inline-end: var(--tui-spacing-3);
+    inset-block-start: 50%;
+    transform: translateY(-50%);
+    inline-size: 1rem;
+    block-size: 1rem;
+
+    /* why: mask-image so the icon's colour comes from background-color
+       (a token) instead of a baked-in hex — fill/stroke here is irrelevant,
+       only the shape's alpha matters. */
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cpath d='m21 21-4.3-4.3'/%3E%3C/svg%3E");
+    mask-repeat: no-repeat;
+    mask-position: center;
+    mask-size: contain;
+    background-color: var(--tui-icon-color, var(--tui-neutral));
+    pointer-events: none;
+  }
+
+  /* === Clear control ===
+   * A .tui-close button after the input shows once the field has text and
+   * replaces the magnifier; clearing the value is the script's job. The
+   * input needs a placeholder for :placeholder-shown to have a meaning. */
+  .tui-search > .tui-close {
+    --tui-close-size: 1.5rem;
+
+    position: absolute;
+    inset-inline-end: var(--tui-spacing-2);
+    inset-block-start: 50%;
+    translate: 0 -50%;
+    display: none;
+  }
+
+  .tui-search:has(> input:not(:placeholder-shown)) {
+    &::after { display: none; }
+
+    & > .tui-close { display: inline-grid; }
+  }

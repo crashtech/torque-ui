@@ -1,0 +1,110 @@
+/* Torque UI — Timeline
+ * Vertical timeline with markers, titles, descriptions, and timestamps.
+ * Pure CSS, no JS.
+ */
+
+
+  .tui-timeline {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    position: relative;
+  }
+
+  /* Vertical line */
+
+  /* why: the marker is 1.5rem wide, so its centre sits at 0.75rem; the 2px
+     spine backs off half its own width to share that axis */
+  .tui-timeline::before {
+    content: '';
+    position: absolute;
+    inset-inline-start: calc(0.75rem - 1px);
+    inset-block: 0.5rem;
+    inline-size: 2px;
+    background-color: var(--tui-timeline-line, var(--tui-border));
+  }
+
+  /* A tone class on the list colours the spine */
+  .tui-timeline[class*="tui-tone-"] {
+    --tui-timeline-line: var(--tui-tone-edge);
+  }
+
+  .tui-timeline-item {
+    position: relative;
+    padding-block: 0 var(--tui-spacing-6);
+    padding-inline: var(--tui-spacing-8) 0;
+  }
+
+  .tui-timeline-item:last-child {
+    padding-block-end: 0;
+  }
+
+  /* Marker dot on the line */
+
+  /* why: the block offset centres the marker on the title's first line box
+     (title size × normal leading), and the grid centres the glyph on both
+     axes with a line box no taller than itself */
+  .tui-timeline-marker {
+    position: absolute;
+    inset-inline-start: 0;
+    inset-block-start: calc((var(--tui-leading-normal) * var(--tui-text-base) - 1.5rem) / 2);
+    inline-size: 1.5rem;
+    block-size: 1.5rem;
+    border-radius: var(--tui-radius-full);
+    background-color: var(--tui-surface-0);
+    border: 2px solid var(--tui-tone, var(--tui-border-strong));
+    display: inline-grid;
+    place-items: center;
+    font-size: var(--tui-text-xs);
+    line-height: 1;
+    color: var(--tui-tone-ink, var(--tui-text-2));
+    z-index: 1;
+  }
+
+  .tui-timeline-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--tui-spacing-1);
+  }
+
+  .tui-timeline-title {
+    font-size: var(--tui-text-base);
+    font-weight: var(--tui-font-semibold);
+    color: var(--tui-text-1);
+    margin: 0;
+  }
+
+  .tui-timeline-desc {
+    font-size: var(--tui-text-sm);
+    color: var(--tui-text-2);
+    margin: 0;
+    text-wrap: pretty;
+  }
+
+  .tui-timeline-time {
+    font-size: var(--tui-text-xs);
+    color: var(--tui-text-3);
+  }
+
+  /* === Compact (log density) === */
+  .tui-timeline-compact {
+    &::before {
+      inset-inline-start: calc(0.5rem - 1px);
+    }
+
+    & > .tui-timeline-item {
+      padding-block-end: var(--tui-spacing-3);
+      padding-inline-start: var(--tui-spacing-6);
+    }
+
+    & .tui-timeline-marker {
+      inset-block-start: calc((var(--tui-leading-normal) * var(--tui-text-sm) - 1rem) / 2);
+      inline-size: 1rem;
+      block-size: 1rem;
+      font-size: 0.6rem;
+    }
+
+    & .tui-timeline-title {
+      font-size: var(--tui-text-sm);
+    }
+  }

@@ -1,0 +1,17 @@
+/* Torque UI — Stack
+ * .tui-stack — vertical rhythm via gap; components carry no outer margins.
+ */
+
+.tui-stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--tui-stack-gap, var(--tui-spacing-4));
+}
+
+.tui-stack-sm {
+  --tui-stack-gap: var(--tui-spacing-2);
+}
+
+.tui-stack-lg {
+  --tui-stack-gap: var(--tui-spacing-6);
+}

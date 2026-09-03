@@ -1,0 +1,89 @@
+/* Torque UI — Text Utilities
+ * Text alignment, weight, transform helpers.
+ */
+
+
+  /* === Text Alignment === */
+  .tui-text-left   { text-align: start; }
+  .tui-text-center { text-align: center; }
+  .tui-text-right  { text-align: end; }
+
+  /* === Font Weight === */
+  .tui-font-normal   { font-weight: var(--tui-font-normal); }
+  .tui-font-medium   { font-weight: var(--tui-font-medium); }
+  .tui-font-semibold { font-weight: var(--tui-font-semibold); }
+  .tui-font-bold     { font-weight: var(--tui-font-bold); }
+  .tui-font-black    { font-weight: var(--tui-font-black); }
+
+  /* === Text Size === */
+  .tui-text-xs       { font-size: var(--tui-text-xs); }
+  .tui-text-sm       { font-size: var(--tui-text-sm); }
+  .tui-text-base     { font-size: var(--tui-text-base); }
+  .tui-text-lg       { font-size: var(--tui-text-lg); }
+  .tui-text-xl       { font-size: var(--tui-text-xl); }
+  .tui-text-2xl      { font-size: var(--tui-text-2xl); }
+  .tui-text-3xl      { font-size: var(--tui-text-3xl); }
+  .tui-text-4xl      { font-size: var(--tui-text-4xl); }
+
+  /* === Letter Spacing === */
+  .tui-tracking-tight { letter-spacing: var(--tui-tracking-tight); }
+  .tui-tracking-wide  { letter-spacing: var(--tui-tracking-wide); }
+  .tui-tracking-wider { letter-spacing: var(--tui-tracking-wider); }
+
+  /* === Text Transform === */
+  .tui-uppercase   { text-transform: uppercase; }
+  .tui-lowercase   { text-transform: lowercase; }
+  .tui-capitalize  { text-transform: capitalize; }
+
+  /* === Text Overflow === */
+  .tui-text-ellipsis {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .tui-text-wrap {
+    white-space: normal;
+  }
+
+  .tui-text-nowrap {
+    white-space: nowrap;
+  }
+
+  /* === Hyphenation opt-in === */
+  .tui-hyphens {
+    overflow-wrap: break-word;
+    hyphens: auto;
+  }
+
+  /* === Line Clamp ===
+   * why: text-box trimming shrinks the box below the clamped line count and
+   * a stretched flex/grid item grows past it — either way the hidden lines
+   * come back into view, so a clamped block keeps its leading and its own
+   * content height */
+  .tui-line-clamp-1 {
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-box: normal;
+    align-self: start;
+  }
+
+  .tui-line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-box: normal;
+    align-self: start;
+  }
+
+  .tui-line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-box: normal;
+    align-self: start;
+  }

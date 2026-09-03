@@ -1,0 +1,46 @@
+/* Torque UI — Container Queries
+ * Group 4: container-type / @container for component-level responsiveness.
+ * Components adapt to their container width, not just the viewport.
+ */
+
+
+  /* Opt any element in as a size container */
+  .tui-container-query {
+    container-type: inline-size;
+    container-name: tui;
+  }
+
+  /* Card that adapts to its container (stacks content when narrow) */
+  @container tui (inline-size < 20rem) {
+    .tui-card-body {
+      padding: var(--tui-spacing-4);
+    }
+
+    .tui-card {
+      border-radius: var(--tui-radius-md);
+    }
+  }
+
+  /* Empty state scales down in small containers */
+  @container tui (inline-size < 16rem) {
+    .tui-empty {
+      padding: var(--tui-spacing-6) var(--tui-spacing-3);
+    }
+
+    .tui-empty-icon {
+      inline-size: 2rem;
+      block-size: 2rem;
+      font-size: var(--tui-text-lg);
+    }
+
+    .tui-empty-title {
+      font-size: var(--tui-text-base);
+    }
+  }
+
+  /* Statistic grid reflows in narrow containers */
+  @container tui (inline-size < 18rem) {
+    .tui-statistic {
+      font-size: var(--tui-text-lg);
+    }
+  }

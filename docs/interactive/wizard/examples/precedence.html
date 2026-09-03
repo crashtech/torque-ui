@@ -1,0 +1,25 @@
+<form class="tui-wizard">
+  <div class="tui-steps">
+    <div class="tui-step tui-step-complete"><span class="tui-step-number">✓</span><span class="tui-step-label">Account</span></div>
+    <div class="tui-step"><span class="tui-step-number">2</span><span class="tui-step-label">Profile</span></div>
+    <div class="tui-step"><span class="tui-step-number">3</span><span class="tui-step-label">Verify</span></div>
+  </div>
+  <label class="tui-sr-only" for="wizard-precedence-1">Step 1: Account</label>
+  <input class="tui-state-input tui-wizard-input" type="radio" name="wizard-precedence" id="wizard-precedence-1">
+  <section class="tui-wizard-step">
+    <p class="tui-m-0">Account details were already validated.</p>
+    <div class="tui-wizard-nav"><span></span><label class="tui-button tui-button-primary" for="wizard-precedence-2">Next</label></div>
+  </section>
+  <label class="tui-sr-only" for="wizard-precedence-2">Step 2: Profile</label>
+  <input class="tui-state-input tui-wizard-input" type="radio" name="wizard-precedence" id="wizard-precedence-2" checked>
+  <section class="tui-wizard-step">
+    <p class="tui-m-0">Step 1 keeps its explicit complete tone while the wizard paints step 2 brand.</p>
+    <div class="tui-wizard-nav"><label class="tui-button" for="wizard-precedence-1">Back</label><label class="tui-button tui-button-primary" for="wizard-precedence-3">Next</label></div>
+  </section>
+  <label class="tui-sr-only" for="wizard-precedence-3">Step 3: Verify</label>
+  <input class="tui-state-input tui-wizard-input" type="radio" name="wizard-precedence" id="wizard-precedence-3">
+  <section class="tui-wizard-step">
+    <p class="tui-m-0">Verify your e-mail address.</p>
+    <div class="tui-wizard-nav"><label class="tui-button" for="wizard-precedence-2">Back</label><span></span></div>
+  </section>
+</form>

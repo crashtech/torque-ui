@@ -1,0 +1,161 @@
+/* Torque UI — Visual Effects & Polish
+ * Group 5: glassmorphism, blend modes, image fitting, masks, shapes, filters.
+ */
+
+
+  /* === 1. Glassmorphism (backdrop-filter) === */
+  .tui-glass {
+    background-color: color-mix(in srgb, var(--tui-surface-0) 70%, transparent);
+    backdrop-filter: blur(8px) saturate(180%);
+    /* stylelint-disable property-no-vendor-prefix */
+    -webkit-backdrop-filter: blur(8px) saturate(180%);
+    /* stylelint-enable property-no-vendor-prefix */
+
+    /* why: a translucent edge vanishes on a same-colour backdrop; the
+       plain border keeps the surface visible on flat pages */
+    border: 1px solid var(--tui-border);
+  }
+
+  .tui-glass-card {
+    background-color: color-mix(in srgb, var(--tui-surface-0) 65%, transparent);
+    backdrop-filter: blur(12px) saturate(160%);
+    /* stylelint-disable property-no-vendor-prefix */
+    -webkit-backdrop-filter: blur(12px) saturate(160%);
+    /* stylelint-enable property-no-vendor-prefix */
+    border: 1px solid var(--tui-border);
+    box-shadow: var(--tui-shadow-lg);
+  }
+
+  /* === 2. Image fitting utilities (object-fit) === */
+  .tui-img-cover {
+    inline-size: 100%;
+    block-size: 100%;
+    object-fit: cover;
+  }
+
+  .tui-img-contain {
+    inline-size: 100%;
+    block-size: 100%;
+    object-fit: contain;
+  }
+
+  .tui-img-fill {
+    inline-size: 100%;
+    block-size: 100%;
+    object-fit: fill;
+  }
+
+  /* === 3. Image filters (Group 5) === */
+  .tui-img-grayscale {
+    filter: grayscale(100%);
+  }
+
+  .tui-img-sepia {
+    filter: sepia(60%);
+  }
+
+  .tui-img-blur {
+    filter: blur(4px);
+  }
+
+  .tui-img-brightness {
+    filter: brightness(1.1);
+  }
+
+  /* === 4. Blend modes (Group 5) === */
+  .tui-blend-multiply {
+    mix-blend-mode: multiply;
+  }
+
+  .tui-blend-screen {
+    mix-blend-mode: screen;
+  }
+
+  .tui-blend-overlay {
+    mix-blend-mode: overlay;
+  }
+
+  /* === 5. Shape / clip utilities (Group 5) === */
+  .tui-clip-circle {
+    border-radius: 50%;
+    overflow: hidden;
+  }
+
+  .tui-clip-triangle {
+    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+  }
+
+  .tui-clip-hexagon {
+    clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+  }
+
+  /* === 6. Text-wrap shape (text around a floated image) === */
+  .tui-float-wrap .tui-float-img {
+    float: inline-start;
+    shape-outside: inset(0 round 1rem);
+    margin-block: 0 var(--tui-spacing-2);
+    margin-inline: 0 var(--tui-spacing-4);
+  }
+
+  /* === 7. Gradient mask fade (Group 5) === */
+  .tui-mask-fade-bottom {
+    mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+    /* stylelint-disable property-no-vendor-prefix */
+    -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+    /* stylelint-enable property-no-vendor-prefix */
+  }
+
+  .tui-mask-fade-right {
+    mask-image: linear-gradient(to right, black 60%, transparent 100%);
+    /* stylelint-disable property-no-vendor-prefix */
+    -webkit-mask-image: linear-gradient(to right, black 60%, transparent 100%);
+    /* stylelint-enable property-no-vendor-prefix */
+  }
+
+  /* === 8. Light frame (QR codes, logos that need a white ground) ===
+   * why: a scanner needs a real white ground and real black marks in every
+   * colour scheme, so these are keywords on purpose, not scheme tokens. */
+  .tui-frame-light {
+    display: inline-block;
+    padding: var(--tui-spacing-3);
+    border-radius: var(--tui-radius-md);
+    background-color: white;
+    color: black;
+    line-height: 0;
+  }
+
+  /* === 9. Thumbnail figure === */
+  .tui-thumb {
+    margin: 0;
+    overflow: hidden;
+    border-radius: var(--tui-radius-md);
+    background-color: var(--tui-surface-2);
+
+    & > img {
+      display: block;
+      inline-size: 100%;
+      block-size: 100%;
+      object-fit: cover;
+    }
+
+    & > figcaption {
+      padding: var(--tui-spacing-1) var(--tui-spacing-2);
+      font-size: var(--tui-text-xs);
+      color: var(--tui-text-3);
+    }
+  }
+
+  /* === Motion ===
+   * Forces an element, everything inside it and their pseudo-elements to
+   * change state instantly — for a value written on first paint, a printed
+   * report, or a test. The utilities layer sits above every component, so
+   * no component transition or animation survives it. */
+  .tui-motion-none,
+  .tui-motion-none *,
+  .tui-motion-none::before,
+  .tui-motion-none::after,
+  .tui-motion-none *::before,
+  .tui-motion-none *::after {
+    transition: none;
+    animation: none;
+  }

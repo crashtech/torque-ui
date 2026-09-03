@@ -1,0 +1,45 @@
+/* Torque UI — Panel Component
+ * Content container with header/body separation.
+ */
+
+
+  .tui-panel {
+    background-color: var(--tui-surface-0);
+    border: 1px solid var(--tui-border);
+    border-radius: var(--tui-radius-lg);
+  }
+
+  .tui-panel-header {
+    padding: var(--tui-spacing-4) var(--tui-spacing-6);
+    background-color: var(--tui-surface-1);
+    border-block-end: 1px solid var(--tui-border);
+    font-weight: var(--tui-font-semibold);
+    color: var(--tui-text-1);
+    text-wrap: balance;
+    border-start-start-radius: inherit;
+    border-start-end-radius: inherit;
+  }
+
+  /* A second header inside one panel acts as a section divider */
+  .tui-panel-header:not(:first-child) {
+    border-block-start: 1px solid var(--tui-border);
+    border-radius: 0;
+  }
+
+  .tui-panel-body {
+    padding: var(--tui-spacing-6);
+    overflow-wrap: break-word;
+    text-wrap: pretty;
+    border-start-start-radius: inherit;
+    border-start-end-radius: inherit;
+    border-end-start-radius: inherit;
+    border-end-end-radius: inherit;
+
+    & > * {
+      margin: 0;
+    }
+
+    & > * + * {
+      margin-block-start: var(--tui-spacing-6);
+    }
+  }

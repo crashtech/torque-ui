@@ -1,0 +1,22 @@
+<div class="tui-stack tui-max-w-sm">
+  <input type="search" placeholder="Filter results" aria-label="Filter results" id="list-group-script-filter">
+  <ul class="tui-list-group" aria-label="Results" id="list-group-script">
+    <li class="tui-list-item" aria-selected="true">Selected by attribute</li>
+    <li class="tui-list-item">Another result</li>
+    <li class="tui-list-item" aria-disabled="true">Disabled by attribute</li>
+    <li class="tui-list-empty">Nothing matches</li>
+  </ul>
+</div>
+<script>
+  const list = document.getElementById('list-group-script');
+  const rows = list.querySelectorAll('.tui-list-item');
+  list.addEventListener('click', (event) => {
+    const row = event.target.closest('.tui-list-item');
+    if (!row || row.getAttribute('aria-disabled') === 'true') return;
+    rows.forEach((other) => other.setAttribute('aria-selected', other === row));
+  });
+  document.getElementById('list-group-script-filter').addEventListener('input', (event) => {
+    const query = event.target.value.toLowerCase();
+    rows.forEach((row) => { row.hidden = !row.textContent.toLowerCase().includes(query); });
+  });
+</script>

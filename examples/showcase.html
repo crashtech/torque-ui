@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Torque UI — Full Showcase</title>
+  <link rel="stylesheet" href="/src/tui.css">
+  <style>
+    .showcase-section { margin-bottom: 3rem; }
+    .showcase-header { text-align: center; padding: 4rem 2rem; background: var(--tui-brand); color: var(--tui-text-inverse); border-radius: var(--tui-radius-xl); margin-bottom: 3rem; }
+    .showcase-header h1 { font-size: var(--tui-text-6xl); margin-bottom: 0.5rem; color: var(--tui-text-inverse); }
+    .showcase-header p { font-size: var(--tui-text-lg); color: var(--tui-text-inverse); max-width: 48rem; margin: 0 auto; }
+    .showcase-grid { display: grid; gap: 1.5rem; }
+    .showcase-card { background: var(--tui-surface-0); border-radius: var(--tui-radius-lg); padding: 2rem; border: 1px solid var(--tui-border); }
+    .showcase-label { font-size: var(--tui-text-xs); text-transform: uppercase; letter-spacing: 0.05em; color: var(--tui-text-3); margin-bottom: 0.75rem; display: block; }
+    .showcase-nav { background: var(--tui-surface-1); border-radius: var(--tui-radius-lg); padding: 1rem 2rem; position: sticky; top: 0; z-index: 100; border-bottom: 1px solid var(--tui-border); }
+    .showcase-nav-inner { display: flex; gap: 1.5rem; align-items: center; flex-wrap: wrap; }
+    .showcase-nav a { color: var(--tui-text-2); text-decoration: none; font-size: var(--tui-text-sm); transition: color var(--tui-duration-fast); }
+    .showcase-nav a:hover { color: var(--tui-brand); }
+    .showcase-divider { height: 1px; background: var(--tui-border); margin: 2rem 0; }
+    .showcase-footer { text-align: center; padding: 3rem 2rem; color: var(--tui-text-3); font-size: var(--tui-text-sm); }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="showcase-nav">
+    <div class="showcase-nav-inner">
+      <a href="#tokens">Tokens</a>
+      <a href="#typography">Typography</a>
+      <a href="#elements">Elements</a>
+      <a href="#components">Components</a>
+      <a href="#forms">Forms</a>
+      <a href="#layout">Layout</a>
+      <a href="#interactive">Interactive</a>
+      <a href="#utilities">Utilities</a>
+      <a href="#themes">Themes</a>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <header class="showcase-header">
+    <h1>Torque UI</h1>
+    <p>A zero-JavaScript CSS framework built with modern CSS — :has(), @layer, color-mix(), light-dark(), and hidden checkboxes.</p>
+  </header>
+
+  <div class="tui-container" style="max-width: 72rem; margin: 0 auto;">
+
+    <!-- ===== TOKENS ===== -->
+    <section id="tokens" class="showcase-section">
+      <h2 class="tui-mb-6">Color Tokens</h2>
+      <div class="showcase-card">
+        <span class="showcase-label">Brand Palette</span>
+        <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+          <div style="flex:1; min-width: 60px; height: 48px; background: var(--tui-brand-50); border-radius: var(--tui-radius-md);"></div>
+          <div style="flex:1; min-width: 60px; height: 48px; background: var(--tui-brand-100); border-radius: var(--tui-radius-md);"></div>
+          <div style="flex:1; min-width: 60px; height: 48px; background: var(--tui-brand-200); border-radius: var(--tui-radius-md);"></div>
+          <div style="flex:1; min-width: 60px; height: 48px; background: var(--tui-brand-300); border-radius: var(--tui-radius-md);"></div>
+          <div style="flex:1; min-width: 60px; height: 48px; background: var(--tui-brand-400); border-radius: var(--tui-radius-md);"></div>
+          <div style="flex:1; min-width: 60px; height: 48px; background: var(--tui-brand-500); border-radius: var(--tui-radius-md);"></div>
+          <div style="flex:1; min-width: 60px; height: 48px; background: var(--tui-brand-600); border-radius: var(--tui-radius-md);"></div>
+          <div style="flex:1; min-width: 60px; height: 48px; background: var(--tui-brand-700); border-radius: var(--tui-radius-md);"></div>
+          <div style="flex:1; min-width: 60px; height: 48px; background: var(--tui-brand-800); border-radius: var(--tui-radius-md);"></div>
+          <div style="flex:1; min-width: 60px; height: 48px; background: var(--tui-brand-900); border-radius: var(--tui-radius-md);"></div>
+        </div>
+
+        <span class="showcase-label" style="margin-top: 1.5rem;">Semantic Colors</span>
+        <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+          <div style="flex:1; min-width: 80px; height: 48px; background: var(--tui-positive); border-radius: var(--tui-radius-md);"></div>
+          <div style="flex:1; min-width: 80px; height: 48px; background: var(--tui-negative); border-radius: var(--tui-radius-md);"></div>
+          <div style="flex:1; min-width: 80px; height: 48px; background: var(--tui-warning); border-radius: var(--tui-radius-md);"></div>
+          <div style="flex:1; min-width: 80px; height: 48px; background: var(--tui-info); border-radius: var(--tui-radius-md);"></div>
+        </div>
+
+        <span class="showcase-label" style="margin-top: 1.5rem;">Neutral Palette</span>
+        <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+          <div style="flex:1; min-width: 48px; height: 48px; background: var(--tui-neutral-50); border-radius: var(--tui-radius-md);"></div>
+          <div style="flex:1; min-width: 48px; height: 48px; background: var(--tui-neutral-100); border-radius: var(--tui-radius-md);"></div>
+          <div style="flex:1; min-width: 48px; height: 48px; background: var(--tui-neutral-200); border-radius: var(--tui-radius-md);"></div>
+          <div style="flex:1; min-width: 48px; height: 48px; background: var(--tui-neutral-300); border-radius: var(--tui-radius-md);"></div>
+          <div style="flex:1; min-width: 48px; height: 48px; background: var(--tui-neutral-400); border-radius: var(--tui-radius-md);"></div>
+          <div style="flex:1; min-width: 48px; height: 48px; background: var(--tui-neutral-500); border-radius: var(--tui-radius-md);"></div>
+          <div style="flex:1; min-width: 48px; height: 48px; background: var(--tui-neutral-600); border-radius: var(--tui-radius-md);"></div>
+          <div style="flex:1; min-width: 48px; height: 48px; background: var(--tui-neutral-700); border-radius: var(--tui-radius-md);"></div>
+          <div style="flex:1; min-width: 48px; height: 48px; background: var(--tui-neutral-800); border-radius: var(--tui-radius-md);"></div>
+          <div style="flex:1; min-width: 48px; height: 48px; background: var(--tui-neutral-900); border-radius: var(--tui-radius-md);"></div>
+        </div>
+
+        <span class="showcase-label" style="margin-top: 1.5rem;">Surfaces</span>
+        <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+          <div style="flex:1; min-width: 80px; height: 48px; background: var(--tui-surface-0); border-radius: var(--tui-radius-md);"></div>
+          <div style="flex:1; min-width: 80px; height: 48px; background: var(--tui-surface-1); border-radius: var(--tui-radius-md);"></div>
+          <div style="flex:1; min-width: 80px; height: 48px; background: var(--tui-surface-2); border-radius: var(--tui-radius-md);"></div>
+          <div style="flex:1; min-width: 80px; height: 48px; background: var(--tui-surface-3); border-radius: var(--tui-radius-md);"></div>
+          <div style="flex:1; min-width: 80px; height: 48px; background: var(--tui-surface-4); border-radius: var(--tui-radius-md);"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== TYPOGRAPHY ===== -->
+    <section id="typography" class="showcase-section">
+      <h2 class="tui-mb-6">Typography</h2>
+      <div class="showcase-card">
+        <span class="showcase-label">Headings</span>
+        <h1>Heading 1 — tui-text-6xl</h1>
+        <h2>Heading 2 — tui-text-4xl</h2>
+        <h3>Heading 3 — tui-text-3xl</h3>
+        <h4>Heading 4 — tui-text-2xl</h4>
+        <h5>Heading 5 — tui-text-xl</h5>
+        <h6 style="margin-bottom: 1rem;">Heading 6 — tui-text-lg</h6>
+
+        <span class="showcase-label">Body Text Sizes</span>
+        <p style="font-size: var(--tui-text-2xl); margin-bottom: 0.75rem;">Large body text (2xl)</p>
+        <p style="font-size: var(--tui-text-xl); margin-bottom: 0.75rem;">Extra large body text (xl)</p>
+        <p style="font-size: var(--tui-text-lg); margin-bottom: 0.75rem;">Large body text (lg)</p>
+        <p style="margin-bottom: 1rem;">Default body text — the standard reading size.</p>
+
+        <span class="showcase-label">Text Utilities</span>
+        <p class="tui-mb-3" style="font-weight: var(--tui-font-light);">Font weight: light (300)</p>
+        <p class="tui-mb-3" style="font-weight: var(--tui-font-normal);">Font weight: normal (400)</p>
+        <p class="tui-mb-3" style="font-weight: var(--tui-font-medium);">Font weight: medium (500)</p>
+        <p class="tui-mb-3" style="font-weight: var(--tui-font-semibold);">Font weight: semibold (600)</p>
+        <p class="tui-mb-3" style="font-weight: var(--tui-font-bold);">Font weight: bold (700)</p>
+        <p class="tui-mb-3" style="text-align: left;">Text alignment: left</p>
+        <p class="tui-text-center tui-mb-3">Text alignment: center</p>
+        <p class="tui-text-right tui-mb-3">Text alignment: right</p>
+        <p class="tui-uppercase tui-mb-3">Text transform: uppercase</p>
+        <p class="tui-lowercase tui-mb-3">Text transform: lowercase</p>
+        <p class="tui-capitalize tui-mb-0">Text transform: capitalize</p>
+      </div>
+    </section>
+
+    <!-- ===== ELEMENTS ===== -->
+    <section id="elements" class="showcase-section">
+      <h2 class="tui-mb-6">Elements</h2>
+      <div class="showcase-card tui-mb-4">
+        <span class="showcase-label">Buttons</span>
+        <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+          <button class="tui-button tui-button-primary">Primary</button>
+          <button class="tui-button tui-button-secondary">Secondary</button>
+          <button class="tui-button tui-button-outline">Outline</button>
+          <button class="tui-button tui-button-ghost">Ghost</button>
+          <button class="tui-button tui-button-link">Link</button>
+        </div>
+
+        <span class="showcase-label" style="margin-top: 1.5rem;">Button Sizes</span>
+        <div style="display: flex; gap: 0.75rem; align-items: center; flex-wrap: wrap;">
+          <button class="tui-button tui-button-sm">Small</button>
+          <button class="tui-button">Medium</button>
+          <button class="tui-button tui-button-lg">Large</button>
+        </div>
+
+        <span class="showcase-label" style="margin-top: 1.5rem;">Block Button</span>
+        <button class="tui-button tui-button-primary tui-button-block" style="width: 100%;">Full Width Button</button>
+      </div>
+
+      <div class="showcase-card tui-mb-4">
+        <span class="showcase-label">Tables</span>
+        <table class="tui-table tui-mb-0" style="width: 100%;">
+          <thead>
+            <tr><th class="tui-text-left">Name</th><th class="tui-text-left">Role</th><th class="tui-text-left">Status</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Alice Johnson</td><td>Developer</td><td><span class="tui-badge tui-badge-success">Active</span></td></tr>
+            <tr><td>Bob Smith</td><td>Designer</td><td><span class="tui-badge tui-badge-warning">Away</span></td></tr>
+            <tr><td>Carol White</td><td>Manager</td><td><span class="tui-badge tui-badge-info">Offline</span></td></tr>
+          </tbody>
+        </table>
+
+        <span class="showcase-label" style="margin-top: 1.5rem;">Striped Table</span>
+        <table class="tui-table-striped tui-mb-0" style="width: 100%;">
+          <thead><tr><th>ID</th><th>Name</th><th>Email</th></tr></thead>
+          <tbody>
+            <tr><td>1</td><td>Alice Johnson</td><td>alice@example.com</td></tr>
+            <tr><td>2</td><td>Bob Smith</td><td>bob@example.com</td></tr>
+            <tr><td>3</td><td>Carol White</td><td>carol@example.com</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="showcase-card tui-mb-4">
+        <span class="showcase-label">Images & Lists</span>
+        <img src="https://picsum.photos/seed/torque/300/150" alt="Placeholder image" style="width: 100%; max-width: 300px; border-radius: var(--tui-radius-lg); margin-bottom: 1.5rem;">
+        <ul class="tui-list-disc tui-mb-2">
+          <li>Unordered list item one</li>
+          <li>Unordered list item two</li>
+          <li>Unordered list item three</li>
+        </ul>
+        <ol class="tui-list-decimal tui-mb-0">
+          <li>Ordered list item one</li>
+          <li>Ordered list item two</li>
+          <li>Ordered list item three</li>
+        </ol>
+      </div>
+
+      <div class="showcase-card">
+        <span class="showcase-label">Links & Navigation</span>
+        <p style="margin-bottom: 0.75rem;"><a href="#">Primary link</a></p>
+        <p style="margin-bottom: 0.75rem;"><a href="#" class="tui-text-2">Muted link</a></p>
+        <nav class="tui-mb-0" aria-label="Breadcrumb navigation">
+          <ol class="tui-breadcrumb">
+            <li><a href="#">Home</a></li>
+            <li><span class="tui-text-3">Components</span></li>
+            <li><span>Showcase</span></li>
+          </ol>
+        </nav>
+      </div>
+    </section>
+
+    <!-- ===== COMPONENTS ===== -->
+    <section id="components" class="showcase-section">
+      <h2 class="tui-mb-6">Components</h2>
+
+      <div class="showcase-grid" style="grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));">
+        <!-- Alerts -->
+        <div class="showcase-card tui-mb-4">
+          <span class="showcase-label">Alerts</span>
+          <div class="tui-alert tui-alert-success tui-mb-2"><h4>Success!</h4><p>Your changes have been saved.</p></div>
+          <div class="tui-alert tui-alert-error tui-mb-2"><h4>Error!</h4><p>Something went wrong.</p></div>
+          <div class="tui-alert tui-alert-warning tui-mb-2"><h4>Warning!</h4><p>Please review your input.</p></div>
+          <div class="tui-alert tui-alert-info"><h4>Info</h4><p>A helpful message for you.</p></div>
+        </div>
+
+        <!-- Cards -->
+        <div class="showcase-card tui-mb-4" style="background: var(--tui-surface-1); border-color: var(--tui-border);">
+          <span class="showcase-label">Cards</span>
+          <div class="tui-card tui-mb-0">
+            <div class="tui-card-header"><h3 class="tui-m-0">Card Title</h3></div>
+            <div class="tui-card-body"><p>This is a card component with header and body sections.</p></div>
+          </div>
+        </div>
+
+        <!-- Badges -->
+        <div class="showcase-card tui-mb-4">
+          <span class="showcase-label">Badges</span>
+          <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+            <span class="tui-badge">Default</span>
+            <span class="tui-badge tui-badge-success">Success</span>
+            <span class="tui-badge tui-badge-error">Error</span>
+            <span class="tui-badge tui-badge-warning">Warning</span>
+            <span class="tui-badge tui-badge-info">Info</span>
+          </div>
+        </div>
+
+        <!-- Avatars -->
+        <div class="showcase-card tui-mb-4">
+          <span class="showcase-label">Avatars</span>
+          <div style="display: flex; gap: 0.75rem; align-items: center;">
+            <img src="https://i.pravatar.cc/64?img=1" alt="Avatar" class="tui-avatar tui-avatar-sm">
+            <img src="https://i.pravatar.cc/80?img=2" alt="Avatar" class="tui-avatar">
+            <img src="https://i.pravatar.cc/96?img=3" alt="Avatar" class="tui-avatar tui-avatar-lg">
+          </div>
+        </div>
+
+        <!-- Tags -->
+        <div class="showcase-card tui-mb-4">
+          <span class="showcase-label">Tags</span>
+          <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+            <span class="tui-tag">Design</span>
+            <span class="tui-tag tui-tag-primary">Development</span>
+            <span class="tui-tag tui-tag-success">Approved</span>
+          </div>
+        </div>
+
+        <!-- Chips -->
+        <div class="showcase-card tui-mb-4">
+          <span class="showcase-label">Chips</span>
+          <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+            <span class="tui-chip">Taggable</span>
+            <span class="tui-chip tui-chip-primary">Primary</span>
+            <span class="tui-chip tui-chip-success">Success</span>
+          </div>
+        </div>
+
+        <!-- Progress -->
+        <div class="showcase-card tui-mb-4">
+          <span class="showcase-label">Progress Bars</span>
+          <div style="margin-bottom: 0.75rem;"><div class="tui-progress"><div class="tui-progress-bar" style="width: 25%;"></div></div></div>
+          <div style="margin-bottom: 0.75rem;"><div class="tui-progress"><div class="tui-progress-bar tui-progress-success" style="width: 50%;"></div></div></div>
+          <div style="margin-bottom: 0.75rem;"><div class="tui-progress"><div class="tui-progress-bar tui-progress-warning" style="width: 75%;"></div></div></div>
+          <div><div class="tui-progress"><div class="tui-progress-bar tui-progress-error" style="width: 100%;"></div></div></div>
+        </div>
+
+        <!-- Spinner -->
+        <div class="showcase-card tui-mb-4">
+          <span class="showcase-label">Spinners</span>
+          <div style="display: flex; gap: 1.5rem; align-items: center;">
+            <div class="tui-spinner tui-spinner-sm"></div>
+            <div class="tui-spinner"></div>
+            <div class="tui-spinner tui-spinner-lg"></div>
+          </div>
+        </div>
+
+        <!-- Breadcrumb -->
+        <div class="showcase-card tui-mb-4">
+          <span class="showcase-label">Breadcrumb</span>
+          <nav aria-label="Breadcrumb" style="margin-bottom: 0;">
+            <ol class="tui-breadcrumb">
+              <li><a href="#">Home</a></li>
+              <li><a href="#">Library</a></li>
+              <li><span>Data</span></li>
+            </ol>
+          </nav>
+        </div>
+
+        <!-- Steps -->
+        <div class="showcase-card tui-mb-4">
+          <span class="showcase-label">Steps</span>
+          <div style="display: flex; gap: 0.5rem; align-items: center;">
+            <span class="tui-step tui-step-active"><span class="tui-step-number">1</span></span>
+            <span class="tui-step-line"></span>
+            <span class="tui-step"><span class="tui-step-number">2</span></span>
+            <span class="tui-step-line"></span>
+            <span class="tui-step"><span class="tui-step-number">3</span></span>
+          </div>
+        </div>
+
+        <!-- Pagination -->
+        <div class="showcase-card tui-mb-4">
+          <span class="showcase-label">Pagination</span>
+          <nav aria-label="Pagination" style="margin-bottom: 0;">
+            <ul class="tui-pagination">
+              <li><a href="#" class="tui-pagination-item">Previous</a></li>
+              <li><a href="#" class="tui-pagination-item tui-pagination-item-active">1</a></li>
+              <li><a href="#" class="tui-pagination-item">2</a></li>
+              <li><a href="#" class="tui-pagination-item">3</a></li>
+              <li><a href="#" class="tui-pagination-item">Next</a></li>
+            </ul>
+          </nav>
+        </div>
+
+        <!-- Segments -->
+        <div class="showcase-card tui-mb-4">
+          <span class="showcase-label">Segments</span>
+          <div class="tui-segment">
+            <h4>Segment</h4>
+            <p>A padded, bordered content box; add <code>.tui-segment-primary</code>, <code>-success</code> or <code>-error</code> for a toned edge.</p>
+          </div>
+        </div>
+
+        <!-- Panel -->
+        <div class="showcase-card tui-mb-4">
+          <span class="showcase-label">Panel</span>
+          <div class="tui-panel">
+            <div class="tui-panel-header"><h3 class="tui-m-0">Panel Title</h3></div>
+            <div class="tui-panel-body"><p>A panel component with header and body.</p></div>
+          </div>
+        </div>
+
+        <!-- Divider -->
+        <div class="showcase-card tui-mb-4">
+          <span class="showcase-label">Divider</span>
+          <p style="margin-bottom: 0.75rem;">Content before divider</p>
+          <hr class="tui-divider" style="margin-bottom: 0.5rem;">
+          <p style="margin-top: 0.5rem;">Content after divider</p>
+        </div>
+
+        <!-- Labels -->
+        <div class="showcase-card tui-mb-4">
+          <span class="showcase-label">Labels</span>
+          <div style="display: flex; gap: 0.75rem; align-items: center;">
+            <label class="tui-label">Default Label</label>
+            <label class="tui-label tui-label-primary">Primary</label>
+            <label class="tui-label tui-label-success">Success</label>
+          </div>
+        </div>
+
+        <!-- Flags -->
+        <div class="showcase-card tui-mb-4">
+          <span class="showcase-label">Flags</span>
+          <div style="display: flex; gap: 0.75rem; align-items: center;">
+            <img src="https://flagcdn.com/w40/us.png" alt="US" class="tui-flag tui-flag-sm">
+            <img src="https://flagcdn.com/w40/gb.png" alt="UK" class="tui-flag">
+            <img src="https://flagcdn.com/w40/jp.png" alt="JP" class="tui-flag tui-flag-lg">
+          </div>
+        </div>
+
+        <!-- Statistics -->
+        <div class="showcase-card tui-mb-4">
+          <span class="showcase-label">Statistics</span>
+          <div style="display: flex; gap: 2rem;">
+            <div class="tui-statistic"><h3 class="tui-text-2xl" style="margin-bottom: 0;">1,234</h3><p class="tui-m-0 tui-text-sm">Total Users</p></div>
+            <div class="tui-statistic"><h3 class="tui-text-2xl" style="margin-bottom: 0; color: var(--tui-positive);">98%</h3><p class="tui-m-0 tui-text-sm">Uptime</p></div>
+            <div class="tui-statistic"><h3 class="tui-text-2xl" style="margin-bottom: 0; color: var(--tui-info);">42</h3><p class="tui-m-0 tui-text-sm">Deployments</p></div>
+          </div>
+        </div>
+
+        <!-- Ribbon -->
+        <div class="showcase-card tui-mb-4" style="position: relative; overflow: visible;">
+          <span class="showcase-label">Ribbon</span>
+          <div style="padding: 1rem; border: 1px dashed var(--tui-border); border-radius: var(--tui-radius-lg); position: relative;">
+            <span class="tui-ribbon tui-ribbon-top-right" style="background: var(--tui-brand);">Featured</span>
+            <p class="tui-m-0">Content with a ribbon badge in the corner.</p>
+          </div>
+        </div>
+
+        <!-- Timeline -->
+        <div class="showcase-card tui-mb-4">
+          <span class="showcase-label">Timeline</span>
+          <ol class="tui-timeline" style="margin-bottom: 0;">
+            <li class="tui-timeline-item"><strong>2026-01-01</strong><p class="tui-m-0 tui-text-sm">Project kickoff</p></li>
+            <li class="tui-timeline-item"><strong>2026-03-15</strong><p class="tui-m-0 tui-text-sm">First release candidate</p></li>
+            <li class="tui-timeline-item"><strong>2026-06-01</strong><p class="tui-m-0 tui-text-sm">Public launch</p></li>
+          </ol>
+        </div>
+
+        <!-- Toast -->
+        <div class="showcase-card tui-mb-4">
+          <span class="showcase-label">Toast Notification</span>
+          <div class="tui-toast-stack">
+            <div class="tui-toast tui-toast-success"><p class="tui-m-0">Success toast message.</p></div>
+            <div class="tui-toast tui-toast-error"><p class="tui-m-0">Error toast message.</p></div>
+          </div>
+        </div>
+
+        <!-- Empty State -->
+        <div class="showcase-card tui-mb-4" style="text-align: center;">
+          <span class="showcase-label">Empty State</span>
+          <div class="tui-empty-state" style="margin-bottom: 0;">
+            <p class="tui-text-lg tui-mb-2">No results found</p>
+            <p class="tui-text-sm tui-text-3 tui-mb-4">Try adjusting your search or filter to find what you're looking for.</p>
+            <button class="tui-button tui-button-primary">Reset Filters</button>
+          </div>
+        </div>
+
+        <!-- Vertical menu -->
+        <div class="showcase-card tui-mb-4">
+          <span class="showcase-label">Vertical menu</span>
+          <ul class="tui-menu" style="margin-bottom: 0;">
+            <li><a href="#" class="tui-menu-item">Dashboard</a></li>
+            <li><a href="#" class="tui-menu-item">Settings</a></li>
+            <li><a href="#" class="tui-menu-item">Profile</a></li>
+          </ul>
+        </div>
+
+        <!-- Status -->
+        <div class="showcase-card tui-mb-4">
+          <span class="showcase-label">Status Indicators</span>
+          <div style="display: flex; gap: 1.5rem; align-items: center;">
+            <div class="tui-status"><span class="tui-status-dot"></span><span>Online</span></div>
+            <div class="tui-status tui-status-online"><span class="tui-status-dot"></span><span>Online</span></div>
+            <div class="tui-status tui-status-busy"><span class="tui-status-dot"></span><span>Busy</span></div>
+            <div class="tui-status tui-status-away"><span class="tui-status-dot"></span><span>Away</span></div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ===== FORMS ===== -->
+    <section id="forms" class="showcase-section">
+      <h2 class="tui-mb-6">Forms</h2>
+      <div class="showcase-grid" style="grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));">
+
+        <!-- Text Input -->
+        <div class="showcase-card tui-mb-4">
+          <span class="showcase-label">Text Inputs</span>
+          <form class="tui-form" style="margin-bottom: 0;">
+            <div class="tui-field"><label class="tui-label">Default Input (no state)</label><input type="text" placeholder="No color until you enter an invalid value..."></div>
+            <div class="tui-field tui-mt-4"><label class="tui-label">Email</label><input type="email" placeholder="you@example.com"></div>
+          </form>
+        </div>
+
+        <!-- Select & Checkbox -->
+        <div class="showcase-card tui-mb-4">
+          <span class="showcase-label">Select & Checkboxes</span>
+          <form class="tui-form" style="margin-bottom: 0;">
+            <div class="tui-field"><label class="tui-label">Select Option</label><select><option>Choose...</option><option>Option A</option><option>Option B</option></select></div>
+            <div class="tui-field tui-mt-4"><label class="tui-checkbox"><input class="tui-checkbox-input" type="checkbox" checked><span>Checkbox 1</span></label></div>
+            <div class="tui-field tui-mt-2"><label class="tui-checkbox"><input class="tui-checkbox-input" type="checkbox"><span>Checkbox 2</span></label></div>
+          </form>
+        </div>
+
+        <!-- Radio -->
+        <div class="showcase-card tui-mb-4">
+          <span class="showcase-label">Radio Buttons</span>
+          <form class="tui-form" style="margin-bottom: 0;">
+            <div class="tui-field"><label class="tui-radio"><input class="tui-radio-input" type="radio" name="demo-radio" checked><span>Option A</span></label></div>
+            <div class="tui-field tui-mt-2"><label class="tui-radio"><input class="tui-radio-input" type="radio" name="demo-radio"><span>Option B</span></label></div>
+          </form>
+        </div>
+
+        <!-- Switch -->
+        <div class="showcase-card tui-mb-4">
+          <span class="showcase-label">Switch Toggle</span>
+          <form class="tui-form" style="margin-bottom: 0;">
+            <div class="tui-field"><label class="tui-switch"><input class="tui-switch-input" type="checkbox" checked><span class="tui-switch-label">Toggle switch</span></label></div>
+          </form>
+        </div>
+
+        <!-- Range -->
+        <div class="showcase-card tui-mb-4">
+          <span class="showcase-label">Range Slider</span>
+          <form class="tui-form" style="margin-bottom: 0;">
+            <div class="tui-field"><label class="tui-label">Volume</label><input type="range" min="0" max="100" value="50"></div>
+          </form>
+        </div>
+
+        <!-- Validation (error only) -->
+        <div class="showcase-card tui-mb-4">
+          <span class="showcase-label">Form Validation</span>
+          <form class="tui-form" style="margin-bottom: 0;">
+            <div class="tui-field"><label class="tui-label">Valid Input (no color)</label><input type="text" value="No green — we only show errors"></div>
+            <div class="tui-field tui-mt-4"><label class="tui-label">Invalid Input</label><input type="email" value="not-an-email"></div>
+          </form>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ===== LAYOUT ===== -->
+    <section id="layout" class="showcase-section">
+      <h2 class="tui-mb-6">Layout</h2>
+      <div class="showcase-card tui-mb-4">
+        <span class="showcase-label">Container & Grid</span>
+        <div class="tui-container" style="margin-bottom: 0;">
+          <p class="tui-text-sm tui-text-3 tui-mb-2">Responsive container with grid system:</p>
+          <div class="tui-grid" style="gap: 1rem; margin-bottom: 0;">
+            <div class="tui-col-span-4"><div style="padding: 1.5rem; background: var(--tui-brand-100); border-radius: var(--tui-radius-md); text-align: center; font-weight: bold;">Col span 4</div></div>
+            <div class="tui-col-span-2"><div style="padding: 1.5rem; background: var(--tui-brand-200); border-radius: var(--tui-radius-md); text-align: center; font-weight: bold;">Col span 2</div></div>
+            <div class="tui-col-span-2"><div style="padding: 1.5rem; background: var(--tui-brand-300); border-radius: var(--tui-radius-md); text-align: center; font-weight: bold;">Col span 2</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="showcase-card tui-mb-4">
+        <span class="showcase-label">Flexbox Utilities</span>
+        <div style="display: flex; gap: 0.5rem; margin-bottom: 1rem;">
+          <div style="padding: 0.75rem 1.5rem; background: var(--tui-surface-2); border-radius: var(--tui-radius-md);">flex</div>
+        </div>
+        <p class="tui-text-sm tui-mb-2">Alignment:</p>
+        <div style="display: flex; align-items: center; gap: 0.5rem;">
+          <div style="padding: 0.75rem 1.5rem; background: var(--tui-surface-2); border-radius: var(--tui-radius-md);">center</div>
+        </div>
+      </div>
+
+      <div class="showcase-card tui-mb-4">
+        <span class="showcase-label">Spacing Utilities</span>
+        <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+          <span class="tui-badge">tui-m-0</span><span class="tui-badge">tui-m-1</span><span class="tui-badge">tui-m-2</span>
+          <span class="tui-badge">tui-mt-4</span><span class="tui-badge">tui-mb-6</span><span class="tui-badge">tui-p-4</span>
+        </div>
+      </div>
+
+      <div class="showcase-card">
+        <span class="showcase-label">Display Utilities</span>
+        <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+          <span class="tui-badge">tui-block</span><span class="tui-badge">tui-inline</span><span class="tui-badge">tui-inline-block</span>
+          <span class="tui-badge">tui-hidden</span><span class="tui-badge">tui-flex</span><span class="tui-badge">tui-grid</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== INTERACTIVE ===== -->
+    <section id="interactive" class="showcase-section">
+      <h2 class="tui-mb-6">Interactive Components</h2>
+      <div class="showcase-grid" style="grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));">
+
+        <!-- Accordion -->
+        <div class="showcase-card tui-mb-4">
+          <span class="showcase-label">Accordion</span>
+          <div class="tui-accordion" style="margin-bottom: 0;">
+            <details class="tui-collapse" name="showcase-faq" open>
+              <summary class="tui-collapse-summary">Section 1 — Click to expand</summary>
+              <div class="tui-collapse-body"><p class="tui-m-0">Accordion content goes here. Pure CSS, no JavaScript required.</p></div>
+            </details>
+            <details class="tui-collapse" name="showcase-faq">
+              <summary class="tui-collapse-summary">Section 2</summary>
+              <div class="tui-collapse-body"><p class="tui-m-0">Opening this closes Section 1.</p></div>
+            </details>
+          </div>
+        </div>
+
+        <!-- Tabs -->
+        <div class="showcase-card tui-mb-4">
+          <span class="showcase-label">Tabs</span>
+          <div class="tui-tabs" style="margin-bottom: 0;">
+            <input type="radio" name="tab-show" id="tab-show-1" class="tui-state-input tui-tab-input" checked>
+            <label for="tab-show-1" class="tui-tab">Tab One</label>
+            <div class="tui-tab-panel"><p class="tui-m-0">Active tab content area.</p></div>
+            <input type="radio" name="tab-show" id="tab-show-2" class="tui-state-input tui-tab-input">
+            <label for="tab-show-2" class="tui-tab">Tab Two</label>
+            <div class="tui-tab-panel"><p class="tui-m-0">Second tab content.</p></div>
+          </div>
+        </div>
+
+        <!-- Account menu -->
+        <div class="showcase-card tui-mb-4">
+          <span class="showcase-label">Account menu</span>
+          <button class="tui-button" popovertarget="showcase-user-menu">Account ▾</button>
+          <div class="tui-popover tui-menu" id="showcase-user-menu" popover>
+            <a class="tui-menu-item" href="/profile">Profile</a>
+            <hr class="tui-menu-divider">
+            <button class="tui-menu-item" type="button">Sign out</button>
+          </div>
+        </div>
+
+        <!-- Tooltip -->
+        <div class="showcase-card tui-mb-4">
+          <span class="showcase-label">Tooltip</span>
+          <p style="margin-bottom: 0;">Hover or Tab to the button for a tooltip.
+            <span class="tui-tooltip-host">
+              <button class="tui-button tui-button-icon" aria-describedby="showcase-tip">ⓘ</button>
+              <span class="tui-tooltip" id="showcase-tip" role="tooltip">This is a tooltip message!</span>
+            </span>
+          </p>
+        </div>
+
+        <!-- Rating -->
+        <div class="showcase-card tui-mb-4">
+          <span class="showcase-label">Rating</span>
+          <fieldset class="tui-rating">
+            <legend class="tui-sr-only">Rate this</legend>
+            <input class="tui-state-input tui-rating-input" type="radio" name="showcase-rate" id="showcase-rate-1" value="1"><label class="tui-rating-star" for="showcase-rate-1" aria-label="1 star">&#9733;</label>
+            <input class="tui-state-input tui-rating-input" type="radio" name="showcase-rate" id="showcase-rate-2" value="2"><label class="tui-rating-star" for="showcase-rate-2" aria-label="2 stars">&#9733;</label>
+            <input class="tui-state-input tui-rating-input" type="radio" name="showcase-rate" id="showcase-rate-3" value="3"><label class="tui-rating-star" for="showcase-rate-3" aria-label="3 stars">&#9733;</label>
+            <input class="tui-state-input tui-rating-input" type="radio" name="showcase-rate" id="showcase-rate-4" value="4" checked><label class="tui-rating-star" for="showcase-rate-4" aria-label="4 stars">&#9733;</label>
+            <input class="tui-state-input tui-rating-input" type="radio" name="showcase-rate" id="showcase-rate-5" value="5"><label class="tui-rating-star" for="showcase-rate-5" aria-label="5 stars">&#9733;</label>
+          </fieldset>
+        </div>
+
+        <!-- Toggle Group -->
+        <div class="showcase-card tui-mb-4">
+          <span class="showcase-label">Toggle Group</span>
+          <fieldset class="tui-toggle-group">
+            <legend class="tui-sr-only">Alignment</legend>
+            <input class="tui-state-input tui-toggle-input" type="radio" id="showcase-align-left" name="showcase-align" value="left"><label class="tui-toggle" for="showcase-align-left">Left</label>
+            <input class="tui-state-input tui-toggle-input" type="radio" id="showcase-align-center" name="showcase-align" value="center" checked><label class="tui-toggle" for="showcase-align-center">Center</label>
+            <input class="tui-state-input tui-toggle-input" type="radio" id="showcase-align-right" name="showcase-align" value="right"><label class="tui-toggle" for="showcase-align-right">Right</label>
+          </fieldset>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ===== UTILITIES ===== -->
+    <section id="utilities" class="showcase-section">
+      <h2 class="tui-mb-6">Utilities</h2>
+      <div class="showcase-grid" style="grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));">
+
+        <!-- Text Utilities -->
+        <div class="showcase-card tui-mb-4">
+          <span class="showcase-label">Text Utilities</span>
+          <p class="tui-text-center tui-mb-2">tui-text-center</p>
+          <p class="tui-text-right tui-mb-2">tui-text-right</p>
+          <p class="tui-uppercase tui-mb-2">tui-uppercase</p>
+          <p class="tui-truncate" style="max-width: 16rem; overflow: hidden;">tui-truncate — This is a very long text that should be truncated with an ellipsis.</p>
+        </div>
+
+        <!-- Color Utilities -->
+        <div class="showcase-card tui-mb-4">
+          <span class="showcase-label">Color Utilities</span>
+          <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+            <span class="tui-badge" style="background-color: var(--tui-brand); color: white;">bg-brand</span>
+            <span class="tui-badge" style="background-color: var(--tui-positive); color: white;">bg-positive</span>
+            <span class="tui-badge" style="background-color: var(--tui-negative); color: white;">bg-negative</span>
+            <span class="tui-badge tui-text-brand">text-brand</span>
+            <span class="tui-badge tui-text-positive">text-positive</span>
+          </div>
+        </div>
+
+        <!-- Overflow -->
+        <div class="showcase-card tui-mb-4">
+          <span class="showcase-label">Overflow Utilities</span>
+          <p class="tui-text-sm" style="margin-bottom: 0.75rem;"><code>.tui-overflow-auto</code></p>
+          <div class="tui-overflow-auto" style="height: 4rem; overflow: auto; background: var(--tui-surface-1); padding: 0.5rem;">
+            <p>This content overflows and scrolls.</p>
+            <p>Line two of overflowing text.</p>
+            <p>Line three of overflowing text.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ===== THEMES ===== -->
+    <section id="themes" class="showcase-section">
+      <h2 class="tui-mb-6">Theme Variants</h2>
+      <div class="showcase-grid" style="grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));">
+
+        <!-- High Contrast -->
+        <div class="showcase-card tui-mb-4" style="background: #fff; border-color: var(--tui-text-1);">
+          <span class="showcase-label">High Contrast Mode</span>
+          <p class="tui-mb-2">Uses maximum contrast for accessibility. Borders and text are bold.</p>
+          <button class="tui-button tui-button-primary" style="border-width: 2px;">Accessible Button</button>
+        </div>
+
+        <!-- Forced Toggle -->
+        <div class="showcase-card tui-mb-4">
+          <span class="showcase-label">Forced Color Toggle</span>
+          <p class="tui-mb-2">Uses CSS color-scheme and forced-colors for system-level theming.</p>
+          <label class="tui-switch"><input class="tui-switch-input" type="checkbox"><span class="tui-switch-label">Toggle theme</span></label>
+        </div>
+
+      </div>
+    </section>
+
+  </div>
+
+  <!-- Footer -->
+  <footer class="showcase-footer">
+    <p>Torque UI — Zero-JavaScript CSS Framework &middot; Built with modern CSS</p>
+  </footer>
+
+</body>
+</html>

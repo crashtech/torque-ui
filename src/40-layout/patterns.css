@@ -1,0 +1,136 @@
+/* Torque UI — Page Patterns
+ * .tui-hero, .tui-section, .tui-media, .tui-level — page-level layout
+ * building blocks composed from the primitives in this directory.
+ */
+
+.tui-section {
+  padding-block: var(--tui-section-padding-block, var(--tui-spacing-16));
+}
+
+.tui-hero {
+  display: flex;
+  flex-direction: column;
+  gap: var(--tui-spacing-6);
+  padding-block: var(--tui-hero-padding-block, var(--tui-spacing-24));
+  text-align: center;
+
+  & > * { margin: 0; }
+}
+
+.tui-hero-title {
+  font-size: var(--tui-text-4xl);
+  text-wrap: balance;
+  text-box: trim-both cap alphabetic;
+}
+
+.tui-hero-lead {
+  font-size: var(--tui-text-lg);
+  color: var(--tui-text-2);
+  max-inline-size: 60ch;
+  margin-inline: auto;
+  text-box: trim-both cap alphabetic;
+}
+
+.tui-hero-actions {
+  display: flex;
+  justify-content: center;
+  gap: var(--tui-spacing-3);
+  flex-wrap: wrap;
+}
+
+.tui-media {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--tui-media-gap, var(--tui-spacing-4));
+  align-items: start;
+}
+
+/* why: the body owns its rhythm — a name line over a meta line is the whole
+   point of the pattern, and trimmed text would touch at margin zero */
+.tui-media-body {
+  min-inline-size: 0;
+
+  & > * {
+    margin-block: 0;
+  }
+
+  & > * + * {
+    margin-block-start: var(--tui-spacing-2);
+  }
+}
+
+.tui-level {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--tui-spacing-4);
+  flex-wrap: wrap;
+}
+
+.tui-level-start,
+.tui-level-end {
+  display: flex;
+  align-items: center;
+  gap: var(--tui-spacing-3);
+}
+
+.tui-media-center {
+  align-items: center;
+}
+
+.tui-level-nowrap {
+  flex-wrap: nowrap;
+}
+
+/* why: a level cannot know when its end group no longer fits — a container
+   query on the level itself lets optional items drop out below 40rem */
+.tui-level-collapsible {
+  container-type: inline-size;
+}
+
+@container (width < 40rem) {
+  .tui-level-collapsible .tui-level-optional {
+    display: none;
+  }
+}
+
+.tui-page-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--tui-spacing-4);
+  flex-wrap: wrap;
+  margin-block-end: var(--tui-spacing-6);
+
+  &:last-child { margin-block-end: 0; }
+}
+
+.tui-page-header-title {
+  font-size: var(--tui-text-2xl);
+  font-weight: var(--tui-font-bold);
+  margin: 0;
+  display: flex;
+  align-items: baseline;
+  gap: var(--tui-spacing-3);
+  flex-wrap: wrap;
+
+  /* why: a count chip has no baseline relationship with the display type —
+     hanging it from the title baseline drops it visually; centring it on
+     the title line reads as attached to the word */
+  & > :is(.tui-badge, .tui-tag, .tui-chip, .tui-label) {
+    align-self: center;
+  }
+}
+
+.tui-page-header-lead {
+  font-size: var(--tui-text-base);
+  font-weight: var(--tui-font-normal);
+  text-box: trim-both cap alphabetic;
+  color: var(--tui-text-3);
+}
+
+.tui-page-header-actions {
+  display: flex;
+  gap: var(--tui-spacing-2);
+  align-items: center;
+}

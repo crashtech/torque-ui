@@ -1,0 +1,82 @@
+/* Torque UI — Form Layout
+ * .tui-form, .tui-field, .tui-help, .tui-error
+ */
+
+
+  .tui-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--tui-spacing-4);
+  }
+
+  .tui-form-inline {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--tui-spacing-4);
+  }
+
+  .tui-form-grid {
+    display: grid;
+    gap: var(--tui-spacing-4);
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
+
+  .tui-field {
+    display: flex;
+    flex-direction: column;
+    gap: var(--tui-spacing-3);
+  }
+
+  /* why: .tui-label is the pill component — the field label is styled by
+     position so no class collides with it */
+  .tui-field > label {
+    font-size: var(--tui-text-sm);
+    text-box: trim-both cap alphabetic;
+    font-weight: var(--tui-font-medium);
+    color: var(--tui-text-2);
+  }
+
+  .tui-field-inline {
+    display: flex;
+    align-items: center;
+    gap: var(--tui-spacing-2);
+  }
+
+  .tui-help {
+    font-size: var(--tui-text-sm);
+    text-box: trim-both cap alphabetic;
+    color: var(--tui-text-3);
+  }
+
+  .tui-error {
+    font-size: var(--tui-text-sm);
+    text-box: trim-both cap alphabetic;
+    color: var(--tui-negative);
+  }
+
+  fieldset {
+    min-inline-size: 0;
+    margin: 0;
+    padding: var(--tui-spacing-4) var(--tui-spacing-6);
+    border: 1px solid var(--tui-border);
+    border-radius: var(--tui-radius-md);
+    display: flex;
+    flex-direction: column;
+    gap: var(--tui-spacing-3);
+
+    & > * { margin: 0; }
+  }
+
+  legend {
+    padding-inline: var(--tui-spacing-2);
+    font-weight: var(--tui-font-semibold);
+  }
+
+  .tui-fieldset-inline {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--tui-spacing-4);
+
+    & > * { margin: 0; }
+  }

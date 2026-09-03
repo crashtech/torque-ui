@@ -1,0 +1,27 @@
+<table id="tables-sort">
+  <thead>
+    <tr>
+      <th aria-sort="ascending"><button type="button">Name</button></th>
+      <th aria-sort="none"><button type="button">Size</button></th>
+      <th>Modified</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>archive.zip</td><td data-value="2100">2.1 MB</td><td>Today</td></tr>
+    <tr><td>notes.md</td><td data-value="4">4 KB</td><td>Yesterday</td></tr>
+    <tr><td>photo.jpg</td><td data-value="850">850 KB</td><td>Last week</td></tr>
+  </tbody>
+</table>
+<script>
+  const table = document.getElementById('tables-sort');
+  table.querySelectorAll('th[aria-sort] > button').forEach((button) => button.addEventListener('click', () => {
+    const header = button.parentElement;
+    const direction = header.getAttribute('aria-sort') === 'ascending' ? 'descending' : 'ascending';
+    table.querySelectorAll('th[aria-sort]').forEach((other) => other.setAttribute('aria-sort', 'none'));
+    header.setAttribute('aria-sort', direction);
+    const index = header.cellIndex;
+    const key = (row) => { const cell = row.cells[index]; return cell.dataset.value ? Number(cell.dataset.value) : cell.textContent; };
+    const rows = [...table.tBodies[0].rows].sort((a, b) => (key(a) > key(b) ? 1 : -1) * (direction === 'ascending' ? 1 : -1));
+    table.tBodies[0].append(...rows);
+  }));
+</script>

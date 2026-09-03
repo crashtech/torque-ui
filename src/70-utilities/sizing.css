@@ -1,0 +1,30 @@
+/* Torque UI — Sizing Utilities
+ * Width, max-width, height and sticky helpers.
+ */
+
+
+  /* === Width === */
+  .tui-w-25   { inline-size: 25%; }
+  .tui-w-50   { inline-size: 50%; }
+  .tui-w-75   { inline-size: 75%; }
+  .tui-w-100  { inline-size: 100%; }
+  .tui-w-auto { inline-size: auto; }
+  .tui-min-w-0 { min-inline-size: 0; }
+
+  /* === Max width === */
+  .tui-max-w-xs   { max-inline-size: 20rem; }
+  .tui-max-w-sm   { max-inline-size: 24rem; }
+  .tui-max-w-md   { max-inline-size: 28rem; }
+  .tui-max-w-lg   { max-inline-size: 32rem; }
+  .tui-max-w-xl   { max-inline-size: 36rem; }
+  .tui-max-w-full { max-inline-size: 100%; }
+
+  /* === Height === */
+  .tui-h-full { block-size: 100%; }
+
+  /* === Sticky === */
+  .tui-sticky-top {
+    position: sticky;
+    inset-block-start: 0;
+    z-index: var(--tui-z-sticky);
+  }

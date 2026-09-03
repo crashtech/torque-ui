@@ -1,0 +1,90 @@
+/* Torque UI — Toggle Group */
+.tui-toggle-group {
+  display: inline-flex;
+  flex-direction: row;
+  margin: 0;
+  padding: 0;
+  border: 1px solid var(--tui-toggle-border, var(--tui-border));
+  border-radius: var(--tui-radius-md);
+}
+
+/* why: display is pinned so a <button> toggle trims exactly like a <label> */
+.tui-toggle {
+  display: block;
+  padding: var(--tui-spacing-3) var(--tui-spacing-4);
+  text-box: trim-both cap alphabetic;
+  font-size: var(--tui-text-sm);
+  color: var(--tui-text-2);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background-color var(--tui-duration-fast), color var(--tui-duration-fast);
+
+  &:not(:last-of-type) { border-inline-end: 1px solid var(--tui-toggle-border, var(--tui-border)); }
+
+  &:first-of-type {
+    border-start-start-radius: inherit;
+    border-end-start-radius: inherit;
+  }
+
+  &:last-of-type {
+    border-start-end-radius: inherit;
+    border-end-end-radius: inherit;
+  }
+}
+
+.tui-toggle-input:checked + .tui-toggle,
+.tui-toggle:is([aria-pressed="true"], [aria-checked="true"], [data-pressed], [data-selected], .tui-pressed, .tui-selected) {
+  background-color: var(--tui-toggle-active-bg, var(--tui-brand));
+  color: var(--tui-toggle-active-fg, var(--tui-brand-fg));
+}
+
+/* why: a script-driven group uses real <button> toggles; the button element
+   defaults (fill, border, shadow, hover lift) are undone so a button toggle
+   looks exactly like a label toggle */
+button.tui-toggle {
+  font: inherit;
+  font-size: var(--tui-text-sm);
+  background-color: transparent;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+
+  &:hover {
+    background-color: transparent;
+    box-shadow: none;
+    translate: none;
+  }
+}
+
+/* === Per-option active colours === */
+.tui-toggle-success {
+  --tui-toggle-active-bg: var(--tui-positive);
+  --tui-toggle-active-fg: var(--tui-positive-fg);
+}
+
+.tui-toggle-warning {
+  --tui-toggle-active-bg: var(--tui-warning);
+  --tui-toggle-active-fg: var(--tui-warning-fg);
+}
+
+.tui-toggle-error {
+  --tui-toggle-active-bg: var(--tui-negative);
+  --tui-toggle-active-fg: var(--tui-negative-fg);
+}
+
+.tui-toggle-neutral {
+  --tui-toggle-active-bg: var(--tui-surface-3);
+  --tui-toggle-active-fg: var(--tui-text-1);
+}
+
+/* === Sizes and wrapping === */
+.tui-toggle-group-sm > .tui-toggle {
+  padding: var(--tui-spacing-2);
+  font-size: var(--tui-text-xs);
+}
+
+/* why: wrapped rows keep the first/last-of-type radii; inner corners on
+   the second row stay square — accepted */
+.tui-toggle-group-wrap {
+  flex-wrap: wrap;
+}

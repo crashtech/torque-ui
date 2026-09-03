@@ -1,0 +1,77 @@
+/* Torque UI — Reboot / Reset
+ * This layer resets browser defaults and establishes a consistent base.
+ * Out-of-the-box defaults: HTML looks good without any classes.
+ */
+
+
+  /* === Box Sizing === */
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  /* === HTML Base === */
+  html {
+    font-size: var(--tui-root-size);
+    /* stylelint-disable-next-line property-no-vendor-prefix -- Safari has no unprefixed text-size-adjust */
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    line-height: var(--tui-leading-normal);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* === Body === */
+  body {
+    margin: 0;
+    font-family: var(--tui-font-sans);
+    font-size: var(--tui-text-base);
+    font-weight: var(--tui-font-normal);
+    line-height: var(--tui-leading-normal);
+    color: var(--tui-text-1);
+    background-color: var(--tui-surface-0);
+  }
+
+  /* === Selection === */
+  ::selection {
+    background-color: color-mix(in srgb, var(--tui-brand) 30%, transparent);
+    color: var(--tui-text-1);
+  }
+
+  /* === Images, Media === */
+  img,
+  picture,
+  video,
+  canvas,
+  svg {
+    display: block;
+    max-inline-size: 100%;
+  }
+
+  /* === Inputs, Buttons === */
+  input,
+  button,
+  textarea,
+  select {
+    font: inherit;
+    color: inherit;
+  }
+
+  /* === Paragraphs reset — re-applied contextually === */
+  p {
+    margin: 0;
+  }
+
+  /* === Lists reset — re-applied contextually, lists.css owns lists === */
+  ul,
+  ol {
+    margin: 0;
+    padding: 0;
+  }
+
+  /* === Focus Ring === */
+  :focus-visible {
+    outline: var(--tui-focus-ring-width) solid var(--tui-focus-ring-strong);
+    outline-offset: 2px;
+  }

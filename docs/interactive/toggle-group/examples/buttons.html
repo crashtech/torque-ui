@@ -1,0 +1,12 @@
+<div class="tui-toggle-group" role="group" aria-label="Alignment" id="toggle-group-buttons">
+  <button class="tui-toggle" type="button" aria-pressed="true">Left</button>
+  <button class="tui-toggle" type="button" aria-pressed="false">Center</button>
+  <button class="tui-toggle" type="button" aria-pressed="false">Right</button>
+</div>
+<script>
+  const group = document.getElementById('toggle-group-buttons');
+  group.addEventListener('click', (event) => {
+    const toggle = event.target.closest('.tui-toggle');
+    if (toggle) group.querySelectorAll('.tui-toggle').forEach((other) => other.setAttribute('aria-pressed', other === toggle));
+  });
+</script>

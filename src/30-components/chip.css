@@ -1,0 +1,34 @@
+/* Torque UI — Chip Component
+ * Pill-shaped tags with close capability (CSS-only).
+ */
+
+
+  .tui-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--tui-spacing-1);
+    padding: var(--tui-spacing-0-5) var(--tui-spacing-2);
+    font-size: var(--tui-text-sm);
+    font-weight: var(--tui-font-medium);
+    line-height: 1;
+    white-space: nowrap;
+    border-radius: var(--tui-radius-full);
+    background-color: var(--tui-tone-soft, var(--tui-surface-2));
+    color: var(--tui-tone-ink, var(--tui-text-2));
+    border: 1px solid var(--tui-tone-edge, var(--tui-border));
+    transition: background-color var(--tui-duration-fast) var(--tui-easing-out), border-color var(--tui-duration-fast) var(--tui-easing-out), color var(--tui-duration-fast) var(--tui-easing-out), box-shadow var(--tui-duration-fast) var(--tui-easing-out), translate var(--tui-duration-fast) var(--tui-easing-out);
+  }
+
+  .tui-chip:hover {
+    background-color: var(--tui-surface-3);
+  }
+
+  /* Scale the shared .tui-close (30-components/close.css) down to fit the
+     chip's line-height instead of its 2rem default, sized for alerts/toasts. */
+  .tui-chip > .tui-close {
+    --tui-close-size: 1rem;
+  }
+
+  /* .tui-chip-warning / .tui-chip-info live with every other tone alias in
+     70-utilities/tone.css, so they carry the full hook family (gradient
+     included) and yield to a generic .tui-tone-* like any alias */

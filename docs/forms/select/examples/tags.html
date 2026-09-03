@@ -1,0 +1,38 @@
+<div class="tui-field tui-max-w-sm">
+  <label for="select-tags-input">Shapes</label>
+  <div class="tui-combobox tui-combobox-tags" id="select-tags">
+    <span class="tui-chip">Circle <button class="tui-close" type="button" aria-label="Remove Circle"></button></span>
+    <span class="tui-chip">Triangle <button class="tui-close" type="button" aria-label="Remove Triangle"></button></span>
+    <input class="tui-combobox-input" id="select-tags-input" type="text" role="combobox" aria-expanded="false" aria-controls="select-tags-list" aria-autocomplete="list" placeholder="Add a shape">
+    <ul class="tui-listbox tui-popover" id="select-tags-list" role="listbox" aria-multiselectable="true" popover>
+      <li class="tui-option" role="option" aria-selected="true"><svg class="tui-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/></svg> Circle</li>
+      <li class="tui-option" role="option" aria-selected="true"><svg class="tui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 2 22h20z"/></svg> Triangle</li>
+      <li class="tui-option" role="option"><svg class="tui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 2 22h20z"/></svg> Square</li>
+      <li class="tui-listbox-empty">No matches</li>
+    </ul>
+  </div>
+</div>
+<script>
+  const tags = document.getElementById('select-tags');
+  const input = tags.querySelector('.tui-combobox-input');
+  const list = tags.querySelector('.tui-listbox');
+  const chipFor = (name) => [...tags.querySelectorAll('.tui-chip')].find((chip) => chip.firstChild.textContent.trim() === name);
+  input.addEventListener('click', () => { if (!list.matches(':popover-open')) list.showPopover(); });
+  list.addEventListener('toggle', (event) => input.setAttribute('aria-expanded', event.newState === 'open'));
+  list.addEventListener('click', (event) => {
+    const option = event.target.closest('.tui-option');
+    if (!option) return;
+    const name = option.textContent.trim();
+    const selected = option.getAttribute('aria-selected') !== 'true';
+    option.setAttribute('aria-selected', selected);
+    if (selected) input.insertAdjacentHTML('beforebegin', `<span class="tui-chip">${name} <button class="tui-close" type="button" aria-label="Remove ${name}"></button></span>`);
+    else chipFor(name)?.remove();
+  });
+  tags.addEventListener('click', (event) => {
+    const close = event.target.closest('.tui-chip > .tui-close');
+    if (!close) return;
+    const name = close.parentElement.firstChild.textContent.trim();
+    close.parentElement.remove();
+    [...list.querySelectorAll('.tui-option')].find((option) => option.textContent.trim() === name)?.setAttribute('aria-selected', 'false');
+  });
+</script>

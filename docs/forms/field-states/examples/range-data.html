@@ -1,0 +1,8 @@
+<div class="tui-field tui-max-w-sm">
+  <label for="field-states-range-data">Brightness</label>
+  <input id="field-states-range-data" class="tui-range-fill" type="range" min="0" max="100" value="30" data-value="30">
+</div>
+<script>
+  const range = document.getElementById('field-states-range-data');
+  range.addEventListener('input', () => { range.dataset.value = range.value; });
+</script>

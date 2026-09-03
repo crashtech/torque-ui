@@ -1,0 +1,46 @@
+/* Torque UI — Typography Tokens
+ * Font families, sizes, weights, line heights.
+ */
+
+
+  :root {
+    /* why: the one knob for a denser/looser UI — html reads it in reboot */
+    --tui-root-size: 100%;
+
+    /* Font families */
+    --tui-font-sans: system-ui, -apple-system, "Segoe UI", roboto, "Helvetica Neue", arial, sans-serif;
+    --tui-font-mono: ui-monospace, sfmono-regular, "SF Mono", menlo, consolas, "Liberation Mono", monospace;
+
+    /* Font sizes (rem — 16px base) */
+    --tui-text-xs: 0.75rem;    /* 12px */
+    --tui-text-sm: 0.875rem;   /* 14px */
+    --tui-text-base: 1rem;     /* 16px */
+    --tui-text-lg: 1.125rem;   /* 18px */
+    --tui-text-xl: 1.25rem;    /* 20px */
+    --tui-text-2xl: 1.5rem;    /* 24px */
+    --tui-text-3xl: 1.875rem;  /* 30px */
+    --tui-text-4xl: 2.25rem;   /* 36px */
+    --tui-text-5xl: 3rem;      /* 48px */
+
+    /* Font weights */
+    --tui-font-normal: 400;
+    --tui-font-medium: 500;
+    --tui-font-semibold: 600;
+    --tui-font-bold: 700;
+    --tui-font-black: 800;
+
+    /* Line heights */
+    --tui-leading-tight: 1.25;
+    --tui-leading-snug: 1.375;
+    --tui-leading-normal: 1.6;
+    --tui-leading-relaxed: 1.625;
+    --tui-leading-loose: 1.75;
+
+    /* Letter spacing */
+    --tui-tracking-tighter: -0.05em;
+    --tui-tracking-tight: -0.025em;
+    --tui-tracking-normal: 0;
+    --tui-tracking-wide: 0.025em;
+    --tui-tracking-wider: 0.05em;
+    --tui-tracking-widest: 0.1em;
+  }

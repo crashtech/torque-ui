@@ -1,0 +1,103 @@
+/* Torque UI — List Group
+ * .tui-list-group wraps .tui-list-item rows (li, a, or label) with a shared
+ * border and radius. A label item with a .tui-state-input checkbox becomes
+ * selectable — checking it (or adding .tui-list-item-active) applies the
+ * tone-aware active background.
+ */
+
+.tui-list-group {
+  display: grid;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border: 1px solid var(--tui-border);
+  border-radius: var(--tui-radius-md);
+}
+
+.tui-list-item {
+  display: flex;
+  align-items: center;
+  gap: var(--tui-spacing-3);
+  padding: var(--tui-list-item-padding, var(--tui-spacing-3) var(--tui-spacing-4));
+  color: var(--tui-text-1);
+  text-decoration: none;
+  background-color: var(--tui-list-item-bg, var(--tui-surface-0));
+  transition: background-color var(--tui-duration-fast);
+  margin: 0;
+
+  & + & { border-block-start: 1px solid var(--tui-border); }
+
+  &:first-child {
+    border-start-start-radius: inherit;
+    border-start-end-radius: inherit;
+  }
+
+  &:last-child {
+    border-end-start-radius: inherit;
+    border-end-end-radius: inherit;
+  }
+
+  &:is(a, label, button):hover {
+    background-color: var(--tui-list-item-hover-bg, var(--tui-surface-1));
+    cursor: pointer;
+  }
+
+  /* why: --tui-tone-ink (not the raw --tui-tone) keeps checked-row text at
+     AA contrast against the soft tinted background across brand colours */
+  &:has(> .tui-state-input:checked),
+  &.tui-list-item-active,
+  &:is([aria-selected="true"], [aria-current], [data-selected], .tui-selected) {
+    background-color: var(--tui-list-item-active-bg, var(--tui-tone-soft, var(--tui-brand-soft)));
+    color: var(--tui-tone-ink, var(--tui-brand-ink));
+  }
+
+  &:is([aria-disabled="true"], [data-disabled], .tui-disabled) {
+    color: var(--tui-text-3);
+    cursor: not-allowed;
+
+    &:hover { background-color: var(--tui-list-item-bg, var(--tui-surface-0)); }
+  }
+
+  & > .tui-badge { margin-inline-start: auto; }
+}
+
+/* The row a filtering script leaves visible when it has hidden every other
+   child — shown by CSS alone once nothing else in the group is visible */
+.tui-list-empty {
+  display: none;
+  padding: var(--tui-list-item-padding, var(--tui-spacing-3) var(--tui-spacing-4));
+  color: var(--tui-text-3);
+  text-box: trim-both cap alphabetic;
+}
+
+.tui-list-group:not(:has(> :not([hidden], .tui-list-empty))) > .tui-list-empty {
+  display: block;
+}
+
+/* The shrinkable middle of a row — long values ellipsize instead of pushing
+   trailing controls out */
+.tui-list-item-body {
+  flex: 1;
+  min-inline-size: 0;
+}
+
+.tui-list-group-flush {
+  border-inline: 0;
+  border-radius: 0;
+}
+
+/* why: a flush list directly under a card/panel header drew a second rule */
+:is(.tui-card-header, .tui-panel-header) + .tui-list-group-flush {
+  border-block-start: 0;
+}
+
+/* Grip for sortable rows; the reordering itself is the app's job */
+.tui-drag-handle {
+  color: var(--tui-text-3);
+  cursor: grab;
+  user-select: none;
+
+  &:empty::before { content: '⠿'; }
+
+  &:active { cursor: grabbing; }
+}

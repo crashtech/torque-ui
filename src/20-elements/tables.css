@@ -1,0 +1,121 @@
+/* Torque UI — Tables Element Defaults
+ * <table>, <thead>, <tbody>, <tr>, <th>, <td> styled by default.
+ */
+
+
+  table {
+    inline-size: 100%;
+    border-collapse: collapse;
+  }
+
+  th,
+  td {
+    padding: var(--tui-spacing-4);
+
+    /* why: Chromium's UA stylesheet centers <th> unless text-align is
+       declared directly on it; inherited from an ancestor it is ignored */
+    text-align: start;
+    border-block-end: 1px solid var(--tui-border);
+    vertical-align: middle;
+  }
+
+  /* why: a trimmed cell shrinks to its own cap height, so a control inside it
+     (a button, badge, key cap, field, checkbox) would overflow the row; cells
+     holding one keep their leading, and middle alignment centres control and
+     text cells on the same axis */
+  :is(th, td):not(:has(> :is(button, .tui-button, .tui-badge, .tui-tag, .tui-chip, .tui-label, .tui-avatar, kbd, img, input, select))) {
+    text-box: trim-both cap alphabetic;
+  }
+
+  th {
+    font-weight: var(--tui-font-semibold);
+    color: var(--tui-text-1);
+    background-color: var(--tui-surface-1);
+  }
+
+  tbody tr:hover {
+    background-color: var(--tui-surface-1);
+  }
+
+  /* === Striped Tables === */
+  .tui-table-striped tbody tr:nth-child(even) td {
+    background-color: var(--tui-surface-2);
+  }
+
+  /* === Bordered Tables === */
+  .tui-table-bordered th,
+  .tui-table-bordered td {
+    border: 1px solid var(--tui-border);
+  }
+
+  /* === Compact Tables === */
+  .tui-table-compact th,
+  .tui-table-compact td {
+    padding: var(--tui-spacing-2);
+  }
+
+  /* === Comfortable Tables === */
+  .tui-table-comfortable th,
+  .tui-table-comfortable td {
+    padding: var(--tui-spacing-5) var(--tui-spacing-6);
+  }
+
+  /* === Caps Header === */
+  .tui-table-caps th {
+    font-size: var(--tui-text-xs);
+    text-transform: uppercase;
+    letter-spacing: var(--tui-tracking-wide);
+    color: var(--tui-text-3);
+  }
+
+  /* === Responsive Wrapper === */
+  .tui-table-responsive {
+    overflow-x: auto;
+    max-inline-size: 100%;
+  }
+
+  /* === Sticky Header === */
+  .tui-table-sticky thead th {
+    position: sticky;
+    inset-block-start: 0;
+    background-color: var(--tui-table-sticky-bg, var(--tui-surface-1));
+    z-index: var(--tui-z-sticky);
+  }
+
+  /* === Selectable Rows === */
+  .tui-table-selectable tbody tr:has(input:checked) {
+    background-color: var(--tui-brand-soft);
+  }
+
+  /* === Sort Indicators === */
+  th[aria-sort] {
+    cursor: default;
+  }
+
+  th[aria-sort="ascending"]::after {
+    content: ' \2191';
+  }
+
+  th[aria-sort="descending"]::after {
+    content: ' \2193';
+  }
+
+  /* why: script-driven sorting puts a real button in the header cell; it
+     inherits the cell's type so only the cursor gives it away */
+  th[aria-sort] > button {
+    padding: 0;
+    font: inherit;
+    color: inherit;
+    text-align: inherit;
+    background: none;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+    cursor: pointer;
+
+    &:hover {
+      background: none;
+      box-shadow: none;
+      translate: none;
+    }
+  }

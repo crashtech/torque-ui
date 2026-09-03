@@ -1,0 +1,17 @@
+<div class="tui-stepper" id="stepper-bound">
+  <button class="tui-stepper-btn" type="button" aria-label="Decrease" disabled>−</button>
+  <input class="tui-stepper-input" type="number" value="0" min="0" max="10" aria-label="Quantity">
+  <button class="tui-stepper-btn" type="button" aria-label="Increase">+</button>
+</div>
+<script>
+  const stepper = document.getElementById('stepper-bound');
+  const [decrease, increase] = stepper.querySelectorAll('.tui-stepper-btn');
+  const input = stepper.querySelector('.tui-stepper-input');
+  const sync = () => {
+    decrease.disabled = input.valueAsNumber <= Number(input.min);
+    increase.disabled = input.valueAsNumber >= Number(input.max);
+  };
+  decrease.addEventListener('click', () => { input.stepDown(); sync(); });
+  increase.addEventListener('click', () => { input.stepUp(); sync(); });
+  input.addEventListener('input', sync);
+</script>

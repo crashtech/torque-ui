@@ -1,0 +1,112 @@
+/* Torque UI — Offcanvas (drawer)
+ * A [popover] that slides in from the inline edge; open/close is native
+ * (popovertarget, no JS). Add .tui-offcanvas-end to slide from the end edge.
+ * .tui-offcanvas-collapse is the same drawer plus a desktop reset back to an
+ * inline layout (used by the navbar's collapsible menu).
+ */
+
+.tui-offcanvas[popover],
+.tui-offcanvas-collapse[popover] {
+  inset-block: 0;
+  inset-inline: 0 auto;
+  margin: 0;
+  block-size: 100dvh;
+  max-block-size: none;
+  inline-size: var(--tui-offcanvas-inline-size, 20rem);
+  padding: var(--tui-spacing-6);
+  color: var(--tui-text-1);
+  background-color: var(--tui-offcanvas-bg, var(--tui-surface-0));
+  border: 0;
+  box-shadow: var(--tui-shadow-xl);
+
+  /* why: .tui-navbar-menu's own display:flex/align-items:center (components layer) would otherwise lay the drawer's links out in a row inside the narrow drawer */
+  flex-direction: column;
+  align-items: stretch;
+
+  /* why: translate has no logical form; RTL mirroring is handled by the :dir(rtl) rules below */
+  translate: -100% 0;
+
+  /* stylelint-disable-next-line csstree/validator -- overlay/display transitions with allow-discrete are valid CSS (Chrome 117+/Safari 17.4+/Firefox 129+); csstree's grammar doesn't yet know allow-discrete */
+  transition: translate var(--tui-duration-normal) var(--tui-easing-out), overlay var(--tui-duration-normal) allow-discrete, display var(--tui-duration-normal) allow-discrete;
+
+  &:popover-open { translate: 0 0; }
+
+  /* why: the veil matches the scheme — a white haze over a light page, a
+     black one over a dark page — and fades with the drawer through the same
+     allow-discrete transition, entering from @starting-style */
+  &::backdrop {
+    background-color: var(--tui-offcanvas-backdrop, light-dark(rgb(255 255 255 / 0.5), rgb(0 0 0 / 0.5)));
+    backdrop-filter: blur(4px);
+    opacity: 0;
+    /* stylelint-disable-next-line csstree/validator -- overlay/display transitions with allow-discrete are valid CSS (Chrome 117+/Safari 17.4+/Firefox 129+); csstree's grammar doesn't yet know allow-discrete */
+    transition: opacity var(--tui-duration-normal), overlay var(--tui-duration-normal) allow-discrete, display var(--tui-duration-normal) allow-discrete;
+  }
+
+  &:popover-open::backdrop { opacity: 1; }
+}
+
+@starting-style {
+  .tui-offcanvas[popover]:popover-open,
+  .tui-offcanvas-collapse[popover]:popover-open { translate: -100% 0; }
+
+  .tui-offcanvas[popover]:popover-open::backdrop,
+  .tui-offcanvas-collapse[popover]:popover-open::backdrop { opacity: 0; }
+}
+
+/* why: translate has no logical form, so the inline-start drawer's slide
+   direction must be flipped by hand for right-to-left writing modes */
+:dir(rtl) .tui-offcanvas[popover],
+:dir(rtl) .tui-offcanvas-collapse[popover] {
+  translate: 100% 0;
+
+  &:popover-open { translate: 0 0; }
+}
+
+@starting-style {
+  :dir(rtl) .tui-offcanvas[popover]:popover-open,
+  :dir(rtl) .tui-offcanvas-collapse[popover]:popover-open { translate: 100% 0; }
+}
+
+.tui-offcanvas-end[popover] {
+  inset-inline: auto 0;
+  translate: 100% 0;
+}
+
+@starting-style {
+  .tui-offcanvas-end[popover]:popover-open { translate: 100% 0; }
+}
+
+:dir(rtl) .tui-offcanvas-end[popover] {
+  translate: -100% 0;
+
+  &:popover-open { translate: 0 0; }
+}
+
+@starting-style {
+  :dir(rtl) .tui-offcanvas-end[popover]:popover-open { translate: -100% 0; }
+}
+
+@media (width >= 768px) {
+  /* why: this reset must live here, in offcanvas.css's tui.interactive layer —
+     tui.interactive is declared after tui.components in src/tui.css, so a
+     later layer always wins over navbar.css regardless of selector
+     specificity; a reset placed in navbar.css cannot override the drawer
+     geometry (translate/block-size/inline-size/padding/background/shadow)
+     declared above */
+  .tui-offcanvas-collapse[popover] {
+    display: flex;
+    position: static;
+    inset: auto;
+    translate: none;
+    margin: 0;
+    padding: 0;
+    block-size: auto;
+    max-block-size: none;
+    inline-size: auto;
+    background: none;
+    box-shadow: none;
+    border: 0;
+    flex-direction: row;
+    align-items: center;
+  }
+}

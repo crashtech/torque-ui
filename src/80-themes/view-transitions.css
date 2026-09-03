@@ -1,0 +1,22 @@
+/* Torque UI — Cross-Document View Transitions
+ * Opt-in: remove this import from tui.css to drop the feature entirely.
+ * Supported: Chrome 126, Safari 18.2. Elsewhere @supports keeps this
+ * inert — navigation just works without a transition.
+ */
+@supports (view-transition-name: none) {
+  @view-transition {
+    navigation: auto;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    ::view-transition-group(*),
+    ::view-transition-old(*),
+    ::view-transition-new(*) {
+      animation: none;
+    }
+  }
+
+  .tui-vt-hero {
+    view-transition-name: tui-hero;
+  }
+}

@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Torque UI — Interactive</title>
+  <link rel="stylesheet" href="/src/tui.css">
+</head>
+<body>
+  <div class="tui-container">
+    <h1 class="tui-sr-only">Interactive</h1>
+
+
+    <section class="tui-card tui-mb-6">
+      <div class="tui-card-header">
+        <h2 class="tui-m-0">Tabs</h2>
+      </div>
+      <div class="tui-card-body">
+        <div class="tui-tabs">
+          <input class="tui-state-input tui-tab-input" type="radio" name="billing" id="billing-plan" checked>
+          <label class="tui-tab" for="billing-plan">Plan</label>
+          <div class="tui-tab-panel">
+            <p class="tui-m-0">Your plan is Pro, billed monthly.</p>
+          </div>
+          <input class="tui-state-input tui-tab-input" type="radio" name="billing" id="billing-history">
+          <label class="tui-tab" for="billing-history">History</label>
+          <div class="tui-tab-panel">
+            <p class="tui-m-0">No invoices yet.</p>
+          </div>
+        </div>
+        <div class="tui-tabs tui-mt-6">
+          <input class="tui-state-input tui-tab-input" type="radio" name="settings" id="settings-profile" checked>
+          <label class="tui-tab" for="settings-profile">Profile</label>
+          <div class="tui-tab-panel">
+            <p class="tui-m-0">Name, email, and avatar settings.</p>
+          </div>
+          <input class="tui-state-input tui-tab-input" type="radio" name="settings" id="settings-security">
+          <label class="tui-tab" for="settings-security">Security</label>
+          <div class="tui-tab-panel">
+            <p class="tui-m-0">Password and two-factor authentication.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="tui-card tui-mb-6">
+      <div class="tui-card-header">
+        <h2 class="tui-m-0">Collapse &amp; Accordion</h2>
+      </div>
+      <div class="tui-card-body">
+        <div class="tui-accordion">
+          <details class="tui-collapse" name="faq" open>
+            <summary class="tui-collapse-summary">What is Torque UI?</summary>
+            <div class="tui-collapse-body">
+              <p class="tui-m-0">Torque UI is a zero-JavaScript CSS framework inspired by SemanticUI and Tailwind. It uses modern CSS features like :has(), @layer, color-mix(), and native &lt;details&gt;/&lt;summary&gt; to deliver interactive components without any JS.</p>
+            </div>
+          </details>
+          <details class="tui-collapse" name="faq">
+            <summary class="tui-collapse-summary">How do components work?</summary>
+            <div class="tui-collapse-body">
+              <p class="tui-m-0">Components use CSS-only techniques: hidden checkboxes/radios for state, :has() and :checked for interactivity, native &lt;details&gt; for disclosure, and @layer for cascade control. No JavaScript required.</p>
+            </div>
+          </details>
+          <details class="tui-collapse" name="faq">
+            <summary class="tui-collapse-summary">Browser support?</summary>
+            <div class="tui-collapse-body">
+              <p class="tui-m-0">Torque UI targets modern browsers that support :has(), @layer, and color-mix(). This includes Chrome 123+, Safari 17.5+, and Firefox 128+.</p>
+            </div>
+          </details>
+        </div>
+
+        <details class="tui-collapse tui-mt-6">
+          <summary class="tui-collapse-summary">Standalone collapse (not part of an accordion)</summary>
+          <div class="tui-collapse-body"><p class="tui-m-0">This one has no <code>name</code> attribute, so opening it never closes anything else.</p></div>
+        </details>
+      </div>
+    </section>
+
+    <section class="tui-card tui-mb-6">
+      <div class="tui-card-header">
+        <h2 class="tui-m-0">Menu</h2>
+      </div>
+      <div class="tui-card-body">
+        <button class="tui-button" popovertarget="user-menu">Account ▾</button>
+        <div class="tui-popover tui-menu" id="user-menu" popover>
+          <a class="tui-menu-item" href="/profile">Profile</a>
+          <hr class="tui-menu-divider">
+          <button class="tui-menu-item" type="button">Sign out</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="tui-card tui-mb-6">
+      <div class="tui-card-header">
+        <h2 class="tui-m-0">Tooltip</h2>
+      </div>
+      <div class="tui-card-body">
+        <div class="tui-flex tui-flex-wrap" style="gap: 2rem; align-items: center;">
+          <span class="tui-tooltip-host">
+            <button class="tui-button tui-button-icon" aria-describedby="tip-save">💾</button>
+            <span class="tui-tooltip" id="tip-save" role="tooltip">Save draft</span>
+          </span>
+          <span class="tui-tooltip-host">
+            <button class="tui-button tui-button-icon" aria-describedby="tip-info">ⓘ</button>
+            <span class="tui-tooltip" id="tip-info" role="tooltip">Hover for info!</span>
+          </span>
+          <span class="tui-tooltip-host">
+            <a class="tui-button tui-button-icon" href="https://example.com/help" aria-describedby="tip-help">?</a>
+            <span class="tui-tooltip" id="tip-help" role="tooltip">Reach me with Tab, then blur to dismiss</span>
+          </span>
+        </div>
+      </div>
+    </section>
+
+    <section class="tui-card tui-mb-6">
+      <div class="tui-card-header">
+        <h2 class="tui-m-0">Popover</h2>
+      </div>
+      <div class="tui-card-body">
+        <button class="tui-button" popovertarget="help-1">What is this?</button>
+        <article class="tui-popover" id="help-1" popover>
+          <h4 class="tui-popover-title">Popover Content</h4>
+          <p class="tui-m-0">This popover opens on click (mouse or keyboard) via the native <code>popover</code> attribute — no JavaScript.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="tui-card tui-mb-6">
+      <div class="tui-card-header">
+        <h2 class="tui-m-0">Modal</h2>
+      </div>
+      <div class="tui-card-body">
+        <button class="tui-button tui-button-primary" commandfor="confirm-delete" command="show-modal">Delete…</button>
+        <dialog class="tui-modal" id="confirm-delete" aria-labelledby="confirm-delete-title">
+          <form method="dialog" class="tui-modal-header">
+            <h3 id="confirm-delete-title">Delete project?</h3>
+            <button class="tui-close" aria-label="Close"></button>
+          </form>
+          <div class="tui-modal-body"><p class="tui-m-0">This cannot be undone.</p></div>
+          <form method="dialog" class="tui-modal-footer">
+            <button class="tui-button">Cancel</button>
+            <button class="tui-button tui-button-error" value="delete">Delete</button>
+          </form>
+        </dialog>
+      </div>
+    </section>
+
+    <section class="tui-card tui-mb-6">
+      <div class="tui-card-header">
+        <h2 class="tui-m-0">Offcanvas</h2>
+      </div>
+      <div class="tui-card-body">
+        <button class="tui-button" popovertarget="filters">Filters</button>
+        <aside class="tui-offcanvas" id="filters" popover aria-labelledby="filters-title">
+          <div class="tui-flex tui-justify-between tui-items-center tui-mb-4">
+            <h3 class="tui-m-0" id="filters-title">Filters</h3>
+            <button class="tui-close" popovertarget="filters" popovertargetaction="hide" aria-label="Close"></button>
+          </div>
+          <div class="tui-checkbox-group">
+            <label class="tui-checkbox">
+              <input class="tui-checkbox-input" type="checkbox">
+              <span>In stock</span>
+            </label>
+            <label class="tui-checkbox">
+              <input class="tui-checkbox-input" type="checkbox">
+              <span>On sale</span>
+            </label>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="tui-card tui-mb-6">
+      <div class="tui-card-header">
+        <h2 class="tui-m-0">Carousel</h2>
+      </div>
+      <div class="tui-card-body">
+        <div class="tui-carousel">
+          <ul class="tui-carousel-track">
+            <li class="tui-carousel-slide" id="hero-1" style="background: var(--tui-brand-300); height: 200px; display: flex; align-items: center; justify-content: center; font-size: 2rem; font-weight: bold; color: var(--tui-text-1);">Slide 1</li>
+            <li class="tui-carousel-slide" id="hero-2" style="background: var(--tui-positive); height: 200px; display: flex; align-items: center; justify-content: center; font-size: 2rem; font-weight: bold; color: var(--tui-text-1);">Slide 2</li>
+            <li class="tui-carousel-slide" id="hero-3" style="background: var(--tui-negative); height: 200px; display: flex; align-items: center; justify-content: center; font-size: 2rem; font-weight: bold; color: var(--tui-negative-fg);">Slide 3</li>
+          </ul>
+          <nav class="tui-carousel-dots" aria-label="Slides">
+            <a class="tui-carousel-dot" href="#hero-1" aria-label="Slide 1"></a>
+            <a class="tui-carousel-dot" href="#hero-2" aria-label="Slide 2"></a>
+            <a class="tui-carousel-dot" href="#hero-3" aria-label="Slide 3"></a>
+          </nav>
+        </div>
+      </div>
+    </section>
+
+    <section class="tui-card tui-mb-6">
+      <div class="tui-card-header">
+        <h2 class="tui-m-0">Rating</h2>
+      </div>
+      <div class="tui-card-body">
+        <fieldset class="tui-rating">
+          <legend class="tui-sr-only">Rate this</legend>
+          <input class="tui-state-input tui-rating-input" type="radio" name="rate" id="rate-1" value="1"><label class="tui-rating-star" for="rate-1" aria-label="1 star">★</label>
+          <input class="tui-state-input tui-rating-input" type="radio" name="rate" id="rate-2" value="2"><label class="tui-rating-star" for="rate-2" aria-label="2 stars">★</label>
+          <input class="tui-state-input tui-rating-input" type="radio" name="rate" id="rate-3" value="3"><label class="tui-rating-star" for="rate-3" aria-label="3 stars">★</label>
+          <input class="tui-state-input tui-rating-input" type="radio" name="rate" id="rate-4" value="4"><label class="tui-rating-star" for="rate-4" aria-label="4 stars">★</label>
+          <input class="tui-state-input tui-rating-input" type="radio" name="rate" id="rate-5" value="5"><label class="tui-rating-star" for="rate-5" aria-label="5 stars">★</label>
+        </fieldset>
+      </div>
+    </section>
+
+    <section class="tui-card tui-mb-6">
+      <div class="tui-card-header">
+        <h2 class="tui-m-0">Toggle Group</h2>
+      </div>
+      <div class="tui-card-body">
+        <fieldset class="tui-toggle-group">
+          <legend class="tui-sr-only">Formatting</legend>
+          <input class="tui-state-input tui-toggle-input" type="checkbox" id="fmt-b" name="fmt" value="bold"><label class="tui-toggle" for="fmt-b">Bold</label>
+          <input class="tui-state-input tui-toggle-input" type="checkbox" id="fmt-i" name="fmt" value="italic"><label class="tui-toggle" for="fmt-i">Italic</label>
+        </fieldset>
+        <fieldset class="tui-toggle-group tui-mt-4">
+          <legend class="tui-sr-only">Alignment</legend>
+          <input class="tui-state-input tui-toggle-input" type="radio" id="align-left" name="align" value="left" checked><label class="tui-toggle" for="align-left">Left</label>
+          <input class="tui-state-input tui-toggle-input" type="radio" id="align-center" name="align" value="center"><label class="tui-toggle" for="align-center">Center</label>
+          <input class="tui-state-input tui-toggle-input" type="radio" id="align-right" name="align" value="right"><label class="tui-toggle" for="align-right">Right</label>
+        </fieldset>
+        <fieldset class="tui-toggle-group tui-toggle-group-sm tui-mt-4" id="sync-states">
+          <legend class="tui-sr-only">Sync state</legend>
+          <input class="tui-state-input tui-toggle-input" type="radio" id="sync-on" name="sync" value="on" checked><label class="tui-toggle tui-toggle-success" for="sync-on">Syncing</label>
+          <input class="tui-state-input tui-toggle-input" type="radio" id="sync-wait" name="sync" value="wait"><label class="tui-toggle tui-toggle-neutral" for="sync-wait">Waiting</label>
+          <input class="tui-state-input tui-toggle-input" type="radio" id="sync-off" name="sync" value="off"><label class="tui-toggle tui-toggle-error" for="sync-off">Excluded</label>
+        </fieldset>
+        <div class="tui-mt-4" style="max-inline-size: 14rem;">
+          <fieldset class="tui-toggle-group tui-toggle-group-wrap" id="wrap-group">
+            <legend class="tui-sr-only">Priority</legend>
+            <input class="tui-state-input tui-toggle-input" type="radio" id="pri-1" name="pri" value="1" checked><label class="tui-toggle" for="pri-1">P1</label>
+            <input class="tui-state-input tui-toggle-input" type="radio" id="pri-2" name="pri" value="2"><label class="tui-toggle tui-toggle-warning" for="pri-2">P2</label>
+            <input class="tui-state-input tui-toggle-input" type="radio" id="pri-3" name="pri" value="3"><label class="tui-toggle" for="pri-3">P3</label>
+            <input class="tui-state-input tui-toggle-input" type="radio" id="pri-4" name="pri" value="4"><label class="tui-toggle" for="pri-4">P4</label>
+            <input class="tui-state-input tui-toggle-input" type="radio" id="pri-5" name="pri" value="5"><label class="tui-toggle" for="pri-5">P5</label>
+          </fieldset>
+        </div>
+      </div>
+    </section>
+
+    <section class="tui-card tui-mb-6" id="listbox-section">
+      <div class="tui-card-header">
+        <h2 class="tui-m-0">Listbox <span class="tui-badge">self-driven JS</span></h2>
+      </div>
+      <div class="tui-card-body">
+        <ul class="tui-listbox tui-max-w-sm" id="listbox-demo" role="listbox" aria-label="Shapes">
+          <li class="tui-listbox-group" role="group" aria-labelledby="listbox-demo-flat">
+            <span class="tui-listbox-group-label" id="listbox-demo-flat">Flat</span>
+            <ul class="tui-listbox-group" role="presentation">
+              <li class="tui-option" role="option" aria-selected="true"><svg class="tui-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/></svg> Circle</li>
+              <li class="tui-option" role="option" data-active><svg class="tui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 2 22h20z"/></svg> Triangle (active)</li>
+              <li class="tui-option" role="option" aria-disabled="true"><svg class="tui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 2 22h20z"/></svg> Unavailable</li>
+            </ul>
+          </li>
+          <li class="tui-option" role="option"><svg class="tui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 2 22h20z"/></svg> Square</li>
+          <li class="tui-listbox-empty">No matches</li>
+        </ul>
+        <ul class="tui-listbox tui-max-w-sm tui-mt-4" id="listbox-multi" role="listbox" aria-multiselectable="true" aria-label="Multiple shapes">
+          <li class="tui-option" role="option" aria-selected="true">Circle</li>
+          <li class="tui-option" role="option">Triangle</li>
+          <li class="tui-option" role="option" aria-selected="true">Square</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="tui-card tui-mb-6" id="js-tabs-section">
+      <div class="tui-card-header">
+        <h2 class="tui-m-0">Script-driven tabs <span class="tui-badge">self-driven JS</span></h2>
+      </div>
+      <div class="tui-card-body">
+        <div class="tui-tabs" id="js-tabs">
+          <div role="tablist" aria-label="Report" class="tui-flex">
+            <button class="tui-tab" type="button" role="tab" id="js-tab-summary" aria-selected="true" aria-controls="js-panel-summary">Summary</button>
+            <button class="tui-tab" type="button" role="tab" id="js-tab-detail" aria-selected="false" aria-controls="js-panel-detail" tabindex="-1">Detail</button>
+          </div>
+          <div class="tui-tab-panel" role="tabpanel" id="js-panel-summary" aria-labelledby="js-tab-summary"><p class="tui-m-0">Summary panel.</p></div>
+          <div class="tui-tab-panel" role="tabpanel" id="js-panel-detail" aria-labelledby="js-tab-detail" hidden><p class="tui-m-0">Detail panel.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="tui-card tui-mb-6" id="pressed-section">
+      <div class="tui-card-header">
+        <h2 class="tui-m-0">Pressed buttons &amp; caret <span class="tui-badge">self-driven JS</span></h2>
+      </div>
+      <div class="tui-card-body">
+        <div class="tui-flex tui-flex-wrap tui-gap-2 tui-items-center" id="pressed-demo">
+          <button class="tui-button" type="button" aria-pressed="true" id="pressed-on">Bold</button>
+          <button class="tui-button" type="button" aria-pressed="false" id="pressed-off">Italic</button>
+          <button class="tui-button tui-button-primary" type="button" aria-pressed="true">Primary pressed</button>
+          <button class="tui-button" type="button" aria-expanded="true" id="caret-open">Options <span class="tui-caret"></span></button>
+          <button class="tui-button" type="button" aria-expanded="false" id="caret-closed">More <span class="tui-caret"></span></button>
+        </div>
+        <div class="tui-toggle-group tui-mt-4" role="group" aria-label="Alignment" id="button-toggles">
+          <button class="tui-toggle" type="button" aria-pressed="true">Left</button>
+          <button class="tui-toggle" type="button" aria-pressed="false">Center</button>
+          <button class="tui-toggle" type="button" aria-pressed="false">Right</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="tui-card tui-mb-6">
+      <div class="tui-card-header">
+        <h2 class="tui-m-0">Link tabs &amp; trailing slot</h2>
+      </div>
+      <div class="tui-card-body">
+        <div class="tui-tabs tui-tabs-sticky" id="tabs-end-demo">
+          <a class="tui-tab" href="#tabs-end-demo" aria-current="page">Kanban</a>
+          <a class="tui-tab" href="#tabs-end-demo">List</a>
+          <a class="tui-tab" href="#tabs-end-demo">Tickets <span class="tui-badge">5</span></a>
+          <div class="tui-tabs-end"><span class="tui-badge tui-badge-error">Urgent</span><button class="tui-button tui-button-sm tui-button-ghost" type="button" aria-label="Add tag">+</button></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="tui-card tui-mb-6">
+      <div class="tui-card-header">
+        <h2 class="tui-m-0">Wizard step precedence</h2>
+      </div>
+      <div class="tui-card-body">
+        <form class="tui-wizard" id="precedence-wizard">
+          <div class="tui-steps">
+            <div class="tui-step tui-step-complete"><div class="tui-step-number">✓</div><span class="tui-step-label">Account</span></div>
+            <div class="tui-step tui-step-active"><div class="tui-step-number">2</div><span class="tui-step-label">Profile</span></div>
+            <div class="tui-step"><div class="tui-step-number">3</div><span class="tui-step-label">Verify</span></div>
+          </div>
+          <label class="tui-sr-only" for="pw-1">Step 1: Account</label>
+          <input class="tui-state-input tui-wizard-input" type="radio" name="pw" id="pw-1">
+          <section class="tui-wizard-step"><p class="tui-m-0">Account details.</p></section>
+          <label class="tui-sr-only" for="pw-2">Step 2: Profile</label>
+          <input class="tui-state-input tui-wizard-input" type="radio" name="pw" id="pw-2" checked>
+          <section class="tui-wizard-step"><p class="tui-m-0">Profile details — step 1 keeps its explicit complete tone.</p></section>
+          <label class="tui-sr-only" for="pw-3">Step 3: Verify</label>
+          <input class="tui-state-input tui-wizard-input" type="radio" name="pw" id="pw-3">
+          <section class="tui-wizard-step"><p class="tui-m-0">Verify.</p></section>
+        </form>
+      </div>
+    </section>
+
+  </div>
+</body>
+</html>

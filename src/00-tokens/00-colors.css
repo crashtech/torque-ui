@@ -1,0 +1,213 @@
+/* Torque UI — Color System (Single Brand)
+ *
+ * All colors derive from --tui-brand via color-mix() and CSS Color Level 4 functions.
+ * Change ONE variable to re-theme the entire framework.
+ */
+
+
+  :root {
+    color-scheme: light dark;
+
+    /* why: oklch lightness above which black text reads better than white */
+    --tui-contrast-pivot: 0.65;
+
+    /* ========================================
+       THE SINGLE BRAND COLOR
+       Change this ONE variable to re-theme everything.
+       ======================================== */
+    --tui-brand: #5c60f0;
+
+    /* ========================================
+       DERIVED BRAND PALETTE
+       Computed via color-mix() — CSS Color Level 4.
+       ======================================== */
+    --tui-brand-50:  color-mix(in srgb, var(--tui-brand) 96%, white 4%);
+    --tui-brand-100: color-mix(in srgb, var(--tui-brand) 88%, white 12%);
+    --tui-brand-200: color-mix(in srgb, var(--tui-brand) 76%, white 24%);
+    --tui-brand-300: color-mix(in srgb, var(--tui-brand) 64%, white 36%);
+    --tui-brand-400: color-mix(in srgb, var(--tui-brand) 52%, white 48%);
+    --tui-brand-500: var(--tui-brand);
+    --tui-brand-600: color-mix(in srgb, var(--tui-brand) 40%, black 60%);
+    --tui-brand-700: color-mix(in srgb, var(--tui-brand) 28%, black 72%);
+    --tui-brand-800: color-mix(in srgb, var(--tui-brand) 16%, black 84%);
+    --tui-brand-900: color-mix(in srgb, var(--tui-brand) 8%, black 92%);
+    --tui-brand-fg: oklch(from var(--tui-brand) clamp(0, (var(--tui-contrast-pivot) - l) * 1000, 1) 0 h);
+
+    /* ========================================
+       NAMED COLORS
+       A fixed hue per name; lightness and chroma are inherited from
+       --tui-brand via relative color syntax, so re-theming the brand
+       still shifts the "vibe" of every name without drifting its hue.
+       Orange, yellow and pink floor their lightness — below it they stop
+       reading as their name no matter the brand.
+       Use them through the .tui-tone-<name> classes (70-utilities/tone.css).
+       ======================================== */
+    --tui-red:    oklch(from var(--tui-brand) calc(l * 0.90) calc(c * 1.1) 25deg);
+    --tui-orange: oklch(from var(--tui-brand) max(l, 0.68) calc(c * 1.15) 55deg);
+    --tui-yellow: oklch(from var(--tui-brand) max(l, 0.8) calc(c * 1.0) 85deg);
+    --tui-olive:  oklch(from var(--tui-brand) calc(l * 0.85) calc(c * 0.9) 120deg);
+    --tui-green:  oklch(from var(--tui-brand) calc(l * 0.90) calc(c * 1.1) 150deg);
+    --tui-teal:   oklch(from var(--tui-brand) calc(l * 0.85) calc(c * 1.0) 190deg);
+    --tui-blue:   oklch(from var(--tui-brand) calc(l * 0.95) calc(c * 1.0) 240deg);
+    --tui-violet: oklch(from var(--tui-brand) calc(l * 0.90) calc(c * 1.1) 290deg);
+    --tui-purple: oklch(from var(--tui-brand) calc(l * 0.85) calc(c * 1.15) 320deg);
+    --tui-pink:   oklch(from var(--tui-brand) max(l, 0.66) calc(c * 1.1) 350deg);
+    --tui-brown:  oklch(from var(--tui-brand) calc(l * 0.65) calc(c * 0.55) 60deg);
+    --tui-grey:   var(--tui-neutral);
+    --tui-black:  color-mix(in srgb, var(--tui-neutral) 15%, black 85%);
+
+    /* ========================================
+       SEMANTIC COLORS
+       Each intent is an alias of a named color — positive: green,
+       negative: red, warning: yellow, info: teal — so the two vocabularies
+       always agree.
+
+       Foreground (fg) = black or white, auto-picked by --tui-contrast-pivot
+       for contrast on colored backgrounds.
+       Background (bg) = color on near-white for text-on-pastel usage.
+       ======================================== */
+    --tui-positive:     var(--tui-green);
+    --tui-positive-fg:  oklch(from var(--tui-positive) clamp(0, (var(--tui-contrast-pivot) - l) * 1000, 1) 0 h);
+    --tui-positive-bg:  light-dark(color-mix(in srgb, var(--tui-positive) 2%, white 98%), color-mix(in srgb, var(--tui-positive) 15%, var(--tui-surface-1)));
+    --tui-positive-soft: color-mix(in srgb, var(--tui-positive) 15%, transparent);
+    --tui-positive-edge: color-mix(in srgb, var(--tui-positive) 30%, transparent);
+
+    /* why: readable text ON the tint/soft backgrounds above — darkened in
+       light mode, lightened in dark mode, so it never IS the raw tone. */
+    --tui-positive-ink: light-dark(oklch(from var(--tui-positive) min(l, 0.45) c h), oklch(from var(--tui-positive) max(l, 0.8) c h));
+    --tui-negative:     var(--tui-red);
+    --tui-negative-fg:  oklch(from var(--tui-negative) clamp(0, (var(--tui-contrast-pivot) - l) * 1000, 1) 0 h);
+    --tui-negative-bg:  light-dark(color-mix(in srgb, var(--tui-negative) 2%, white 98%), color-mix(in srgb, var(--tui-negative) 15%, var(--tui-surface-1)));
+    --tui-negative-soft: color-mix(in srgb, var(--tui-negative) 15%, transparent);
+    --tui-negative-edge: color-mix(in srgb, var(--tui-negative) 30%, transparent);
+    --tui-negative-ink: light-dark(oklch(from var(--tui-negative) min(l, 0.45) c h), oklch(from var(--tui-negative) max(l, 0.8) c h));
+    --tui-warning:      var(--tui-yellow);
+    --tui-warning-fg:   oklch(from var(--tui-warning) clamp(0, (var(--tui-contrast-pivot) - l) * 1000, 1) 0 h);
+    --tui-warning-bg:   light-dark(color-mix(in srgb, var(--tui-warning) 2%, white 98%), color-mix(in srgb, var(--tui-warning) 15%, var(--tui-surface-1)));
+    --tui-warning-soft: color-mix(in srgb, var(--tui-warning) 15%, transparent);
+    --tui-warning-edge: color-mix(in srgb, var(--tui-warning) 30%, transparent);
+    --tui-warning-ink: light-dark(oklch(from var(--tui-warning) min(l, 0.45) c h), oklch(from var(--tui-warning) max(l, 0.8) c h));
+    --tui-info:         var(--tui-teal);
+    --tui-info-fg:      oklch(from var(--tui-info) clamp(0, (var(--tui-contrast-pivot) - l) * 1000, 1) 0 h);
+    --tui-info-bg:      light-dark(color-mix(in srgb, var(--tui-info) 2%, white 98%), color-mix(in srgb, var(--tui-info) 15%, var(--tui-surface-1)));
+    --tui-info-soft: color-mix(in srgb, var(--tui-info) 15%, transparent);
+    --tui-info-edge: color-mix(in srgb, var(--tui-info) 30%, transparent);
+    --tui-info-ink: light-dark(oklch(from var(--tui-info) min(l, 0.45) c h), oklch(from var(--tui-info) max(l, 0.8) c h));
+    --tui-brand-bg:     light-dark(color-mix(in srgb, var(--tui-brand) 2%, white 98%), color-mix(in srgb, var(--tui-brand) 15%, var(--tui-surface-1)));
+    --tui-brand-soft:   color-mix(in srgb, var(--tui-brand) 15%, transparent);
+    --tui-brand-edge:   color-mix(in srgb, var(--tui-brand) 30%, transparent);
+    --tui-brand-ink:    light-dark(oklch(from var(--tui-brand) min(l, 0.45) c h), oklch(from var(--tui-brand) max(l, 0.8) c h));
+
+    /* ========================================
+       GRADIENTS
+       Each gradient runs from the tone to an explicit *-end colour that
+       the library does NOT declare — until you set --tui-brand-end (or
+       --tui-positive-end …) the gradient resolves to the flat tone.
+       ======================================== */
+    --tui-brand-gradient:    linear-gradient(135deg, var(--tui-brand), var(--tui-brand-end, var(--tui-brand)));
+    --tui-positive-gradient: linear-gradient(135deg, var(--tui-positive), var(--tui-positive-end, var(--tui-positive)));
+    --tui-negative-gradient: linear-gradient(135deg, var(--tui-negative), var(--tui-negative-end, var(--tui-negative)));
+    --tui-warning-gradient:  linear-gradient(135deg, var(--tui-warning), var(--tui-warning-end, var(--tui-warning)));
+    --tui-info-gradient:     linear-gradient(135deg, var(--tui-info), var(--tui-info-end, var(--tui-info)));
+    --tui-neutral-gradient:  linear-gradient(135deg, var(--tui-neutral), var(--tui-neutral-end, var(--tui-neutral)));
+
+    /* ========================================
+       AVATAR PALETTE
+       Six fixed hues, all dark enough for white initials. The app picks
+       .tui-avatar-1 … .tui-avatar-6 (e.g. hashed from the user id).
+       ======================================== */
+    --tui-avatar-1: #2563eb;
+    --tui-avatar-2: #c2410c;
+    --tui-avatar-3: #0f766e;
+    --tui-avatar-4: #be185d;
+    --tui-avatar-5: #4d7c0f;
+    --tui-avatar-6: #7c3aed;
+
+    /* ========================================
+       NEUTRAL PALETTE (grays)
+       Darkened for WCAG AA contrast compliance.
+       ======================================== */
+    --tui-neutral: #6b7280;
+    --tui-neutral-50:  color-mix(in srgb, var(--tui-neutral) 98%, white 2%);
+    --tui-neutral-100: color-mix(in srgb, var(--tui-neutral) 95%, white 5%);
+    --tui-neutral-200: color-mix(in srgb, var(--tui-neutral) 90%, white 10%);
+    --tui-neutral-300: color-mix(in srgb, var(--tui-neutral) 85%, white 15%);
+    --tui-neutral-400: color-mix(in srgb, var(--tui-neutral) 72%, white 28%);
+    --tui-neutral-500: var(--tui-neutral);
+    --tui-neutral-600: color-mix(in srgb, var(--tui-neutral) 48%, black 52%);
+    --tui-neutral-700: color-mix(in srgb, var(--tui-neutral) 36%, black 64%);
+    --tui-neutral-800: color-mix(in srgb, var(--tui-neutral) 24%, black 76%);
+    --tui-neutral-900: color-mix(in srgb, var(--tui-neutral) 12%, black 88%);
+    --tui-neutral-bg:   light-dark(color-mix(in srgb, var(--tui-neutral) 2%, white 98%), color-mix(in srgb, var(--tui-neutral) 15%, var(--tui-surface-1)));
+    --tui-neutral-soft: color-mix(in srgb, var(--tui-neutral) 15%, transparent);
+    --tui-neutral-edge: color-mix(in srgb, var(--tui-neutral) 30%, transparent);
+    --tui-neutral-ink:  light-dark(oklch(from var(--tui-neutral) min(l, 0.45) c h), oklch(from var(--tui-neutral) max(l, 0.8) c h));
+
+    /* why: SVG data URIs can't read custom properties, so this bakes in the
+       --tui-neutral hex literally — keep the fill in sync with --tui-neutral
+       by hand if that ever changes. */
+    --tui-icon-chevron: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%236b7280' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+
+    /* ========================================
+       SURFACE COLORS
+       ======================================== */
+    --tui-surface-0: light-dark(#fff, color-mix(in srgb, var(--tui-neutral) 8%, black 92%));
+    --tui-surface-1: light-dark(color-mix(in srgb, var(--tui-neutral) 2%, white 98%), color-mix(in srgb, var(--tui-neutral) 12%, black 88%));
+    --tui-surface-2: light-dark(color-mix(in srgb, var(--tui-neutral) 5%, white 95%), color-mix(in srgb, var(--tui-neutral) 16%, black 84%));
+    --tui-surface-3: light-dark(color-mix(in srgb, var(--tui-neutral) 10%, white 90%), color-mix(in srgb, var(--tui-neutral) 22%, black 78%));
+    --tui-surface-4: light-dark(color-mix(in srgb, var(--tui-neutral) 15%, white 85%), color-mix(in srgb, var(--tui-neutral) 28%, black 72%));
+
+    /* ========================================
+       TEXT COLORS
+       ======================================== */
+    --tui-text-1: light-dark(color-mix(in srgb, var(--tui-neutral) 12%, black 88%), color-mix(in srgb, var(--tui-neutral) 25%, white 75%));
+    --tui-text-2: light-dark(color-mix(in srgb, var(--tui-neutral) 36%, black 64%), color-mix(in srgb, var(--tui-neutral) 50%, white 50%));
+    --tui-text-3: light-dark(color-mix(in srgb, var(--tui-neutral) 56%, black 44%), color-mix(in srgb, var(--tui-neutral) 68%, white 32%));
+    --tui-text-inverse: #fff;
+
+    /* ========================================
+       BORDERS
+       ======================================== */
+    --tui-border: light-dark(color-mix(in srgb, var(--tui-neutral) 15%, white 85%), color-mix(in srgb, var(--tui-neutral) 22%, black 78%));
+    --tui-border-strong: light-dark(color-mix(in srgb, var(--tui-neutral) 25%, white 75%), color-mix(in srgb, var(--tui-neutral) 30%, black 70%));
+    --tui-border-focus: var(--tui-brand);
+
+    /* ========================================
+       FOCUS
+       ======================================== */
+    --tui-focus-ring: color-mix(in srgb, var(--tui-brand) 30%, transparent);
+    --tui-focus-ring-strong: var(--tui-brand);
+    --tui-focus-ring-width: 2px;
+    --tui-focus-halo-width: 3px;
+
+    /* ========================================
+       SHADOWS
+       ======================================== */
+
+    /* why: light-dark() accepts only <color>, so the colour is the token and the
+       offsets wrap it — a light-dark() shadow list computes to `none`. */
+    --tui-shadow-color-sm: light-dark(color-mix(in srgb, var(--tui-neutral) 8%, transparent), color-mix(in srgb, black 30%, transparent));
+    --tui-shadow-color-md: light-dark(color-mix(in srgb, var(--tui-neutral) 10%, transparent), color-mix(in srgb, black 35%, transparent));
+    --tui-shadow-color-lg: light-dark(color-mix(in srgb, var(--tui-neutral) 12%, transparent), color-mix(in srgb, black 40%, transparent));
+    --tui-shadow-color-xl: light-dark(color-mix(in srgb, var(--tui-neutral) 15%, transparent), color-mix(in srgb, black 45%, transparent));
+    --tui-shadow-sm: 0 1px 2px var(--tui-shadow-color-sm);
+    --tui-shadow-md: 0 4px 6px var(--tui-shadow-color-md);
+    --tui-shadow-lg: 0 10px 15px var(--tui-shadow-color-lg);
+    --tui-shadow-xl: 0 20px 25px var(--tui-shadow-color-xl);
+
+    /* ========================================
+       HIGH CONTRAST OVERRIDES
+       Consumed by 80-themes/high-contrast.css under
+       @media (prefers-contrast: more) — kept as flat literals
+       here (not color-mix()) since prefers-contrast: more wants
+       guaranteed max-contrast black/white/gray, not a brand-derived mix;
+       light-dark() keeps a dark-scheme user dark.
+       ======================================== */
+    --tui-hc-text-1: light-dark(#000, #fff);
+    --tui-hc-text-2: light-dark(#1a1a1a, #e6e6e6);
+    --tui-hc-text-3: light-dark(#333, #ccc);
+    --tui-hc-surface-0: light-dark(#fff, #000);
+    --tui-hc-surface-1: light-dark(#f5f5f5, #111);
+    --tui-hc-surface-2: light-dark(#eee, #1a1a1a);
+    --tui-hc-border: light-dark(#000, #fff);
+  }

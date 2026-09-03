@@ -1,0 +1,11 @@
+<ul class="tui-listbox tui-max-w-sm" role="listbox" aria-multiselectable="true" aria-label="Toppings" id="listbox-multi">
+  <li class="tui-option" role="option" aria-selected="true">Olives</li>
+  <li class="tui-option" role="option">Mushrooms</li>
+  <li class="tui-option" role="option" aria-selected="true">Peppers</li>
+</ul>
+<script>
+  document.getElementById('listbox-multi').addEventListener('click', (event) => {
+    const option = event.target.closest('.tui-option');
+    if (option) option.setAttribute('aria-selected', option.getAttribute('aria-selected') !== 'true');
+  });
+</script>

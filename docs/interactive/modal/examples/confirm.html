@@ -1,0 +1,14 @@
+<div class="tui-flex tui-flex-wrap tui-gap-2">
+  <button class="tui-button tui-button-error" commandfor="modal-confirm-delete" command="show-modal">Delete project…</button>
+  <dialog class="tui-modal" id="modal-confirm-delete" aria-labelledby="modal-confirm-delete-title">
+    <form method="dialog" class="tui-modal-header">
+      <h3 class="tui-m-0" id="modal-confirm-delete-title">Delete project?</h3>
+      <button class="tui-close" aria-label="Close"></button>
+    </form>
+    <div class="tui-modal-body"><p class="tui-m-0">This removes the project and its history. It cannot be undone.</p></div>
+    <form method="dialog" class="tui-modal-footer">
+      <button class="tui-button">Cancel</button>
+      <button class="tui-button tui-button-error" value="delete">Delete</button>
+    </form>
+  </dialog>
+</div>

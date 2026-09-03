@@ -1,0 +1,24 @@
+/* Torque UI — Sheet
+ * [popover].tui-sheet — a non-modal floating surface centred near the top of the viewport.
+ * Opened with a popovertarget button; light-dismiss and Escape are native popover behaviour.
+ */
+
+[popover].tui-sheet {
+  position: fixed;
+  inset: var(--tui-sheet-inset-block, 10vh) auto auto 50%;
+  translate: -50% 0;
+  inline-size: min(var(--tui-sheet-inline-size, 54rem), calc(100% - 2 * var(--tui-spacing-4)));
+  max-block-size: calc(100dvh - 2 * var(--tui-sheet-inset-block, 10vh));
+  overflow: auto;
+  margin: 0;
+  padding: 0;
+  border: 1px solid var(--tui-border);
+  border-radius: var(--tui-radius-xl);
+  background-color: var(--tui-surface-0);
+  color: var(--tui-text-1);
+  box-shadow: var(--tui-shadow-xl);
+}
+
+.tui-sheet::backdrop {
+  background-color: var(--tui-sheet-backdrop, rgb(0 0 0 / 0.4));
+}

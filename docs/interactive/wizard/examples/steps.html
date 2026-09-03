@@ -1,0 +1,37 @@
+<form class="tui-wizard">
+  <div class="tui-steps">
+    <div class="tui-step"><span class="tui-step-number">1</span><span class="tui-step-label">Account</span></div>
+    <div class="tui-step"><span class="tui-step-number">2</span><span class="tui-step-label">Profile</span></div>
+    <div class="tui-step"><span class="tui-step-number">3</span><span class="tui-step-label">Review</span></div>
+  </div>
+  <label class="tui-sr-only" for="wizard-steps-1">Step 1: Account</label>
+  <input class="tui-state-input tui-wizard-input" type="radio" name="wizard-steps" id="wizard-steps-1" checked>
+  <section class="tui-wizard-step">
+    <h3 class="tui-m-0">Account</h3>
+    <p class="tui-m-0">Choose a username and password.</p>
+    <div class="tui-wizard-nav">
+      <span></span>
+      <label class="tui-button tui-button-primary" for="wizard-steps-2">Next</label>
+    </div>
+  </section>
+  <label class="tui-sr-only" for="wizard-steps-2">Step 2: Profile</label>
+  <input class="tui-state-input tui-wizard-input" type="radio" name="wizard-steps" id="wizard-steps-2">
+  <section class="tui-wizard-step">
+    <h3 class="tui-m-0">Profile</h3>
+    <p class="tui-m-0">Tell us a little about yourself.</p>
+    <div class="tui-wizard-nav">
+      <label class="tui-button" for="wizard-steps-1">Back</label>
+      <label class="tui-button tui-button-primary" for="wizard-steps-3">Next</label>
+    </div>
+  </section>
+  <label class="tui-sr-only" for="wizard-steps-3">Step 3: Review</label>
+  <input class="tui-state-input tui-wizard-input" type="radio" name="wizard-steps" id="wizard-steps-3">
+  <section class="tui-wizard-step">
+    <h3 class="tui-m-0">Review</h3>
+    <p class="tui-m-0">Confirm your details and submit.</p>
+    <div class="tui-wizard-nav">
+      <label class="tui-button" for="wizard-steps-2">Back</label>
+      <button class="tui-button tui-button-primary" type="button">Submit</button>
+    </div>
+  </section>
+</form>

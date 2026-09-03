@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Torque UI — New Components & CSS Features</title>
+  <link rel="stylesheet" href="/src/tui.css">
+</head>
+<body>
+  <div class="tui-container" style="max-width: 60rem; margin: 0 auto; padding: 2rem;">
+    <h1 style="text-wrap: balance; margin-bottom: 1rem;">New Components &amp; CSS Features</h1>
+    <p style="color: var(--tui-text-2); margin-bottom: 2rem;">
+      Tabler comparison pass + CSS feature Groups 2, 3, 4, 5, 6, 9. All zero-JS.
+    </p>
+
+    <!-- ============ STATUS INDICATOR ============ -->
+    <section style="margin-bottom: 3rem;">
+      <h2 style="font-size: 1.1rem; font-weight: 700; margin-bottom: 1rem;">Status Indicator</h2>
+      <div style="display: flex; gap: 1rem; flex-wrap: wrap; align-items: center;">
+        <span class="tui-status tui-status-online"><span class="tui-status-dot"></span>Online</span>
+        <span class="tui-status tui-status-busy"><span class="tui-status-dot"></span>Busy</span>
+        <span class="tui-status tui-status-away"><span class="tui-status-dot"></span>Away</span>
+        <span class="tui-status tui-status-offline"><span class="tui-status-dot"></span>Offline</span>
+        <span class="tui-status tui-status-done"><span class="tui-status-dot"></span>Done</span>
+        <span class="tui-status tui-status-todo"><span class="tui-status-dot"></span>To-do</span>
+        <span class="tui-status tui-status-error"><span class="tui-status-dot"></span>Error</span>
+        <span class="tui-status tui-status-clear"><span class="tui-status-dot"></span>Clear</span>
+        <span class="tui-status tui-status-online tui-status-pulse"><span class="tui-status-dot"></span>Live</span>
+      </div>
+    </section>
+
+    <!-- ============ EMPTY STATE ============ -->
+    <section style="margin-bottom: 3rem;">
+      <h2 style="font-size: 1.1rem; font-weight: 700; margin-bottom: 1rem;">Empty State</h2>
+      <div class="tui-card" style="padding: 1rem;">
+        <div class="tui-empty">
+          <div class="tui-empty-icon" aria-hidden="true">&#128194;</div>
+          <h3 class="tui-empty-title">No items found</h3>
+          <p class="tui-empty-desc">Try adjusting your search or filter criteria to find what you're looking for.</p>
+          <div class="tui-empty-action">
+            <a href="#" class="tui-button tui-button-primary">Clear filters</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ TIMELINE ============ -->
+    <section style="margin-bottom: 3rem;">
+      <h2 style="font-size: 1.1rem; font-weight: 700; margin-bottom: 1rem;">Timeline</h2>
+      <ul class="tui-timeline" style="max-width: 28rem;">
+        <li class="tui-timeline-item">
+          <span class="tui-timeline-marker" aria-hidden="true">1</span>
+          <div class="tui-timeline-content">
+            <div class="tui-timeline-title">Shipped v1.0</div>
+            <p class="tui-timeline-desc">First stable release of the Torque UI framework.</p>
+            <time class="tui-timeline-time">Jan 2026</time>
+          </div>
+        </li>
+        <li class="tui-timeline-item tui-timeline-item-brand">
+          <span class="tui-timeline-marker" aria-hidden="true">2</span>
+          <div class="tui-timeline-content">
+            <div class="tui-timeline-title">Added dark mode</div>
+            <p class="tui-timeline-desc">Auto dark mode via prefers-color-scheme.</p>
+            <time class="tui-timeline-time">Mar 2026</time>
+          </div>
+        </li>
+        <li class="tui-timeline-item tui-timeline-item-success">
+          <span class="tui-timeline-marker" aria-hidden="true">3</span>
+          <div class="tui-timeline-content">
+            <div class="tui-timeline-title">Tabler comparison pass</div>
+            <p class="tui-timeline-desc">Added status, empty, timeline, toast, placeholder, stepper, color-check, image-check.</p>
+            <time class="tui-timeline-time">Aug 2026</time>
+          </div>
+        </li>
+      </ul>
+    </section>
+
+    <!-- ============ RIBBON ============ -->
+    <section style="margin-bottom: 3rem;">
+      <h2 style="font-size: 1.1rem; font-weight: 700; margin-bottom: 1rem;">Ribbon</h2>
+      <div style="display: flex; gap: 1.5rem; flex-wrap: wrap;">
+        <div class="tui-card" style="position: relative; overflow: hidden; width: 12rem; padding: 1.5rem;">
+          <span class="tui-ribbon">NEW</span>
+          <h3 style="margin: 1.5rem 0 0.75rem; font-size: 1rem;">New Product</h3>
+          <p style="font-size: 0.85rem; color: var(--tui-text-2);">Brand ribbon on card</p>
+        </div>
+        <div class="tui-card" style="position: relative; overflow: hidden; width: 12rem; padding: 1.5rem;">
+          <span class="tui-ribbon tui-ribbon-success">SALE</span>
+          <h3 style="margin: 1.5rem 0 0.75rem; font-size: 1rem;">Sale Item</h3>
+          <p style="font-size: 0.85rem; color: var(--tui-text-2);">Success ribbon variant</p>
+        </div>
+        <div class="tui-card" style="position: relative; overflow: hidden; width: 12rem; padding: 1.5rem;">
+          <span class="tui-ribbon tui-ribbon-warning">HOT</span>
+          <h3 style="margin: 1.5rem 0 0.75rem; font-size: 1rem;">Hot Deal</h3>
+          <p style="font-size: 0.85rem; color: var(--tui-text-2);">Warning ribbon variant</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ TOAST ============ -->
+    <section style="margin-bottom: 3rem;">
+      <h2 style="font-size: 1.1rem; font-weight: 700; margin-bottom: 1rem;">Toast / Notification</h2>
+      <p style="font-size: 0.85rem; color: var(--tui-text-3); margin: 0 0 1rem;">Fixed bottom-right. Shown inline below for demo (position: fixed in real use).</p>
+      <div style="display: flex; flex-direction: column; gap: 0.75rem; max-width: 22rem;">
+        <div class="tui-toast tui-toast-success" style="position: static;">
+          <span class="tui-toast-icon" aria-hidden="true">&#10003;</span>
+          <div class="tui-toast-content">
+            <span class="tui-toast-title">Success</span>
+            <span class="tui-toast-desc">Your changes have been saved.</span>
+          </div>
+        </div>
+        <div class="tui-toast tui-toast-info" style="position: static;">
+          <span class="tui-toast-icon" aria-hidden="true">i</span>
+          <div class="tui-toast-content">
+            <span class="tui-toast-title">Info</span>
+            <span class="tui-toast-desc">A new version is available.</span>
+          </div>
+        </div>
+        <div class="tui-toast tui-toast-warning" style="position: static;">
+          <span class="tui-toast-icon" aria-hidden="true">!</span>
+          <div class="tui-toast-content">
+            <span class="tui-toast-title">Warning</span>
+            <span class="tui-toast-desc">Storage is almost full.</span>
+          </div>
+        </div>
+        <div class="tui-toast tui-toast-error" style="position: static;">
+          <span class="tui-toast-icon" aria-hidden="true">&#10007;</span>
+          <div class="tui-toast-content">
+            <span class="tui-toast-title">Error</span>
+            <span class="tui-toast-desc">Failed to connect to server.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PLACEHOLDER / SKELETON ============ -->
+    <section style="margin-bottom: 3rem;">
+      <h2 style="font-size: 1.1rem; font-weight: 700; margin-bottom: 1rem;">Placeholder / Skeleton</h2>
+      <div class="tui-card" style="padding: 1.5rem; max-width: 22rem;">
+        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+          <div class="tui-placeholder tui-placeholder-circle" style="width: 3rem; height: 3rem;"></div>
+          <div style="flex: 1;">
+            <div class="tui-placeholder" style="height: 1rem; margin-bottom: 0.5rem;"></div>
+            <div class="tui-placeholder tui-placeholder-sm" style="height: 0.75rem; width: 60%;"></div>
+          </div>
+        </div>
+        <div class="tui-placeholder" style="height: 1rem; margin-bottom: 0.5rem;"></div>
+        <div class="tui-placeholder" style="height: 1rem; width: 85%; margin-bottom: 0.5rem;"></div>
+        <div class="tui-placeholder tui-placeholder-lg" style="height: 5rem; border-radius: var(--tui-radius-md);"></div>
+      </div>
+    </section>
+
+    <!-- ============ STEPPER ============ -->
+    <section style="margin-bottom: 3rem;">
+      <h2 style="font-size: 1.1rem; font-weight: 700; margin-bottom: 1rem;">Stepper (&plusmn; input)</h2>
+      <div style="display: flex; gap: 1.5rem; flex-wrap: wrap; align-items: center;">
+        <div class="tui-stepper">
+          <span class="tui-stepper-btn" aria-hidden="true">&minus;</span>
+          <input class="tui-stepper-input" type="number" value="5" min="0" max="99" aria-label="Quantity">
+          <span class="tui-stepper-btn" aria-hidden="true">+</span>
+        </div>
+        <div class="tui-stepper tui-stepper-sm">
+          <span class="tui-stepper-btn" aria-hidden="true">&minus;</span>
+          <input class="tui-stepper-input" type="number" value="1" min="0" max="10" aria-label="Small quantity">
+          <span class="tui-stepper-btn" aria-hidden="true">+</span>
+        </div>
+        <div class="tui-stepper tui-stepper-lg">
+          <span class="tui-stepper-btn" aria-hidden="true">&minus;</span>
+          <input class="tui-stepper-input" type="number" value="42" min="0" max="999" aria-label="Large quantity">
+          <span class="tui-stepper-btn" aria-hidden="true">+</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ COLOR CHECK ============ -->
+    <section style="margin-bottom: 3rem;">
+      <h2 style="font-size: 1.1rem; font-weight: 700; margin-bottom: 1rem;">Color Check (swatch picker)</h2>
+      <div class="tui-color-check-group">
+        <label class="tui-color-check" title="Indigo">
+          <input class="tui-color-check-input" type="radio" name="brand" value="indigo" checked>
+          <span class="tui-color-check-swatch" style="--tui-swatch: #6366f1;"></span>
+        </label>
+        <label class="tui-color-check" title="Teal">
+          <input class="tui-color-check-input" type="radio" name="brand" value="teal">
+          <span class="tui-color-check-swatch" style="--tui-swatch: #14b8a6;"></span>
+        </label>
+        <label class="tui-color-check" title="Rose">
+          <input class="tui-color-check-input" type="radio" name="brand" value="rose">
+          <span class="tui-color-check-swatch" style="--tui-swatch: #f43f5e;"></span>
+        </label>
+        <label class="tui-color-check" title="Amber">
+          <input class="tui-color-check-input" type="radio" name="brand" value="amber">
+          <span class="tui-color-check-swatch" style="--tui-swatch: #f59e0b;"></span>
+        </label>
+        <label class="tui-color-check" title="Emerald">
+          <input class="tui-color-check-input" type="radio" name="brand" value="emerald">
+          <span class="tui-color-check-swatch" style="--tui-swatch: #10b981;"></span>
+        </label>
+        <label class="tui-color-check" title="Slate">
+          <input class="tui-color-check-input" type="radio" name="brand" value="slate">
+          <span class="tui-color-check-swatch" style="--tui-swatch: #64748b;"></span>
+        </label>
+      </div>
+    </section>
+
+    <!-- ============ IMAGE CHECK ============ -->
+    <section style="margin-bottom: 3rem;">
+      <h2 style="font-size: 1.1rem; font-weight: 700; margin-bottom: 1rem;">Image Check (thumbnail picker)</h2>
+      <div class="tui-image-check-group" style="margin-top: 1rem;">
+        <label class="tui-image-check">
+          <input class="tui-image-check-input" type="radio" name="thumb" value="a" checked>
+          <span class="tui-image-check-frame">
+            <svg width="80" height="80" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Option A">
+              <rect width="80" height="80" fill="#6366f1" rx="8"/>
+              <circle cx="40" cy="30" r="14" fill="white" opacity="0.85"/>
+              <rect x="12" y="50" width="56" height="18" fill="white" opacity="0.6" rx="4"/>
+            </svg>
+          </span>
+          <span class="tui-image-check-label">Option A</span>
+        </label>
+        <label class="tui-image-check">
+          <input class="tui-image-check-input" type="radio" name="thumb" value="b">
+          <span class="tui-image-check-frame">
+            <svg width="80" height="80" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Option B">
+              <rect width="80" height="80" fill="#14b8a6" rx="8"/>
+              <path d="M15 55 L35 30 L55 50 L70 25" stroke="white" stroke-width="4" fill="none" stroke-linecap="round"/>
+            </svg>
+          </span>
+          <span class="tui-image-check-label">Option B</span>
+        </label>
+        <label class="tui-image-check">
+          <input class="tui-image-check-input" type="radio" name="thumb" value="c">
+          <span class="tui-image-check-frame">
+            <svg width="80" height="80" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Option C">
+              <rect width="80" height="80" fill="#f59e0b" rx="8"/>
+              <circle cx="40" cy="40" r="22" fill="none" stroke="white" stroke-width="4"/>
+            </svg>
+          </span>
+          <span class="tui-image-check-label">Option C</span>
+        </label>
+      </div>
+    </section>
+
+    <!-- ============ GLASS / VISUAL (Group 5) ============ -->
+    <section style="margin-bottom: 3rem;">
+      <h2 style="font-size: 1.1rem; font-weight: 700; margin-bottom: 1rem;">Glass &amp; Visual Effects (Group 5)</h2>
+      <div style="display: flex; gap: 1.5rem; flex-wrap: wrap; background: linear-gradient(135deg, #6366f1 0%, #14b8a6 100%); padding: 2rem; border-radius: var(--tui-radius-lg);">
+        <div class="tui-glass-card" style="padding: 1.5rem; width: 12rem;">
+          <h3 style="font-size: 1rem; margin-bottom: 0.75rem;">Glass Card</h3>
+          <p style="font-size: 0.85rem; color: var(--tui-text-2);">backdrop-filter + semi-transparent background</p>
+        </div>
+        <div class="tui-glass" style="padding: 1rem; width: 10rem;">
+          <h3 style="font-size: 0.95rem;">Glass</h3>
+          <p style="font-size: 0.8rem; color: var(--tui-text-2);">Frosted overlay</p>
+        </div>
+        <div style="padding: 1rem; width: 10rem; background-color: color-mix(in srgb, var(--tui-surface-0) 80%, transparent); border-radius: var(--tui-radius-md);">
+          <h3 style="font-size: 0.95rem; margin-bottom: 0.75rem;">Clip Shape</h3>
+          <div class="tui-clip-triangle" style="width: 60px; height: 60px; background: var(--tui-brand);"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CONTAINER QUERY (Group 4) ============ -->
+    <section style="margin-bottom: 3rem;">
+      <h2 style="font-size: 1.1rem; font-weight: 700; margin-bottom: 1rem;">Container Queries (Group 4)</h2>
+      <p style="font-size: 0.9rem; color: var(--tui-text-2); margin-bottom: 1rem;">
+        The card adapts to its container width, not the viewport.
+      </p>
+      <div style="display: flex; gap: 1.5rem; flex-wrap: wrap; align-items: flex-start;">
+        <div class="tui-container-query" style="width: 16rem;">
+          <div class="tui-card" style="padding: 1.5rem;">
+            <h3 style="font-size: 1rem; margin-bottom: 0.75rem;">Wide container</h3>
+            <p style="font-size: 0.85rem; color: var(--tui-text-2);">16rem wide — two columns inside.</p>
+            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.75rem; margin-top: 0.75rem;">
+              <div class="tui-placeholder" style="height: 2rem;"></div>
+              <div class="tui-placeholder" style="height: 2rem;"></div>
+            </div>
+          </div>
+        </div>
+        <div class="tui-container-query" style="width: 11rem;">
+          <div class="tui-card" style="padding: 1.5rem;">
+            <h3 style="font-size: 1rem; margin-bottom: 0.75rem;">Narrow container</h3>
+            <p style="font-size: 0.85rem; color: var(--tui-text-2);">11rem wide — one column inside.</p>
+            <div class="tui-placeholder" style="height: 2rem; margin-top: 0.75rem;"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer style="margin-top: 3rem; padding-top: 1.5rem; border-top: 2px solid var(--tui-border); font-size: 0.85rem; color: var(--tui-text-3);">
+      Torque UI — Tabler comparison + CSS feature Groups 2, 3, 4, 5, 6, 9 — all zero-JS
+    </footer>
+  </div>
+</body>
+</html>

@@ -1,0 +1,36 @@
+/* Torque UI — Label Component
+ * Inline labels and badges.
+ */
+
+
+  .tui-label {
+    display: inline-block;
+    padding: var(--tui-spacing-1) var(--tui-spacing-2);
+    font-size: var(--tui-text-sm);
+    font-weight: var(--tui-font-medium);
+    text-box: trim-both cap alphabetic;
+    color: var(--tui-tone-ink, var(--tui-text-2));
+    background-color: var(--tui-tone-soft, var(--tui-surface-2));
+    border-radius: var(--tui-radius-sm);
+  }
+
+  /* why: the warning/info tones were never wired for labels; setters live
+     here (components layer, after tone.css's leak reset) rather than in
+     70-utilities/tone.css, which is owned elsewhere */
+  .tui-label-warning {
+    --tui-tone: var(--tui-warning);
+    --tui-tone-fg: var(--tui-warning-fg);
+    --tui-tone-soft: var(--tui-warning-soft);
+    --tui-tone-edge: var(--tui-warning-edge);
+    --tui-tone-bg: var(--tui-warning-bg);
+    --tui-tone-ink: var(--tui-warning-ink);
+  }
+
+  .tui-label-info {
+    --tui-tone: var(--tui-info);
+    --tui-tone-fg: var(--tui-info-fg);
+    --tui-tone-soft: var(--tui-info-soft);
+    --tui-tone-edge: var(--tui-info-edge);
+    --tui-tone-bg: var(--tui-info-bg);
+    --tui-tone-ink: var(--tui-info-ink);
+  }

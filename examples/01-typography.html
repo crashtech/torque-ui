@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Torque UI — Typography</title>
+  <link rel="stylesheet" href="/src/tui.css">
+</head>
+<body>
+  <div class="tui-container">
+
+    <section class="tui-card tui-mb-6">
+      <div class="tui-card-header">
+        <h2 class="tui-m-0">Typography</h2>
+      </div>
+      <div class="tui-card-body">
+        <h3 class="tui-mb-3">Headings</h3>
+        <h1>Heading 1 — The cascade is CSS's superpower</h1>
+        <h2>Heading 2 — Your color system should be three variables, not thirty</h2>
+        <h3>Heading 3 — The best CSS is the CSS you don't write</h3>
+        <h4>Heading 4 — Every great website started with a single div</h3>
+        <h5>Heading 5 — CSS is not a programming language, and that's okay</h5>
+        <h6>Heading 6 — The box model is the foundation of everything</h6>
+
+        <div class="tui-divider tui-mt-6 tui-mb-6">Typography</div>
+
+        <h3 class="tui-mb-3">Paragraphs</h3>
+        <p>Normal paragraph text. Torque UI styles native HTML elements out of the box — no classes needed for basic text to look good.</p>
+        <p class="tui-text-sm tui-text-neutral">Small text using the text-sm utility and neutral color utility.</p>
+
+        <div class="tui-divider tui-mt-6 tui-mb-6">Text Styling</div>
+
+        <h3 class="tui-mb-3">Text Weights</h3>
+        <p class="tui-font-normal">Normal weight — the standard CSS font-weight of 400.</p>
+        <p class="tui-font-medium">Medium weight — a subtle bump from normal, great for body text.</p>
+        <p class="tui-font-semibold">Semibold — perfect for emphasis without being bold.</p>
+        <p class="tui-font-bold">Bold — maximum emphasis for key text.</p>
+
+        <div class="tui-divider tui-mt-6 tui-mb-6">Text Transforms</div>
+
+        <h3 class="tui-mb-3">Text Transforms</h3>
+        <p class="tui-uppercase">Uppercase text — all letters capitalized.</p>
+        <p class="tui-lowercase">LOWERCASE TEXT — all letters lowercased.</p>
+        <p class="tui-capitalize">capitalize text — first letter of each word.</p>
+
+        <div class="tui-divider tui-mt-6 tui-mb-6">Special Elements</div>
+
+        <h3 class="tui-mb-3">Blockquote</h3>
+        <blockquote class="tui-mb-4">The best layouts are the ones where the content breathes. — Kevin Powell</blockquote>
+
+        <h3 class="tui-mb-3">Code</h3>
+        <p>Inline code: <code>display: flex</code> is your best friend.</p>
+        <pre class="tui-mb-4"><code>.tui-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+}</code></pre>
+
+        <h3 class="tui-mb-3">Keyboard Key</h3>
+        <p>Press <kbd>Ctrl</kbd> + <kbd>K</kbd> to open the command palette.</p>
+
+        <h3 class="tui-mb-3">Code Block</h3>
+        <pre class="tui-code-block tui-mb-4" data-lang="html"><code>&lt;button class="tui-button tui-button-primary"&gt;Save&lt;/button&gt;</code></pre>
+        <pre class="tui-code-block tui-code-block-lines tui-mb-4" data-lang="css"><code>.tui-grid {</code>
+<code>  display: grid;</code>
+<code>  grid-template-columns: repeat(12, 1fr);</code>
+<code>}</code></pre>
+
+        <h3 class="tui-mb-3">Mark (Highlight)</h3>
+        <p>Use <mark>mark</mark> to highlight important text inline.</p>
+
+        <h3 class="tui-mb-3">Abbreviation</h3>
+        <p>The <abbr title="Cascading Style Sheets">CSS</abbr> specification is maintained by the W3C.</p>
+
+        <h3 class="tui-mb-3">Horizontal Rule</h3>
+        <p>Content above the rule.</p>
+        <hr>
+        <p>Content below the rule.</p>
+
+        <h3 class="tui-mb-3">Subscript & Superscript</h3>
+        <p>H<sub>2</sub>O is water. E=mc<sup>2</sup> is the equation.</p>
+      </div>
+    </section>
+
+    <section class="tui-card tui-mb-6" id="weights-extra">
+      <div class="tui-card-header"><h2 class="tui-m-0">Black weight &amp; root size</h2></div>
+      <div class="tui-card-body">
+        <p class="tui-font-black tui-text-2xl tui-m-0" id="font-black-demo">tui-font-black — 800</p>
+        <p class="tui-text-3 tui-mt-2">Set <code>--tui-root-size</code> on <code>:root</code> (e.g. <code>93.75%</code> for a 15px base) to scale the whole rem-based system.</p>
+      </div>
+    </section>
+
+  </div>
+</body>
+</html>

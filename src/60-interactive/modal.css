@@ -1,0 +1,75 @@
+/* Torque UI — Modal
+ * Native <dialog>, opened declaratively with commandfor/command="show-modal"
+ * (no JS). Closing, Escape, focus trap and the ::backdrop are all native
+ * <dialog> behaviour.
+ */
+
+.tui-modal {
+  inline-size: min(100% - 2 * var(--tui-spacing-4), var(--tui-modal-max-inline-size, 32rem));
+  max-block-size: calc(100dvh - 2 * var(--tui-spacing-4));
+  padding: 0;
+  border: 0;
+  color: var(--tui-text-1);
+  background-color: var(--tui-modal-bg, var(--tui-surface-0));
+  border-radius: var(--tui-modal-radius, var(--tui-radius-xl));
+  box-shadow: var(--tui-shadow-xl);
+  opacity: 0;
+  translate: 0 var(--tui-spacing-4);
+  /* stylelint-disable-next-line csstree/validator -- overlay/display transitions with allow-discrete are valid CSS (Chrome 117+/Safari 17.4+/Firefox 129+); csstree's grammar doesn't yet know allow-discrete */
+  transition: opacity var(--tui-duration-normal), translate var(--tui-duration-normal), overlay var(--tui-duration-normal) allow-discrete, display var(--tui-duration-normal) allow-discrete;
+
+  &[open] {
+    opacity: 1;
+    translate: 0;
+  }
+
+  /* why: the veil matches the scheme — a white haze over a light page, a
+     black one over a dark page — and fades with the dialog through the same
+     allow-discrete transition, entering from @starting-style */
+  &::backdrop {
+    background-color: var(--tui-modal-backdrop, light-dark(rgb(255 255 255 / 0.5), rgb(0 0 0 / 0.5)));
+    backdrop-filter: blur(4px);
+    opacity: 0;
+    /* stylelint-disable-next-line csstree/validator -- overlay/display transitions with allow-discrete are valid CSS (Chrome 117+/Safari 17.4+/Firefox 129+); csstree's grammar doesn't yet know allow-discrete */
+    transition: opacity var(--tui-duration-normal), overlay var(--tui-duration-normal) allow-discrete, display var(--tui-duration-normal) allow-discrete;
+  }
+
+  &[open]::backdrop {
+    opacity: 1;
+  }
+}
+
+@starting-style {
+  .tui-modal[open] {
+    opacity: 0;
+    translate: 0 var(--tui-spacing-4);
+  }
+
+  .tui-modal[open]::backdrop {
+    opacity: 0;
+  }
+}
+
+.tui-modal-header,
+.tui-modal-footer {
+  display: flex;
+  align-items: center;
+  gap: var(--tui-spacing-2);
+  margin: 0;
+  padding: var(--tui-spacing-4) var(--tui-spacing-6);
+}
+
+.tui-modal-header {
+  justify-content: space-between;
+  border-block-end: 1px solid var(--tui-border);
+}
+
+.tui-modal-footer {
+  justify-content: flex-end;
+  border-block-start: 1px solid var(--tui-border);
+}
+
+.tui-modal-body {
+  padding: var(--tui-spacing-6);
+  overflow: auto;
+}

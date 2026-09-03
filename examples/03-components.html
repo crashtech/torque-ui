@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Torque UI — Components</title>
+  <link rel="stylesheet" href="/src/tui.css">
+</head>
+<body>
+  <div class="tui-container">
+    <h1 class="tui-sr-only">Components</h1>
+
+
+    <section class="tui-card tui-mb-6">
+      <div class="tui-card-header">
+        <h2 class="tui-m-0">Cards</h2>
+      </div>
+      <div class="tui-card-body">
+        <h3 class="tui-mb-3">Default Card</h3>
+        <div class="tui-card tui-mb-6">
+          <div class="tui-card-header">
+            <h3 class="tui-m-0">Card Title</h3>
+          </div>
+          <div class="tui-card-body">
+            <p>Card body content with automatic spacing between children.</p>
+            <p>Each child gets proper margin spacing without manual intervention.</p>
+          </div>
+          <div class="tui-card-footer">
+            <button class="tui-button tui-button-primary tui-button-sm">Action</button>
+            <button class="tui-button tui-button-secondary tui-button-sm">Cancel</button>
+          </div>
+        </div>
+
+        <h3 class="tui-mb-3">Primary Card</h3>
+        <div class="tui-card tui-card-primary tui-mb-6">
+          <div class="tui-card-header">
+            <h3 class="tui-m-0">Primary Card</h3>
+          </div>
+          <div class="tui-card-body">
+            <p>A card with a branded border and header.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="tui-card tui-mb-6">
+      <div class="tui-card-header">
+        <h2 class="tui-m-0">Alerts</h2>
+      </div>
+      <div class="tui-card-body">
+        <div class="tui-alert tui-alert-success tui-mb-4">
+          <h4>Success!</h4>
+          <p>Your changes have been saved successfully.</p>
+          <!-- Tone-hook leak-reset regression check: this badge carries no
+               tone class of its own and must stay neutral, not inherit the
+               alert's success tone. Zero footprint so it doesn't affect the
+               visible alert. -->
+          <span class="tui-badge tui-tone-leak-probe" aria-hidden="true" style="position:absolute; inline-size:0; block-size:0; overflow:hidden;">probe</span>
+          <!-- Same leak-reset check for bare, unclassed native elements:
+               20-elements/buttons.css and 20-elements/inputs.css read
+               var(--tui-tone) directly on <button>/<input>, so they must
+               also be reset inside a toned ancestor. Zero footprint.
+               aria-hidden keeps these out of axe's accessible-name checks
+               now that the axe scan below is scoped to .tui-alert. -->
+          <button type="button" class="tui-tone-leak-probe-button" aria-hidden="true" tabindex="-1" style="position:absolute; inline-size:0; block-size:0; overflow:hidden;">probe</button>
+          <input type="text" class="tui-tone-leak-probe-input" aria-hidden="true" tabindex="-1" style="position:absolute; inline-size:0; block-size:0; overflow:hidden;">
+          <input class="tui-state-input tui-dismiss" type="checkbox" id="alert-saved-dismiss">
+          <label class="tui-close" for="alert-saved-dismiss" aria-label="Dismiss"></label>
+        </div>
+        <div class="tui-alert tui-alert-error tui-mb-4">
+          <h4>Error!</h4>
+          <p>Something went wrong. Please try again.</p>
+        </div>
+        <div class="tui-alert tui-alert-warning tui-mb-4">
+          <h4>Warning!</h4>
+          <p>Your trial expires in 3 days.</p>
+        </div>
+        <div class="tui-alert tui-alert-info tui-mb-4">
+          <h4>Info!</h4>
+          <p>A new version is available for download.</p>
+        </div>
+
+        <h3 class="tui-mb-3">Callout</h3>
+        <div class="tui-alert tui-alert-callout tui-alert-info">
+          <svg class="tui-icon tui-icon-lg" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"></circle><path d="M12 8v5M12 16h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></svg>
+          <div>
+            <h4>Heads up</h4>
+            <p>Callouts pair a left accent rule with an icon column — combine <code>.tui-alert-callout</code> with any tone class.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="tui-card tui-mb-6">
+      <div class="tui-card-header">
+        <h2 class="tui-m-0">Toasts</h2>
+      </div>
+      <div class="tui-card-body">
+        <div class="tui-toast-stack" style="position: static;">
+          <div class="tui-toast tui-toast-success">
+            <span class="tui-toast-icon" aria-hidden="true">&#10003;</span>
+            <div class="tui-toast-content">
+              <p class="tui-toast-title">Saved</p>
+              <p class="tui-toast-desc">Your changes have been saved. Dismiss it yourself.</p>
+            </div>
+            <input class="tui-state-input tui-dismiss" type="checkbox" id="toast-saved-dismiss">
+            <label class="tui-close" for="toast-saved-dismiss" aria-label="Dismiss"></label>
+          </div>
+          <div class="tui-toast tui-toast-info tui-toast-auto">
+            <span class="tui-toast-icon" aria-hidden="true">i</span>
+            <div class="tui-toast-content">
+              <p class="tui-toast-title">Auto-dismiss</p>
+              <p class="tui-toast-desc">This toast disappears on its own after a delay.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="tui-card tui-mb-6">
+      <div class="tui-card-header">
+        <h2 class="tui-m-0">Badges</h2>
+      </div>
+      <div class="tui-card-body">
+        <div class="tui-flex tui-flex-wrap" style="gap: 1rem;">
+          <span class="tui-badge">Default</span>
+          <span class="tui-badge tui-badge-primary">Primary</span>
+          <span class="tui-badge tui-badge-success">Success</span>
+          <span class="tui-badge tui-badge-error">Error</span>
+          <span class="tui-badge tui-badge-warning">Warning</span>
+          <span class="tui-badge tui-badge-info">Info</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="tui-card tui-mb-6">
+      <div class="tui-card-header">
+        <h2 class="tui-m-0">Avatars</h2>
+      </div>
+      <div class="tui-card-body">
+        <div class="tui-flex tui-flex-wrap tui-mb-6" style="gap: 1rem; align-items: center;">
+          <div class="tui-avatar tui-avatar-sm">AC</div>
+          <div class="tui-avatar">BM</div>
+          <div class="tui-avatar tui-avatar-lg">CK</div>
+          <div class="tui-avatar tui-avatar-xl">JD</div>
+        </div>
+
+        <h3 class="tui-mb-3">Avatar Group</h3>
+        <div class="tui-avatar-group tui-mb-6">
+          <div class="tui-avatar">AC</div>
+          <div class="tui-avatar">BM</div>
+          <div class="tui-avatar">CK</div>
+        </div>
+
+        <h3 class="tui-mb-3">Avatar Status</h3>
+        <div class="tui-flex tui-flex-wrap" style="gap: 1rem; align-items: center;">
+          <span class="tui-avatar-status">
+            <div class="tui-avatar">JD</div>
+            <span class="tui-status-dot tui-status-online"></span>
+          </span>
+          <span class="tui-avatar-status">
+            <div class="tui-avatar">MK</div>
+            <span class="tui-status-dot tui-status-busy"></span>
+          </span>
+        </div>
+      </div>
+    </section>
+
+    <section class="tui-card tui-mb-6">
+      <div class="tui-card-header">
+        <h2 class="tui-m-0">Tags</h2>
+      </div>
+      <div class="tui-card-body">
+        <div class="tui-flex tui-flex-wrap" style="gap: 0.5rem;">
+          <span class="tui-tag">CSS</span>
+          <span class="tui-tag tui-tag-primary">Framework</span>
+          <span class="tui-tag">Zero JS</span>
+          <span class="tui-tag">Modern</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="tui-card tui-mb-6">
+      <div class="tui-card-header">
+        <h2 class="tui-m-0">Chips</h2>
+      </div>
+      <div class="tui-card-body">
+        <div class="tui-flex tui-flex-wrap" style="gap: 0.5rem;">
+          <span class="tui-chip">Default</span>
+          <span class="tui-chip tui-chip-primary">Primary</span>
+          <span class="tui-chip tui-chip-success">Success</span>
+          <span class="tui-chip tui-chip-error">Error</span>
+          <span class="tui-chip">
+            Dismissible
+            <input class="tui-state-input tui-dismiss" type="checkbox" id="chip-dismiss">
+            <label class="tui-close" for="chip-dismiss" aria-label="Dismiss"></label>
+          </span>
+        </div>
+      </div>
+    </section>
+
+    <section class="tui-card tui-mb-6" id="self-driven-components-section">
+      <div class="tui-card-header">
+        <h2 class="tui-m-0">Attribute-driven states <span class="tui-badge">self-driven JS</span></h2>
+      </div>
+      <div class="tui-card-body">
+        <div class="tui-stack tui-max-w-md">
+          <div class="tui-progress" id="progress-attr" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" aria-label="Sync">
+            <div class="tui-progress-bar"></div>
+          </div>
+          <div class="tui-progress-ring" id="progress-ring-attr" role="meter" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" aria-label="Quota"></div>
+          <ul class="tui-list-group" id="list-filtered" aria-label="Filtered results">
+            <li class="tui-list-item" aria-selected="true" id="list-selected-attr">Selected by attribute</li>
+            <li class="tui-list-item" hidden>Filtered out</li>
+            <li class="tui-list-item" aria-disabled="true" id="list-disabled-attr">Disabled by attribute</li>
+            <li class="tui-list-empty">Nothing matches</li>
+          </ul>
+          <div class="tui-popover-static tui-menu" id="menu-states">
+            <a class="tui-menu-item" href="#menu-states" aria-current="page" id="menu-current">Current page</a>
+            <button class="tui-menu-item" type="button" aria-disabled="true" id="menu-disabled">Unavailable</button>
+            <button class="tui-menu-item" type="button">Plain</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="tui-card tui-mb-6">
+      <div class="tui-card-header">
+        <h2 class="tui-m-0">Progress</h2>
+      </div>
+      <div class="tui-card-body">
+        <div class="tui-mb-4">
+          <p class="tui-mb-2">Default (Brand)</p>
+          <div class="tui-progress">
+            <div class="tui-progress-bar" style="width: 65%;"></div>
+          </div>
+        </div>
+        <div class="tui-mb-4">
+          <p class="tui-mb-2">Success</p>
+          <div class="tui-progress tui-progress-success">
+            <div class="tui-progress-bar" style="width: 85%;"></div>
+          </div>
+        </div>
+        <div class="tui-mb-4">
+          <p class="tui-mb-2">Warning</p>
+          <div class="tui-progress tui-progress-warning">
+            <div class="tui-progress-bar" style="width: 45%;"></div>
+          </div>
+        </div>
+        <div class="tui-mb-4">
+          <p class="tui-mb-2">Error</p>
+          <div class="tui-progress tui-progress-error">
+            <div class="tui-progress-bar" style="width: 25%;"></div>
+          </div>
+        </div>
+        <div class="tui-mb-4">
+          <p class="tui-mb-2">Small Size</p>
+          <div class="tui-progress tui-progress-sm">
+            <div class="tui-progress-bar" style="width: 60%;"></div>
+          </div>
+        </div>
+        <div class="tui-mb-4">
+          <p class="tui-mb-2">Large Size</p>
+          <div class="tui-progress tui-progress-lg">
+            <div class="tui-progress-bar" style="width: 70%;"></div>
+          </div>
+        </div>
+        <div class="tui-mb-4">
+          <p class="tui-mb-2">Progress Ring</p>
+          <div class="tui-flex tui-flex-wrap" style="gap: 1.5rem; align-items: center;">
+            <div class="tui-progress-ring" style="--tui-progress-value: 75;"></div>
+            <div class="tui-progress-ring tui-progress-success" style="--tui-progress-value: 90;"></div>
+          </div>
+        </div>
+        <div>
+          <p class="tui-mb-2">Native &lt;progress&gt; and &lt;meter&gt;</p>
+          <progress class="tui-mb-2" value="40" max="100"></progress>
+          <meter value="0.6" min="0" max="1"></meter>
+        </div>
+      </div>
+    </section>
+
+    <section class="tui-card tui-mb-6">
+      <div class="tui-card-header">
+        <h2 class="tui-m-0">Spinners</h2>
+      </div>
+      <div class="tui-card-body">
+        <div class="tui-flex tui-flex-wrap" style="gap: 2rem; align-items: center;">
+          <div class="tui-spinner tui-spinner-sm"></div>
+          <div class="tui-spinner"></div>
+          <div class="tui-spinner tui-spinner-lg"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="tui-card tui-mb-6">
+      <div class="tui-card-header">
+        <h2 class="tui-m-0">Busy</h2>
+      </div>
+      <div class="tui-card-body">
+        <div class="tui-busy" aria-busy="true" style="max-width: 20rem; padding: var(--tui-spacing-4); border: 1px solid var(--tui-border); border-radius: var(--tui-radius-md);">
+          <p>Loading account details…</p>
+          <button class="tui-button tui-button-primary">Save</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="tui-card tui-mb-6">
+      <div class="tui-card-header">
+        <h2 class="tui-m-0">Breadcrumb</h2>
+      </div>
+      <div class="tui-card-body">
+        <nav class="tui-breadcrumb">
+          <a href="#">Home</a>
+          <a href="#">Components</a>
+          <span class="tui-breadcrumb-current">Breadcrumb</span>
+        </nav>
+      </div>
+    </section>
+
+    <section class="tui-card tui-mb-6">
+      <div class="tui-card-header">
+        <h2 class="tui-m-0">Steps</h2>
+      </div>
+      <div class="tui-card-body">
+        <div class="tui-steps">
+          <div class="tui-step tui-step-complete">
+            <div class="tui-step-number">✓</div>
+            <span class="tui-step-label">Account</span>
+          </div>
+          <div class="tui-step tui-step-active">
+            <div class="tui-step-number">2</div>
+            <span class="tui-step-label">Profile</span>
+          </div>
+          <div class="tui-step">
+            <div class="tui-step-number">3</div>
+            <span class="tui-step-label">Verify</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="tui-card tui-mb-6">
+      <div class="tui-card-header">
+        <h2 class="tui-m-0">Pagination</h2>
+      </div>
+      <div class="tui-card-body">
+        <div class="tui-pagination">
+          <a href="#" class="tui-pagination-item">←</a>
+          <a href="#" class="tui-pagination-item">1</a>
+          <a href="#" class="tui-pagination-item">2</a>
+          <a href="#" class="tui-pagination-item tui-pagination-item-active">3</a>
+          <a href="#" class="tui-pagination-item">4</a>
+          <a href="#" class="tui-pagination-item">5</a>
+          <a href="#" class="tui-pagination-item">→</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="tui-card tui-mb-6">
+      <div class="tui-card-header">
+        <h2 class="tui-m-0">Segments</h2>
+      </div>
+      <div class="tui-card-body">
+        <div class="tui-segment tui-mb-4">
+          <h4>Default Segment</h4>
+          <p>A content container with padding and border.</p>
+        </div>
+        <div class="tui-segment tui-segment-primary tui-mb-4">
+          <h4>Primary Segment</h4>
+          <p>A content container with branded border.</p>
+        </div>
+        <div class="tui-segment tui-segment-success tui-mb-4">
+          <h4>Success Segment</h4>
+          <p>A content container with success border.</p>
+        </div>
+        <div class="tui-segment tui-segment-error">
+          <h4>Error Segment</h4>
+          <p>A content container with error border.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="tui-card tui-mb-6">
+      <div class="tui-card-header">
+        <h2 class="tui-m-0">Panel</h2>
+      </div>
+      <div class="tui-card-body">
+        <div class="tui-panel">
+          <div class="tui-panel-header">Panel Header</div>
+          <div class="tui-panel-body">
+            <p>Panel body content with header separation.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="tui-card tui-mb-6">
+      <div class="tui-card-header">
+        <h2 class="tui-m-0">List Group</h2>
+      </div>
+      <div class="tui-card-body">
+        <h3 class="tui-mb-3">Basic List</h3>
+        <ul class="tui-list-group tui-mb-6">
+          <li class="tui-list-item">Inbox <span class="tui-badge">24</span></li>
+          <li class="tui-list-item">Drafts <span class="tui-badge">3</span></li>
+          <li class="tui-list-item">Sent</li>
+        </ul>
+
+        <h3 class="tui-mb-3">Linked List</h3>
+        <div class="tui-list-group tui-mb-6">
+          <a href="#" class="tui-list-item">Dashboard</a>
+          <a href="#" class="tui-list-item">Settings</a>
+          <a href="#" class="tui-list-item tui-list-item-active">Billing</a>
+        </div>
+
+        <h3 class="tui-mb-3">Selectable List</h3>
+        <div class="tui-list-group tui-mb-6">
+          <label class="tui-list-item">
+            <input class="tui-state-input" type="checkbox" checked>
+            Email notifications
+          </label>
+          <label class="tui-list-item">
+            <input class="tui-state-input" type="checkbox">
+            SMS notifications
+          </label>
+          <label class="tui-list-item">
+            <input class="tui-state-input" type="checkbox">
+            Push notifications
+          </label>
+        </div>
+
+        <h3 class="tui-mb-3">Flush List</h3>
+        <p class="tui-mb-3">Add <code>.tui-list-group-flush</code> to drop the outer border and radius — the list bleeds edge-to-edge in a container like this card body.</p>
+        <ul class="tui-list-group tui-list-group-flush" style="margin-inline: calc(-1 * var(--tui-spacing-6));">
+          <li class="tui-list-item">Overview</li>
+          <li class="tui-list-item">Activity</li>
+          <li class="tui-list-item">Settings</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="tui-card tui-mb-6">
+      <div class="tui-card-header">
+        <h2 class="tui-m-0">Tree</h2>
+      </div>
+      <div class="tui-card-body">
+        <ul class="tui-tree">
+          <li>
+            <details class="tui-tree-node">
+              <summary>Documents</summary>
+              <ul>
+                <li><a href="#" class="tui-tree-leaf">Resume.pdf</a></li>
+                <li>
+                  <details class="tui-tree-node" open>
+                    <summary>Projects</summary>
+                    <ul>
+                      <li><a href="#" class="tui-tree-leaf">Torque UI</a></li>
+                      <li><a href="#" class="tui-tree-leaf">Notes.md</a></li>
+                    </ul>
+                  </details>
+                </li>
+              </ul>
+            </details>
+          </li>
+          <li>
+            <details class="tui-tree-node">
+              <summary>Downloads</summary>
+              <ul>
+                <li><a href="#" class="tui-tree-leaf">invoice.pdf</a></li>
+              </ul>
+            </details>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="tui-card tui-mb-6">
+      <div class="tui-card-header">
+        <h2 class="tui-m-0">Divider</h2>
+      </div>
+      <div class="tui-card-body">
+        <p>Content before divider</p>
+        <div class="tui-divider">or</div>
+        <p>Content after divider</p>
+      </div>
+    </section>
+
+    <section class="tui-card tui-mb-6">
+      <div class="tui-card-header">
+        <h2 class="tui-m-0">Labels</h2>
+      </div>
+      <div class="tui-card-body">
+        <div class="tui-flex tui-flex-wrap" style="gap: 1rem;">
+          <span class="tui-label">Default Label</span>
+          <span class="tui-label tui-label-primary">Primary Label</span>
+          <span class="tui-label tui-label-success">Success Label</span>
+          <span class="tui-label tui-label-error">Error Label</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="tui-card tui-mb-6">
+      <div class="tui-card-header">
+        <h2 class="tui-m-0">Flags</h2>
+      </div>
+      <div class="tui-card-body">
+        <div class="tui-flex tui-flex-wrap" style="gap: 0.5rem;">
+          <span class="tui-flag" style="background: #B22234;">US</span>
+          <span class="tui-flag" style="background: #002868;">GB</span>
+          <span class="tui-flag" style="background: #009B3A;">DE</span>
+          <span class="tui-flag" style="background: #FECD00;">JP</span>
+          <span class="tui-flag" style="background: #00965E;">BR</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="tui-card tui-mb-6">
+      <div class="tui-card-header">
+        <h2 class="tui-m-0">Statistics</h2>
+      </div>
+      <div class="tui-card-body">
+        <div class="tui-grid" style="gap: 1rem;">
+          <div class="tui-col-span-3">
+            <div class="tui-statistic tui-statistic-primary">
+              <div class="tui-statistic-value">1,234</div>
+              <div class="tui-statistic-label">Users</div>
+            </div>
+          </div>
+          <div class="tui-col-span-3">
+            <div class="tui-statistic tui-statistic-success">
+              <div class="tui-statistic-value">567</div>
+              <div class="tui-statistic-label">Orders</div>
+            </div>
+          </div>
+          <div class="tui-col-span-3">
+            <div class="tui-statistic tui-statistic-error">
+              <div class="tui-statistic-value">12</div>
+              <div class="tui-statistic-label">Errors</div>
+            </div>
+          </div>
+          <div class="tui-col-span-3">
+            <div class="tui-statistic">
+              <div class="tui-statistic-value">$9.8k</div>
+              <div class="tui-statistic-label">Revenue</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="tui-card tui-mb-6">
+      <div class="tui-card-header">
+        <h2 class="tui-m-0">Navbar</h2>
+      </div>
+      <div class="tui-card-body">
+        <nav class="tui-navbar">
+          <a href="#" class="tui-navbar-brand">Torque UI</a>
+          <button class="tui-button tui-button-icon tui-navbar-toggle" popovertarget="main-nav" aria-label="Menu">☰</button>
+          <ul class="tui-navbar-menu tui-offcanvas-collapse" id="main-nav" popover>
+            <li><a href="#" class="tui-navbar-item tui-navbar-item-active">Home</a></li>
+            <li><a href="#" class="tui-navbar-item">Components</a></li>
+            <li><a href="#" class="tui-navbar-item">Docs</a></li>
+          </ul>
+        </nav>
+      </div>
+    </section>
+
+    <!-- Tone-hook regression probes: .tui-button-success must resolve to
+         the same background-color as --tui-positive. Zero footprint, no
+         effect on any visible section above. -->
+    <section class="tui-card tui-mb-6" id="group2-fixtures">
+      <div class="tui-card-header">
+        <h2 class="tui-m-0">Cards as links, stacks, slots</h2>
+      </div>
+      <div class="tui-card-body">
+        <h3 class="tui-mb-3">Anchor card vs static card</h3>
+        <div class="tui-grid tui-grid-md-2 tui-gap-4 tui-mb-6">
+          <a class="tui-card" href="#" id="anchor-card"><div class="tui-card-body"><p>Anchor card — lifts on hover, text stays text-1.</p></div></a>
+          <div class="tui-card" id="static-card"><div class="tui-card-body"><p>Static card — no hover lift.</p></div></div>
+        </div>
+
+        <h3 class="tui-mb-3">Stack</h3>
+        <div class="tui-stack tui-mb-6" id="alert-stack">
+          <div class="tui-alert tui-alert-info"><p class="tui-m-0">Alerts carry no outer margin; a <code>.tui-stack</code> spaces them.</p></div>
+          <div class="tui-alert tui-alert-warning tui-alert-callout" id="callout-actions">
+            <span aria-hidden="true">⚠</span>
+            <div>
+              <strong>Trial ends in 3 days</strong>
+              <p class="tui-m-0">Add a payment method to keep your workspace.</p>
+              <div class="tui-alert-actions"><button class="tui-button tui-button-sm tui-button-outline">Add card</button><button class="tui-button tui-button-sm tui-button-ghost">Later</button></div>
+            </div>
+          </div>
+        </div>
+
+        <div id="margin-probes" style="position:absolute; inline-size:0; block-size:0; overflow:hidden;" aria-hidden="true">
+          <div class="tui-panel"></div><div class="tui-alert"></div><div class="tui-segment"></div><span class="tui-label">x</span>
+        </div>
+
+        <h3 class="tui-mb-3">Solid badge · toned tags, chips, labels</h3>
+        <div class="tui-flex tui-flex-wrap tui-gap-2 tui-mb-6">
+          <span class="tui-badge tui-badge-solid tui-badge-primary" id="badge-solid">Solid</span>
+          <span class="tui-badge tui-badge-solid tui-badge-success">Solid success</span>
+          <span class="tui-tag tui-tag-success">Tag success</span><span class="tui-tag tui-tag-error">Tag error</span><span class="tui-tag tui-tag-warning">Tag warning</span><span class="tui-tag tui-tag-info" id="tag-info">Tag info</span>
+          <span class="tui-chip tui-chip-warning">Chip warning</span><span class="tui-chip tui-chip-info">Chip info</span>
+          <span class="tui-label tui-label-warning">Label warning</span><span class="tui-label tui-label-info">Label info</span>
+        </div>
+
+        <h3 class="tui-mb-3">Status dot in a table cell</h3>
+        <table class="tui-mb-6"><thead><tr><th>Origin</th><th>Name</th></tr></thead><tbody><tr><td><span class="tui-status-dot tui-status-online" id="dot-in-cell"></span></td><td>WhatsApp</td></tr></tbody></table>
+
+        <h3 class="tui-mb-3">Avatars: md, square, badge, palettes</h3>
+        <div class="tui-flex tui-flex-wrap tui-items-center tui-gap-3 tui-mb-6">
+          <span class="tui-avatar tui-avatar-md" id="avatar-md">MD</span>
+          <span class="tui-avatar tui-avatar-square">SQ</span>
+          <span class="tui-avatar-status"><span class="tui-avatar">AB</span><span class="tui-avatar-badge tui-tone-success" id="avatar-badge">✆</span></span>
+          <span class="tui-avatar tui-avatar-1">1</span><span class="tui-avatar tui-avatar-2">2</span><span class="tui-avatar tui-avatar-3">3</span><span class="tui-avatar tui-avatar-4">4</span><span class="tui-avatar tui-avatar-5">5</span><span class="tui-avatar tui-avatar-6">6</span>
+        </div>
+
+        <h3 class="tui-mb-3">Timeline: toned spine, compact</h3>
+        <ul class="tui-timeline tui-tone-brand tui-timeline-compact tui-mb-6" id="timeline-brand">
+          <li class="tui-timeline-item tui-timeline-item-brand"><span class="tui-timeline-marker">1</span><div class="tui-timeline-content"><div class="tui-timeline-title">Created</div></div></li>
+          <li class="tui-timeline-item"><span class="tui-timeline-marker">2</span><div class="tui-timeline-content"><div class="tui-timeline-title">Reviewed</div></div></li>
+        </ul>
+        <div class="tui-divider tui-tone-warning tui-mb-6" id="divider-warning">Milestone</div>
+
+        <h3 class="tui-mb-3">Statistic delta</h3>
+        <div class="tui-statistic tui-mb-6" style="max-inline-size: 14rem;"><span class="tui-statistic-label">Messages today</span><span class="tui-statistic-value">342</span><span class="tui-statistic-delta tui-statistic-delta-up" id="stat-delta">▲ 12% vs. average</span></div>
+
+        <h3 class="tui-mb-3">List item body · drag handle · section headers</h3>
+        <div class="tui-panel tui-mb-6" id="panel-sections">
+          <div class="tui-panel-header">Stages</div>
+          <ul class="tui-list-group tui-list-group-flush" id="flush-under-header">
+            <li class="tui-list-item"><span class="tui-drag-handle" aria-hidden="true"></span><span class="tui-list-item-body" id="list-item-body"><strong>Lead</strong><br><code>+55 11 98888-1010 · a value long enough to need an ellipsis somewhere</code></span><span class="tui-badge">2</span></li>
+            <li class="tui-list-item"><span class="tui-drag-handle" aria-hidden="true"></span><span class="tui-list-item-body"><strong>Contact</strong></span><span class="tui-badge">2</span></li>
+          </ul>
+          <div class="tui-panel-header" id="panel-second-header">Fields</div>
+          <div class="tui-panel-body"><p>A second header divides the panel.</p></div>
+        </div>
+
+        <h3 class="tui-mb-3">Key/value list</h3>
+        <dl class="tui-kv tui-mb-6" id="kv" style="max-inline-size: 20rem;"><dt>Stage</dt><dd>Negotiation</dd><dt>Value</dt><dd>R$ 48.000</dd><dt>Since</dt><dd>Mar 2024</dd></dl>
+
+        <h3 class="tui-mb-3">Composer</h3>
+        <div class="tui-composer tui-mb-6" id="composer">
+          <div class="tui-composer-toolbar"><div class="tui-button-group"><button class="tui-button tui-button-ghost tui-button-sm"><strong>B</strong></button><button class="tui-button tui-button-ghost tui-button-sm"><em>I</em></button></div><span class="tui-chip tui-chip-primary">Subject ▾</span></div>
+          <textarea class="tui-composer-input" rows="2" aria-label="Message" placeholder="Write a message…"></textarea>
+          <div class="tui-composer-footer"><div class="tui-flex tui-gap-1"><button class="tui-button tui-button-ghost tui-button-sm" aria-label="Attach">📎</button></div><button class="tui-button tui-button-primary tui-button-sm">Send</button></div>
+        </div>
+
+        <h3 class="tui-mb-3">Window chrome · static popover</h3>
+        <div class="tui-window tui-mb-6" id="window" style="max-inline-size: 24rem;">
+          <div class="tui-window-bar"><span class="tui-window-title">Workspace — Torque</span><button class="tui-close" type="button" aria-label="Close window"></button></div>
+          <div class="tui-p-4">Window body</div>
+          <div class="tui-window-footer"><button class="tui-button tui-button-sm" type="button">Cancel</button><button class="tui-button tui-button-primary tui-button-sm" type="button">Save</button></div>
+        </div>
+        <div class="tui-popover-static tui-menu" id="popover-static">
+          <a class="tui-menu-item" href="#">Profile</a>
+          <hr class="tui-menu-divider">
+          <button class="tui-menu-item" type="button">Sign out</button>
+        </div>
+      </div>
+    </section>
+
+    <div style="position:absolute; inline-size:0; block-size:0; overflow:hidden;">
+      <button class="tui-button tui-button-success tui-tone-success-probe">probe</button>
+      <span class="tui-tone-positive-probe" style="color: var(--tui-positive);"></span>
+      <!-- Reference bare <button>/<input>, outside any toned ancestor, for
+           the leak-reset regression check above. -->
+      <button type="button" class="tui-tone-reference-button">probe</button>
+      <input type="text" class="tui-tone-reference-input">
+    </div>
+
+  </div>
+</body>
+</html>

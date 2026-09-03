@@ -1,0 +1,56 @@
+/* Torque UI — Empty State
+ * Centered placeholder for empty lists/panels with optional icon, title, description, and action.
+ * Pure CSS, no JS.
+ */
+
+
+  .tui-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: var(--tui-spacing-12) var(--tui-spacing-6);
+    gap: var(--tui-spacing-4);
+    color: var(--tui-text-2);
+  }
+
+  .tui-empty-icon {
+    inline-size: 3rem;
+    block-size: 3rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--tui-radius-full);
+    background-color: var(--tui-surface-2);
+    color: var(--tui-text-3);
+    font-size: var(--tui-text-2xl);
+  }
+
+  .tui-empty-title {
+    font-size: var(--tui-text-lg);
+    font-weight: var(--tui-font-semibold);
+    color: var(--tui-text-1);
+    margin: 0;
+    text-wrap: balance;
+    text-box: trim-both cap alphabetic;
+  }
+
+  .tui-empty-desc {
+    font-size: var(--tui-text-sm);
+    color: var(--tui-text-3);
+    max-inline-size: 24rem;
+    margin: 0;
+    text-box: trim-both cap alphabetic;
+  }
+
+  /* Compact variant */
+  .tui-empty-sm {
+    padding: var(--tui-spacing-6) var(--tui-spacing-4);
+  }
+
+  .tui-empty-sm .tui-empty-icon {
+    inline-size: 2rem;
+    block-size: 2rem;
+    font-size: var(--tui-text-lg);
+  }

@@ -1,0 +1,40 @@
+/* Torque UI — Form Table
+ * Table with inline form inputs in cells.
+ */
+
+
+  /* why: the label-column hook lives on the table, not the th — a value on
+     the th itself would shadow any override set on the table or an ancestor */
+  .tui-form-table {
+    --tui-form-table-label: calc(var(--tui-spacing-32) + var(--tui-spacing-16) + var(--tui-spacing-2));
+
+    inline-size: 100%;
+    border-collapse: collapse;
+  }
+
+  .tui-form-table th,
+  .tui-form-table td {
+    padding: var(--tui-spacing-3) var(--tui-spacing-4);
+    border-block-end: 1px solid var(--tui-border);
+    vertical-align: middle;
+  }
+
+  .tui-form-table th {
+    font-weight: var(--tui-font-semibold);
+    color: var(--tui-text-1);
+    background-color: var(--tui-surface-1);
+    inline-size: var(--tui-form-table-label);
+    white-space: nowrap;
+  }
+
+  .tui-form-table td {
+    background-color: var(--tui-surface-0);
+  }
+
+  .tui-form-table td input {
+    max-inline-size: 100%;
+  }
+
+  .tui-form-table tbody tr:hover td {
+    background-color: var(--tui-surface-1);
+  }

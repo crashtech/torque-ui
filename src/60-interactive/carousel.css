@@ -1,0 +1,107 @@
+/* Torque UI — Carousel */
+.tui-carousel {
+  position: relative;
+  border-radius: var(--tui-carousel-radius, var(--tui-radius-lg));
+}
+
+.tui-carousel-track {
+  display: flex;
+  gap: var(--tui-carousel-gap, 0);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  overflow: auto hidden;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  border-radius: inherit;
+}
+
+.tui-carousel-slide {
+  flex: 0 0 100%;
+  scroll-snap-align: start;
+}
+
+.tui-carousel-dots {
+  display: flex;
+  justify-content: center;
+  gap: var(--tui-spacing-2);
+  padding-block: var(--tui-spacing-3);
+}
+
+.tui-carousel-dot {
+  inline-size: var(--tui-carousel-dot-size, 0.75rem);
+  block-size: var(--tui-carousel-dot-size, 0.75rem);
+  border-radius: var(--tui-radius-full);
+  background-color: var(--tui-border);
+  transition: background-color var(--tui-duration-fast), scale var(--tui-duration-fast);
+}
+
+.tui-carousel-dot:hover { background-color: var(--tui-border-strong); }
+
+/* why: nothing is :target on first paint, so slide 1's dot is active by default */
+.tui-carousel:not(:has(.tui-carousel-slide:target)) .tui-carousel-dot:first-child,
+.tui-carousel:has(.tui-carousel-slide:nth-child(1):target) .tui-carousel-dot:nth-child(1),
+.tui-carousel:has(.tui-carousel-slide:nth-child(2):target) .tui-carousel-dot:nth-child(2),
+.tui-carousel:has(.tui-carousel-slide:nth-child(3):target) .tui-carousel-dot:nth-child(3),
+.tui-carousel:has(.tui-carousel-slide:nth-child(4):target) .tui-carousel-dot:nth-child(4),
+.tui-carousel:has(.tui-carousel-slide:nth-child(5):target) .tui-carousel-dot:nth-child(5),
+.tui-carousel:has(.tui-carousel-slide:nth-child(6):target) .tui-carousel-dot:nth-child(6),
+.tui-carousel:has(.tui-carousel-slide:nth-child(7):target) .tui-carousel-dot:nth-child(7),
+.tui-carousel:has(.tui-carousel-slide:nth-child(8):target) .tui-carousel-dot:nth-child(8),
+.tui-carousel:has(.tui-carousel-slide:nth-child(9):target) .tui-carousel-dot:nth-child(9),
+.tui-carousel:has(.tui-carousel-slide:nth-child(10):target) .tui-carousel-dot:nth-child(10) {
+  background-color: var(--tui-carousel-dot-active, var(--tui-brand));
+  scale: 1.2;
+}
+
+/* why: unknown pseudo-elements/functions invalidate a selector list, so the native scroll-marker path stays in its own block */
+@supports (selector(::scroll-marker)) {
+  .tui-carousel-dots { display: none; }
+
+  .tui-carousel-track {
+    /* stylelint-disable-next-line csstree/validator -- scroll-marker-group is valid CSS carousel syntax (Chrome 135+); csstree's grammar doesn't yet know it */
+    scroll-marker-group: after;
+  }
+
+  /* stylelint-disable-next-line csstree/validator -- ::scroll-marker-group is a valid CSS carousel pseudo-element (Chrome 135+); csstree's grammar doesn't yet know it */
+  .tui-carousel-track::scroll-marker-group {
+    display: flex;
+    justify-content: center;
+    gap: var(--tui-spacing-2);
+    padding-block: var(--tui-spacing-3);
+  }
+
+  .tui-carousel-slide::scroll-marker {
+    content: '';
+    inline-size: var(--tui-carousel-dot-size, 0.75rem);
+    block-size: var(--tui-carousel-dot-size, 0.75rem);
+    border-radius: var(--tui-radius-full);
+    background-color: var(--tui-border);
+  }
+
+  /* stylelint-disable-next-line csstree/validator -- :target-current is a valid CSS carousel pseudo-class (Chrome 135+); csstree's grammar doesn't yet know it */
+  .tui-carousel-slide::scroll-marker:target-current {
+    background-color: var(--tui-carousel-dot-active, var(--tui-brand));
+  }
+
+  .tui-carousel-track::scroll-button(*) {
+    position: absolute;
+    inset-block: 0;
+    margin-block: auto;
+    inline-size: 2.5rem;
+    border: 0;
+    background-color: color-mix(in srgb, var(--tui-surface-0) 70%, transparent);
+    cursor: pointer;
+  }
+
+  .tui-carousel-track::scroll-button(inline-start) {
+    content: '‹' / 'Previous';
+    inset-inline-start: 0;
+  }
+
+  .tui-carousel-track::scroll-button(inline-end) {
+    content: '›' / 'Next';
+    inset-inline-end: 0;
+  }
+}

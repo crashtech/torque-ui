@@ -1,0 +1,44 @@
+/* Torque UI — Busy Overlay
+ * .tui-busy is a relative wrapper; [aria-busy="true"] is the semantic hook
+ * that dims its content, blocks pointer events, and shows a spinner.
+ */
+
+
+  .tui-busy {
+    position: relative;
+  }
+
+  .tui-busy[aria-busy="true"] {
+    pointer-events: none;
+
+    &::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-color: var(--tui-busy-backdrop, color-mix(in srgb, var(--tui-surface-0) 70%, transparent));
+      border-radius: inherit;
+
+      /* why: stacks the backdrop under the spinner within .tui-busy's own
+         local stacking context only — not a page-level layer, so it does
+         not borrow a tier off the --tui-z-* scale. */
+      z-index: 1;
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      inset-block-start: 50%;
+      inset-inline-start: 50%;
+      translate: -50% -50%;
+      inline-size: 2rem;
+      block-size: 2rem;
+      border: 3px solid var(--tui-border);
+      border-block-start-color: var(--tui-brand);
+      border-radius: var(--tui-radius-full);
+      animation: tui-spin var(--tui-duration-slower) linear infinite;
+
+      /* why: only needs to sit above ::before within this same local
+         stacking context, see above. */
+      z-index: 2;
+    }
+  }

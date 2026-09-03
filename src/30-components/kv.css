@@ -1,0 +1,66 @@
+/* Torque UI — Key/Value List
+ * dl.tui-kv — label/value rows; .tui-kv-stack stacks label above value.
+ */
+
+  /* why: rows keep their natural leading — no cap trimming — so the small
+     row gap plus the half-leading reads as comfortable default spacing */
+  .tui-kv {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: var(--tui-spacing-1) var(--tui-spacing-3);
+    margin: 0;
+    font-size: var(--tui-text-sm);
+
+    & > dt {
+      margin: 0;
+      color: var(--tui-text-3);
+      text-box: normal;
+    }
+
+    & > dd {
+      margin: 0;
+      min-inline-size: 0;
+      text-align: end;
+      font-weight: var(--tui-font-medium);
+      overflow-wrap: anywhere;
+      text-box: normal;
+    }
+  }
+
+  .tui-kv-start > dd {
+    text-align: start;
+  }
+
+  /* why: dt/dd alternate in the DOM, so the nth dt and the nth dd share a
+     row; striping by nth-of-type paints both cells of every other row */
+  .tui-kv-striped {
+    gap: 0;
+
+    & > dt,
+    & > dd {
+      padding: var(--tui-spacing-1) var(--tui-spacing-2);
+    }
+
+    & > dt:nth-of-type(odd),
+    & > dd:nth-of-type(odd) {
+      background-color: var(--tui-surface-1);
+    }
+
+    & > dt:first-of-type,
+    & > dd:first-of-type {
+      border-start-start-radius: var(--tui-radius-md);
+      border-start-end-radius: var(--tui-radius-md);
+    }
+  }
+
+  .tui-kv-stack {
+    grid-template-columns: 1fr;
+    row-gap: 0;
+
+    & > dd {
+      text-align: start;
+      margin-block-end: var(--tui-spacing-2);
+
+      &:last-child { margin-block-end: 0; }
+    }
+  }
