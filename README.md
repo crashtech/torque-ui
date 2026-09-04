@@ -1,4 +1,6 @@
-# Torque UI
+<a href="https://torque.dev/ui">
+  <img src="./docs/assets/images/github.png" alt="Torque UI - Effortless design, plain CSS, no JavaScript, edge and clever usages of HTML" />
+</a>
 
 ## Description
 
