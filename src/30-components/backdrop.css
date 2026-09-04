@@ -1,0 +1,30 @@
+/* Torque UI — Backdrop
+ * .tui-backdrop is the scrim for an overlay of your own — a custom loader,
+ * a lightbox — that is neither a <dialog> nor a popover. It covers the
+ * viewport above sticky chrome, centres whatever it holds, and fades in;
+ * the hidden attribute removes it.
+ */
+
+
+  .tui-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: var(--tui-z-modal);
+    display: grid;
+    place-items: center;
+    padding: var(--tui-spacing-4);
+    background-color: var(--tui-backdrop-bg, light-dark(rgb(255 255 255 / 0.5), rgb(0 0 0 / 0.5)));
+    backdrop-filter: blur(4px);
+    /* stylelint-disable-next-line csstree/validator -- display transitions with allow-discrete are valid CSS (Chrome 117+/Safari 17.4+/Firefox 129+); csstree's grammar doesn't yet know allow-discrete */
+    transition: opacity var(--tui-duration-normal), display var(--tui-duration-normal) allow-discrete;
+
+    &[hidden] {
+      opacity: 0;
+    }
+  }
+
+  @starting-style {
+    .tui-backdrop {
+      opacity: 0;
+    }
+  }

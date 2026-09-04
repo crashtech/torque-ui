@@ -59,15 +59,17 @@
     color: var(--tui-text-3);
   }
 
-  .tui-step-complete .tui-step-label {
+  .tui-step:is(.tui-step-complete, [data-complete]) .tui-step-label {
     color: var(--tui-text-2);
   }
 
-  .tui-step-active .tui-step-number {
+  /* why: aria-current="step" is what the assistive tech reads, so it paints
+     the active step on its own; the class stays as an alias */
+  .tui-step:is(.tui-step-active, [aria-current="step"], [data-selected], .tui-selected) .tui-step-number {
     box-shadow: 0 0 0 var(--tui-focus-halo-width) var(--tui-focus-ring);
   }
 
-  .tui-step-active .tui-step-label {
+  .tui-step:is(.tui-step-active, [aria-current="step"], [data-selected], .tui-selected) .tui-step-label {
     color: var(--tui-text-1);
     font-weight: var(--tui-font-medium);
   }

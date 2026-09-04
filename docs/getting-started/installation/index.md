@@ -1,7 +1,7 @@
 ---
 title: Installation
 section: getting-started
-source: src/tui.css, scripts/build-single.sh
+source: src/tui.css
 description: "Link one stylesheet, set one variable to re-theme, one to change density — no build, no JavaScript."
 ---
 
@@ -21,7 +21,7 @@ Two entry points ship, and they are interchangeable. `dist/tui-all.css` is a sin
 <link rel="stylesheet" href="src/tui.css">
 ```
 
-The bundle is produced by `scripts/build-single.sh`, which reads the `@import … layer(tui.*)` lines out of `src/tui.css`, checks that every file in `src/` is imported at least once, and concatenates them in that hand-chosen order, wrapping each layer's files in one `@layer` block. Equal-specificity rules inside a layer resolve by source order, so the script reproduces the entry point's order rather than globbing the folders — that guarantee is described on the [Cascade Layers](/ui/getting-started/layers/) page.
+The bundle is produced by `npm run build`, which runs `postcss-import` over `src/tui.css`: every `@import … layer(tui.*)` is inlined, in the entry point's order, inside an `@layer` block for its layer. Equal-specificity rules inside a layer resolve by source order, so the bundle keeps the hand-chosen order rather than globbing the folders — that guarantee is described on the [Cascade Layers](/ui/getting-started/layers/) page — and a test checks that every file under `src/` is imported and that the committed bundle is fresh.
 
 ## Re-theming
 

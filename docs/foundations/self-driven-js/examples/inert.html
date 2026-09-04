@@ -1,0 +1,28 @@
+<div class="tui-stack tui-max-w-sm" id="self-driven-inert">
+  <div class="tui-flex tui-gap-2 tui-flex-wrap">
+    <button class="tui-button" type="button" id="self-driven-busy-toggle">Make the card busy</button>
+    <button class="tui-button" type="button" id="self-driven-inert-toggle">Make the card inert</button>
+  </div>
+  <form class="tui-card tui-busy" id="self-driven-inert-card">
+    <div class="tui-card-body tui-stack">
+      <p class="tui-m-0">A card with <a href="#">a link</a> and a control.</p>
+      <input type="text" value="A field" aria-label="Field">
+      <div class="tui-flex tui-gap-2"><button class="tui-button tui-button-primary" type="submit">Save</button><button class="tui-button" type="button">Cancel</button></div>
+    </div>
+  </form>
+</div>
+<script>
+  const card = document.getElementById('self-driven-inert-card');
+  const busyToggle = document.getElementById('self-driven-busy-toggle');
+  const inertToggle = document.getElementById('self-driven-inert-toggle');
+  card.addEventListener('submit', (event) => event.preventDefault());
+  busyToggle.addEventListener('click', () => {
+    const busy = card.getAttribute('aria-busy') !== 'true';
+    card.setAttribute('aria-busy', busy);
+    busyToggle.textContent = busy ? 'Make the card idle' : 'Make the card busy';
+  });
+  inertToggle.addEventListener('click', () => {
+    card.inert = !card.inert;
+    inertToggle.textContent = card.inert ? 'Make the card live' : 'Make the card inert';
+  });
+</script>

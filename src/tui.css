@@ -62,6 +62,9 @@
 @import url('./30-components/kv.css') layer(tui.components);
 @import url('./30-components/window.css') layer(tui.components);
 @import url('./30-components/composer.css') layer(tui.components);
+@import url('./30-components/toolbar.css') layer(tui.components);
+@import url('./30-components/bottom-nav.css') layer(tui.components);
+@import url('./30-components/backdrop.css') layer(tui.components);
 @import url('./40-layout/grid.css') layer(tui.layout);
 @import url('./40-layout/container.css') layer(tui.layout);
 @import url('./40-layout/flexbox.css') layer(tui.layout);
@@ -76,6 +79,7 @@
 @import url('./50-forms/input-group.css') layer(tui.forms);
 @import url('./50-forms/select.css') layer(tui.forms);
 @import url('./50-forms/combobox.css') layer(tui.forms);
+@import url('./50-forms/range.css') layer(tui.forms);
 @import url('./50-forms/checkbox.css') layer(tui.forms);
 @import url('./50-forms/radio.css') layer(tui.forms);
 @import url('./50-forms/switch.css') layer(tui.forms);
@@ -96,6 +100,9 @@
 @import url('./60-interactive/tooltip.css') layer(tui.interactive);
 @import url('./60-interactive/popover.css') layer(tui.interactive);
 @import url('./60-interactive/listbox.css') layer(tui.interactive);
+@import url('./60-interactive/calendar.css') layer(tui.interactive);
+@import url('./60-interactive/speed-dial.css') layer(tui.interactive);
+@import url('./60-interactive/drag.css') layer(tui.interactive);
 @import url('./60-interactive/sheet.css') layer(tui.interactive);
 @import url('./60-interactive/carousel.css') layer(tui.interactive);
 @import url('./60-interactive/rating.css') layer(tui.interactive);

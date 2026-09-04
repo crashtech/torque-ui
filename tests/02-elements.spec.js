@@ -535,3 +535,62 @@ test.describe('Elements — flow margins end at the edges', () => {
     expect(r).toEqual(['0px', '24px', '0px']);
   });
 });
+
+test.describe('Elements — Self-driven JS hooks', () => {
+  test.beforeEach(async ({ page }) => {
+    await page.goto('/examples/02-elements.html');
+    await page.addStyleTag({ content: '*, ::before, ::after { transition: none !important; }' });
+  });
+
+  test('loading button hides its label under a spinner, keeps its width and ignores pointer events', async ({ page }) => {
+    const busy = page.locator('#loading-button');
+    const reference = page.locator('#loading-reference');
+    await expect(busy).toHaveCSS('color', 'rgba(0, 0, 0, 0)');
+    await expect(busy).toHaveCSS('pointer-events', 'none');
+    expect((await busy.boundingBox()).width).toBeCloseTo((await reference.boundingBox()).width, 0);
+    expect(await busy.evaluate((el) => getComputedStyle(el, '::after').animationName)).toBe('tui-spin');
+    await busy.evaluate((el) => el.removeAttribute('aria-busy'));
+    await expect(busy).not.toHaveCSS('color', 'rgba(0, 0, 0, 0)');
+  });
+
+  test('table rows take selection from aria-selected and an expander toggles its detail row', async ({ page }) => {
+    const selected = page.locator('#table-row-selected');
+    const plain = page.locator('#table-rows tbody tr').last();
+    const bg = (l) => l.evaluate((el) => getComputedStyle(el).backgroundColor);
+    expect(await bg(selected)).not.toBe(await bg(plain));
+    await selected.evaluate((el) => el.removeAttribute('aria-selected'));
+    expect(await bg(selected)).toBe(await bg(plain));
+    const expander = page.locator('#table-row-expander');
+    await expect(expander).toHaveCSS('cursor', 'pointer');
+    expect(await expander.evaluate((el) => getComputedStyle(el.cells[0], '::before').rotate)).toBe('none');
+    await expect(page.locator('#table-row-detail')).toBeHidden();
+    await expander.evaluate((el) => { el.setAttribute('aria-expanded', 'true'); el.nextElementSibling.hidden = false; });
+    expect(await expander.evaluate((el) => getComputedStyle(el.cells[0], '::before').rotate)).toBe('90deg');
+    await expect(page.locator('#table-row-detail')).toBeVisible();
+  });
+});
+
+test.describe('Elements — Link styles', () => {
+  test.beforeEach(async ({ page }) => {
+    await page.goto('/examples/02-elements.html');
+    await page.addStyleTag({ content: '*, ::before, ::after { transition: none !important; }' });
+  });
+
+  test('link styles: colour hook, underline shapes and a growing underline on hover', async ({ page }) => {
+    const color = (id) => page.locator(id).evaluate((el) => getComputedStyle(el).color);
+    expect(await color('#link-positive')).not.toBe(await color('#link-brand'));
+    expect(await color('#link-positive')).toBe(await page.locator('#link-positive').evaluate((el) => { el.style.color = 'var(--tui-positive)'; const c = getComputedStyle(el).color; el.style.color = ''; return c; }));
+    expect(await color('#link-inherit')).toBe(await page.locator('#link-inherit').evaluate((el) => getComputedStyle(el.parentElement).color));
+    await expect(page.locator('#link-dotted')).toHaveCSS('text-decoration-style', 'dotted');
+    await expect(page.locator('#link-dashed')).toHaveCSS('text-decoration-style', 'dashed');
+    await expect(page.locator('#link-dotted')).toHaveCSS('text-decoration-line', 'underline');
+    const grow = page.locator('#link-grow');
+    expect(await grow.evaluate((el) => getComputedStyle(el).backgroundSize)).toMatch(/^0% /);
+    await grow.hover();
+    expect(await grow.evaluate((el) => getComputedStyle(el).backgroundSize)).toMatch(/^100% /);
+    await expect(grow).toHaveCSS('text-decoration-line', 'none');
+    const restBrand = await color('#link-brand');
+    await page.locator('#link-brand').hover();
+    expect(await color('#link-brand')).not.toBe(restBrand);
+  });
+});

@@ -51,3 +51,38 @@
 .tui-tree-node[open] > summary::before {
   rotate: 90deg;
 }
+
+/* === Script-driven tree ===
+ * A role="tree" of role="treeitem" rows: aria-expanded on the item turns
+ * the disclosure glyph and shows or hides its role="group" list, and
+ * aria-selected paints the row. */
+.tui-tree-item {
+  display: flex;
+  align-items: center;
+  gap: var(--tui-spacing-2);
+  padding: var(--tui-spacing-1) var(--tui-spacing-2);
+  border-radius: var(--tui-radius-sm);
+  color: var(--tui-text-1);
+  cursor: pointer;
+
+  &:hover { background-color: var(--tui-surface-1); }
+}
+
+[role="treeitem"][aria-expanded] > .tui-tree-item::before {
+  content: '▸';
+  color: var(--tui-text-3);
+  transition: rotate var(--tui-duration-fast);
+}
+
+[role="treeitem"][aria-expanded="true"] > .tui-tree-item::before {
+  rotate: 90deg;
+}
+
+[role="treeitem"][aria-expanded="false"] > [role="group"] {
+  display: none;
+}
+
+[role="treeitem"]:is([aria-selected="true"], [data-selected], .tui-selected) > .tui-tree-item {
+  color: var(--tui-tone-ink, var(--tui-brand-ink));
+  background-color: var(--tui-tone-soft, var(--tui-brand-soft));
+}

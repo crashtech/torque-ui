@@ -28,6 +28,18 @@ Every change of the value animates over `--tui-duration-normal`: the bar transit
 
 > **Browser note.** Typed `attr()` is Chrome 133+. Safari and Firefox keep the property at `0` until it is set directly — the inline style in the other demos on this page — so mirror the value into `style` as well where those browsers matter.
 
+## Loading
+
+`.tui-progress-loading` keeps the bar's value and runs diagonal stripes across the fill, for a task that reports progress but is still going — an upload, a long import. The stripes are a translucent white pattern over the tone colour, so they read on any tone. Under reduced motion they stand still. For a task with no value at all, use indeterminate below.
+
+{% include demo.html file="loading.html" %}
+
+## Indeterminate
+
+`.tui-progress-indeterminate` on a bar sweeps a 40%-wide fill across the track; on a ring it spins a quarter arc. Neither reads a value. Reduced-motion users see a static half-tinted bar instead of the sweep.
+
+{% include demo.html file="indeterminate.html" %}
+
 ## Sizes
 
 `.tui-progress-sm` sets `--tui-progress-thickness` to 0.25rem and `.tui-progress-lg` to 1rem; set the property yourself for any other stroke, on a bar, a ring or a meter. The bar always fills the track's height.
@@ -68,6 +80,8 @@ Every change of the value animates over `--tui-duration-normal`: the bar transit
 |---|---|
 | `.tui-progress` | Track: 100% wide, 0.5rem, `--tui-surface-3`, rounded, `overflow: hidden` |
 | `.tui-progress-bar` | Fill sized from `--tui-progress-value`, coloured by `--tui-tone` or `--tui-brand` |
+| `.tui-progress-loading` | Moving stripes over the fill; the value stays |
+| `.tui-progress-indeterminate` | Sweeping bar or spinning ring with no value |
 | `.tui-progress-sm` / `.tui-progress-lg` | `--tui-progress-thickness` 0.25rem / 1rem |
 | `.tui-progress-success` / `-warning` / `-error` | Tone aliases for the fill |
 | `.tui-progress-ring` | Conic ring, `--tui-progress-ring-size` wide, 0.5rem stroke |

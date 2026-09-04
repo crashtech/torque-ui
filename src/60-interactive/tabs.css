@@ -99,3 +99,39 @@ button.tui-tab {
 /* why: a script-driven panel is shown by default and hidden with the hidden
    attribute, which the utilities layer honours above this rule */
 .tui-tab-panel[role="tabpanel"] { display: block; }
+
+/* === Vertical strip ===
+ * why: the panels are siblings of the tabs, so a grid puts the strip in the
+ * first column and lets the shown panel span the rows beside it */
+.tui-tabs-vertical {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  align-items: start;
+  column-gap: var(--tui-spacing-4);
+
+  &::after { display: none; }
+
+  & > .tui-tab {
+    grid-column: 1;
+    border-block-end: 0;
+    border-inline-end: var(--tui-tab-rule, 2px solid var(--tui-border));
+  }
+
+  & > .tui-tab-input:checked + .tui-tab,
+  & > .tui-tab:is([aria-current], [aria-selected="true"], [data-selected], .tui-selected) {
+    border-inline-end-color: var(--tui-tab-active-color, var(--tui-brand));
+  }
+
+  & > .tui-tab-panel {
+    grid-column: 2;
+    grid-row: 1 / span 40;
+    padding-block: 0;
+  }
+
+  & > .tui-tabs-end {
+    grid-column: 1;
+    margin-inline-start: 0;
+    padding: 0;
+    border: 0;
+  }
+}

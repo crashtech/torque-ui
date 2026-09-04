@@ -1,0 +1,34 @@
+/* Torque UI — Toolbar
+ * .tui-toolbar is a role="toolbar" row of buttons, groups, dividers and a
+ * spacer. Arrow-key roving between its controls is the script's.
+ */
+
+
+  .tui-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--tui-spacing-1);
+    padding: var(--tui-spacing-1);
+    background-color: var(--tui-toolbar-bg, var(--tui-surface-0));
+    border: 1px solid var(--tui-border);
+    border-radius: var(--tui-radius-md);
+  }
+
+  .tui-toolbar-group {
+    display: flex;
+    align-items: center;
+    gap: var(--tui-spacing-1);
+  }
+
+  .tui-toolbar-divider {
+    align-self: stretch;
+    inline-size: 1px;
+    margin: var(--tui-spacing-1);
+    background-color: var(--tui-border);
+    border: 0;
+  }
+
+  .tui-toolbar-spacer {
+    flex: 1;
+  }

@@ -1,0 +1,39 @@
+<div class="tui-board" id="drag-board">
+  <section class="tui-board-column">
+    <header class="tui-board-header">To do</header>
+    <div class="tui-board-body">
+      <article class="tui-card" draggable="true"><div class="tui-card-body">Write the brief</div></article>
+      <article class="tui-card" draggable="true"><div class="tui-card-body">Pick a venue</div></article>
+    </div>
+  </section>
+  <section class="tui-board-column">
+    <header class="tui-board-header">Doing</header>
+    <div class="tui-board-body">
+      <article class="tui-card" draggable="true"><div class="tui-card-body">Book the caterer</div></article>
+    </div>
+  </section>
+</div>
+<script>
+  const board = document.getElementById('drag-board');
+  let dragged = null;
+  const clear = () => board.querySelectorAll('[data-drop-target], [data-drop]').forEach((el) => { el.removeAttribute('data-drop-target'); el.removeAttribute('data-drop'); });
+  board.addEventListener('dragstart', (event) => { dragged = event.target.closest('.tui-card'); dragged.setAttribute('data-dragging', ''); });
+  board.addEventListener('dragend', () => { dragged?.removeAttribute('data-dragging'); clear(); dragged = null; });
+  board.addEventListener('dragover', (event) => {
+    const column = event.target.closest('.tui-board-column');
+    if (!column) return;
+    event.preventDefault();
+    clear();
+    column.setAttribute('data-drop-target', '');
+    const card = event.target.closest('.tui-card');
+    if (card && card !== dragged) card.setAttribute('data-drop', event.offsetY < card.offsetHeight / 2 ? 'before' : 'after');
+  });
+  board.addEventListener('drop', (event) => {
+    event.preventDefault();
+    const card = event.target.closest('.tui-card');
+    const body = event.target.closest('.tui-board-column')?.querySelector('.tui-board-body');
+    if (card && card !== dragged) card.insertAdjacentElement(card.dataset.drop === 'before' ? 'beforebegin' : 'afterend', dragged);
+    else if (body) body.append(dragged);
+    clear();
+  });
+</script>

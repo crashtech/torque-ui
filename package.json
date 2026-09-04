@@ -1,4 +1,47 @@
 {
+  "name": "torque-ui",
+  "version": "0.1.0",
+  "description": "Zero-JavaScript CSS framework: no build, no SCSS, no runtime. Native HTML does the interactivity, one variable re-themes everything, and every state your own script sets is already styled.",
+  "keywords": [
+    "css",
+    "css-framework",
+    "no-build",
+    "zero-javascript",
+    "design-system",
+    "cascade-layers",
+    "popover",
+    "dark-mode",
+    "accessibility",
+    "ui-components"
+  ],
+  "homepage": "https://torque.dev/ui",
+  "bugs": {
+    "url": "https://github.com/crashtech/torque-ui/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/crashtech/torque-ui.git"
+  },
+  "license": "MIT",
+  "author": "Carlos Silva <me@carlosfsilva.com>",
+  "files": [
+    "dist/tui-all.css",
+    "src/"
+  ],
+  "main": "dist/tui-all.css",
+  "style": "dist/tui-all.css",
+  "unpkg": "dist/tui-all.css",
+  "jsdelivr": "dist/tui-all.css",
+  "exports": {
+    ".": "./dist/tui-all.css",
+    "./tui.css": "./src/tui.css",
+    "./dist/*": "./dist/*",
+    "./src/*": "./src/*",
+    "./package.json": "./package.json"
+  },
+  "sideEffects": [
+    "*.css"
+  ],
   "scripts": {
     "start": "node test-server.mjs",
     "test": "playwright test",
@@ -9,15 +52,18 @@
     "test:visual:update": "playwright test tests/visual.spec.js --update-snapshots",
     "lint:css": "stylelint \"src/**/*.css\"",
     "lint:css:fix": "stylelint \"src/**/*.css\" --fix",
-    "audit:css": "bash scripts/audit-css.sh",
-    "build": "bash scripts/build-single.sh",
-    "postinstall": "playwright install chromium"
+    "build": "postcss src/tui.css -u postcss-import --no-map -o dist/tui-all.css",
+    "pretest": "playwright install chromium",
+    "prepack": "npm run build"
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.13.0",
     "@playwright/test": "^1.62.1",
     "axe-playwright": "^2.2.2",
     "playwright": "^1.62.1",
+    "postcss": "^8.5.28",
+    "postcss-cli": "^11.0.1",
+    "postcss-import": "^17.0.0",
     "stylelint": "^17.14.1",
     "stylelint-config-standard": "^40.0.0",
     "stylelint-csstree-validator": "^4.0.0",

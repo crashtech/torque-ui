@@ -1,0 +1,18 @@
+<div class="tui-stack tui-max-w-md">
+  <div class="tui-steps" id="steps-attribute">
+    <div class="tui-step" data-complete><div class="tui-step-number">✓</div><span class="tui-step-label">Account</span></div>
+    <div class="tui-step" aria-current="step"><div class="tui-step-number">2</div><span class="tui-step-label">Profile</span></div>
+    <div class="tui-step"><div class="tui-step-number">3</div><span class="tui-step-label">Verify</span></div>
+  </div>
+  <div><button class="tui-button" type="button" id="steps-attribute-next">Next step</button></div>
+</div>
+<script>
+  document.getElementById('steps-attribute-next').addEventListener('click', () => {
+    const steps = [...document.querySelectorAll('#steps-attribute .tui-step')];
+    const current = steps.findIndex((step) => step.hasAttribute('aria-current'));
+    if (current === steps.length - 1) return;
+    steps[current].removeAttribute('aria-current');
+    steps[current].setAttribute('data-complete', '');
+    steps[current + 1].setAttribute('aria-current', 'step');
+  });
+</script>

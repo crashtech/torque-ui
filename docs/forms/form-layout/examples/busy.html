@@ -1,0 +1,15 @@
+<form class="tui-form tui-max-w-sm" id="form-layout-busy">
+  <div class="tui-field"><label for="form-layout-busy-email">Email</label><input id="form-layout-busy-email" type="email" value="marina@example.com"></div>
+  <div class="tui-flex tui-gap-2">
+    <button class="tui-button tui-button-primary" type="submit">Save</button>
+    <button class="tui-button" type="button">Cancel</button>
+  </div>
+</form>
+<script>
+  const form = document.getElementById('form-layout-busy');
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    form.setAttribute('aria-busy', 'true');
+    setTimeout(() => form.removeAttribute('aria-busy'), 2000);
+  });
+</script>

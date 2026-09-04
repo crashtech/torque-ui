@@ -21,6 +21,10 @@ The backdrop inherits the wrapper's `border-radius`, so putting the class straig
 
 {% include demo.html file="card.html" %}
 
+## Buttons and forms
+
+The same attribute on a `<button>` shows the [loading spinner](/ui/components/buttons/), and on a `<form>` or `<fieldset>` the [busy form](/ui/forms/form-layout/) look — no wrapper needed there.
+
 ## Custom properties
 
 | Property | Default | Effect |

@@ -13,7 +13,7 @@ Torque UI stacks its floating surfaces on four named tiers instead of ad-hoc num
 |---|---|---|
 | `--tui-z-sticky` | 200 | Sticky table headers, sticky tabs, the shell header, `.tui-sticky-top`, `.tui-fab`, `.tui-reading-progress` |
 | `--tui-z-dropdown` | 300 | An in-flow `.tui-listbox` under a combobox (a `[popover]` list needs none: it is in the top layer) |
-| `--tui-z-modal` | 500 | Reserved — nothing in the framework reads it, because `<dialog>` and `[popover]` surfaces are painted in the browser's top layer above every `z-index`. Use it for an overlay of your own that has to sit above sticky chrome |
+| `--tui-z-modal` | 500 | `.tui-backdrop`, the scrim for an overlay of your own; `<dialog>` and `[popover]` surfaces need none, they are painted in the browser's top layer above every `z-index` |
 | `--tui-z-tooltip` | 700 | `.tui-tooltip` |
 | `--tui-z-toast` | 800 | `.tui-toast` and `.tui-toast-stack` |
 

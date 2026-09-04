@@ -17,6 +17,14 @@
       transition-duration: 0.01ms;
       scroll-behavior: auto;
     }
+
+    /* why: a single run of the sweep would leave the bar off the track; a
+       static half-tinted bar says "working" without moving */
+    .tui-progress-indeterminate > .tui-progress-bar {
+      inline-size: 100%;
+      opacity: 0.5;
+      animation: none;
+    }
   }
 
   /* === 2. Windows forced-colors (high contrast) mode === */

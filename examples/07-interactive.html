@@ -302,6 +302,98 @@
       </div>
     </section>
 
+    <section class="tui-card tui-mb-6" id="calendar-section">
+      <div class="tui-card-header">
+        <h2 class="tui-m-0">Calendar <span class="tui-badge">self-driven JS</span></h2>
+      </div>
+      <div class="tui-card-body">
+        <div class="tui-calendar" role="group" aria-labelledby="calendar-title" id="calendar-demo">
+          <div class="tui-calendar-header">
+            <button class="tui-button tui-button-ghost tui-button-icon" type="button" aria-label="Previous month">‹</button>
+            <h3 class="tui-calendar-title" id="calendar-title">September 2026</h3>
+            <button class="tui-button tui-button-ghost tui-button-icon" type="button" aria-label="Next month">›</button>
+          </div>
+          <table class="tui-calendar-grid" role="grid" aria-labelledby="calendar-title">
+            <thead><tr><th abbr="Monday">Mo</th><th abbr="Tuesday">Tu</th><th abbr="Wednesday">We</th><th abbr="Thursday">Th</th><th abbr="Friday">Fr</th><th abbr="Saturday">Sa</th><th abbr="Sunday">Su</th></tr></thead>
+            <tbody>
+              <tr><td><button class="tui-calendar-day" type="button" data-outside>31</button></td><td><button class="tui-calendar-day" type="button">1</button></td><td><button class="tui-calendar-day" type="button">2</button></td><td><button class="tui-calendar-day" type="button" aria-current="date">3</button></td><td><button class="tui-calendar-day" type="button">4</button></td><td><button class="tui-calendar-day" type="button">5</button></td><td><button class="tui-calendar-day" type="button">6</button></td></tr>
+              <tr><td><button class="tui-calendar-day" type="button">7</button></td><td><button class="tui-calendar-day" type="button" data-range="start" aria-selected="true">8</button></td><td><button class="tui-calendar-day" type="button" data-range="middle">9</button></td><td><button class="tui-calendar-day" type="button" data-range="middle">10</button></td><td><button class="tui-calendar-day" type="button" data-range="end" aria-selected="true">11</button></td><td><button class="tui-calendar-day" type="button">12</button></td><td><button class="tui-calendar-day" type="button">13</button></td></tr>
+              <tr><td><button class="tui-calendar-day" type="button">14</button></td><td><button class="tui-calendar-day" type="button">15</button></td><td><button class="tui-calendar-day" type="button" disabled>16</button></td><td><button class="tui-calendar-day" type="button">17</button></td><td><button class="tui-calendar-day" type="button">18</button></td><td><button class="tui-calendar-day" type="button">19</button></td><td><button class="tui-calendar-day" type="button">20</button></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="tui-card tui-mb-6" id="menu-check-section">
+      <div class="tui-card-header">
+        <h2 class="tui-m-0">Menu check items <span class="tui-badge">self-driven JS</span></h2>
+      </div>
+      <div class="tui-card-body">
+        <div class="tui-popover-static tui-menu" role="menu" id="menu-checks">
+          <button class="tui-menu-item" type="button" role="menuitemcheckbox" aria-checked="true" id="menu-check-on">Show grid</button>
+          <button class="tui-menu-item" type="button" role="menuitemcheckbox" aria-checked="false" id="menu-check-off">Snap to grid</button>
+          <hr class="tui-menu-divider">
+          <button class="tui-menu-item" type="button" role="menuitemradio" aria-checked="true" id="menu-radio-on">Light</button>
+          <button class="tui-menu-item" type="button" role="menuitemradio" aria-checked="false">Dark</button>
+          <hr class="tui-menu-divider">
+          <button class="tui-menu-item" type="button" id="menu-desc-item"><span class="tui-menu-item-text">Export<span class="tui-menu-item-desc">PDF, PNG or SVG</span></span></button>
+        </div>
+        <ul class="tui-listbox tui-max-w-sm tui-mt-4" role="listbox" aria-label="Plans" id="listbox-desc">
+          <li class="tui-option" role="option" aria-selected="true"><span class="tui-option-text">Team<span class="tui-option-desc">Up to 10 seats</span></span></li>
+          <li class="tui-option" role="option"><span class="tui-option-text">Business<span class="tui-option-desc">Unlimited seats, SSO</span></span></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="tui-card tui-mb-6" id="vertical-tabs-section">
+      <div class="tui-card-header">
+        <h2 class="tui-m-0">Vertical tabs</h2>
+      </div>
+      <div class="tui-card-body">
+        <div class="tui-tabs tui-tabs-vertical" id="vertical-tabs">
+          <input class="tui-state-input tui-tab-input" type="radio" name="vtabs" id="vtab-general" checked><label class="tui-tab" for="vtab-general">General</label>
+          <div class="tui-tab-panel"><p class="tui-m-0">General settings.</p></div>
+          <input class="tui-state-input tui-tab-input" type="radio" name="vtabs" id="vtab-security"><label class="tui-tab" for="vtab-security">Security</label>
+          <div class="tui-tab-panel"><p class="tui-m-0">Security settings.</p></div>
+          <input class="tui-state-input tui-tab-input" type="radio" name="vtabs" id="vtab-billing"><label class="tui-tab" for="vtab-billing">Billing</label>
+          <div class="tui-tab-panel"><p class="tui-m-0">Billing settings.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="tui-card tui-mb-6" id="backdrop-section">
+      <div class="tui-card-header">
+        <h2 class="tui-m-0">Backdrop <span class="tui-badge">self-driven JS</span></h2>
+      </div>
+      <div class="tui-card-body">
+        <button class="tui-button" type="button" id="backdrop-open">Show backdrop</button>
+        <div class="tui-backdrop" id="backdrop-demo" hidden>
+          <div class="tui-card tui-max-w-sm" role="status"><div class="tui-card-body"><p class="tui-m-0">Working…</p></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="tui-card tui-mb-6" id="inert-section">
+      <div class="tui-card-header">
+        <h2 class="tui-m-0">Inert <span class="tui-badge">self-driven JS</span></h2>
+      </div>
+      <div class="tui-card-body">
+        <div class="tui-flex tui-gap-6 tui-flex-wrap">
+          <div class="tui-stack" inert id="inert-region">
+            <button class="tui-button tui-button-primary" type="button" id="inert-button">Save</button>
+            <a href="#inert-section" id="inert-link">A link</a>
+            <input type="text" value="A field" aria-label="Inert field" id="inert-input">
+          </div>
+          <div class="tui-stack" id="live-region">
+            <button class="tui-button tui-button-primary" type="button" id="live-button">Save</button>
+            <a href="#inert-section" id="live-link">A link</a>
+            <input type="text" value="A field" aria-label="Live field" id="live-input">
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section class="tui-card tui-mb-6">
       <div class="tui-card-header">
         <h2 class="tui-m-0">Link tabs &amp; trailing slot</h2>

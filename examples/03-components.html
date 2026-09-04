@@ -224,6 +224,19 @@
       </div>
     </section>
 
+    <section class="tui-card tui-mb-6" id="indeterminate-section">
+      <div class="tui-card-header">
+        <h2 class="tui-m-0">Indeterminate progress</h2>
+      </div>
+      <div class="tui-card-body">
+        <div class="tui-stack tui-max-w-md">
+          <div class="tui-progress tui-progress-loading" id="progress-loading" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" aria-label="Uploading"><div class="tui-progress-bar" style="--tui-progress-value: 45"></div></div>
+          <div class="tui-progress tui-progress-indeterminate" id="progress-indeterminate" role="progressbar" aria-label="Loading"><div class="tui-progress-bar"></div></div>
+          <div class="tui-progress-ring tui-progress-indeterminate" id="ring-indeterminate" role="progressbar" aria-label="Loading"></div>
+        </div>
+      </div>
+    </section>
+
     <section class="tui-card tui-mb-6">
       <div class="tui-card-header">
         <h2 class="tui-m-0">Progress</h2>
@@ -314,6 +327,40 @@
           <a href="#">Home</a>
           <a href="#">Components</a>
           <span class="tui-breadcrumb-current">Breadcrumb</span>
+        </nav>
+      </div>
+    </section>
+
+    <section class="tui-card tui-mb-6" id="toolbar-section">
+      <div class="tui-card-header">
+        <h2 class="tui-m-0">Toolbar</h2>
+      </div>
+      <div class="tui-card-body">
+        <div class="tui-toolbar" role="toolbar" aria-label="Formatting" id="toolbar-demo">
+          <div class="tui-toolbar-group" role="group" aria-label="Text style">
+            <button class="tui-button tui-button-ghost tui-button-sm" type="button" aria-pressed="true"><strong>B</strong></button>
+            <button class="tui-button tui-button-ghost tui-button-sm" type="button" aria-pressed="false"><em>I</em></button>
+          </div>
+          <hr class="tui-toolbar-divider">
+          <div class="tui-toolbar-group" role="group" aria-label="Alignment">
+            <button class="tui-button tui-button-ghost tui-button-sm" type="button">Left</button>
+            <button class="tui-button tui-button-ghost tui-button-sm" type="button">Center</button>
+          </div>
+          <span class="tui-toolbar-spacer"></span>
+          <button class="tui-button tui-button-primary tui-button-sm" type="button">Publish</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="tui-card tui-mb-6" id="bottom-nav-section">
+      <div class="tui-card-header">
+        <h2 class="tui-m-0">Bottom navigation</h2>
+      </div>
+      <div class="tui-card-body">
+        <nav class="tui-bottom-nav tui-bottom-nav-static" aria-label="Primary" id="bottom-nav-demo">
+          <a class="tui-bottom-nav-item" href="#bottom-nav-demo" aria-current="page"><svg class="tui-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/></svg> Home</a>
+          <a class="tui-bottom-nav-item" href="#bottom-nav-demo"><svg class="tui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 2 22h20z"/></svg> Search</a>
+          <button class="tui-bottom-nav-item" type="button"><svg class="tui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 2 22h20z"/></svg> Profile</button>
         </nav>
       </div>
     </section>
@@ -440,6 +487,19 @@
       </div>
     </section>
 
+    <section class="tui-card tui-mb-6" id="steps-attr-section">
+      <div class="tui-card-header">
+        <h2 class="tui-m-0">Steps by attribute <span class="tui-badge">self-driven JS</span></h2>
+      </div>
+      <div class="tui-card-body">
+        <div class="tui-steps tui-max-w-md" id="steps-attr">
+          <div class="tui-step" data-complete><div class="tui-step-number">✓</div><span class="tui-step-label">Account</span></div>
+          <div class="tui-step" aria-current="step"><div class="tui-step-number">2</div><span class="tui-step-label">Profile</span></div>
+          <div class="tui-step"><div class="tui-step-number">3</div><span class="tui-step-label">Verify</span></div>
+        </div>
+      </div>
+    </section>
+
     <section class="tui-card tui-mb-6">
       <div class="tui-card-header">
         <h2 class="tui-m-0">Tree</h2>
@@ -549,6 +609,26 @@
       </div>
     </section>
 
+    <section class="tui-card tui-mb-6" id="tree-items-section">
+      <div class="tui-card-header">
+        <h2 class="tui-m-0">Script-driven tree <span class="tui-badge">self-driven JS</span></h2>
+      </div>
+      <div class="tui-card-body">
+        <ul class="tui-tree tui-max-w-sm" role="tree" aria-label="Files" id="tree-items">
+          <li role="treeitem" aria-expanded="true" aria-selected="false" id="tree-item-open">
+            <span class="tui-tree-item">Documents</span>
+            <ul role="group">
+              <li role="treeitem" aria-selected="true" id="tree-item-selected"><span class="tui-tree-item">Resume.pdf</span></li>
+              <li role="treeitem" aria-expanded="false" aria-selected="false" id="tree-item-closed">
+                <span class="tui-tree-item">Projects</span>
+                <ul role="group"><li role="treeitem" aria-selected="false"><span class="tui-tree-item">Torque UI</span></li></ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </section>
+
     <section class="tui-card tui-mb-6">
       <div class="tui-card-header">
         <h2 class="tui-m-0">Navbar</h2>
@@ -561,6 +641,35 @@
             <li><a href="#" class="tui-navbar-item tui-navbar-item-active">Home</a></li>
             <li><a href="#" class="tui-navbar-item">Components</a></li>
             <li><a href="#" class="tui-navbar-item">Docs</a></li>
+          </ul>
+        </nav>
+      </div>
+    </section>
+
+    <section class="tui-card tui-mb-6" id="navbar-submenu-section">
+      <div class="tui-card-header">
+        <h2 class="tui-m-0">Navbar submenus <span class="tui-badge">self-driven JS</span></h2>
+      </div>
+      <div class="tui-card-body">
+        <nav class="tui-navbar" id="navbar-submenu" aria-label="Submenus">
+          <a class="tui-navbar-brand" href="#navbar-submenu">Torque</a>
+          <ul class="tui-navbar-menu">
+            <li><button class="tui-navbar-item" type="button" popovertarget="navbar-submenu-products" aria-haspopup="menu" id="navbar-submenu-trigger">Products <span class="tui-caret"></span></button>
+              <div class="tui-popover tui-menu" id="navbar-submenu-products" popover>
+                <a class="tui-menu-item" href="#navbar-submenu">Torque UI</a>
+                <a class="tui-menu-item" href="#navbar-submenu">Torque CLI</a>
+              </div></li>
+            <li><button class="tui-navbar-item" type="button" popovertarget="navbar-submenu-mega" aria-haspopup="menu" id="navbar-mega-trigger">Solutions <span class="tui-caret"></span></button>
+              <div class="tui-popover tui-navbar-mega" id="navbar-submenu-mega" popover>
+                <div><p class="tui-navbar-mega-title">By team</p><div class="tui-menu"><a class="tui-menu-item" href="#navbar-submenu">Design</a><a class="tui-menu-item" href="#navbar-submenu">Engineering</a></div></div>
+                <div><p class="tui-navbar-mega-title">By size</p><div class="tui-menu"><a class="tui-menu-item" href="#navbar-submenu">Startups</a><a class="tui-menu-item" href="#navbar-submenu">Enterprise</a></div></div>
+                <div><p class="tui-navbar-mega-title">Resources</p><div class="tui-menu"><a class="tui-menu-item" href="#navbar-submenu">Docs</a><a class="tui-menu-item" href="#navbar-submenu">Blog</a></div></div>
+              </div></li>
+            <li><button class="tui-navbar-item" type="button" aria-expanded="false" aria-controls="navbar-submenu-inflow" id="navbar-inflow-trigger">Company <span class="tui-caret"></span></button>
+              <div class="tui-navbar-submenu tui-menu" id="navbar-submenu-inflow" hidden>
+                <a class="tui-menu-item" href="#navbar-submenu">About</a>
+                <a class="tui-menu-item" href="#navbar-submenu">Careers</a>
+              </div></li>
           </ul>
         </nav>
       </div>
@@ -661,6 +770,14 @@
         </div>
       </div>
     </section>
+
+    <div class="tui-speed-dial" id="speed-dial">
+      <button class="tui-button tui-button-primary tui-fab" type="button" popovertarget="speed-dial-actions" aria-label="Create">+</button>
+      <div class="tui-speed-dial-actions" id="speed-dial-actions" popover>
+        <button class="tui-button tui-button-icon" type="button" aria-label="New note">N</button>
+        <button class="tui-button tui-button-icon" type="button" aria-label="New task">T</button>
+      </div>
+    </div>
 
     <div style="position:absolute; inline-size:0; block-size:0; overflow:hidden;">
       <button class="tui-button tui-button-success tui-tone-success-probe">probe</button>

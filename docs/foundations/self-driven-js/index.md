@@ -39,6 +39,17 @@ A value the CSS computes from — a progress percentage, a slider position — i
 
 `el.hidden = true` works on every component. The utilities layer carries `[hidden]:not([hidden="until-found"]) { display: none }`, above every component's own `display`, so a script can hide a menu row, a list item, a chip or a tab panel without knowing what the component paints. `hidden="until-found"` is left to the browser, so find-in-page can still reveal it. Filtering a [listbox](/ui/interactive/listbox/) or a [list group](/ui/components/list-group/) is just toggling `hidden` on rows; the empty row appears by CSS when nothing is left.
 
+## Busy and inert <span class="tui-badge">self-driven JS</span>
+
+Two attributes carry loading and blocked states through a subtree. `aria-busy="true"` on a region shows the [busy overlay](/ui/components/busy/) when the region is `.tui-busy`, spins any button it sits on, and puts a [form](/ui/forms/form-layout/) into its submitting look. `inert` removes a subtree from interaction and the accessibility tree but paints nothing on its own, so the framework shows every control and link under it at disabled opacity with a default cursor — a page behind a custom overlay, or a step not yet reached, reads the way it behaves. The card below is a `.tui-busy` form: the first button sets `aria-busy` on it (overlay, dimmed fields, spinning submit), the second sets `inert`.
+
+{% include demo.html file="inert.html" %}
+
+| Selector | Effect |
+|---|---|
+| `[inert]` | Default cursor |
+| `[inert] :is(button, input, select, textarea, a, .tui-button, .tui-menu-item, .tui-option, .tui-tab, .tui-toggle, .tui-chip, .tui-navbar-item, .tui-calendar-day)` | 50% opacity, no shadow, default cursor |
+
 ## Surfaces <span class="tui-badge">self-driven JS</span>
 
 Open and close surfaces are native: a `[popover]` opens from `popovertarget` or `showPopover()`, a `<dialog>` from `commandfor` or `showModal()`; Escape, light-dismiss, the top layer and anchor positioning come with them. Nothing depends on that choice — a [combobox listbox](/ui/forms/select/) without `popover` sits in flow under its field and toggles with `hidden`, and any surface styled here takes the same classes either way.

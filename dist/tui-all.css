@@ -1,8 +1,24 @@
+
 @layer tui.tokens, tui.reboot, tui.elements, tui.components, tui.layout, tui.forms, tui.interactive, tui.utilities, tui.themes;
 
-@layer tui.tokens {
-/* 00-colors.css */
-/* Torque UI — Color System (Single Brand)
+/* Torque UI — Entry Point
+ * 
+ * @layer cascade declaration controls specificity — no !important needed.
+ * Load this single file and everything works.
+ * 
+ * Layer order (lowest to highest priority):
+ *   tokens → reboot → elements → components → layout → forms → interactive → utilities → themes
+ */
+
+/* 1. Declare all layers (order = cascade order) */
+
+/* 2. Import all stylesheets into their respective layers
+ * NOTE: @import with layer() MUST be at the top of the stylesheet, before any rules. */
+
+@layer tui.tokens{
+
+
+  /* Torque UI — Color System (Single Brand)
  *
  * All colors derive from --tui-brand via color-mix() and CSS Color Level 4 functions.
  * Change ONE variable to re-theme the entire framework.
@@ -215,9 +231,12 @@
     --tui-hc-surface-2: light-dark(#eee, #1a1a1a);
     --tui-hc-border: light-dark(#000, #fff);
   }
+}
 
-/* 01-typography.css */
-/* Torque UI — Typography Tokens
+@layer tui.tokens{
+
+
+  /* Torque UI — Typography Tokens
  * Font families, sizes, weights, line heights.
  */
 
@@ -263,9 +282,12 @@
     --tui-tracking-wider: 0.05em;
     --tui-tracking-widest: 0.1em;
   }
+}
 
-/* 02-spacing.css */
-/* Torque UI — Spacing Scale
+@layer tui.tokens{
+
+
+  /* Torque UI — Spacing Scale
  * 4px base unit. All spacing derives from this.
  */
 
@@ -287,9 +309,12 @@
     --tui-spacing-24: 6rem;       /* 96px */
     --tui-spacing-32: 8rem;       /* 128px */
   }
+}
 
-/* 03-radius.css */
-/* Torque UI — Border Radius Scale
+@layer tui.tokens{
+
+
+  /* Torque UI — Border Radius Scale
  */
 
 
@@ -303,9 +328,12 @@
     --tui-radius-3xl: 1.5rem;    /* 24px */
     --tui-radius-full: 9999px;
   }
+}
 
-/* 04-zindex.css */
-/* Torque UI — Z-Index Scale
+@layer tui.tokens{
+
+
+  /* Torque UI — Z-Index Scale
  */
 
 
@@ -316,9 +344,12 @@
     --tui-z-tooltip: 700;
     --tui-z-toast: 800;
   }
+}
 
-/* 05-transitions.css */
-/* Torque UI — Transition Tokens
+@layer tui.tokens{
+
+
+  /* Torque UI — Transition Tokens
  * Duration and easing custom properties for smooth transitions.
  */
 
@@ -332,9 +363,12 @@
     --tui-easing-out: cubic-bezier(0, 0, 0.2, 1);
     --tui-easing-in-out: cubic-bezier(0.4, 0, 0.2, 1);
   }
+}
 
-/* 06-chart.css */
-/* Torque UI — Chart Tokens
+@layer tui.tokens{
+
+
+  /* Torque UI — Chart Tokens
  * Categorical series palette and a muted single-measure colour for
  * hand-authored SVG charts. Six hue families (blue, orange, teal, magenta,
  * olive, purple) chosen so adjacent series stay apart under deuteranopia
@@ -354,12 +388,12 @@
        "the value", never as "series #n" next to a legend */
     --tui-chart-measure: light-dark(color-mix(in srgb, var(--tui-neutral) 70%, black 30%), color-mix(in srgb, var(--tui-neutral) 60%, white 40%));
   }
-
 }
 
-@layer tui.reboot {
-/* reboot.css */
-/* Torque UI — Reboot / Reset
+@layer tui.reboot{
+
+
+  /* Torque UI — Reboot / Reset
  * This layer resets browser defaults and establishes a consistent base.
  * Out-of-the-box defaults: HTML looks good without any classes.
  */
@@ -436,11 +470,10 @@
     outline: var(--tui-focus-ring-width) solid var(--tui-focus-ring-strong);
     outline-offset: 2px;
   }
-
 }
 
-@layer tui.elements {
-/* buttons.css */
+@layer tui.elements{
+
 /* Torque UI — Buttons Element Defaults
  * <button>, <input type="submit/reset/button"> styled by default.
  */
@@ -480,9 +513,12 @@
     pointer-events: none;
   }
 }
+}
 
-/* icons.css */
-/* Torque UI — Icon Convention
+@layer tui.elements{
+
+
+  /* Torque UI — Icon Convention
  * .tui-icon sizes an inline <svg> to the current font-size so icons scale
  * with text and inherit color via fill: currentcolor.
  */
@@ -524,9 +560,12 @@
   :is([aria-expanded="true"], [data-expanded], .tui-expanded) .tui-caret {
     rotate: 180deg;
   }
+}
 
-/* images.css */
-/* Torque UI — Images Element Defaults
+@layer tui.elements{
+
+
+  /* Torque UI — Images Element Defaults
  * <img>, <figure>, <figcaption> styled by default.
  */
 
@@ -547,9 +586,12 @@
     text-align: center;
     margin-block-start: var(--tui-spacing-2);
   }
+}
 
-/* inputs.css */
-/* Torque UI — Inputs Element Defaults
+@layer tui.elements{
+
+
+  /* Torque UI — Inputs Element Defaults
  * <input>, <textarea>, <select> styled by default.
  * Checkbox/radio/range/color/file/submit/reset/button/hidden/image inputs
  * are excluded — each owns its own look (component CSS or a dedicated rule below).
@@ -717,29 +759,80 @@
     border-color: var(--tui-border-focus);
     box-shadow: 0 0 0 var(--tui-focus-halo-width) var(--tui-focus-ring);
   }
+}
 
-/* links.css */
-/* Torque UI — Links Element Defaults
+@layer tui.elements{
+
+
+  /* Torque UI — Links Element Defaults
  * <a> styled by default via :any-link (covers unvisited and visited).
  */
 
 
   /* === Unified link styling via :any-link === */
   :any-link {
-    color: var(--tui-brand);
+    color: var(--tui-link-color, var(--tui-brand));
     text-decoration: none;
-    transition: color var(--tui-duration-fast) var(--tui-easing-out);
+    text-underline-offset: 0.15em;
+    transition: color var(--tui-duration-fast) var(--tui-easing-out), background-size var(--tui-duration-fast) var(--tui-easing-out);
   }
 
   :any-link:hover {
-    color: color-mix(in srgb, var(--tui-brand) 85%, black 15%);
+    color: color-mix(in srgb, var(--tui-link-color, var(--tui-brand)) 85%, black 15%);
     text-decoration: underline;
-    text-underline-offset: 0.15em;
   }
 
   /* Visited links get a subtle desaturation */
   a:visited {
-    color: color-mix(in srgb, var(--tui-brand) 70%, var(--tui-neutral) 30%);
+    color: color-mix(in srgb, var(--tui-link-color, var(--tui-brand)) 70%, var(--tui-neutral) 30%);
+  }
+
+  /* === Colour ===
+   * --tui-link-color is read at rest, on hover (darkened) and when visited
+   * (desaturated); the aliases set it from the semantic tokens */
+  .tui-link-positive { --tui-link-color: var(--tui-positive); }
+
+  .tui-link-negative { --tui-link-color: var(--tui-negative); }
+
+  .tui-link-warning { --tui-link-color: var(--tui-warning); }
+
+  .tui-link-info { --tui-link-color: var(--tui-info); }
+
+  .tui-link-neutral { --tui-link-color: var(--tui-text-2); }
+
+  .tui-link-inherit { --tui-link-color: currentcolor; }
+
+  /* === Underline shape ===
+   * Always underlined, in the given style; hover keeps the shape */
+  .tui-link-underline { text-decoration: underline; }
+
+  .tui-link-dotted { text-decoration: underline dotted; }
+
+  .tui-link-dashed { text-decoration: underline dashed; }
+
+  .tui-link-wavy { text-decoration: underline wavy; }
+
+  .tui-link-double { text-decoration: underline double; }
+
+  /* === Growing underline ===
+   * why: a background bar instead of text-decoration, because only a
+   * background can animate its width from the start edge */
+  .tui-link-grow {
+    padding-block-end: 1px;
+    background-image: linear-gradient(currentcolor, currentcolor);
+    background-repeat: no-repeat;
+    background-position: 0 100%;
+    background-size: 0% var(--tui-link-grow-size, 2px);
+  }
+
+  .tui-link-grow:hover {
+    text-decoration: none;
+    background-size: 100% var(--tui-link-grow-size, 2px);
+  }
+
+  /* why: background-position has no logical keywords */
+  :dir(rtl) .tui-link-grow {
+    background-position: 100% 100%;
   }
 
   /* === Scroll target offset === */
@@ -747,9 +840,12 @@
     scroll-margin-block-start: var(--tui-spacing-8);
     scroll-behavior: smooth;
   }
+}
 
-/* lists.css */
-/* Torque UI — Lists Element Defaults
+@layer tui.elements{
+
+
+  /* Torque UI — Lists Element Defaults
  * <ul>, <ol>, <dl> styled by default.
  */
 
@@ -812,9 +908,12 @@
       margin-block-end: 0;
     }
   }
+}
 
-/* tables.css */
-/* Torque UI — Tables Element Defaults
+@layer tui.elements{
+
+
+  /* Torque UI — Tables Element Defaults
  * <table>, <thead>, <tbody>, <tr>, <th>, <td> styled by default.
  */
 
@@ -899,8 +998,33 @@
   }
 
   /* === Selectable Rows === */
-  .tui-table-selectable tbody tr:has(input:checked) {
+  .tui-table-selectable tbody tr:has(input:checked),
+  tbody tr:is([aria-selected="true"], [data-selected], .tui-selected) {
     background-color: var(--tui-brand-soft);
+  }
+
+  /* === Expandable rows ===
+   * A row carrying aria-expanded turns a glyph in its first cell; the
+   * .tui-table-detail row after it is the script's to show with hidden. */
+  tbody tr[aria-expanded] {
+    cursor: pointer;
+
+    & > td:first-child::before {
+      content: '▸';
+      display: inline-block;
+      margin-inline-end: var(--tui-spacing-2);
+      color: var(--tui-text-3);
+      transition: rotate var(--tui-duration-fast);
+    }
+  }
+
+  tbody tr[aria-expanded="true"] > td:first-child::before {
+    rotate: 90deg;
+  }
+
+  tbody tr.tui-table-detail > td {
+    padding-block: var(--tui-spacing-4);
+    background-color: var(--tui-surface-1);
   }
 
   /* === Sort Indicators === */
@@ -935,9 +1059,12 @@
       translate: none;
     }
   }
+}
 
-/* typography.css */
-/* Torque UI — Typography Element Defaults
+@layer tui.elements{
+
+
+  /* Torque UI — Typography Element Defaults
  * Headings, paragraphs, and inline text elements styled by default.
  */
 
@@ -1149,11 +1276,10 @@
   sup {
     inset-block-start: -0.5em;
   }
-
 }
 
-@layer tui.components {
-/* tone.css */
+@layer tui.components{
+
 /* Torque UI — Tone Hook Leak Reset
  * Stops an ancestor's tone (e.g. .tui-alert-success) from bleeding into an
  * unrelated descendant component (e.g. a plain .tui-badge inside the alert).
@@ -1187,9 +1313,12 @@
   --tui-tone-ink: initial;
   --tui-tone-gradient: initial;
 }
+}
 
-/* close.css */
-/* Torque UI — Close Button
+@layer tui.components{
+
+
+  /* Torque UI — Close Button
  * Shared dismiss control. Works on a <button> (used by the modal component)
  * or a <label for="…"> paired with a hidden .tui-dismiss checkbox (alert,
  * toast, chip below). The × glyph is decorative; the element itself carries
@@ -1232,9 +1361,12 @@
       display: none;
     }
   }
+}
 
-/* button.css */
-/* Torque UI — Button Component
+@layer tui.components{
+
+
+  /* Torque UI — Button Component
  * Semantic UI-inspired: .tui-button base + .tui-button-* modifiers
  * Children spacing handled automatically.
  */
@@ -1417,8 +1549,34 @@
     translate: none;
   }
 
-/* card.css */
-/* Torque UI — Card Component
+  /* === Loading ===
+   * why: aria-busy is the state the assistive tech reads; the label goes
+   * transparent rather than away so the button keeps its width */
+  :is(button, .tui-button):is([aria-busy="true"], .tui-loading),
+  :is(form, fieldset)[aria-busy="true"] :is(button:not([type]), button[type="submit"]) {
+    position: relative;
+    color: transparent;
+    pointer-events: none;
+
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      margin: auto;
+      inline-size: 1em;
+      block-size: 1em;
+      border: 2px solid color-mix(in srgb, var(--tui-tone-fg, var(--tui-text-1)) 30%, transparent);
+      border-block-start-color: var(--tui-tone-fg, var(--tui-text-1));
+      border-radius: var(--tui-radius-full);
+      animation: tui-spin var(--tui-duration-slower) linear infinite;
+    }
+  }
+}
+
+@layer tui.components{
+
+
+  /* Torque UI — Card Component
  * Semantic UI-inspired: .tui-card container + .tui-card-* children
  * Children spacing handled automatically via a grid-style adjacent-sibling rule.
  */
@@ -1517,9 +1675,12 @@
     color: var(--tui-tone-fg, var(--tui-brand-fg));
     border-block-end-color: color-mix(in srgb, var(--tui-tone, var(--tui-brand)) 90%, white 10%);
   }
+}
 
-/* alert.css */
-/* Torque UI — Alert Component
+@layer tui.components{
+
+
+  /* Torque UI — Alert Component
  * Semantic tone via .tui-alert-success/-error/-warning/-info, driven by the
  * --tui-tone hook (see 70-utilities/tone.css). A trailing .tui-dismiss +
  * .tui-close pair (see 30-components/close.css) makes an alert dismissible;
@@ -1602,9 +1763,12 @@
     flex-wrap: wrap;
     gap: var(--tui-spacing-2);
   }
+}
 
-/* badge.css */
-/* Torque UI — Badge Component
+@layer tui.components{
+
+
+  /* Torque UI — Badge Component
  * Semantic tone via .tui-badge-success/-error/-warning/-info/-primary,
  * driven by the --tui-tone hook (see 70-utilities/tone.css).
  */
@@ -1631,9 +1795,12 @@
     color: var(--tui-tone-fg, var(--tui-brand-fg));
     border-color: transparent;
   }
+}
 
-/* avatar.css */
-/* Torque UI — Avatar Component
+@layer tui.components{
+
+
+  /* Torque UI — Avatar Component
  * Circle images/text with size variants.
  */
 
@@ -1753,9 +1920,12 @@
     background-color: var(--tui-tone, var(--tui-neutral));
     color: var(--tui-tone-fg, var(--tui-text-inverse));
   }
+}
 
-/* tag.css */
-/* Torque UI — Tag Component
+@layer tui.components{
+
+
+  /* Torque UI — Tag Component
  * Small inline labels for categorization.
  */
 
@@ -1812,9 +1982,12 @@
     --tui-tone-bg: var(--tui-info-bg);
     --tui-tone-ink: var(--tui-info-ink);
   }
+}
 
-/* chip.css */
-/* Torque UI — Chip Component
+@layer tui.components{
+
+
+  /* Torque UI — Chip Component
  * Pill-shaped tags with close capability (CSS-only).
  */
 
@@ -1848,9 +2021,11 @@
   /* .tui-chip-warning / .tui-chip-info live with every other tone alias in
      70-utilities/tone.css, so they carry the full hook family (gradient
      included) and yield to a generic .tui-tone-* like any alias */
+}
 
-/* progress.css */
-/* Torque UI — Progress Component
+@layer tui.components{
+
+  /* Torque UI — Progress Component
  * One registered number, --tui-progress-value, drives the bar, ring, meter
  * and poll option. It is read from aria-valuenow, then data-value, where
  * typed attr() exists; setting the property directly works everywhere.
@@ -1900,6 +2075,37 @@
     background-color: var(--tui-tone, var(--tui-brand));
     border-radius: var(--tui-radius-full);
     transition: inline-size var(--tui-duration-normal) var(--tui-easing-out);
+  }
+
+  /* === Loading ===
+   * Keeps the value; the fill carries moving diagonal stripes to say the
+   * task is still running. Reduced motion stops the stripes in place. */
+  .tui-progress-loading > .tui-progress-bar {
+    background-image: repeating-linear-gradient(-45deg, transparent 0 0.5rem, rgb(255 255 255 / 0.25) 0.5rem 1rem);
+    background-size: 1.414rem 100%;
+    animation: tui-progress-stripes 1s linear infinite;
+  }
+
+  @keyframes tui-progress-stripes {
+    to { background-position: 1.414rem 0; }
+  }
+
+  /* === Indeterminate ===
+   * No value: the bar sweeps the track and the ring spins a quarter arc. */
+  .tui-progress-indeterminate > .tui-progress-bar {
+    inline-size: 40%;
+    transition: none;
+    animation: tui-progress-sweep 1.4s var(--tui-easing-in-out) infinite;
+  }
+
+  @keyframes tui-progress-sweep {
+    from { translate: -100% 0; }
+    to { translate: 250% 0; }
+  }
+
+  .tui-progress-ring.tui-progress-indeterminate {
+    background: conic-gradient(var(--tui-tone, var(--tui-brand)) 0 25%, var(--tui-progress-ring-track, var(--tui-surface-3)) 0);
+    animation: tui-spin 1s linear infinite;
   }
 
   /* === Sizes === */
@@ -1963,9 +2169,12 @@
     background-size: calc(var(--tui-progress-value, 0) * 1%) 100%;
     transition: --tui-progress-value var(--tui-duration-normal) var(--tui-easing-out);
   }
+}
 
-/* spinner.css */
-/* Torque UI — Spinner Component */
+@layer tui.components{
+
+
+  /* Torque UI — Spinner Component */
 
 
   .tui-spinner {
@@ -1995,9 +2204,12 @@
     block-size: 4rem;
     border-width: 4px;
   }
+}
 
-/* busy.css */
-/* Torque UI — Busy Overlay
+@layer tui.components{
+
+
+  /* Torque UI — Busy Overlay
  * .tui-busy is a relative wrapper; [aria-busy="true"] is the semantic hook
  * that dims its content, blocks pointer events, and shows a spinner.
  */
@@ -2041,9 +2253,12 @@
       z-index: 2;
     }
   }
+}
 
-/* breadcrumb.css */
-/* Torque UI — Breadcrumb Component
+@layer tui.components{
+
+
+  /* Torque UI — Breadcrumb Component
  * Navigation path indicator.
  */
 
@@ -2084,9 +2299,12 @@
     color: var(--tui-text-1);
     font-weight: var(--tui-font-medium);
   }
+}
 
-/* steps.css */
-/* Torque UI — Steps Component
+@layer tui.components{
+
+
+  /* Torque UI — Steps Component
  * Progress indicator with radio buttons for state.
  */
 
@@ -2147,21 +2365,26 @@
     color: var(--tui-text-3);
   }
 
-  .tui-step-complete .tui-step-label {
+  .tui-step:is(.tui-step-complete, [data-complete]) .tui-step-label {
     color: var(--tui-text-2);
   }
 
-  .tui-step-active .tui-step-number {
+  /* why: aria-current="step" is what the assistive tech reads, so it paints
+     the active step on its own; the class stays as an alias */
+  .tui-step:is(.tui-step-active, [aria-current="step"], [data-selected], .tui-selected) .tui-step-number {
     box-shadow: 0 0 0 var(--tui-focus-halo-width) var(--tui-focus-ring);
   }
 
-  .tui-step-active .tui-step-label {
+  .tui-step:is(.tui-step-active, [aria-current="step"], [data-selected], .tui-selected) .tui-step-label {
     color: var(--tui-text-1);
     font-weight: var(--tui-font-medium);
   }
+}
 
-/* pagination.css */
-/* Torque UI — Pagination Component
+@layer tui.components{
+
+
+  /* Torque UI — Pagination Component
  * Page navigation with CSS-only active state.
  */
 
@@ -2222,9 +2445,12 @@
     cursor: not-allowed;
     pointer-events: none;
   }
+}
 
-/* segment.css */
-/* Torque UI — Segment Component
+@layer tui.components{
+
+
+  /* Torque UI — Segment Component
  * Content container with padding and border.
  */
 
@@ -2244,9 +2470,12 @@
       margin-block-start: var(--tui-spacing-6);
     }
   }
+}
 
-/* panel.css */
-/* Torque UI — Panel Component
+@layer tui.components{
+
+
+  /* Torque UI — Panel Component
  * Content container with header/body separation.
  */
 
@@ -2291,8 +2520,10 @@
       margin-block-start: var(--tui-spacing-6);
     }
   }
+}
 
-/* list-group.css */
+@layer tui.components{
+
 /* Torque UI — List Group
  * .tui-list-group wraps .tui-list-item rows (li, a, or label) with a shared
  * border and radius. A label item with a .tui-state-input checkbox becomes
@@ -2396,8 +2627,10 @@
 
   &:active { cursor: grabbing; }
 }
+}
 
-/* tree.css */
+@layer tui.components{
+
 /* Torque UI — Tree
  * A nested <ul> of <li> where a branch is a <details class="tui-tree-node">
  * (its <summary> toggles a nested <ul>) and a leaf is an <a> or <span>
@@ -2452,8 +2685,46 @@
   rotate: 90deg;
 }
 
-/* divider.css */
-/* Torque UI — Divider Component
+/* === Script-driven tree ===
+ * A role="tree" of role="treeitem" rows: aria-expanded on the item turns
+ * the disclosure glyph and shows or hides its role="group" list, and
+ * aria-selected paints the row. */
+.tui-tree-item {
+  display: flex;
+  align-items: center;
+  gap: var(--tui-spacing-2);
+  padding: var(--tui-spacing-1) var(--tui-spacing-2);
+  border-radius: var(--tui-radius-sm);
+  color: var(--tui-text-1);
+  cursor: pointer;
+
+  &:hover { background-color: var(--tui-surface-1); }
+}
+
+[role="treeitem"][aria-expanded] > .tui-tree-item::before {
+  content: '▸';
+  color: var(--tui-text-3);
+  transition: rotate var(--tui-duration-fast);
+}
+
+[role="treeitem"][aria-expanded="true"] > .tui-tree-item::before {
+  rotate: 90deg;
+}
+
+[role="treeitem"][aria-expanded="false"] > [role="group"] {
+  display: none;
+}
+
+[role="treeitem"]:is([aria-selected="true"], [data-selected], .tui-selected) > .tui-tree-item {
+  color: var(--tui-tone-ink, var(--tui-brand-ink));
+  background-color: var(--tui-tone-soft, var(--tui-brand-soft));
+}
+}
+
+@layer tui.components{
+
+
+  /* Torque UI — Divider Component
  * Horizontal or vertical separator.
  */
 
@@ -2496,9 +2767,12 @@
     &:first-child { margin-inline-start: 0; }
     &:last-child { margin-inline-end: 0; }
   }
+}
 
-/* label.css */
-/* Torque UI — Label Component
+@layer tui.components{
+
+
+  /* Torque UI — Label Component
  * Inline labels and badges.
  */
 
@@ -2534,9 +2808,12 @@
     --tui-tone-bg: var(--tui-info-bg);
     --tui-tone-ink: var(--tui-info-ink);
   }
+}
 
-/* flag.css */
-/* Torque UI — Flag Component
+@layer tui.components{
+
+
+  /* Torque UI — Flag Component
  * Country/region flags as inline icons.
  */
 
@@ -2564,9 +2841,12 @@
     overflow: hidden;
     border: 1px solid var(--tui-border);
   }
+}
 
-/* statistic.css */
-/* Torque UI — Statistic Component
+@layer tui.components{
+
+
+  /* Torque UI — Statistic Component
  * Key metric display.
  */
 
@@ -2610,9 +2890,12 @@
   .tui-statistic-delta-down {
     color: var(--tui-negative-ink);
   }
+}
 
-/* navbar.css */
-/* Torque UI — Navbar Component
+@layer tui.components{
+
+
+  /* Torque UI — Navbar Component
  */
 
 
@@ -2688,7 +2971,77 @@
     color: var(--tui-tone-ink, var(--tui-brand-ink));
   }
 
+  /* === Submenus ===
+   * A <button class="tui-navbar-item"> with popovertarget opens a
+   * .tui-popover.tui-menu with no script; .tui-navbar-mega widens that
+   * surface into a grid of columns. A script-driven submenu is a
+   * .tui-navbar-submenu.tui-menu after the button, toggled with hidden. */
+  .tui-navbar-menu > li {
+    position: relative;
+  }
+
+  button.tui-navbar-item {
+    font: inherit;
+    font-size: var(--tui-text-sm);
+    font-weight: var(--tui-font-medium);
+    background: none;
+    border: 0;
+    box-shadow: none;
+    cursor: pointer;
+
+    &:hover {
+      background-color: var(--tui-surface-2);
+      box-shadow: none;
+      translate: none;
+    }
+  }
+
+  .tui-navbar-item > .tui-caret {
+    margin-inline-start: var(--tui-spacing-1);
+  }
+
+  .tui-navbar-submenu {
+    position: absolute;
+    inset-block-start: calc(100% + var(--tui-spacing-1));
+    inset-inline-start: 0;
+    z-index: var(--tui-z-dropdown);
+    min-inline-size: 12rem;
+    padding: var(--tui-popover-padding, var(--tui-spacing-1));
+    background-color: var(--tui-popover-bg, var(--tui-surface-0));
+    border: 1px solid var(--tui-popover-border, var(--tui-border));
+    border-radius: var(--tui-radius-md);
+    box-shadow: var(--tui-shadow-lg);
+  }
+
+  .tui-navbar-mega {
+    --tui-popover-max-inline-size: var(--tui-navbar-mega-inline-size, 48rem);
+    --tui-popover-padding: var(--tui-spacing-4);
+
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
+    gap: var(--tui-spacing-4);
+  }
+
+  .tui-navbar-mega-title {
+    margin: 0 0 var(--tui-spacing-2);
+    font-size: var(--tui-text-xs);
+    font-weight: var(--tui-font-semibold);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--tui-text-3);
+  }
+
   @media (width < 768px) {
+    /* why: in the drawer a submenu is part of the list, indented, not a
+       floating surface */
+    .tui-navbar-submenu {
+      position: static;
+      min-inline-size: 0;
+      padding-inline-start: var(--tui-spacing-4);
+      border: 0;
+      box-shadow: none;
+    }
+
     /* why: .tui-navbar-menu's own `display: flex` (an author style) beats the UA's implicit closed-popover `display: none` by cascade origin, so this reasserts it below the breakpoint */
     .tui-navbar-menu[popover]:not(:popover-open) { display: none; }
   }
@@ -2696,9 +3049,12 @@
   @media (width >= 768px) {
     .tui-navbar-toggle { display: none; }
   }
+}
 
-/* status.css */
-/* Torque UI — Status Indicator
+@layer tui.components{
+
+
+  /* Torque UI — Status Indicator
  * Small pill/dot for live status. The dot's color comes from the --tui-tone
  * hook (see 70-utilities/tone.css): -online/-done/-busy/-away/-error set a
  * tone; -offline/-todo/-clear are intentionally unstyled here — they only
@@ -2744,10 +3100,12 @@
       box-shadow: 0 0 0 0 transparent;
     }
   }
+}
+
+@layer tui.components{
 
 
-/* empty.css */
-/* Torque UI — Empty State
+  /* Torque UI — Empty State
  * Centered placeholder for empty lists/panels with optional icon, title, description, and action.
  * Pure CSS, no JS.
  */
@@ -2803,9 +3161,12 @@
     block-size: 2rem;
     font-size: var(--tui-text-lg);
   }
+}
 
-/* timeline.css */
-/* Torque UI — Timeline
+@layer tui.components{
+
+
+  /* Torque UI — Timeline
  * Vertical timeline with markers, titles, descriptions, and timestamps.
  * Pure CSS, no JS.
  */
@@ -2915,9 +3276,12 @@
       font-size: var(--tui-text-sm);
     }
   }
+}
 
-/* ribbon.css */
-/* Torque UI — Ribbon
+@layer tui.components{
+
+
+  /* Torque UI — Ribbon
  * Diagonal corner ribbon for cards/panels (NEW, SALE, PRO, etc.).
  * Pure CSS, no JS.
  */
@@ -2965,10 +3329,12 @@
     inset-inline: var(--tui-ribbon-offset) auto;
     transform: rotate(-45deg);
   }
+}
+
+@layer tui.components{
 
 
-/* toast.css */
-/* Torque UI — Toast / Notification
+  /* Torque UI — Toast / Notification
  * Fixed-position notification banner (bottom-right).
  * Pure CSS, no JS. Respects prefers-reduced-motion.
  */
@@ -3085,10 +3451,12 @@
       animation: none;
     }
   }
+}
+
+@layer tui.components{
 
 
-/* placeholder.css */
-/* Torque UI — Placeholder / Skeleton
+  /* Torque UI — Placeholder / Skeleton
  * Loading skeleton shimmer for content placeholders.
  * Pure CSS, no JS. Respects prefers-reduced-motion.
  */
@@ -3130,9 +3498,12 @@
       background-position: -200% 0;
     }
   }
+}
 
-/* chart.css */
-/* Torque UI — Chart + Legend
+@layer tui.components{
+
+
+  /* Torque UI — Chart + Legend
  * .tui-chart frames a hand-authored SVG; .tui-legend / .tui-legend-item /
  * .tui-legend-swatch describe its series. Colour comes from the
  * .tui-chart-N utilities (70-utilities/colors.css): put fill="currentColor"
@@ -3179,9 +3550,11 @@
   .tui-legend-item > .tui-legend-swatch + * {
     color: var(--tui-text-2);
   }
+}
 
-/* kv.css */
-/* Torque UI — Key/Value List
+@layer tui.components{
+
+  /* Torque UI — Key/Value List
  * dl.tui-kv — label/value rows; .tui-kv-stack stacks label above value.
  */
 
@@ -3247,9 +3620,11 @@
       &:last-child { margin-block-end: 0; }
     }
   }
+}
 
-/* window.css */
-/* Torque UI — Window Chrome
+@layer tui.components{
+
+  /* Torque UI — Window Chrome
  * .tui-window / .tui-window-bar / .tui-window-title — a desktop-window frame
  * for previews and mockups. The bar holds the title with a .tui-close pinned
  * to its end edge; useful actions belong in a .tui-window-footer at the
@@ -3317,9 +3692,11 @@
     border-radius: var(--tui-radius-md);
     box-shadow: var(--tui-shadow-lg);
   }
+}
 
-/* composer.css */
-/* Torque UI — Composer
+@layer tui.components{
+
+  /* Torque UI — Composer
  * .tui-composer — toolbar / auto-growing input / footer for message entry.
  * Markup: .tui-composer > .tui-composer-toolbar + textarea.tui-composer-input + .tui-composer-footer
  */
@@ -3373,12 +3750,147 @@
     outline: none;
     box-shadow: none;
   }
-
 }
 
-@layer tui.layout {
-/* grid.css */
-/* Torque UI — Grid Layout
+@layer tui.components{
+
+
+  /* Torque UI — Toolbar
+ * .tui-toolbar is a role="toolbar" row of buttons, groups, dividers and a
+ * spacer. Arrow-key roving between its controls is the script's.
+ */
+
+
+  .tui-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--tui-spacing-1);
+    padding: var(--tui-spacing-1);
+    background-color: var(--tui-toolbar-bg, var(--tui-surface-0));
+    border: 1px solid var(--tui-border);
+    border-radius: var(--tui-radius-md);
+  }
+
+  .tui-toolbar-group {
+    display: flex;
+    align-items: center;
+    gap: var(--tui-spacing-1);
+  }
+
+  .tui-toolbar-divider {
+    align-self: stretch;
+    inline-size: 1px;
+    margin: var(--tui-spacing-1);
+    background-color: var(--tui-border);
+    border: 0;
+  }
+
+  .tui-toolbar-spacer {
+    flex: 1;
+  }
+}
+
+@layer tui.components{
+
+
+  /* Torque UI — Bottom Navigation
+ * .tui-bottom-nav pins a row of equal .tui-bottom-nav-item links or buttons
+ * to the bottom of the viewport; the current one reads aria-current.
+ */
+
+
+  .tui-bottom-nav {
+    position: fixed;
+    inset-block-end: 0;
+    inset-inline: 0;
+    z-index: var(--tui-z-sticky);
+    display: flex;
+    /* stylelint-disable-next-line csstree/validator -- env() is valid CSS Environment Variables syntax; csstree's grammar doesn't yet know it */
+    padding-block-end: env(safe-area-inset-bottom);
+    background-color: var(--tui-bottom-nav-bg, var(--tui-surface-0));
+    border-block-start: 1px solid var(--tui-border);
+  }
+
+  .tui-bottom-nav-static {
+    position: static;
+  }
+
+  .tui-bottom-nav-item {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--tui-spacing-1);
+    padding: var(--tui-spacing-2);
+    font: inherit;
+    font-size: var(--tui-text-xs);
+    font-weight: var(--tui-font-medium);
+    color: var(--tui-text-2);
+    text-decoration: none;
+    background: none;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+    cursor: pointer;
+    transition: color var(--tui-duration-fast);
+
+    & > .tui-icon {
+      --tui-icon-size: 1.5rem;
+    }
+
+    &:hover {
+      color: var(--tui-text-1);
+      background: none;
+      box-shadow: none;
+      translate: none;
+    }
+
+    &:is([aria-current], [data-selected], .tui-selected) {
+      color: var(--tui-tone, var(--tui-brand));
+    }
+  }
+}
+
+@layer tui.components{
+
+
+  /* Torque UI — Backdrop
+ * .tui-backdrop is the scrim for an overlay of your own — a custom loader,
+ * a lightbox — that is neither a <dialog> nor a popover. It covers the
+ * viewport above sticky chrome, centres whatever it holds, and fades in;
+ * the hidden attribute removes it.
+ */
+
+
+  .tui-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: var(--tui-z-modal);
+    display: grid;
+    place-items: center;
+    padding: var(--tui-spacing-4);
+    background-color: var(--tui-backdrop-bg, light-dark(rgb(255 255 255 / 0.5), rgb(0 0 0 / 0.5)));
+    backdrop-filter: blur(4px);
+    /* stylelint-disable-next-line csstree/validator -- display transitions with allow-discrete are valid CSS (Chrome 117+/Safari 17.4+/Firefox 129+); csstree's grammar doesn't yet know allow-discrete */
+    transition: opacity var(--tui-duration-normal), display var(--tui-duration-normal) allow-discrete;
+
+    &[hidden] {
+      opacity: 0;
+    }
+  }
+
+  @starting-style {
+    .tui-backdrop {
+      opacity: 0;
+    }
+  }
+}
+
+@layer tui.layout{
+
+
+  /* Torque UI — Grid Layout
  * 12-column responsive grid system.
  */
 
@@ -3454,9 +3966,12 @@
     .tui-grid-lg-6  { grid-template-columns: repeat(6, 1fr); }
     .tui-grid-lg-12 { grid-template-columns: repeat(12, 1fr); }
   }
+}
 
-/* container.css */
-/* Torque UI — Container
+@layer tui.layout{
+
+
+  /* Torque UI — Container
  * Centered content wrapper with responsive max-widths.
  */
 
@@ -3518,9 +4033,12 @@
   .tui-container-sm { max-inline-size: 28rem; }
   .tui-container-md { max-inline-size: 40rem; }
   .tui-container-lg { max-inline-size: 56rem; }
+}
 
-/* flexbox.css */
-/* Torque UI — Flexbox Utilities
+@layer tui.layout{
+
+
+  /* Torque UI — Flexbox Utilities
  * Flex container and item helpers.
  */
 
@@ -3608,9 +4126,12 @@
   .tui-justify-evenly {
     justify-content: space-evenly;
   }
+}
 
-/* container-queries.css */
-/* Torque UI — Container Queries
+@layer tui.layout{
+
+
+  /* Torque UI — Container Queries
  * Group 4: container-type / @container for component-level responsiveness.
  * Components adapt to their container width, not just the viewport.
  */
@@ -3656,8 +4177,10 @@
       font-size: var(--tui-text-lg);
     }
   }
+}
 
-/* shell.css */
+@layer tui.layout{
+
 /* Torque UI — App Shell
  * .tui-shell is a header/sidebar/main/aside/footer grid. Below 768px the
  * sidebar and aside are hidden — their content is expected to also live in a
@@ -3809,8 +4332,10 @@ html:has(.tui-shell-header) {
   overflow-y: auto;
   padding-block-end: var(--tui-spacing-16);
 }
+}
 
-/* patterns.css */
+@layer tui.layout{
+
 /* Torque UI — Page Patterns
  * .tui-hero, .tui-section, .tui-media, .tui-level — page-level layout
  * building blocks composed from the primitives in this directory.
@@ -3947,8 +4472,9 @@ html:has(.tui-shell-header) {
   gap: var(--tui-spacing-2);
   align-items: center;
 }
+}
 
-/* split.css */
+@layer tui.layout{
 /* Torque UI — Split Pane */
 .tui-split {
   display: grid;
@@ -3977,8 +4503,10 @@ html:has(.tui-shell-header) {
 .tui-split-pane:last-child {
   min-inline-size: 0;
 }
+}
 
-/* stack.css */
+@layer tui.layout{
+
 /* Torque UI — Stack
  * .tui-stack — vertical rhythm via gap; components carry no outer margins.
  */
@@ -3996,8 +4524,10 @@ html:has(.tui-shell-header) {
 .tui-stack-lg {
   --tui-stack-gap: var(--tui-spacing-6);
 }
+}
 
-/* board.css */
+@layer tui.layout{
+
 /* Torque UI — Board
  * .tui-board / .tui-board-column / .tui-board-header / .tui-board-body — a scrolling column board (kanban).
  * Static and CSS-only: reordering cards between columns is application JS.
@@ -4044,12 +4574,12 @@ html:has(.tui-shell-header) {
   padding: var(--tui-spacing-2);
   overflow-y: auto;
 }
-
 }
 
-@layer tui.forms {
-/* form.css */
-/* Torque UI — Form Layout
+@layer tui.forms{
+
+
+  /* Torque UI — Form Layout
  * .tui-form, .tui-field, .tui-help, .tui-error
  */
 
@@ -4106,6 +4636,29 @@ html:has(.tui-shell-header) {
     color: var(--tui-negative);
   }
 
+  /* === Busy form ===
+   * aria-busy on a form or fieldset is the submitting state: every field and
+   * secondary button dims and stops taking the pointer, and the submit
+   * button spins (30-components/button.css). */
+  :is(form, fieldset)[aria-busy="true"] {
+    pointer-events: none;
+    cursor: progress;
+
+    & :is(input, select, textarea) {
+      color: var(--tui-text-3);
+      background-color: var(--tui-surface-2);
+      opacity: 0.7;
+    }
+
+    & :is(button, .tui-button):not(:not([type]), [type="submit"]) {
+      opacity: 0.5;
+    }
+
+    & input[type="submit"] {
+      opacity: 0.7;
+    }
+  }
+
   fieldset {
     min-inline-size: 0;
     margin: 0;
@@ -4131,9 +4684,12 @@ html:has(.tui-shell-header) {
 
     & > * { margin: 0; }
   }
+}
 
-/* input.css */
-/* Torque UI — Input Variants
+@layer tui.forms{
+
+
+  /* Torque UI — Input Variants
  * .tui-input-sm/-lg size modifiers. The -primary/-success/-error/-warning/
  * -info state modifiers live in 70-utilities/tone.css as --tui-tone
  * setters; the field itself (20-elements/inputs.css) reads the hook.
@@ -4150,9 +4706,12 @@ html:has(.tui-shell-header) {
     padding: var(--tui-spacing-3) var(--tui-spacing-4);
     font-size: var(--tui-text-lg);
   }
+}
 
-/* input-group.css */
-/* Torque UI — Input Group
+@layer tui.forms{
+
+
+  /* Torque UI — Input Group
  * .tui-input-group wraps an addon + field + button so their borders join
  * into one continuous control with a single outer radius.
  */
@@ -4201,9 +4760,12 @@ html:has(.tui-shell-header) {
     background-color: var(--tui-input-addon-bg, var(--tui-surface-2));
     border: 2px solid var(--tui-border);
   }
+}
 
-/* select.css */
-/* Torque UI — Rich Select
+@layer tui.forms{
+
+
+  /* Torque UI — Rich Select
  * .tui-select-rich opts a <select> into the browser's customisable
  * select picker (Chrome 134+). Degrades to the native select elsewhere.
  */
@@ -4268,9 +4830,12 @@ html:has(.tui-shell-header) {
       box-shadow: none;
     }
   }
+}
 
-/* combobox.css */
-/* Torque UI — Combobox
+@layer tui.forms{
+
+
+  /* Torque UI — Combobox
  * .tui-combobox is the field a script turns into a searchable select, a
  * button-triggered picker or a multi-select with tags. The wrapper carries
  * the field border and focus ring; a .tui-combobox-input (role="combobox")
@@ -4399,9 +4964,161 @@ html:has(.tui-shell-header) {
       --tui-close-size: 1rem;
     }
   }
+}
 
-/* checkbox.css */
-/* Torque UI — Checkbox Component
+@layer tui.forms{
+
+
+  /* Torque UI — Range wrapper
+ * .tui-range wraps one or two native range inputs and paints the track
+ * itself, so it can show a fill between two thumbs, a value label riding
+ * each thumb and a row of marks. The positions are two registered numbers
+ * (0-100) read from data-value, or data-start and data-end, where typed
+ * attr() exists; a script writes them on input. The inputs stay native.
+ */
+
+
+  @property --tui-range-start {
+    syntax: '<number>';
+    inherits: true;
+    initial-value: 0;
+  }
+
+  @property --tui-range-end {
+    syntax: '<number>';
+    inherits: true;
+    initial-value: 0;
+  }
+
+  .tui-range {
+    --tui-range-thumb: var(--tui-spacing-5);
+
+    /* why: a thumb's centre travels from half a thumb in to half a thumb
+       short of the end, so every position is mapped onto that shorter span */
+    --_start: calc(var(--tui-range-thumb) / 2 + (100% - var(--tui-range-thumb)) * var(--tui-range-start) / 100);
+    --_end: calc(var(--tui-range-thumb) / 2 + (100% - var(--tui-range-thumb)) * var(--tui-range-end) / 100);
+
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr;
+    align-items: center;
+    inline-size: 100%;
+    transition: --tui-range-start var(--tui-duration-normal) var(--tui-easing-out), --tui-range-end var(--tui-duration-normal) var(--tui-easing-out);
+
+    &:has(> .tui-range-label) {
+      padding-block-start: var(--tui-spacing-6);
+    }
+
+    /* why: the track is an in-flow item in the same grid cell as the inputs,
+       so it is centred on their row whatever else the wrapper holds and
+       paints beneath them in DOM order */
+    &::before {
+      content: '';
+      grid-area: 1 / 1;
+      align-self: center;
+      block-size: 6px;
+      border-radius: var(--tui-radius-full);
+      background: linear-gradient(to right, var(--tui-surface-3) var(--_start), var(--tui-tone, var(--tui-brand)) var(--_start) var(--_end), var(--tui-surface-3) var(--_end));
+      pointer-events: none;
+    }
+
+    /* why: the wrapper paints the track, so the inputs only carry thumbs;
+       stacked in one grid cell a second input becomes the second thumb */
+    & > input[type="range"] {
+      grid-area: 1 / 1;
+      background: transparent;
+    }
+  }
+
+  /* why: gradient directions have no logical keywords */
+  :dir(rtl) .tui-range::before {
+    background: linear-gradient(to left, var(--tui-surface-3) var(--_start), var(--tui-tone, var(--tui-brand)) var(--_start) var(--_end), var(--tui-surface-3) var(--_end));
+  }
+
+  @supports (width: attr(x type(<length>))) {
+    .tui-range[data-value] {
+      /* stylelint-disable-next-line csstree/validator -- typed attr() is valid CSS Values 5 syntax (Chrome 133+); csstree's grammar doesn't yet know it */
+      --tui-range-end: attr(data-value type(<number>));
+    }
+
+    .tui-range[data-start] {
+      /* stylelint-disable-next-line csstree/validator -- typed attr() is valid CSS Values 5 syntax (Chrome 133+); csstree's grammar doesn't yet know it */
+      --tui-range-start: attr(data-start type(<number>));
+    }
+
+    .tui-range[data-end] {
+      /* stylelint-disable-next-line csstree/validator -- typed attr() is valid CSS Values 5 syntax (Chrome 133+); csstree's grammar doesn't yet know it */
+      --tui-range-end: attr(data-end type(<number>));
+    }
+  }
+
+  /* === Two thumbs ===
+   * why: only the top input would take the pointer; letting events through
+   * everywhere but the thumbs makes both thumbs draggable */
+  .tui-range-dual > input[type="range"] {
+    pointer-events: none;
+
+    &::-webkit-slider-thumb { pointer-events: auto; }
+
+    &::-moz-range-thumb { pointer-events: auto; }
+  }
+
+  /* === Value labels === */
+  .tui-range-label {
+    position: absolute;
+    inset-block-start: 0;
+    inset-inline-start: var(--_end);
+    translate: -50% 0;
+    padding: var(--tui-spacing-0-5) var(--tui-spacing-1);
+    font-size: var(--tui-text-xs);
+    font-weight: var(--tui-font-medium);
+    line-height: 1;
+    white-space: nowrap;
+    color: var(--tui-surface-0);
+    background-color: var(--tui-text-1);
+    border-radius: var(--tui-radius-sm);
+    pointer-events: none;
+  }
+
+  :dir(rtl) .tui-range-label {
+    translate: 50% 0;
+  }
+
+  .tui-range-label-start {
+    inset-inline-start: var(--_start);
+  }
+
+  /* === Marks === */
+  .tui-range-marks {
+    display: flex;
+    justify-content: space-between;
+    margin: var(--tui-spacing-1) 0 0;
+    padding: 0 calc(var(--tui-range-thumb) / 2);
+    font-size: var(--tui-text-xs);
+    color: var(--tui-text-3);
+    list-style: none;
+
+    & > li {
+      margin: 0;
+    }
+
+    /* why: the first and last marks centre on the thumb's end positions */
+    & > li:first-child { translate: -50% 0; }
+
+    & > li:last-child { translate: 50% 0; }
+  }
+
+  :dir(rtl) .tui-range-marks {
+    & > li:first-child { translate: 50% 0; }
+
+    & > li:last-child { translate: -50% 0; }
+  }
+}
+
+@layer tui.forms{
+
+
+  /* Torque UI — Checkbox Component
  * Hidden checkbox + label with :checked styling.
  */
 
@@ -4459,9 +5176,12 @@ html:has(.tui-shell-header) {
     flex-flow: row wrap;
     gap: var(--tui-spacing-4);
   }
+}
 
-/* radio.css */
-/* Torque UI — Radio Component
+@layer tui.forms{
+
+
+  /* Torque UI — Radio Component
  * Hidden radio + label with :checked styling.
  */
 
@@ -4516,9 +5236,12 @@ html:has(.tui-shell-header) {
     flex-flow: row wrap;
     gap: var(--tui-spacing-4);
   }
+}
 
-/* switch.css */
-/* Torque UI — Switch/Toggle Component
+@layer tui.forms{
+
+
+  /* Torque UI — Switch/Toggle Component
  * Checkbox-driven toggle with :checked animation.
  */
 
@@ -4573,9 +5296,12 @@ html:has(.tui-shell-header) {
     font-size: var(--tui-text-base);
     color: var(--tui-text-1);
   }
+}
 
-/* search-input.css */
-/* Torque UI — Search Input
+@layer tui.forms{
+
+
+  /* Torque UI — Search Input
  * <input type="search"> styled with wrapper.
  */
 
@@ -4629,9 +5355,12 @@ html:has(.tui-shell-header) {
 
     & > .tui-close { display: inline-grid; }
   }
+}
 
-/* password.css */
-/* Torque UI — Password Reveal
+@layer tui.forms{
+
+
+  /* Torque UI — Password Reveal
  * .tui-password wraps a text input masked via -webkit-text-security and a
  * hidden checkbox + label that reveals it. Not type="password" — see docs.
  */
@@ -4658,9 +5387,12 @@ html:has(.tui-shell-header) {
     cursor: pointer;
     user-select: none;
   }
+}
 
-/* validation.css */
-/* Torque UI — Validation States
+@layer tui.forms{
+
+
+  /* Torque UI — Validation States
  * Only error (negative) states are shown. No positive/success coloring on inputs.
  */
 
@@ -4682,10 +5414,12 @@ html:has(.tui-shell-header) {
     border-color: var(--tui-negative);
     box-shadow: 0 0 0 var(--tui-focus-halo-width) color-mix(in srgb, var(--tui-negative) 30%, transparent);
   }
+}
+
+@layer tui.forms{
 
 
-/* form-table.css */
-/* Torque UI — Form Table
+  /* Torque UI — Form Table
  * Table with inline form inputs in cells.
  */
 
@@ -4725,9 +5459,12 @@ html:has(.tui-shell-header) {
   .tui-form-table tbody tr:hover td {
     background-color: var(--tui-surface-1);
   }
+}
 
-/* form-enhancements.css */
-/* Torque UI — Form Control Enhancements
+@layer tui.forms{
+
+
+  /* Torque UI — Form Control Enhancements
  * Group 2: accent-color, read-only/read-write, range feedback, placeholder-shown.
  */
 
@@ -4871,9 +5608,12 @@ html:has(.tui-shell-header) {
     border-radius: 0;
     mask-image: repeating-linear-gradient(to right, black 0 2px, transparent 2px 5px);
   }
+}
 
-/* stepper.css */
-/* Torque UI — Stepper (Numeric Input with +/-)
+@layer tui.forms{
+
+
+  /* Torque UI — Stepper (Numeric Input with +/-)
  * Number input flanked by increment/decrement buttons.
  * Pure CSS presentation; value changes still need form semantics (native input handles it).
  */
@@ -4982,9 +5722,12 @@ html:has(.tui-shell-header) {
     inline-size: 4.5rem;
     font-size: var(--tui-text-lg);
   }
+}
 
-/* color-check.css */
-/* Torque UI — Color Check (color swatch picker)
+@layer tui.forms{
+
+
+  /* Torque UI — Color Check (color swatch picker)
  * Radios rendered as color swatches. Hidden input + :checked styling.
  * Pure CSS, no JS.
  */
@@ -5040,9 +5783,12 @@ html:has(.tui-shell-header) {
   .tui-color-check-input:focus-visible + .tui-color-check-swatch {
     box-shadow: 0 0 0 2px var(--tui-surface-0), 0 0 0 4px var(--tui-focus-ring-strong);
   }
+}
 
-/* image-check.css */
-/* Torque UI — Image Check (thumbnail picker)
+@layer tui.forms{
+
+
+  /* Torque UI — Image Check (thumbnail picker)
  * Radios rendered as image thumbnails. Hidden input + :checked styling.
  * Pure CSS, no JS.
  */
@@ -5129,11 +5875,10 @@ html:has(.tui-shell-header) {
   .tui-image-check:hover .tui-image-check-label {
     opacity: 1;
   }
-
 }
 
-@layer tui.interactive {
-/* _state.css */
+@layer tui.interactive{
+
 /* Torque UI — Shared state-input mechanism */
 
 /* why: state inputs must stay focusable; opacity:0 keeps them in the tab order, clip hides them */
@@ -5200,7 +5945,22 @@ html:has(.tui-shell-header) {
 :is([aria-invalid="true"], [data-invalid], .tui-invalid) { --tui-invalid: 1; }
 :is([aria-disabled="true"], [data-disabled], .tui-disabled, :disabled) { --tui-disabled: 1; }
 
-/* tabs.css */
+/* === Inert ===
+ * The inert attribute removes a subtree from interaction and the
+ * accessibility tree but paints nothing; controls and links under it are
+ * shown as disabled so the page reads the way it behaves. */
+[inert] {
+  cursor: default;
+}
+
+[inert] :is(button, input, select, textarea, a, .tui-button, .tui-menu-item, .tui-option, .tui-tab, .tui-toggle, .tui-chip, .tui-navbar-item, .tui-calendar-day) {
+  opacity: 0.5;
+  box-shadow: none;
+  cursor: default;
+}
+}
+
+@layer tui.interactive{
 /* Torque UI — Tabs */
 .tui-tabs {
   display: flex;
@@ -5303,7 +6063,44 @@ button.tui-tab {
    attribute, which the utilities layer honours above this rule */
 .tui-tab-panel[role="tabpanel"] { display: block; }
 
-/* collapse.css */
+/* === Vertical strip ===
+ * why: the panels are siblings of the tabs, so a grid puts the strip in the
+ * first column and lets the shown panel span the rows beside it */
+.tui-tabs-vertical {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  align-items: start;
+  column-gap: var(--tui-spacing-4);
+
+  &::after { display: none; }
+
+  & > .tui-tab {
+    grid-column: 1;
+    border-block-end: 0;
+    border-inline-end: var(--tui-tab-rule, 2px solid var(--tui-border));
+  }
+
+  & > .tui-tab-input:checked + .tui-tab,
+  & > .tui-tab:is([aria-current], [aria-selected="true"], [data-selected], .tui-selected) {
+    border-inline-end-color: var(--tui-tab-active-color, var(--tui-brand));
+  }
+
+  & > .tui-tab-panel {
+    grid-column: 2;
+    grid-row: 1 / span 40;
+    padding-block: 0;
+  }
+
+  & > .tui-tabs-end {
+    grid-column: 1;
+    margin-inline-start: 0;
+    padding: 0;
+    border: 0;
+  }
+}
+}
+
+@layer tui.interactive{
 /* Torque UI — Collapse & Accordion */
 .tui-collapse-summary {
   display: flex;
@@ -5371,12 +6168,14 @@ button.tui-tab {
 
   .tui-collapse[open]::details-content { block-size: auto; }
 }
+}
 
-/* menu.css */
+@layer tui.interactive{
 /* Torque UI — Menu (list of actions, usually mounted inside a .tui-popover) */
 .tui-menu { display: grid; }
 
 .tui-menu-item {
+  position: relative;
   display: flex;
   align-items: center;
 
@@ -5419,7 +6218,54 @@ button.tui-tab {
   border-block-start: 1px solid var(--tui-border);
 }
 
-/* modal.css */
+/* === Checkbox and radio items ===
+ * role="menuitemcheckbox" / "menuitemradio" reserve a slot at the start for
+ * a tick or a dot that appears while aria-checked is true. */
+.tui-menu-item:is([role="menuitemcheckbox"], [role="menuitemradio"]) {
+  padding-inline-start: var(--tui-spacing-8);
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset-inline-start: var(--tui-spacing-3);
+    inset-block-start: 50%;
+    translate: 0 -50%;
+    inline-size: 1rem;
+    block-size: 1rem;
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3'%3E%3Cpath d='m5 12 5 5L20 7'/%3E%3C/svg%3E") center / 0.75rem no-repeat;
+    background-color: currentcolor;
+    opacity: 0;
+  }
+
+  &[aria-checked="true"]::before {
+    opacity: 1;
+  }
+}
+
+.tui-menu-item[role="menuitemradio"]::before {
+  inset-inline-start: calc(var(--tui-spacing-3) + 0.25rem);
+  inline-size: 0.5rem;
+  block-size: 0.5rem;
+  border-radius: var(--tui-radius-full);
+  mask: none;
+}
+
+/* === Description line === */
+.tui-menu-item-text {
+  display: grid;
+  gap: 2px;
+  min-inline-size: 0;
+}
+
+.tui-menu-item-desc {
+  font-size: var(--tui-text-xs);
+  font-weight: var(--tui-font-normal);
+  color: var(--tui-text-3);
+}
+}
+
+@layer tui.interactive{
+
 /* Torque UI — Modal
  * Native <dialog>, opened declaratively with commandfor/command="show-modal"
  * (no JS). Closing, Escape, focus trap and the ::backdrop are all native
@@ -5495,8 +6341,10 @@ button.tui-tab {
   padding: var(--tui-spacing-6);
   overflow: auto;
 }
+}
 
-/* offcanvas.css */
+@layer tui.interactive{
+
 /* Torque UI — Offcanvas (drawer)
  * A [popover] that slides in from the inline edge; open/close is native
  * (popovertarget, no JS). Add .tui-offcanvas-end to slide from the end edge.
@@ -5609,8 +6457,9 @@ button.tui-tab {
     align-items: center;
   }
 }
+}
 
-/* tooltip.css */
+@layer tui.interactive{
 /* Torque UI — Tooltip
  * The trigger is a real, focusable element (button/link) carrying aria-describedby;
  * the tip is a real element with role="tooltip", shown on hover or keyboard focus.
@@ -5681,8 +6530,10 @@ button.tui-tab {
     margin-block-end: var(--tui-spacing-2);
   }
 }
+}
 
-/* popover.css */
+@layer tui.interactive{
+
 /* Torque UI — Popover surface (dropdown menus, rich popovers)
  * Any [popover] element gets this surface; open/close is native (popovertarget, no JS).
  * The invoker (popovertarget) is the implicit anchor, so each popover
@@ -5748,8 +6599,10 @@ button.tui-tab {
   font-size: var(--tui-text-base);
   font-weight: var(--tui-font-semibold);
 }
+}
 
-/* listbox.css */
+@layer tui.interactive{
+
 /* Torque UI — Listbox
  * .tui-listbox (role="listbox") is a column of .tui-option rows a script
  * selects, highlights and filters: alone as an in-flow picker, or as the
@@ -5842,6 +6695,22 @@ button.tui-tab {
   border-color: var(--tui-tone, var(--tui-brand));
 }
 
+/* === Description line === */
+.tui-option-text {
+  display: grid;
+  gap: 2px;
+  min-inline-size: 0;
+}
+
+.tui-option-desc {
+  font-size: var(--tui-text-xs);
+  color: var(--tui-text-3);
+}
+
+.tui-option:is([aria-selected="true"], [data-selected], .tui-selected) .tui-option-desc {
+  color: inherit;
+}
+
 /* === Groups === */
 .tui-listbox-group {
   display: grid;
@@ -5914,8 +6783,217 @@ button.tui-tab {
     max-inline-size: none;
   }
 }
+}
 
-/* sheet.css */
+@layer tui.interactive{
+
+/* Torque UI — Calendar
+ * .tui-calendar is the month grid of a date picker: a header with the
+ * month title and two navigation buttons, and a table of .tui-calendar-day
+ * buttons. Every state — today, selected, disabled, outside the month, a
+ * range — comes from an attribute the script sets; moving between months
+ * and the date arithmetic are the script's.
+ */
+
+.tui-calendar {
+  display: grid;
+  gap: var(--tui-spacing-3);
+  inline-size: max-content;
+  max-inline-size: 100%;
+}
+
+.tui-calendar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--tui-spacing-2);
+}
+
+.tui-calendar-title {
+  margin: 0;
+  font-size: var(--tui-text-base);
+  font-weight: var(--tui-font-semibold);
+  text-box: trim-both cap alphabetic;
+}
+
+/* why: the element table styles (rules, padding, tinted header) are undone
+   so the grid is a plain matrix of equal cells */
+.tui-calendar-grid {
+  inline-size: auto;
+  margin: 0;
+  border-collapse: separate;
+  border-spacing: 0;
+
+  & th,
+  & td {
+    padding: 0;
+    text-align: center;
+    background-color: transparent;
+    border: 0;
+    text-box: normal;
+  }
+
+  & th {
+    padding-block-end: var(--tui-spacing-2);
+    font-size: var(--tui-text-xs);
+    font-weight: var(--tui-font-medium);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--tui-text-3);
+  }
+}
+
+.tui-calendar-day {
+  display: inline-grid;
+  place-items: center;
+  inline-size: var(--tui-calendar-day-size, 2.25rem);
+  block-size: var(--tui-calendar-day-size, 2.25rem);
+  padding: 0;
+  font: inherit;
+  font-size: var(--tui-text-sm);
+  color: var(--tui-text-1);
+  background-color: transparent;
+  border: 2px solid transparent;
+  border-radius: var(--tui-radius-full);
+  box-shadow: none;
+  cursor: pointer;
+  transition: background-color var(--tui-duration-fast), color var(--tui-duration-fast), border-color var(--tui-duration-fast);
+
+  &:hover {
+    background-color: var(--tui-surface-2);
+    box-shadow: none;
+    translate: none;
+  }
+
+  &:is([aria-current="date"], .tui-today) {
+    border-color: var(--tui-tone, var(--tui-brand));
+  }
+
+  &:is([data-outside], .tui-calendar-outside) {
+    color: var(--tui-text-3);
+  }
+
+  &:is([data-range="middle"]) {
+    color: var(--tui-tone-ink, var(--tui-brand-ink));
+    background-color: var(--tui-tone-soft, var(--tui-brand-soft));
+    border-radius: 0;
+  }
+
+  &:is([aria-selected="true"], [data-selected], .tui-selected, [data-range="start"], [data-range="end"]) {
+    color: var(--tui-tone-fg, var(--tui-brand-fg));
+    background-color: var(--tui-tone, var(--tui-brand));
+    border-color: var(--tui-tone, var(--tui-brand));
+  }
+
+  &[data-range="start"] {
+    border-start-end-radius: 0;
+    border-end-end-radius: 0;
+  }
+
+  &[data-range="end"] {
+    border-start-start-radius: 0;
+    border-end-start-radius: 0;
+  }
+
+  &:is(:disabled, [aria-disabled="true"], [data-disabled], .tui-disabled) {
+    color: var(--tui-text-3);
+    background-color: transparent;
+    cursor: not-allowed;
+    opacity: 1;
+    text-decoration: line-through;
+  }
+}
+}
+
+@layer tui.interactive{
+
+/* Torque UI — Speed Dial
+ * A .tui-fab that opens a column of action buttons above itself: the FAB is
+ * the popovertarget invoker of a [popover].tui-speed-dial-actions, so it
+ * opens, light-dismisses and closes on Escape with no script.
+ */
+
+.tui-speed-dial {
+  position: fixed;
+  inset-block-end: var(--tui-fab-inset, var(--tui-spacing-6));
+  inset-inline-end: var(--tui-fab-inset, var(--tui-spacing-6));
+  z-index: var(--tui-z-sticky);
+
+  /* why: the FAB positions itself; inside the dial the wrapper does */
+  & > .tui-fab {
+    position: static;
+  }
+}
+
+/* why: the column's own display: grid would beat the UA's closed-popover display: none */
+[popover].tui-speed-dial-actions:not(:popover-open) {
+  display: none;
+}
+
+[popover].tui-speed-dial-actions {
+  inset: auto;
+  inset-block-end: calc(var(--tui-fab-inset, var(--tui-spacing-6)) + 3.5rem + var(--tui-spacing-2));
+  inset-inline-end: var(--tui-fab-inset, var(--tui-spacing-6));
+  display: grid;
+  gap: var(--tui-spacing-2);
+  justify-items: end;
+  margin: 0;
+  padding: 0;
+  background: none;
+  border: 0;
+  overflow: visible;
+
+  &::backdrop {
+    background-color: transparent;
+  }
+
+  /* why: the invoker is the implicit anchor, so the column follows the FAB
+     wherever --tui-fab-inset puts it */
+  @supports (anchor-name: --x) {
+    inset: auto;
+    margin: 0 0 var(--tui-spacing-2);
+    /* stylelint-disable-next-line csstree/validator -- position-area is valid CSS anchor positioning syntax (Chrome 125+/Safari 26+); csstree's grammar doesn't yet know it */
+    position-area: block-start span-inline-start;
+  }
+}
+}
+
+@layer tui.interactive{
+
+/* Torque UI — Drag and drop states
+ * The reordering is the script's (HTML drag events or pointer events);
+ * these paint what it reports: the element being dragged, the container it
+ * may drop into, and the edge of the item it would land beside.
+ */
+
+[draggable="true"] {
+  cursor: grab;
+}
+
+:is([data-dragging], .tui-dragging) {
+  opacity: 0.6;
+  cursor: grabbing;
+}
+
+:is([data-drop-target], .tui-drop-target) {
+  outline: 2px dashed var(--tui-tone, var(--tui-brand));
+  outline-offset: -2px;
+  background-color: var(--tui-tone-soft, var(--tui-brand-soft));
+}
+
+/* why: an inset shadow instead of a pseudo-element, so a component that
+   already draws ::before or ::after keeps it */
+[data-drop="before"] {
+  box-shadow: inset 0 3px 0 var(--tui-tone, var(--tui-brand));
+}
+
+[data-drop="after"] {
+  box-shadow: inset 0 -3px 0 var(--tui-tone, var(--tui-brand));
+}
+}
+
+@layer tui.interactive{
+
 /* Torque UI — Sheet
  * [popover].tui-sheet — a non-modal floating surface centred near the top of the viewport.
  * Opened with a popovertarget button; light-dismiss and Escape are native popover behaviour.
@@ -5940,8 +7018,9 @@ button.tui-tab {
 .tui-sheet::backdrop {
   background-color: var(--tui-sheet-backdrop, rgb(0 0 0 / 0.4));
 }
+}
 
-/* carousel.css */
+@layer tui.interactive{
 /* Torque UI — Carousel */
 .tui-carousel {
   position: relative;
@@ -6049,8 +7128,9 @@ button.tui-tab {
     inset-inline-end: 0;
   }
 }
+}
 
-/* rating.css */
+@layer tui.interactive{
 /* Torque UI — Rating */
 .tui-rating {
   display: inline-flex;
@@ -6077,8 +7157,9 @@ button.tui-tab {
 }
 
 .tui-rating-star:hover { scale: 1.1; }
+}
 
-/* toggle-group.css */
+@layer tui.interactive{
 /* Torque UI — Toggle Group */
 .tui-toggle-group {
   display: inline-flex;
@@ -6169,8 +7250,9 @@ button.tui-toggle {
 .tui-toggle-group-wrap {
   flex-wrap: wrap;
 }
+}
 
-/* wizard.css */
+@layer tui.interactive{
 /* Torque UI — Wizard */
 .tui-wizard {
   --_pad: var(--tui-wizard-padding, var(--tui-spacing-6));
@@ -6217,11 +7299,10 @@ button.tui-toggle {
   --tui-tone-bg: var(--tui-brand-bg);
   --tui-tone-ink: var(--tui-brand-ink);
 }
-
 }
 
-@layer tui.utilities {
-/* tone.css */
+@layer tui.utilities{
+
 /* Torque UI — Tone Hook Setters
  * One block per semantic. Each selector list is every legacy variant class
  * name that used to carry its own copy-pasted colour declarations (button,
@@ -6408,9 +7489,11 @@ button.tui-toggle {
   --tui-tone-ink: light-dark(oklch(from var(--tui-tone) min(l, 0.45) c h), oklch(from var(--tui-tone) max(l, 0.8) c h));
   --tui-tone-gradient: linear-gradient(135deg, var(--tui-tone), var(--tui-tone-end, var(--tui-tone)));
 }
+}
 
-/* colors.css */
-/* Torque UI — Color Utilities
+@layer tui.utilities{
+
+  /* Torque UI — Color Utilities
  * .tui-text-*, .tui-bg-* utility classes.
  */
 
@@ -6500,9 +7583,12 @@ button.tui-toggle {
   .tui-rounded-md   { border-radius: var(--tui-radius-md); }
   .tui-rounded-lg   { border-radius: var(--tui-radius-lg); }
   .tui-rounded-full { border-radius: var(--tui-radius-full); }
+}
 
-/* spacing.css */
-/* Torque UI — Spacing Utilities
+@layer tui.utilities{
+
+
+  /* Torque UI — Spacing Utilities
  * .tui-m*, .tui-p*, .tui-gap-* utility classes.
  */
 
@@ -6616,9 +7702,12 @@ button.tui-toggle {
   .tui-pb-6  { padding-block-end: var(--tui-spacing-6); }
   .tui-pb-8  { padding-block-end: var(--tui-spacing-8); }
   .tui-pb-12 { padding-block-end: var(--tui-spacing-12); }
+}
 
-/* sizing.css */
-/* Torque UI — Sizing Utilities
+@layer tui.utilities{
+
+
+  /* Torque UI — Sizing Utilities
  * Width, max-width, height and sticky helpers.
  */
 
@@ -6648,8 +7737,10 @@ button.tui-toggle {
     inset-block-start: 0;
     z-index: var(--tui-z-sticky);
   }
+}
 
-/* display.css */
+@layer tui.utilities{
+
 /* Torque UI — Display Utilities
  * Display property helpers.
  */
@@ -6703,9 +7794,12 @@ button.tui-toggle {
     .tui-d-lg-flex      { display: flex; }
     .tui-d-lg-grid      { display: grid; }
   }
+}
 
-/* overflow.css */
-/* Torque UI — Overflow Utilities
+@layer tui.utilities{
+
+
+  /* Torque UI — Overflow Utilities
  * Overflow property helpers.
  */
 
@@ -6722,9 +7816,12 @@ button.tui-toggle {
   .tui-overflow-y-hidden  { overflow-y: hidden; }
   .tui-overflow-y-scroll  { overflow-y: scroll; }
   .tui-overflow-y-auto    { overflow-y: auto; }
+}
 
-/* text.css */
-/* Torque UI — Text Utilities
+@layer tui.utilities{
+
+
+  /* Torque UI — Text Utilities
  * Text alignment, weight, transform helpers.
  */
 
@@ -6813,9 +7910,12 @@ button.tui-toggle {
     text-box: normal;
     align-self: start;
   }
+}
 
-/* visual.css */
-/* Torque UI — Visual Effects & Polish
+@layer tui.utilities{
+
+
+  /* Torque UI — Visual Effects & Polish
  * Group 5: glassmorphism, blend modes, image fitting, masks, shapes, filters.
  */
 
@@ -6976,9 +8076,12 @@ button.tui-toggle {
     transition: none;
     animation: none;
   }
+}
 
-/* pointer-orientation.css */
-/* Torque UI — Pointer & Orientation Media Utilities
+@layer tui.utilities{
+
+
+  /* Torque UI — Pointer & Orientation Media Utilities
  * Group 6: hover/pointer detection, orientation, aspect-ratio.
  * Progressive — safe on all target browsers.
  */
@@ -7041,8 +8144,9 @@ button.tui-toggle {
   .tui-ratio-21-9 {
     aspect-ratio: 21 / 9;
   }
+}
 
-/* scroll.css */
+@layer tui.utilities{
 /* Torque UI — Scroll-Driven Utilities */
 @supports (animation-timeline: scroll()) {
   .tui-reading-progress {
@@ -7089,12 +8193,12 @@ button.tui-toggle {
     }
   }
 }
-
 }
 
-@layer tui.themes {
-/* forced-toggle.css */
-/* Torque UI — Forced Theme Toggle
+@layer tui.themes{
+
+
+  /* Torque UI — Forced Theme Toggle
  * Checkbox-driven forced light/dark toggle (no JS).
  * The toggle input needs class="tui-state-input tui-theme-toggle-input";
  * the checked state must have a later-sibling .tui-page for the ~ combinator to reach it.
@@ -7156,9 +8260,12 @@ button.tui-toggle {
   :root[data-theme="dark"] .tui-dark-only { display: revert; }
   :root[data-theme="light"] .tui-light-only { display: revert; }
   :root[data-theme="light"] .tui-dark-only { display: none; }
+}
 
-/* high-contrast.css */
-/* Torque UI — High Contrast Theme
+@layer tui.themes{
+
+
+  /* Torque UI — High Contrast Theme
  * @media (prefers-contrast: more) overrides.
  */
 
@@ -7198,9 +8305,12 @@ button.tui-toggle {
       text-decoration: underline;
     }
   }
+}
 
-/* a11y.css */
-/* Torque UI — Accessibility & Inclusive Design
+@layer tui.themes{
+
+
+  /* Torque UI — Accessibility & Inclusive Design
  * Group 3: reduced motion, forced colors, contrast, RTL/LTR, lang, i18n, typography polish.
  * All guarded or progressive — safe on all target browsers.
  */
@@ -7218,6 +8328,14 @@ button.tui-toggle {
       animation-iteration-count: 1;
       transition-duration: 0.01ms;
       scroll-behavior: auto;
+    }
+
+    /* why: a single run of the sweep would leave the bar off the track; a
+       static half-tinted bar says "working" without moving */
+    .tui-progress-indeterminate > .tui-progress-bar {
+      inline-size: 100%;
+      opacity: 0.5;
+      animation: none;
     }
   }
 
@@ -7272,8 +8390,9 @@ button.tui-toggle {
   :lang(ja) {
     line-break: anywhere;
   }
+}
 
-/* view-transitions.css */
+@layer tui.themes{
 /* Torque UI — Cross-Document View Transitions
  * Opt-in: remove this import from tui.css to drop the feature entirely.
  * Supported: Chrome 126, Safari 18.2. Elsewhere @supports keeps this
@@ -7296,8 +8415,9 @@ button.tui-toggle {
     view-transition-name: tui-hero;
   }
 }
+}
 
-/* print.css */
+@layer tui.themes{
 /* Torque UI — Print Stylesheet
  * Drops screen-only chrome (toggles, floating actions, toasts, popovers,
  * the reading progress bar) and forces disclosure widgets open so a
@@ -7360,5 +8480,4 @@ button.tui-toggle {
     content-visibility: visible;
   }
 }
-
 }

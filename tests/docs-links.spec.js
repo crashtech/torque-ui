@@ -161,3 +161,28 @@ test.describe('self-driven JS sections are labelled consistently', () => {
     });
   }
 });
+
+test.describe('docs nav', () => {
+  const index = fs.readFileSync(path.join(DOCS_DIR, 'index.md'), 'utf8');
+  // why: the file opens with the fence, so the first '\n---' is the closing one and the frontmatter is before it
+  const front = index.split('\n---')[0] + '\n';
+  const sections = [...front.matchAll(/  - title: ([^\n]+)\n    id: ([a-z-]+)\n(?:    note: [^\n]+\n)?    pages:\n((?:      - title: [^\n]+\n        url: [^\n]+\n)+)/g)]
+    .map((m) => ({ id: m[2], pages: [...m[3].matchAll(/      - title: ([^\n]+)\n        url: ([^\n]+)\n/g)].map((p) => ({ title: p[1], url: p[2] })) }));
+
+  test('every docs page is in the nav exactly once', () => {
+    const urls = sections.flatMap((s) => s.pages.map((p) => p.url));
+    const pages = markdownFilesIn(DOCS_DIR)
+      .filter((f) => f !== path.join(DOCS_DIR, 'index.md') && f !== path.join(DOCS_DIR, 'comparison.md'))
+      .map((f) => '/' + path.relative(DOCS_DIR, path.dirname(f)).split(path.sep).join('/') + '/');
+    expect(urls.filter((u, i) => urls.indexOf(u) !== i)).toEqual([]);
+    expect(pages.filter((p) => !urls.includes(p))).toEqual([]);
+    expect(urls.filter((u) => !pages.includes(u))).toEqual([]);
+  });
+
+  test('every nav section after Getting Started lists its pages alphabetically', () => {
+    for (const section of sections.filter((s) => s.id !== 'getting-started')) {
+      const titles = section.pages.map((p) => p.title);
+      expect(titles, `section ${section.id}`).toEqual([...titles].sort((a, b) => a.toLowerCase().localeCompare(b.toLowerCase())));
+    }
+  });
+});

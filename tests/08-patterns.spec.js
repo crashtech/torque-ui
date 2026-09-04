@@ -406,3 +406,17 @@ test.describe('Patterns — Sheet', () => {
     await expect(page.locator('#search-sheet')).toBeHidden();
   });
 });
+
+test.describe('Patterns — Drag states', () => {
+  test('drag states paint the dragged card, the drop-target column and the drop edge from data attributes and classes', async ({ page }) => {
+    await page.goto('/examples/08-patterns.html');
+    await page.addStyleTag({ content: '*, ::before, ::after { transition: none !important; }' });
+    await expect(page.locator('#board-card-dragging')).toHaveCSS('opacity', '0.6');
+    await expect(page.locator('#board-card-plain')).toHaveCSS('opacity', '1');
+    await expect(page.locator('#board-card-plain')).toHaveCSS('cursor', 'grab');
+    await expect(page.locator('#board-drop-column')).toHaveCSS('outline-style', 'dashed');
+    expect(await page.locator('#board-card-before').evaluate((el) => getComputedStyle(el).boxShadow)).toContain('inset');
+    await page.locator('#board-card-plain').evaluate((el) => el.classList.add('tui-dragging'));
+    await expect(page.locator('#board-card-plain')).toHaveCSS('opacity', '0.6');
+  });
+});

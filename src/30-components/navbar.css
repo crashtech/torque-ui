@@ -74,7 +74,77 @@
     color: var(--tui-tone-ink, var(--tui-brand-ink));
   }
 
+  /* === Submenus ===
+   * A <button class="tui-navbar-item"> with popovertarget opens a
+   * .tui-popover.tui-menu with no script; .tui-navbar-mega widens that
+   * surface into a grid of columns. A script-driven submenu is a
+   * .tui-navbar-submenu.tui-menu after the button, toggled with hidden. */
+  .tui-navbar-menu > li {
+    position: relative;
+  }
+
+  button.tui-navbar-item {
+    font: inherit;
+    font-size: var(--tui-text-sm);
+    font-weight: var(--tui-font-medium);
+    background: none;
+    border: 0;
+    box-shadow: none;
+    cursor: pointer;
+
+    &:hover {
+      background-color: var(--tui-surface-2);
+      box-shadow: none;
+      translate: none;
+    }
+  }
+
+  .tui-navbar-item > .tui-caret {
+    margin-inline-start: var(--tui-spacing-1);
+  }
+
+  .tui-navbar-submenu {
+    position: absolute;
+    inset-block-start: calc(100% + var(--tui-spacing-1));
+    inset-inline-start: 0;
+    z-index: var(--tui-z-dropdown);
+    min-inline-size: 12rem;
+    padding: var(--tui-popover-padding, var(--tui-spacing-1));
+    background-color: var(--tui-popover-bg, var(--tui-surface-0));
+    border: 1px solid var(--tui-popover-border, var(--tui-border));
+    border-radius: var(--tui-radius-md);
+    box-shadow: var(--tui-shadow-lg);
+  }
+
+  .tui-navbar-mega {
+    --tui-popover-max-inline-size: var(--tui-navbar-mega-inline-size, 48rem);
+    --tui-popover-padding: var(--tui-spacing-4);
+
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
+    gap: var(--tui-spacing-4);
+  }
+
+  .tui-navbar-mega-title {
+    margin: 0 0 var(--tui-spacing-2);
+    font-size: var(--tui-text-xs);
+    font-weight: var(--tui-font-semibold);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--tui-text-3);
+  }
+
   @media (width < 768px) {
+    /* why: in the drawer a submenu is part of the list, indented, not a
+       floating surface */
+    .tui-navbar-submenu {
+      position: static;
+      min-inline-size: 0;
+      padding-inline-start: var(--tui-spacing-4);
+      border: 0;
+      box-shadow: none;
+    }
+
     /* why: .tui-navbar-menu's own `display: flex` (an author style) beats the UA's implicit closed-popover `display: none` by cascade origin, so this reasserts it below the breakpoint */
     .tui-navbar-menu[popover]:not(:popover-open) { display: none; }
   }

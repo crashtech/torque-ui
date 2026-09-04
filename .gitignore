@@ -1,14 +1,53 @@
+# Dependencies
 node_modules/
+
+# Test output (Playwright)
 playwright-report/
 test-results/
+blob-report/
+playwright/.cache/
+
+# Build scratch — dist/tui-all.css itself is committed
+dist/*.tmp
+
+# Environment and secrets
+.env
+.env.*
+!.env.example
+
+# Logs and temporary files
+*.log
+npm-debug.log*
+*.tmp
+*.swp
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editors
+.idea/
+.vscode/
+!.vscode/extensions.json
+*.code-workspace
+
+# Python tooling used by scripts/
 __pycache__/
+*.pyc
+
+# AI and agent tooling
+.claude/settings.local.json
+.unlazy/
+.unlazy-hook-state.json
+GATES.md
 .omo/
 .pi/
 .codegraph
 .superpowers/
 .scratch/
 .hermes/
-*.pyc
-.DS_Store
-dist/*.tmp
+
+# Design mockups kept outside the library
 torby/

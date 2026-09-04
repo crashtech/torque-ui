@@ -1,0 +1,15 @@
+<div class="tui-popover-static tui-menu" role="menu" id="menu-check">
+  <button class="tui-menu-item" type="button" role="menuitemcheckbox" aria-checked="true">Show grid</button>
+  <button class="tui-menu-item" type="button" role="menuitemcheckbox" aria-checked="false">Snap to grid</button>
+  <hr class="tui-menu-divider">
+  <button class="tui-menu-item" type="button" role="menuitemradio" aria-checked="true">Light</button>
+  <button class="tui-menu-item" type="button" role="menuitemradio" aria-checked="false">Dark</button>
+</div>
+<script>
+  document.getElementById('menu-check').addEventListener('click', (event) => {
+    const item = event.target.closest('[aria-checked]');
+    if (!item) return;
+    if (item.getAttribute('role') === 'menuitemradio') item.parentElement.querySelectorAll('[role="menuitemradio"]').forEach((radio) => radio.setAttribute('aria-checked', radio === item));
+    else item.setAttribute('aria-checked', item.getAttribute('aria-checked') !== 'true');
+  });
+</script>

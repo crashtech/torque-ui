@@ -12,7 +12,10 @@ const PAGES = [
   { name: 'typography', url: '01-typography.html' },
   { name: 'elements', url: '02-elements.html' },
   { name: 'components', url: '03-components.html' },
-  { name: 'forms', url: '04-forms.html' },
+  // why: a form carrying aria-busy is inactive — pointer events are off and
+  // the request is in flight — so its dimmed fields fall under the WCAG
+  // exemption for inactive components, the same one native :disabled gets.
+  { name: 'forms', url: '04-forms.html', contrastExclude: ['form[aria-busy="true"] *'] },
   { name: 'layout', url: '05-layout.html' },
   { name: 'utilities', url: '06-utilities.html' },
   { name: 'interactive', url: '07-interactive.html' },

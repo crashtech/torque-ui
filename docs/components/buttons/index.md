@@ -106,6 +106,17 @@ A toggle button your script marks with `aria-pressed="true"` (or `data-pressed`,
 | `.tui-caret` | 0.75em chevron in the text colour |
 | `:is([aria-expanded="true"], [data-expanded], .tui-expanded) .tui-caret` | Turned 180° |
 
+## Loading <span class="tui-badge">self-driven JS</span>
+
+`aria-busy="true"` (or `.tui-loading`) on any `<button>`, styled or bare, turns its label transparent — so the width holds — and centres a 1em spinner in the button's text colour over it; pointer events are off until the attribute goes. The demo's script sets it for two seconds on click.
+
+{% include demo.html file="loading.html" %}
+
+| Selector | Effect |
+|---|---|
+| `:is(button, .tui-button):is([aria-busy="true"], .tui-loading)` | Transparent label, centred spinner, `pointer-events: none` |
+| `:is(form, fieldset)[aria-busy="true"] button[type="submit"]` | The same spinner, from the [busy form](/ui/forms/form-layout/) |
+
 ## Custom properties
 
 | Property | Default | Effect |

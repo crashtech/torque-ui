@@ -2,7 +2,7 @@
 title: Links
 section: elements
 source: src/20-elements/links.css
-description: "Every <a> takes the brand colour through :any-link, underlines on hover, desaturates when visited and leaves room above a scroll target."
+description: "Brand-coloured links with a colour hook, underline shapes and a growing underline; Every <a> takes the brand colour through :any-link, underlines on hover, desaturates when visited and leaves room above a scroll target."
 ---
 
 Links are styled through `:any-link`, which matches an `<a>` with an `href` whether or not it has been visited, so a single rule covers both states. There is nothing to add: a bare `<a href>` is brand-coloured, un-underlined at rest, and underlined on hover.
@@ -12,6 +12,39 @@ Links are styled through `:any-link`, which matches an `<a>` with an `href` whet
 `:any-link` sets `--tui-brand`, no underline and a fast colour transition. On hover the colour darkens by 15% and an underline appears, offset by `0.15em` so it clears descenders. A muted link is a plain link plus a text-colour utility such as `.tui-text-2`, which sits in the higher utilities layer and therefore wins.
 
 {% include demo.html file="default.html" %}
+
+## Colour
+
+The colour is one custom property, `--tui-link-color`, read at rest, darkened on hover and desaturated when visited, so a link keeps all three states in whatever colour you give it. The `.tui-link-positive`, `-negative`, `-warning`, `-info` and `-neutral` aliases set it from the semantic tokens; `.tui-link-inherit` makes a link take the surrounding text colour, for prose that must not turn blue.
+
+{% include demo.html file="colors.html" %}
+
+## Underline shape
+
+`.tui-link-underline` keeps the underline at rest; `.tui-link-dotted`, `-dashed`, `-wavy` and `-double` give it a shape through `text-decoration-style`, which hover keeps. A dotted underline is the usual cue for a term with a definition.
+
+{% include demo.html file="shapes.html" %}
+
+## Growing underline
+
+`.tui-link-grow` replaces the hover underline with a bar that grows from the start edge over `--tui-duration-fast` — a background gradient rather than `text-decoration`, since only a background can animate its width. `--tui-link-grow-size` sets its thickness.
+
+{% include demo.html file="grow.html" %}
+
+| Class | Effect |
+|---|---|
+| `.tui-link-positive` / `-negative` / `-warning` / `-info` / `-neutral` | Sets `--tui-link-color` from the semantic token |
+| `.tui-link-inherit` | `--tui-link-color: currentcolor` |
+| `.tui-link-underline` | Underlined at rest |
+| `.tui-link-dotted` / `-dashed` / `-wavy` / `-double` | Underline shape, kept on hover |
+| `.tui-link-grow` | Bar growing from the start edge on hover |
+
+## Custom properties
+
+| Property | Default | Effect |
+|---|---|---|
+| `--tui-link-color` | `var(--tui-brand)` | Rest colour; hover and visited derive from it |
+| `--tui-link-grow-size` | `2px` | Thickness of the growing bar |
 
 ## Visited
 

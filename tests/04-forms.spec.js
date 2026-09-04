@@ -840,3 +840,104 @@ test.describe('Forms — Self-driven JS hooks', () => {
     expect(await getViolations(page, ['color-contrast', 'label', 'button-name', 'aria-allowed-attr', 'aria-required-children'], '#combobox-section, #self-driven-forms-section, #select-icons-section')).toEqual([]);
   });
 });
+
+test.describe('Forms — Range wrapper', () => {
+  test.beforeEach(async ({ page }) => {
+    await page.goto('/examples/04-forms.html');
+    await page.addStyleTag({ content: '*, ::before, ::after { transition: none !important; }' });
+  });
+
+  test('range wrapper paints its fill from data-value, positions the label on the thumb and lays out marks', async ({ page }) => {
+    const wrapper = page.locator('#range-single');
+    expect(await wrapper.evaluate((el) => getComputedStyle(el).getPropertyValue('--tui-range-end'))).toBe('30');
+    expect(await wrapper.evaluate((el) => getComputedStyle(el, '::before').backgroundImage)).toContain('linear-gradient');
+    const w = await wrapper.boundingBox();
+    const label = await wrapper.locator('.tui-range-label').boundingBox();
+    const centre = label.x + label.width / 2 - w.x;
+    expect(centre).toBeGreaterThan(w.width * 0.25);
+    expect(centre).toBeLessThan(w.width * 0.35);
+    await wrapper.evaluate((el) => el.setAttribute('data-value', '90'));
+    const moved = await wrapper.locator('.tui-range-label').boundingBox();
+    expect(moved.x).toBeGreaterThan(label.x + w.width * 0.4);
+    const marks = wrapper.locator('.tui-range-marks li');
+    expect((await marks.last().boundingBox()).x).toBeGreaterThan((await marks.first().boundingBox()).x + w.width * 0.7);
+  });
+
+  test('range wrapper: the track is centred on the thumbs, paints beneath them, and the marks centre on the thumb travel', async ({ page }) => {
+    for (const id of ['#range-single', '#range-dual']) {
+      const wrapper = page.locator(id);
+      const input = wrapper.locator('input').first();
+      const track = await wrapper.evaluate((el) => { const r = el.getBoundingClientRect(); const s = getComputedStyle(el, '::before'); return { height: parseFloat(s.height), zIndex: s.zIndex, position: s.position }; });
+      expect(track.height).toBe(6);
+      expect(track.position).toBe('static');
+      const i = await input.boundingBox();
+      const trackY = await wrapper.evaluate((el) => { const inputs = el.querySelectorAll('input'); return inputs[0].getBoundingClientRect().top; });
+      expect(Math.abs(trackY - i.y)).toBeLessThan(1);
+    }
+    const single = page.locator('#range-single');
+    await single.scrollIntoViewIfNeeded();
+    const input = await single.locator('input').boundingBox();
+    const first = await single.locator('.tui-range-marks li').first().boundingBox();
+    const last = await single.locator('.tui-range-marks li').last().boundingBox();
+    expect(Math.abs(first.x + first.width / 2 - (input.x + 10))).toBeLessThan(3);
+    expect(Math.abs(last.x + last.width / 2 - (input.x + input.width - 10))).toBeLessThan(3);
+    const hit = await page.evaluate(() => {
+      const wrapper = document.getElementById('range-dual');
+      const start = wrapper.querySelector('input');
+      const r = start.getBoundingClientRect();
+      const x = r.left + 10 + (r.width - 20) * 0.2;
+      return document.elementFromPoint(x, r.top + r.height / 2)?.tagName;
+    });
+    expect(hit).toBe('INPUT');
+  });
+
+  test('range wrapper: both thumbs of a dual range stay operable and the fill runs between them', async ({ page }) => {
+    const wrapper = page.locator('#range-dual');
+    expect(await wrapper.evaluate((el) => getComputedStyle(el).getPropertyValue('--tui-range-start'))).toBe('20');
+    expect(await wrapper.evaluate((el) => getComputedStyle(el).getPropertyValue('--tui-range-end'))).toBe('70');
+    const start = page.locator('#range-dual-start');
+    const end = page.locator('#range-dual-end');
+    await expect(start).toHaveCSS('pointer-events', 'none');
+    await wrapper.scrollIntoViewIfNeeded();
+    const box = await start.boundingBox();
+    const thumb = 20;
+    const at = (ratio) => box.x + thumb / 2 + (box.width - thumb) * ratio;
+    const y = box.y + box.height / 2;
+    await page.mouse.move(at(0.2), y);
+    await page.mouse.down();
+    await page.mouse.move(at(0.4), y, { steps: 5 });
+    await page.mouse.up();
+    expect(Number(await start.inputValue())).toBeGreaterThan(30);
+    expect(await end.inputValue()).toBe('70');
+  });
+});
+
+test.describe('Forms — Busy form', () => {
+  test.beforeEach(async ({ page }) => {
+    await page.goto('/examples/04-forms.html');
+    await page.addStyleTag({ content: '*, ::before, ::after { transition: none !important; }' });
+  });
+
+  test('busy form dims its fields and secondary buttons, blocks pointer events and spins its submit button', async ({ page }) => {
+    const form = page.locator('#busy-form');
+    await expect(form).toHaveCSS('pointer-events', 'none');
+    const busyInput = page.locator('#busy-form-email');
+    const idleInput = page.locator('#idle-form-email');
+    expect(await busyInput.evaluate((el) => getComputedStyle(el).backgroundColor)).not.toBe(await idleInput.evaluate((el) => getComputedStyle(el).backgroundColor));
+    await expect(busyInput).toHaveCSS('opacity', '0.7');
+    await expect(page.locator('#busy-form-cancel')).toHaveCSS('opacity', '0.5');
+    const submit = page.locator('#busy-form-submit');
+    await expect(submit).toHaveCSS('color', 'rgba(0, 0, 0, 0)');
+    expect(await submit.evaluate((el) => getComputedStyle(el, '::after').animationName)).toBe('tui-spin');
+    await expect(page.locator('#idle-form-submit')).not.toHaveCSS('color', 'rgba(0, 0, 0, 0)');
+    await form.evaluate((el) => el.removeAttribute('aria-busy'));
+    await expect(form).not.toHaveCSS('pointer-events', 'none');
+    await expect(submit).not.toHaveCSS('color', 'rgba(0, 0, 0, 0)');
+  });
+
+  test('busy form: a bare button with aria-busy spins like a .tui-button', async ({ page }) => {
+    const bare = page.locator('#busy-form-bare');
+    await expect(bare).toHaveCSS('color', 'rgba(0, 0, 0, 0)');
+    expect(await bare.evaluate((el) => getComputedStyle(el, '::after').animationName)).toBe('tui-spin');
+  });
+});

@@ -27,6 +27,29 @@ const PROPS = [
   'outline-width', 'outline-color',
 ];
 
+/**
+ * why: the modular entry is a chain of @imports; sampling computed styles
+ * before every import has resolved compares a half-loaded cascade to the
+ * bundle and reports margins and colours that are not real differences.
+ * @param {import('@playwright/test').Page} page
+ */
+async function settle(page) {
+  await page.waitForLoadState('networkidle');
+  await page.waitForFunction(() => {
+    const loaded = (sheet) => {
+      let rules;
+      try { rules = sheet.cssRules; } catch { return true; }
+      for (const rule of rules) {
+        // why: Chromium exposes an import's sheet before its rules arrive, so an empty sheet still counts as loading
+        if (rule instanceof CSSImportRule && (!rule.styleSheet || rule.styleSheet.cssRules.length === 0 || !loaded(rule.styleSheet))) return false;
+      }
+      return true;
+    };
+    return [...document.styleSheets].every(loaded);
+  });
+  await page.evaluate(() => document.fonts.ready.then(() => new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve)))));
+}
+
 async function collectStyles(page, props) {
   return page.evaluate((props) => {
     return Array.from(document.querySelectorAll('*')).map((el, i) => {
@@ -44,6 +67,7 @@ for (const url of PAGES) {
     await page.emulateMedia({ reducedMotion: 'reduce' });
 
     await page.goto(url);
+    await settle(page);
     const entryStyles = await collectStyles(page, PROPS);
 
     await page.route('**/*.html', async (route) => {
@@ -56,6 +80,7 @@ for (const url of PAGES) {
       await route.fulfill({ response, body });
     });
     await page.goto(url);
+    await settle(page);
     const bundleStyles = await collectStyles(page, PROPS);
     await page.unroute('**/*.html');
 

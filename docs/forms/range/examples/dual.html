@@ -1,0 +1,21 @@
+<div class="tui-field tui-max-w-sm">
+  <span id="range-dual-label">Price</span>
+  <div class="tui-range tui-range-dual" id="range-dual" data-start="20" data-end="70">
+    <output class="tui-range-label tui-range-label-start">20</output>
+    <output class="tui-range-label">70</output>
+    <input type="range" min="0" max="100" value="20" aria-labelledby="range-dual-label" aria-label="Minimum">
+    <input type="range" min="0" max="100" value="70" aria-labelledby="range-dual-label" aria-label="Maximum">
+  </div>
+</div>
+<script>
+  const dual = document.getElementById('range-dual');
+  const [start, end] = dual.querySelectorAll('input');
+  const [startLabel, endLabel] = dual.querySelectorAll('.tui-range-label');
+  const sync = () => {
+    if (Number(start.value) > Number(end.value)) [start.value, end.value] = [end.value, start.value];
+    dual.dataset.start = startLabel.textContent = start.value;
+    dual.dataset.end = endLabel.textContent = end.value;
+  };
+  start.addEventListener('input', sync);
+  end.addEventListener('input', sync);
+</script>

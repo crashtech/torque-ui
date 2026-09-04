@@ -180,3 +180,26 @@
     box-shadow: inset 0 2px 4px color-mix(in srgb, var(--tui-shadow-color-md) 60%, transparent);
     translate: none;
   }
+
+  /* === Loading ===
+   * why: aria-busy is the state the assistive tech reads; the label goes
+   * transparent rather than away so the button keeps its width */
+  :is(button, .tui-button):is([aria-busy="true"], .tui-loading),
+  :is(form, fieldset)[aria-busy="true"] :is(button:not([type]), button[type="submit"]) {
+    position: relative;
+    color: transparent;
+    pointer-events: none;
+
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      margin: auto;
+      inline-size: 1em;
+      block-size: 1em;
+      border: 2px solid color-mix(in srgb, var(--tui-tone-fg, var(--tui-text-1)) 30%, transparent);
+      border-block-start-color: var(--tui-tone-fg, var(--tui-text-1));
+      border-radius: var(--tui-radius-full);
+      animation: tui-spin var(--tui-duration-slower) linear infinite;
+    }
+  }

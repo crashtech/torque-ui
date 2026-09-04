@@ -55,6 +55,29 @@
     color: var(--tui-negative);
   }
 
+  /* === Busy form ===
+   * aria-busy on a form or fieldset is the submitting state: every field and
+   * secondary button dims and stops taking the pointer, and the submit
+   * button spins (30-components/button.css). */
+  :is(form, fieldset)[aria-busy="true"] {
+    pointer-events: none;
+    cursor: progress;
+
+    & :is(input, select, textarea) {
+      color: var(--tui-text-3);
+      background-color: var(--tui-surface-2);
+      opacity: 0.7;
+    }
+
+    & :is(button, .tui-button):not(:not([type]), [type="submit"]) {
+      opacity: 0.5;
+    }
+
+    & input[type="submit"] {
+      opacity: 0.7;
+    }
+  }
+
   fieldset {
     min-inline-size: 0;
     margin: 0;

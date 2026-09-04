@@ -2,6 +2,7 @@
 title: Form Layout
 section: forms
 source: src/50-forms/form.css
+js: self-driven
 description: "Flex and grid wrappers that space fields, labels, help and error lines with gap instead of margins."
 ---
 
@@ -56,5 +57,18 @@ A bare `<fieldset>` needs no class: it gets a 1px `--tui-border` border with `--
 `.tui-error` is the message that goes with an invalid control: `--tui-text-sm` in `--tui-negative`, placed after the control inside the field. The red border on the control itself comes from `:user-invalid`, documented at [Validation](/ui/forms/validation/) — the line and the border are independent, so you can render a server-side message without the browser having flagged the field.
 
 {% include demo.html file="error.html" %}
+
+## Busy form <span class="tui-badge">self-driven JS</span>
+
+`aria-busy="true"` on a `<form>` or `<fieldset>` is the submitting state: every field takes the disabled look, secondary buttons dim, the pointer is blocked, and the submit button (a `<button>` with no `type` or `type="submit"`) shows the [loading spinner](/ui/components/buttons/). Set it when the request starts and remove it when the response lands — the demo does so for two seconds.
+
+{% include demo.html file="busy.html" %}
+
+| Selector | Effect |
+|---|---|
+| `:is(form, fieldset)[aria-busy="true"]` | `pointer-events: none`, progress cursor |
+| `…[aria-busy="true"] :is(input, select, textarea)` | Disabled look: `--tui-surface-2`, `--tui-text-3`, 70% opacity |
+| `…[aria-busy="true"] button:not(submit)` | 50% opacity |
+| `…[aria-busy="true"] :is(button:not([type]), button[type="submit"])` | Spinner over a transparent label |
 
 Related: [Inputs](/ui/forms/inputs/) · [Validation](/ui/forms/validation/) · [Label](/ui/components/label/) · [Stack](/ui/layout/stack/) · [Grid](/ui/layout/grid/)

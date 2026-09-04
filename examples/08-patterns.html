@@ -268,6 +268,7 @@
             <div class="tui-card"><div class="tui-card-body tui-p-3"><strong>Studio Prisma</strong></div></div>
           </div>
         </section>
+
         <section class="tui-board-column">
           <header class="tui-board-header">Proposal <span class="tui-badge">1</span></header>
           <div class="tui-board-body">
@@ -278,6 +279,19 @@
           <header class="tui-board-header">Contract</header>
           <div class="tui-board-body">
             <div class="tui-card"><div class="tui-card-body tui-p-3"><strong>Marina Flores</strong></div></div>
+          </div>
+        </section>
+      </div>
+    </section>
+    <section class="tui-mb-6" id="board-drag-section">
+      <h2>Drag states <span class="tui-badge">self-driven JS</span></h2>
+      <div class="tui-board" id="board-drag" aria-label="Drag states">
+        <section class="tui-board-column" data-drop-target id="board-drop-column">
+          <header class="tui-board-header">Doing</header>
+          <div class="tui-board-body">
+            <article class="tui-card" draggable="true" data-dragging id="board-card-dragging"><div class="tui-card-body">Being dragged</div></article>
+            <article class="tui-card" draggable="true" data-drop="before" id="board-card-before"><div class="tui-card-body">Would land above this</div></article>
+            <article class="tui-card" draggable="true" id="board-card-plain"><div class="tui-card-body">Untouched</div></article>
           </div>
         </section>
       </div>

@@ -2,6 +2,7 @@
 .tui-menu { display: grid; }
 
 .tui-menu-item {
+  position: relative;
   display: flex;
   align-items: center;
 
@@ -42,4 +43,49 @@
 
   border: 0;
   border-block-start: 1px solid var(--tui-border);
+}
+
+/* === Checkbox and radio items ===
+ * role="menuitemcheckbox" / "menuitemradio" reserve a slot at the start for
+ * a tick or a dot that appears while aria-checked is true. */
+.tui-menu-item:is([role="menuitemcheckbox"], [role="menuitemradio"]) {
+  padding-inline-start: var(--tui-spacing-8);
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset-inline-start: var(--tui-spacing-3);
+    inset-block-start: 50%;
+    translate: 0 -50%;
+    inline-size: 1rem;
+    block-size: 1rem;
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3'%3E%3Cpath d='m5 12 5 5L20 7'/%3E%3C/svg%3E") center / 0.75rem no-repeat;
+    background-color: currentcolor;
+    opacity: 0;
+  }
+
+  &[aria-checked="true"]::before {
+    opacity: 1;
+  }
+}
+
+.tui-menu-item[role="menuitemradio"]::before {
+  inset-inline-start: calc(var(--tui-spacing-3) + 0.25rem);
+  inline-size: 0.5rem;
+  block-size: 0.5rem;
+  border-radius: var(--tui-radius-full);
+  mask: none;
+}
+
+/* === Description line === */
+.tui-menu-item-text {
+  display: grid;
+  gap: 2px;
+  min-inline-size: 0;
+}
+
+.tui-menu-item-desc {
+  font-size: var(--tui-text-xs);
+  font-weight: var(--tui-font-normal);
+  color: var(--tui-text-3);
 }

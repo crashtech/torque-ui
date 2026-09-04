@@ -1,0 +1,22 @@
+<ul class="tui-tree tui-max-w-sm" role="tree" aria-label="Files" id="tree-items">
+  <li role="treeitem" aria-expanded="true" aria-selected="false">
+    <span class="tui-tree-item">Documents</span>
+    <ul role="group">
+      <li role="treeitem" aria-selected="true"><span class="tui-tree-item">Resume.pdf</span></li>
+      <li role="treeitem" aria-expanded="false" aria-selected="false">
+        <span class="tui-tree-item">Projects</span>
+        <ul role="group"><li role="treeitem" aria-selected="false"><span class="tui-tree-item">Torque UI</span></li></ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+<script>
+  const tree = document.getElementById('tree-items');
+  tree.addEventListener('click', (event) => {
+    const item = event.target.closest('[role="treeitem"]');
+    if (!item) return;
+    event.stopPropagation();
+    if (item.hasAttribute('aria-expanded')) item.setAttribute('aria-expanded', item.getAttribute('aria-expanded') !== 'true');
+    tree.querySelectorAll('[role="treeitem"]').forEach((other) => other.setAttribute('aria-selected', other === item));
+  });
+</script>

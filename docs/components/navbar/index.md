@@ -2,6 +2,7 @@
 title: Navbar
 section: components
 source: src/30-components/navbar.css
+js: self-driven
 description: "Top bar with a brand, a menu of items and an actions slot; the menu collapses into an offcanvas drawer below 768px."
 ---
 
@@ -40,5 +41,24 @@ An inline `<svg>` or `<img>` placed directly inside `.tui-navbar-brand` is sized
 Give the menu the `popover` attribute and `.tui-offcanvas-collapse`, and add a `.tui-navbar-toggle` button whose `popovertarget` points at it. Below 768px the menu is a native popover: closed it is `display: none`, opened by the toggle it slides in as an [offcanvas](/ui/interactive/offcanvas/) drawer that stacks the items vertically. From 768px up the toggle is hidden and the drawer is reset to an inline flex row regardless of its popover state. The breakpoint is a media query, not a custom property; the drawer width comes from `--tui-offcanvas-inline-size` (20rem). This demo runs in its own frame — narrow the window below 768px to see the toggle appear and the menu leave the bar.
 
 {% include demo.html file="collapse.html" frame=true height="12rem" %}
+
+## Submenus
+
+A menu item can be a `<button class="tui-navbar-item">` with `popovertarget`, so a `.tui-popover.tui-menu` after it opens on click, closes on Escape or a click outside and hangs under the item — no script. Put a `.tui-caret` in the button and it turns while the popover is open. `.tui-navbar-mega` widens the surface to `--tui-navbar-mega-inline-size` (48rem) and lays it out as a grid of columns, each headed by a `.tui-navbar-mega-title`.
+
+{% include demo.html file="submenu.html" %}
+
+## Script-driven submenu <span class="tui-badge">self-driven JS</span>
+
+A `.tui-navbar-submenu.tui-menu` after the button is an in-flow alternative: absolute under the item at `--tui-z-dropdown`, toggled with `hidden` while the script mirrors the state into `aria-expanded`. Inside the collapsed drawer it becomes part of the list, indented.
+
+{% include demo.html file="submenu-script.html" %}
+
+| Class | Effect |
+|---|---|
+| `button.tui-navbar-item` | Button element defaults undone so it sits flush with link items |
+| `.tui-navbar-mega` | Wide popover surface, `--tui-spacing-4` padding, grid of `minmax(11rem, 1fr)` columns |
+| `.tui-navbar-mega-title` | Small-caps column heading |
+| `.tui-navbar-submenu` | In-flow submenu surface under the item; indented list in the drawer |
 
 Related: [Offcanvas](/ui/interactive/offcanvas/) · [App Shell](/ui/layout/shell/) · [Buttons](/ui/components/buttons/) · [Badge](/ui/components/badge/) · [Breadcrumb](/ui/components/breadcrumb/)

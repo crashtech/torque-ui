@@ -1,0 +1,49 @@
+/* Torque UI — Speed Dial
+ * A .tui-fab that opens a column of action buttons above itself: the FAB is
+ * the popovertarget invoker of a [popover].tui-speed-dial-actions, so it
+ * opens, light-dismisses and closes on Escape with no script.
+ */
+
+.tui-speed-dial {
+  position: fixed;
+  inset-block-end: var(--tui-fab-inset, var(--tui-spacing-6));
+  inset-inline-end: var(--tui-fab-inset, var(--tui-spacing-6));
+  z-index: var(--tui-z-sticky);
+
+  /* why: the FAB positions itself; inside the dial the wrapper does */
+  & > .tui-fab {
+    position: static;
+  }
+}
+
+/* why: the column's own display: grid would beat the UA's closed-popover display: none */
+[popover].tui-speed-dial-actions:not(:popover-open) {
+  display: none;
+}
+
+[popover].tui-speed-dial-actions {
+  inset: auto;
+  inset-block-end: calc(var(--tui-fab-inset, var(--tui-spacing-6)) + 3.5rem + var(--tui-spacing-2));
+  inset-inline-end: var(--tui-fab-inset, var(--tui-spacing-6));
+  display: grid;
+  gap: var(--tui-spacing-2);
+  justify-items: end;
+  margin: 0;
+  padding: 0;
+  background: none;
+  border: 0;
+  overflow: visible;
+
+  &::backdrop {
+    background-color: transparent;
+  }
+
+  /* why: the invoker is the implicit anchor, so the column follows the FAB
+     wherever --tui-fab-inset puts it */
+  @supports (anchor-name: --x) {
+    inset: auto;
+    margin: 0 0 var(--tui-spacing-2);
+    /* stylelint-disable-next-line csstree/validator -- position-area is valid CSS anchor positioning syntax (Chrome 125+/Safari 26+); csstree's grammar doesn't yet know it */
+    position-area: block-start span-inline-start;
+  }
+}

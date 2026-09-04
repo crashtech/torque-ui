@@ -1,0 +1,30 @@
+/* Torque UI — Drag and drop states
+ * The reordering is the script's (HTML drag events or pointer events);
+ * these paint what it reports: the element being dragged, the container it
+ * may drop into, and the edge of the item it would land beside.
+ */
+
+[draggable="true"] {
+  cursor: grab;
+}
+
+:is([data-dragging], .tui-dragging) {
+  opacity: 0.6;
+  cursor: grabbing;
+}
+
+:is([data-drop-target], .tui-drop-target) {
+  outline: 2px dashed var(--tui-tone, var(--tui-brand));
+  outline-offset: -2px;
+  background-color: var(--tui-tone-soft, var(--tui-brand-soft));
+}
+
+/* why: an inset shadow instead of a pseudo-element, so a component that
+   already draws ::before or ::after keeps it */
+[data-drop="before"] {
+  box-shadow: inset 0 3px 0 var(--tui-tone, var(--tui-brand));
+}
+
+[data-drop="after"] {
+  box-shadow: inset 0 -3px 0 var(--tui-tone, var(--tui-brand));
+}

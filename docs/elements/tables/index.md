@@ -56,6 +56,12 @@ Wrap a wide table in `.tui-table-responsive` and it scrolls horizontally inside 
 
 {% include demo.html file="selectable.html" %}
 
+## Script-driven rows <span class="tui-badge">self-driven JS</span>
+
+A `<tbody>` row takes the selectable highlight from `aria-selected="true"` (or `data-selected`, `.tui-selected`) as well as from a checked input. A row carrying `aria-expanded` gets a pointer cursor and a disclosure glyph in its first cell that turns when true; the `.tui-table-detail` row after it, tinted and padded, is the script's to show with `hidden`.
+
+{% include demo.html file="rows.html" %}
+
 ## Sort indicators
 
 A `<th>` with `aria-sort="ascending"` or `"descending"` appends an up or down arrow through `::after`; any `aria-sort` value also sets a default cursor on the cell. The arrow only reflects state — sorting itself is the application's job: a link, a form submission, or a script.
@@ -79,6 +85,8 @@ Script-driven sorting puts a real `<button>` in the header cell so the header is
 | `.tui-table-sticky` | `<thead>` cells stick to the top of the nearest scroll container |
 | `.tui-table-selectable` | Highlights `<tbody>` rows containing a checked input |
 | `th[aria-sort="ascending"]` / `"descending"` | Appends an up or down arrow |
+| `tbody tr:is([aria-selected="true"], [data-selected], .tui-selected)` | The selectable highlight, set by attribute |
+| `tbody tr[aria-expanded]` / `.tui-table-detail` | Expander row with a turning glyph, and the tinted detail row it reveals |
 | `th[aria-sort] > button` | Header-styled sort button: inherits font and colour, no border or background |
 
 ## Custom properties

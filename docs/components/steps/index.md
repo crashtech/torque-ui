@@ -2,6 +2,7 @@
 title: Steps
 section: components
 source: src/30-components/steps.css
+js: self-driven
 description: "Numbered step indicator with connector lines, lit by .tui-step-complete and .tui-step-active or automatically inside a wizard."
 ---
 
@@ -19,6 +20,12 @@ The circle, its border and the connector all read `--tui-tone`, falling back to 
 
 {% include demo.html file="states.html" %}
 
+## States by attribute <span class="tui-badge">self-driven JS</span>
+
+`aria-current="step"` (or `data-selected`, `.tui-selected`) activates a step on its own, and `data-complete` completes one, so a script moving through a flow writes only attributes; `.tui-step-active` and `.tui-step-complete` stay as aliases.
+
+{% include demo.html file="attribute.html" %}
+
 ## Sizing
 
 `--tui-steps-gap` is declared on `.tui-steps` and `--tui-step-size` on each `.tui-step`, so override the gap on the container and the size on the steps themselves (an inline style on the container cannot beat the step's own declaration). `--tui-step-connector-inset` is a plain hook and can be set anywhere above the steps.
@@ -33,6 +40,11 @@ The circle, its border and the connector all read `--tui-tone`, falling back to 
 | `.tui-step-label` | `--tui-text-sm`, `--tui-text-3`; `--tui-text-2` when complete, `--tui-text-1` medium when active |
 | `.tui-step-complete` | Positive tone on circle and connector |
 | `.tui-step-active` | Brand tone, focus-ring halo, emphasised label |
+
+| Selector | Effect |
+|---|---|
+| `.tui-step:is(.tui-step-active, [aria-current="step"], [data-selected], .tui-selected)` | Active: focus halo on the number, `--tui-text-1` medium label |
+| `.tui-step:is(.tui-step-complete, [data-complete])` | Complete: `--tui-text-2` label |
 
 ## Custom properties
 

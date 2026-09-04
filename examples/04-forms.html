@@ -258,6 +258,54 @@
       </div>
     </section>
 
+    <section class="tui-card tui-mb-6" id="range-section">
+      <div class="tui-card-header">
+        <h2 class="tui-m-0">Range wrapper <span class="tui-badge">self-driven JS</span></h2>
+      </div>
+      <div class="tui-card-body">
+        <div class="tui-form tui-max-w-sm">
+          <div class="tui-field">
+            <label for="range-single-input">Volume</label>
+            <div class="tui-range" id="range-single" data-value="30">
+              <output class="tui-range-label" for="range-single-input">30</output>
+              <input id="range-single-input" type="range" min="0" max="100" value="30">
+              <ul class="tui-range-marks" aria-hidden="true"><li>0</li><li>50</li><li>100</li></ul>
+            </div>
+          </div>
+          <div class="tui-field">
+            <span id="range-dual-label">Price</span>
+            <div class="tui-range tui-range-dual" id="range-dual" data-start="20" data-end="70">
+              <output class="tui-range-label tui-range-label-start">20</output>
+              <output class="tui-range-label">70</output>
+              <input type="range" min="0" max="100" value="20" aria-labelledby="range-dual-label" aria-label="Minimum" id="range-dual-start">
+              <input type="range" min="0" max="100" value="70" aria-labelledby="range-dual-label" aria-label="Maximum" id="range-dual-end">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="tui-card tui-mb-6" id="busy-form-section">
+      <div class="tui-card-header">
+        <h2 class="tui-m-0">Busy form <span class="tui-badge">self-driven JS</span></h2>
+      </div>
+      <div class="tui-card-body">
+        <form class="tui-form tui-max-w-sm" id="busy-form" aria-busy="true">
+          <div class="tui-field"><label for="busy-form-email">Email</label><input id="busy-form-email" type="email" value="marina@example.com"></div>
+          <div class="tui-field"><label for="busy-form-plan">Plan</label><select id="busy-form-plan"><option>Team</option></select></div>
+          <div class="tui-flex tui-gap-2">
+            <button class="tui-button tui-button-primary" type="submit" id="busy-form-submit">Save</button>
+            <button class="tui-button" type="button" id="busy-form-cancel">Cancel</button>
+            <button type="button" id="busy-form-bare" aria-busy="true">Bare button</button>
+          </div>
+        </form>
+        <form class="tui-form tui-max-w-sm tui-mt-6" id="idle-form">
+          <div class="tui-field"><label for="idle-form-email">Email</label><input id="idle-form-email" type="email" value="marina@example.com"></div>
+          <button class="tui-button tui-button-primary" type="submit" id="idle-form-submit">Save</button>
+        </form>
+      </div>
+    </section>
+
     <section class="tui-card tui-mb-6">
       <div class="tui-card-header">
         <h2 class="tui-m-0">Checkbox</h2>

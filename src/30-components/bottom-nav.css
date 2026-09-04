@@ -1,0 +1,56 @@
+/* Torque UI — Bottom Navigation
+ * .tui-bottom-nav pins a row of equal .tui-bottom-nav-item links or buttons
+ * to the bottom of the viewport; the current one reads aria-current.
+ */
+
+
+  .tui-bottom-nav {
+    position: fixed;
+    inset-block-end: 0;
+    inset-inline: 0;
+    z-index: var(--tui-z-sticky);
+    display: flex;
+    /* stylelint-disable-next-line csstree/validator -- env() is valid CSS Environment Variables syntax; csstree's grammar doesn't yet know it */
+    padding-block-end: env(safe-area-inset-bottom);
+    background-color: var(--tui-bottom-nav-bg, var(--tui-surface-0));
+    border-block-start: 1px solid var(--tui-border);
+  }
+
+  .tui-bottom-nav-static {
+    position: static;
+  }
+
+  .tui-bottom-nav-item {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--tui-spacing-1);
+    padding: var(--tui-spacing-2);
+    font: inherit;
+    font-size: var(--tui-text-xs);
+    font-weight: var(--tui-font-medium);
+    color: var(--tui-text-2);
+    text-decoration: none;
+    background: none;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+    cursor: pointer;
+    transition: color var(--tui-duration-fast);
+
+    & > .tui-icon {
+      --tui-icon-size: 1.5rem;
+    }
+
+    &:hover {
+      color: var(--tui-text-1);
+      background: none;
+      box-shadow: none;
+      translate: none;
+    }
+
+    &:is([aria-current], [data-selected], .tui-selected) {
+      color: var(--tui-tone, var(--tui-brand));
+    }
+  }

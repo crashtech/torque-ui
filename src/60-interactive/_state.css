@@ -63,3 +63,17 @@
 :is([aria-pressed="true"], [aria-checked="true"], [data-pressed], .tui-pressed) { --tui-pressed: 1; }
 :is([aria-invalid="true"], [data-invalid], .tui-invalid) { --tui-invalid: 1; }
 :is([aria-disabled="true"], [data-disabled], .tui-disabled, :disabled) { --tui-disabled: 1; }
+
+/* === Inert ===
+ * The inert attribute removes a subtree from interaction and the
+ * accessibility tree but paints nothing; controls and links under it are
+ * shown as disabled so the page reads the way it behaves. */
+[inert] {
+  cursor: default;
+}
+
+[inert] :is(button, input, select, textarea, a, .tui-button, .tui-menu-item, .tui-option, .tui-tab, .tui-toggle, .tui-chip, .tui-navbar-item, .tui-calendar-day) {
+  opacity: 0.5;
+  box-shadow: none;
+  cursor: default;
+}

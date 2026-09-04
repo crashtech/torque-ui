@@ -1,0 +1,15 @@
+<div class="tui-field tui-max-w-sm">
+  <label for="range-single-input">Volume</label>
+  <div class="tui-range" id="range-single" data-value="30">
+    <output class="tui-range-label" for="range-single-input">30</output>
+    <input id="range-single-input" type="range" min="0" max="100" value="30">
+    <ul class="tui-range-marks" aria-hidden="true"><li>0</li><li>50</li><li>100</li></ul>
+  </div>
+</div>
+<script>
+  const single = document.getElementById('range-single');
+  single.querySelector('input').addEventListener('input', (event) => {
+    single.dataset.value = event.target.value;
+    single.querySelector('.tui-range-label').textContent = event.target.value;
+  });
+</script>

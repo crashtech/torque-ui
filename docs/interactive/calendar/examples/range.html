@@ -1,0 +1,30 @@
+<div class="tui-calendar" role="group" aria-labelledby="calendar-range-title" id="calendar-range">
+  <div class="tui-calendar-header">
+    <button class="tui-button tui-button-ghost tui-button-icon" type="button" aria-label="Previous month">‹</button>
+    <h3 class="tui-calendar-title" id="calendar-range-title">September 2026</h3>
+    <button class="tui-button tui-button-ghost tui-button-icon" type="button" aria-label="Next month">›</button>
+  </div>
+  <table class="tui-calendar-grid" role="grid" aria-labelledby="calendar-range-title">
+    <thead><tr><th abbr="Monday">Mo</th><th abbr="Tuesday">Tu</th><th abbr="Wednesday">We</th><th abbr="Thursday">Th</th><th abbr="Friday">Fr</th><th abbr="Saturday">Sa</th><th abbr="Sunday">Su</th></tr></thead>
+    <tbody>
+      <tr><td><button class="tui-calendar-day" type="button">7</button></td><td><button class="tui-calendar-day" type="button" data-range="start" aria-selected="true">8</button></td><td><button class="tui-calendar-day" type="button" data-range="middle">9</button></td><td><button class="tui-calendar-day" type="button" data-range="middle">10</button></td><td><button class="tui-calendar-day" type="button" data-range="end" aria-selected="true">11</button></td><td><button class="tui-calendar-day" type="button">12</button></td><td><button class="tui-calendar-day" type="button">13</button></td></tr>
+      <tr><td><button class="tui-calendar-day" type="button">14</button></td><td><button class="tui-calendar-day" type="button">15</button></td><td><button class="tui-calendar-day" type="button">16</button></td><td><button class="tui-calendar-day" type="button">17</button></td><td><button class="tui-calendar-day" type="button">18</button></td><td><button class="tui-calendar-day" type="button">19</button></td><td><button class="tui-calendar-day" type="button">20</button></td></tr>
+    </tbody>
+  </table>
+</div>
+<script>
+  const range = document.getElementById('calendar-range');
+  const days = [...range.querySelectorAll('.tui-calendar-day')];
+  let start = null;
+  range.addEventListener('click', (event) => {
+    const day = event.target.closest('.tui-calendar-day');
+    if (!day) return;
+    if (start === null || days.indexOf(day) < start) { start = days.indexOf(day); days.forEach((d) => { d.removeAttribute('data-range'); d.setAttribute('aria-selected', d === day); }); return; }
+    days.forEach((d, i) => {
+      d.setAttribute('data-range', i === start ? 'start' : i === days.indexOf(day) ? 'end' : i > start && i < days.indexOf(day) ? 'middle' : '');
+      d.setAttribute('aria-selected', i === start || i === days.indexOf(day));
+      if (!d.getAttribute('data-range')) d.removeAttribute('data-range');
+    });
+    start = null;
+  });
+</script>

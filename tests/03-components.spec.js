@@ -1027,12 +1027,14 @@ test.describe('Components — Navbar', () => {
     expect(content).toContain('Torque UI');
   });
 
-  test('navbar menu items should be links', async ({ page }) => {
+  test('navbar menu items are links, or buttons that open something', async ({ page }) => {
     const menuItems = await page.locator('.tui-navbar-item').all();
-    
+
     for (const item of menuItems) {
       const tagName = await item.evaluate(el => el.tagName.toLowerCase());
-      expect(tagName).toBe('a');
+      if (tagName === 'a') continue;
+      expect(tagName).toBe('button');
+      expect(await item.evaluate(el => el.hasAttribute('popovertarget') || el.hasAttribute('aria-expanded'))).toBe(true);
     }
   });
 
@@ -1083,7 +1085,7 @@ test.describe('Components — Navbar', () => {
     expect(box.height).toBeGreaterThan(760);
     expect(box.height).toBeLessThanOrEqual(800);
 
-    const items = await page.locator('.tui-navbar-item').all();
+    const items = await page.locator('#main-nav .tui-navbar-item').all();
     const itemBoxes = await Promise.all(items.map((item) => item.boundingBox()));
     expect(itemBoxes.length).toBeGreaterThan(1);
     for (const itemBox of itemBoxes) expect(itemBox).not.toBeNull();
@@ -1584,5 +1586,110 @@ test.describe('Components — Progress thickness and motion', () => {
     await expect(page.locator('#ref')).not.toHaveCSS('transition-property', 'none');
     await expect(page.locator('#b')).toHaveCSS('transition-property', 'none');
     expect(await page.locator('#busy').evaluate((el) => getComputedStyle(el, '::after').animationName)).toBe('none');
+  });
+});
+
+test.describe('Components — Tier gaps', () => {
+  test.beforeEach(async ({ page }) => {
+    await page.goto('/examples/03-components.html');
+    await page.addStyleTag({ content: '*, ::before, ::after { transition: none !important; }' });
+  });
+
+  test('navbar submenu opens from popovertarget alone, the mega surface spans wide, and the in-flow submenu toggles with hidden', async ({ page }) => {
+    await page.locator('#navbar-submenu-trigger').click();
+    await expect(page.locator('#navbar-submenu-products')).toBeVisible();
+    await expect(page.locator('#navbar-submenu-trigger .tui-caret')).toHaveCSS('rotate', 'none');
+    await page.keyboard.press('Escape');
+    await page.locator('#navbar-mega-trigger').click();
+    const mega = page.locator('#navbar-submenu-mega');
+    await expect(mega).toBeVisible();
+    await expect(mega).toHaveCSS('display', 'grid');
+    expect((await mega.boundingBox()).width).toBeGreaterThan(500);
+    await page.keyboard.press('Escape');
+    const inflow = page.locator('#navbar-submenu-inflow');
+    await expect(inflow).toBeHidden();
+    await page.locator('#navbar-inflow-trigger').evaluate((el) => { el.setAttribute('aria-expanded', 'true'); document.getElementById('navbar-submenu-inflow').hidden = false; });
+    await expect(inflow).toBeVisible();
+    await expect(inflow).toHaveCSS('position', 'absolute');
+    await expect(page.locator('#navbar-inflow-trigger .tui-caret')).toHaveCSS('rotate', '180deg');
+  });
+
+  test('tree items expand from aria-expanded, select from aria-selected and hide their group when collapsed', async ({ page }) => {
+    const open = page.locator('#tree-item-open');
+    const closed = page.locator('#tree-item-closed');
+    expect(await open.evaluate((el) => getComputedStyle(el.firstElementChild, '::before').rotate)).toBe('90deg');
+    expect(await closed.evaluate((el) => getComputedStyle(el.firstElementChild, '::before').rotate)).toBe('none');
+    await expect(closed.locator('[role="group"]')).toBeHidden();
+    await closed.evaluate((el) => el.setAttribute('aria-expanded', 'true'));
+    await expect(closed.locator('[role="group"]')).toBeVisible();
+    const bg = (l) => l.evaluate((el) => getComputedStyle(el.firstElementChild).backgroundColor);
+    expect(await bg(page.locator('#tree-item-selected'))).not.toBe(await bg(open));
+  });
+
+  test('step attribute: aria-current=step activates a step and data-complete completes one without the classes', async ({ page }) => {
+    const steps = page.locator('#steps-attr .tui-step');
+    const halo = (i) => steps.nth(i).locator('.tui-step-number').evaluate((el) => getComputedStyle(el).boxShadow);
+    expect(await halo(1)).not.toBe('none');
+    expect(await halo(2)).toBe('none');
+    const labelColor = (i) => steps.nth(i).locator('.tui-step-label').evaluate((el) => getComputedStyle(el).color);
+    expect(await labelColor(0)).not.toBe(await labelColor(2));
+    await steps.nth(1).evaluate((el) => { el.removeAttribute('aria-current'); el.nextElementSibling.setAttribute('aria-current', 'step'); });
+    expect(await halo(1)).toBe('none');
+    expect(await halo(2)).not.toBe('none');
+  });
+
+  test('toolbar lays out groups, a divider and a spacer on one row', async ({ page }) => {
+    const toolbar = page.locator('#toolbar-demo');
+    await expect(toolbar).toHaveCSS('display', 'flex');
+    const divider = await toolbar.locator('.tui-toolbar-divider').boundingBox();
+    expect(divider.width).toBeCloseTo(1, 0);
+    const first = await toolbar.locator('button').first().boundingBox();
+    const publish = await toolbar.locator('button').last().boundingBox();
+    expect(Math.abs(first.y - publish.y)).toBeLessThan(2);
+    expect(publish.x + publish.width).toBeGreaterThan(first.x + 400);
+  });
+
+  test('speed dial opens its actions above the FAB from popovertarget alone', async ({ page }) => {
+    const fab = page.locator('#speed-dial .tui-fab');
+    await fab.click();
+    const actions = page.locator('#speed-dial-actions');
+    await expect(actions).toBeVisible();
+    const f = await fab.boundingBox();
+    const a = await actions.boundingBox();
+    expect(a.y + a.height).toBeLessThanOrEqual(f.y + 1);
+    expect(Math.abs(a.x + a.width - (f.x + f.width))).toBeLessThan(2);
+    await page.keyboard.press('Escape');
+    await expect(actions).toBeHidden();
+  });
+
+  test('bottom navigation spreads its items evenly, marks the current one, and stays static when asked', async ({ page }) => {
+    const nav = page.locator('#bottom-nav-demo');
+    await expect(nav).toHaveCSS('position', 'static');
+    const items = nav.locator('.tui-bottom-nav-item');
+    const widths = await Promise.all([0, 1, 2].map(async (i) => (await items.nth(i).boundingBox()).width));
+    expect(Math.abs(widths[0] - widths[2])).toBeLessThan(2);
+    const color = (i) => items.nth(i).evaluate((el) => getComputedStyle(el).color);
+    expect(await color(0)).not.toBe(await color(1));
+    await expect(items.nth(2)).toHaveCSS('border-top-width', '0px');
+    await nav.evaluate((el) => el.classList.remove('tui-bottom-nav-static'));
+    await expect(nav).toHaveCSS('position', 'fixed');
+  });
+
+  test('indeterminate progress animates the bar and the ring', async ({ page }) => {
+    expect(await page.locator('#progress-indeterminate .tui-progress-bar').evaluate((el) => getComputedStyle(el).animationName)).toBe('tui-progress-sweep');
+    expect(await page.locator('#ring-indeterminate').evaluate((el) => getComputedStyle(el).animationName)).toBe('tui-spin');
+    await page.emulateMedia({ reducedMotion: 'reduce' });
+    expect(await page.locator('#progress-indeterminate .tui-progress-bar').evaluate((el) => getComputedStyle(el).animationName)).toBe('none');
+  });
+});
+
+test.describe('Components — Progress loading', () => {
+  test('loading stripes animate over the fill while the value stays', async ({ page }) => {
+    await page.goto('/examples/03-components.html');
+    const bar = page.locator('#progress-loading .tui-progress-bar');
+    expect(await bar.evaluate((el) => getComputedStyle(el).animationName)).toBe('tui-progress-stripes');
+    expect(await bar.evaluate((el) => getComputedStyle(el).backgroundImage)).toContain('repeating-linear-gradient');
+    const track = await page.locator('#progress-loading').boundingBox();
+    expect(Math.round(((await bar.boundingBox()).width / track.width) * 100)).toBe(45);
   });
 });

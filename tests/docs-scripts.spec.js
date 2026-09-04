@@ -219,6 +219,121 @@ const behaviours = {
     await expect(toggles.nth(2)).toHaveAttribute('aria-pressed', 'true');
     await expect(toggles.nth(0)).toHaveAttribute('aria-pressed', 'false');
   },
+  'docs/interactive/calendar/examples/basic.html': async (page) => {
+    const day = (t) => page.locator('#calendar-basic .tui-calendar-day', { hasText: new RegExp(`^${t}$`) });
+    await day('12').click();
+    await expect(day('12')).toHaveAttribute('aria-selected', 'true');
+    await expect(day('9')).toHaveAttribute('aria-selected', 'false');
+    await day('16').click({ force: true });
+    await expect(day('12')).toHaveAttribute('aria-selected', 'true');
+    await page.locator('#calendar-basic [aria-label="Next month"]').click();
+    await expect(page.locator('#calendar-basic-title')).toHaveText('October 2026');
+    await page.locator('#calendar-basic [aria-label="Previous month"]').click();
+    await page.locator('#calendar-basic [aria-label="Previous month"]').click();
+    await expect(page.locator('#calendar-basic-title')).toHaveText('August 2026');
+  },
+  'docs/interactive/calendar/examples/range.html': async (page) => {
+    const day = (t) => page.locator('#calendar-range .tui-calendar-day', { hasText: new RegExp(`^${t}$`) });
+    await day('14').click();
+    await expect(day('14')).toHaveAttribute('aria-selected', 'true');
+    await expect(day('9')).not.toHaveAttribute('data-range');
+    await day('17').click();
+    await expect(day('14')).toHaveAttribute('data-range', 'start');
+    await expect(day('15')).toHaveAttribute('data-range', 'middle');
+    await expect(day('17')).toHaveAttribute('data-range', 'end');
+  },
+  'docs/forms/range/examples/single.html': async (page) => {
+    await page.locator('#range-single-input').fill('80');
+    await expect(page.locator('#range-single')).toHaveAttribute('data-value', '80');
+    await expect(page.locator('#range-single .tui-range-label')).toHaveText('80');
+  },
+  'docs/forms/range/examples/dual.html': async (page) => {
+    const [start, end] = [page.locator('#range-dual input').first(), page.locator('#range-dual input').last()];
+    await end.fill('90');
+    await expect(page.locator('#range-dual')).toHaveAttribute('data-end', '90');
+    await start.fill('95');
+    await expect(page.locator('#range-dual')).toHaveAttribute('data-start', '90');
+    await expect(page.locator('#range-dual')).toHaveAttribute('data-end', '95');
+    await expect(page.locator('#range-dual .tui-range-label').first()).toHaveText('90');
+  },
+  'docs/interactive/drag/examples/board.html': async (page) => {
+    const card = page.locator('#drag-board .tui-card').first();
+    const target = page.locator('#drag-board .tui-board-column').nth(1);
+    await card.dragTo(target.locator('.tui-board-body'));
+    await expect(target.locator('.tui-card')).toHaveCount(2);
+    await expect(page.locator('#drag-board [data-drop-target]')).toHaveCount(0);
+    await expect(page.locator('#drag-board [data-dragging]')).toHaveCount(0);
+  },
+  'docs/interactive/backdrop/examples/basic.html': async (page) => {
+    await page.locator('#backdrop-basic-open').click();
+    await expect(page.locator('#backdrop-basic')).toBeVisible();
+    await page.locator('#backdrop-basic').click({ position: { x: 5, y: 5 } });
+    await expect(page.locator('#backdrop-basic')).toBeHidden();
+  },
+  'docs/components/navbar/examples/submenu-script.html': async (page) => {
+    const trigger = page.locator('#navbar-submenu-script [aria-expanded]');
+    await trigger.click();
+    await expect(trigger).toHaveAttribute('aria-expanded', 'true');
+    await expect(page.locator('#navbar-submenu-company')).toBeVisible();
+    await trigger.click();
+    await expect(page.locator('#navbar-submenu-company')).toBeHidden();
+  },
+  'docs/components/buttons/examples/loading.html': async (page) => {
+    const button = page.locator('#buttons-loading button').first();
+    await button.click();
+    await expect(button).toHaveAttribute('aria-busy', 'true');
+    await expect(button).not.toHaveAttribute('aria-busy', 'true', { timeout: 4000 });
+  },
+  'docs/interactive/menu/examples/check.html': async (page) => {
+    const boxes = page.locator('#menu-check [role="menuitemcheckbox"]');
+    await boxes.nth(1).click();
+    await expect(boxes.nth(1)).toHaveAttribute('aria-checked', 'true');
+    const radios = page.locator('#menu-check [role="menuitemradio"]');
+    await radios.nth(1).click();
+    await expect(radios.nth(1)).toHaveAttribute('aria-checked', 'true');
+    await expect(radios.nth(0)).toHaveAttribute('aria-checked', 'false');
+  },
+  'docs/elements/tables/examples/rows.html': async (page) => {
+    const rows = page.locator('#tables-rows tbody tr');
+    await rows.nth(1).click();
+    await expect(rows.nth(1)).toHaveAttribute('aria-expanded', 'true');
+    await expect(rows.nth(2)).toBeVisible();
+    await rows.nth(3).click();
+    await expect(rows.nth(3)).toHaveAttribute('aria-selected', 'true');
+  },
+  'docs/components/tree/examples/items.html': async (page) => {
+    const closed = page.locator('#tree-items [aria-expanded="false"]');
+    await closed.locator('> .tui-tree-item').click();
+    await expect(page.locator('#tree-items [role="treeitem"]', { hasText: 'Projects' }).first()).toHaveAttribute('aria-expanded', 'true');
+    await expect(page.locator('#tree-items [role="treeitem"]', { hasText: 'Torque UI' }).last()).toBeVisible();
+  },
+  'docs/components/steps/examples/attribute.html': async (page) => {
+    await page.locator('#steps-attribute-next').click();
+    const steps = page.locator('#steps-attribute .tui-step');
+    await expect(steps.nth(2)).toHaveAttribute('aria-current', 'step');
+    await expect(steps.nth(1)).toHaveAttribute('data-complete', '');
+    await expect(steps.nth(1)).not.toHaveAttribute('aria-current');
+  },
+  'docs/forms/form-layout/examples/busy.html': async (page) => {
+    const form = page.locator('#form-layout-busy');
+    await form.locator('button[type="submit"]').click();
+    await expect(form).toHaveAttribute('aria-busy', 'true');
+    await expect(form.locator('button[type="submit"]')).toHaveCSS('color', 'rgba(0, 0, 0, 0)');
+    await expect(form).not.toHaveAttribute('aria-busy', 'true', { timeout: 4000 });
+  },
+  'docs/foundations/self-driven-js/examples/inert.html': async (page) => {
+    await page.locator('#self-driven-busy-toggle').click();
+    await expect(page.locator('#self-driven-inert-card')).toHaveAttribute('aria-busy', 'true');
+    await expect(page.locator('#self-driven-inert-card')).toHaveCSS('pointer-events', 'none');
+    await expect(page.locator('#self-driven-inert-card button[type="submit"]')).toHaveCSS('color', 'rgba(0, 0, 0, 0)');
+    await page.locator('#self-driven-busy-toggle').click();
+    await expect(page.locator('#self-driven-inert-card')).toHaveAttribute('aria-busy', 'false');
+    await page.locator('#self-driven-inert-toggle').click();
+    await expect(page.locator('#self-driven-inert-card')).toHaveAttribute('inert', '');
+    await expect(page.locator('#self-driven-inert-card .tui-button').first()).toHaveCSS('opacity', '0.5');
+    await page.locator('#self-driven-inert-toggle').click();
+    await expect(page.locator('#self-driven-inert-card .tui-button').first()).toHaveCSS('opacity', '1');
+  },
   'docs/themes/dark-mode/examples/persisted.html': async (page) => {
     const root = page.locator('html');
     await expect(root).toHaveAttribute('data-theme', 'dark');

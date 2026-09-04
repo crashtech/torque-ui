@@ -96,6 +96,46 @@
       </div>
     </section>
 
+    <section class="tui-card tui-mb-6" id="link-styles-section">
+      <div class="tui-card-header">
+        <h2 class="tui-m-0">Link styles</h2>
+      </div>
+      <div class="tui-card-body tui-stack">
+        <p><a href="#link-styles-section" id="link-brand">Brand</a> · <a href="#link-styles-section" class="tui-link-positive" id="link-positive">Positive</a> · <a href="#link-styles-section" class="tui-link-negative">Negative</a> · <a href="#link-styles-section" class="tui-link-inherit" id="link-inherit">Inherit</a></p>
+        <p><a href="#link-styles-section" class="tui-link-dotted" id="link-dotted">Dotted</a> · <a href="#link-styles-section" class="tui-link-dashed" id="link-dashed">Dashed</a> · <a href="#link-styles-section" class="tui-link-wavy">Wavy</a> · <a href="#link-styles-section" class="tui-link-grow" id="link-grow">Grows on hover</a></p>
+      </div>
+    </section>
+
+    <section class="tui-card tui-mb-6" id="loading-section">
+      <div class="tui-card-header">
+        <h2 class="tui-m-0">Loading buttons <span class="tui-badge">self-driven JS</span></h2>
+      </div>
+      <div class="tui-card-body">
+        <div class="tui-flex tui-flex-wrap tui-gap-2 tui-items-center">
+          <button class="tui-button tui-button-primary" type="button" id="loading-button" aria-busy="true">Saving changes</button>
+          <button class="tui-button tui-button-primary" type="button" id="loading-reference">Saving changes</button>
+          <button class="tui-button" type="button" aria-busy="true">Loading</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="tui-card tui-mb-6" id="table-rows-section">
+      <div class="tui-card-header">
+        <h2 class="tui-m-0">Script-driven table rows <span class="tui-badge">self-driven JS</span></h2>
+      </div>
+      <div class="tui-card-body">
+        <table id="table-rows">
+          <thead><tr><th>Order</th><th>Customer</th><th>Total</th></tr></thead>
+          <tbody>
+            <tr aria-selected="true" id="table-row-selected"><td>#1041</td><td>Marina Flores</td><td>€ 240</td></tr>
+            <tr aria-expanded="false" id="table-row-expander"><td>#1042</td><td>Acme Agency</td><td>€ 1 200</td></tr>
+            <tr class="tui-table-detail" id="table-row-detail" hidden><td colspan="3">Three line items, shipped in two parcels.</td></tr>
+            <tr><td>#1043</td><td>Carol Kim</td><td>€ 89</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
     <section class="tui-card tui-mb-6">
       <div class="tui-card-header">
         <h2 class="tui-m-0">Tables</h2>

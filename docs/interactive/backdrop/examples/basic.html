@@ -1,0 +1,9 @@
+<button class="tui-button" type="button" id="backdrop-basic-open">Show backdrop</button>
+<div class="tui-backdrop" id="backdrop-basic" hidden>
+  <div class="tui-card tui-max-w-sm" role="status"><div class="tui-card-body"><p class="tui-m-0">Working… click anywhere to dismiss.</p></div></div>
+</div>
+<script>
+  const backdrop = document.getElementById('backdrop-basic');
+  document.getElementById('backdrop-basic-open').addEventListener('click', () => { backdrop.hidden = false; });
+  backdrop.addEventListener('click', () => { backdrop.hidden = true; });
+</script>

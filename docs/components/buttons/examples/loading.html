@@ -1,0 +1,11 @@
+<div class="tui-flex tui-flex-wrap tui-gap-2 tui-items-center" id="buttons-loading">
+  <button class="tui-button tui-button-primary" type="button">Save changes</button>
+  <button class="tui-button" type="button">Refresh</button>
+  <button class="tui-button tui-button-primary" type="button" aria-busy="true">Saving</button>
+</div>
+<script>
+  document.querySelectorAll('#buttons-loading button').forEach((button) => button.addEventListener('click', () => {
+    button.setAttribute('aria-busy', 'true');
+    setTimeout(() => button.removeAttribute('aria-busy'), 2000);
+  }));
+</script>

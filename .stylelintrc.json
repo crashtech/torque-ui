@@ -1,7 +1,12 @@
 {
   "extends": "stylelint-config-standard",
-  "ignoreFiles": ["dist/tui-all.css"],
-  "plugins": ["stylelint-csstree-validator", "stylelint-use-logical"],
+  "ignoreFiles": [
+    "dist/tui-all.css"
+  ],
+  "plugins": [
+    "stylelint-csstree-validator",
+    "stylelint-use-logical"
+  ],
   "rules": {
     "no-descending-specificity": null,
     "function-no-unknown": true,
@@ -14,7 +19,30 @@
     "declaration-no-important": true,
     "no-duplicate-selectors": true,
     "csstools/use-logical": "always",
-    "selector-pseudo-class-no-unknown": [true, { "ignorePseudoClasses": ["target-current"] }],
-    "declaration-block-no-redundant-longhand-properties": true
-  }
+    "selector-pseudo-class-no-unknown": [
+      true,
+      {
+        "ignorePseudoClasses": [
+          "target-current"
+        ]
+      }
+    ],
+    "declaration-block-no-redundant-longhand-properties": true,
+    "color-no-hex": true,
+    "declaration-property-value-disallowed-list": {
+      "/^transition(-property)?$/": [
+        "/\\ball\\b/"
+      ]
+    }
+  },
+  "overrides": [
+    {
+      "files": [
+        "src/00-tokens/**/*.css"
+      ],
+      "rules": {
+        "color-no-hex": null
+      }
+    }
+  ]
 }

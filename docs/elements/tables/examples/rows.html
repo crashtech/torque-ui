@@ -1,0 +1,22 @@
+<table id="tables-rows">
+  <thead><tr><th>Order</th><th>Customer</th><th>Total</th></tr></thead>
+  <tbody>
+    <tr aria-selected="true"><td>#1041</td><td>Marina Flores</td><td>€ 240</td></tr>
+    <tr aria-expanded="false"><td>#1042</td><td>Acme Agency</td><td>€ 1 200</td></tr>
+    <tr class="tui-table-detail" hidden><td colspan="3">Three line items, shipped in two parcels.</td></tr>
+    <tr><td>#1043</td><td>Carol Kim</td><td>€ 89</td></tr>
+  </tbody>
+</table>
+<script>
+  document.querySelector('#tables-rows tbody').addEventListener('click', (event) => {
+    const row = event.target.closest('tr');
+    if (!row || row.classList.contains('tui-table-detail')) return;
+    if (row.hasAttribute('aria-expanded')) {
+      const open = row.getAttribute('aria-expanded') !== 'true';
+      row.setAttribute('aria-expanded', open);
+      row.nextElementSibling.hidden = !open;
+      return;
+    }
+    row.setAttribute('aria-selected', row.getAttribute('aria-selected') !== 'true');
+  });
+</script>

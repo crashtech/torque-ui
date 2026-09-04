@@ -567,3 +567,97 @@ test.describe('Interactive — Self-driven JS hooks', () => {
     expect(await getViolations(page, ['color-contrast', 'button-name', 'aria-required-children', 'aria-required-parent', 'aria-allowed-attr'], '#listbox-section, #js-tabs-section, #pressed-section')).toEqual([]);
   });
 });
+
+test.describe('Interactive — Tier gaps', () => {
+  test.beforeEach(async ({ page }) => {
+    await page.goto('/examples/07-interactive.html');
+    await page.addStyleTag({ content: '*, ::before, ::after { transition: none !important; }' });
+  });
+
+  test('calendar grid renders today, selected, disabled, outside-month and range states from attributes', async ({ page }) => {
+    const day = (text) => page.locator('#calendar-demo .tui-calendar-day', { hasText: new RegExp(`^${text}$`) });
+    const style = (l, prop) => l.evaluate((el, p) => getComputedStyle(el)[p], prop);
+    const plainBg = await style(day('2'), 'backgroundColor');
+    expect(await style(day('3'), 'borderTopColor')).not.toBe(await style(day('2'), 'borderTopColor'));
+    expect(await style(day('8'), 'backgroundColor')).not.toBe(plainBg);
+    expect(await style(day('9'), 'backgroundColor')).not.toBe(plainBg);
+    expect(await style(day('9'), 'backgroundColor')).not.toBe(await style(day('8'), 'backgroundColor'));
+    expect(await style(day('8'), 'borderTopRightRadius')).toBe('0px');
+    expect(await style(day('11'), 'borderTopLeftRadius')).toBe('0px');
+    expect(await style(day('16'), 'cursor')).toBe('not-allowed');
+    expect(await style(day('31'), 'color')).not.toBe(await style(day('2'), 'color'));
+    await expect(page.locator('#calendar-demo th')).toHaveCount(7);
+    await expect(page.locator('#calendar-demo th').first()).toHaveCSS('border-bottom-width', '0px');
+  });
+
+  test('menu check items show a tick or dot from aria-checked', async ({ page }) => {
+    const tick = (id) => page.locator(id).evaluate((el) => getComputedStyle(el, '::before').opacity);
+    expect(await tick('#menu-check-on')).toBe('1');
+    expect(await tick('#menu-check-off')).toBe('0');
+    await page.locator('#menu-check-off').evaluate((el) => el.setAttribute('aria-checked', 'true'));
+    expect(await tick('#menu-check-off')).toBe('1');
+    expect(await page.locator('#menu-radio-on').evaluate((el) => getComputedStyle(el, '::before').borderTopLeftRadius)).not.toBe('0px');
+    await expect(page.locator('#menu-check-on')).toHaveCSS('padding-left', '32px');
+  });
+
+  test('option description lines sit under the label in menu and listbox rows', async ({ page }) => {
+    const label = await page.locator('#listbox-desc .tui-option-text').first().evaluate((el) => el.firstChild.textContent);
+    expect(label).toBe('Team');
+    const desc = page.locator('#listbox-desc .tui-option-desc').first();
+    const text = page.locator('#listbox-desc .tui-option-text').first();
+    expect((await desc.boundingBox()).y).toBeGreaterThan((await text.boundingBox()).y + 10);
+    await expect(desc).toHaveCSS('font-size', '12px');
+    const menuDesc = page.locator('#menu-desc-item .tui-menu-item-desc');
+    await expect(menuDesc).toHaveCSS('font-size', '12px');
+    expect(await menuDesc.evaluate((el) => getComputedStyle(el).color)).not.toBe(await page.locator('#menu-desc-item').evaluate((el) => getComputedStyle(el).color));
+  });
+
+  test('backdrop covers the viewport above sticky chrome, centres its child, and hides with the hidden attribute', async ({ page }) => {
+    const backdrop = page.locator('#backdrop-demo');
+    await expect(backdrop).toBeHidden();
+    await backdrop.evaluate((el) => { el.hidden = false; });
+    await expect(backdrop).toBeVisible();
+    await expect(backdrop).toHaveCSS('position', 'fixed');
+    await expect(backdrop).toHaveCSS('z-index', '500');
+    const viewport = page.viewportSize();
+    const b = await backdrop.boundingBox();
+    expect(b.width).toBe(viewport.width);
+    const card = await backdrop.locator('.tui-card').boundingBox();
+    expect(Math.abs(card.x + card.width / 2 - viewport.width / 2)).toBeLessThan(2);
+    await backdrop.evaluate((el) => { el.hidden = true; });
+    await expect(backdrop).toBeHidden();
+  });
+
+  test('vertical tabs stack the strip in a column beside the panel and keep radio switching', async ({ page }) => {
+    const tabs = page.locator('#vertical-tabs .tui-tab');
+    const first = await tabs.nth(0).boundingBox();
+    const second = await tabs.nth(1).boundingBox();
+    expect(second.y).toBeGreaterThan(first.y + first.height - 1);
+    expect(Math.abs(second.x - first.x)).toBeLessThan(1);
+    const panel = await page.locator('#vertical-tabs .tui-tab-panel:visible').boundingBox();
+    expect(panel.x).toBeGreaterThan(first.x + first.width);
+    expect(Math.abs(panel.y - first.y)).toBeLessThan(2);
+    await expect(tabs.nth(0)).toHaveCSS('border-bottom-width', '0px');
+    await page.locator('label[for=vtab-billing]').click();
+    await expect(page.locator('#vertical-tabs .tui-tab-panel').nth(2)).toBeVisible();
+    await expect(page.locator('#vertical-tabs .tui-tab-panel').nth(0)).toBeHidden();
+  });
+});
+
+test.describe('Interactive — Inert', () => {
+  test('inert: controls and links under an inert ancestor render at disabled opacity with a default cursor, siblings outside do not', async ({ page }) => {
+    await page.goto('/examples/07-interactive.html');
+    await page.addStyleTag({ content: '*, ::before, ::after { transition: none !important; }' });
+    for (const id of ['#inert-button', '#inert-link', '#inert-input']) {
+      await expect(page.locator(id)).toHaveCSS('opacity', '0.5');
+      await expect(page.locator(id)).toHaveCSS('cursor', 'default');
+    }
+    for (const id of ['#live-button', '#live-link', '#live-input']) {
+      await expect(page.locator(id)).toHaveCSS('opacity', '1');
+    }
+    await expect(page.locator('#live-button')).toHaveCSS('cursor', 'pointer');
+    await page.locator('#inert-region').evaluate((el) => el.removeAttribute('inert'));
+    await expect(page.locator('#inert-button')).toHaveCSS('opacity', '1');
+    await expect(page.locator('#inert-button')).toHaveCSS('cursor', 'pointer');
+  });
+});

@@ -50,6 +50,37 @@
     transition: inline-size var(--tui-duration-normal) var(--tui-easing-out);
   }
 
+  /* === Loading ===
+   * Keeps the value; the fill carries moving diagonal stripes to say the
+   * task is still running. Reduced motion stops the stripes in place. */
+  .tui-progress-loading > .tui-progress-bar {
+    background-image: repeating-linear-gradient(-45deg, transparent 0 0.5rem, rgb(255 255 255 / 0.25) 0.5rem 1rem);
+    background-size: 1.414rem 100%;
+    animation: tui-progress-stripes 1s linear infinite;
+  }
+
+  @keyframes tui-progress-stripes {
+    to { background-position: 1.414rem 0; }
+  }
+
+  /* === Indeterminate ===
+   * No value: the bar sweeps the track and the ring spins a quarter arc. */
+  .tui-progress-indeterminate > .tui-progress-bar {
+    inline-size: 40%;
+    transition: none;
+    animation: tui-progress-sweep 1.4s var(--tui-easing-in-out) infinite;
+  }
+
+  @keyframes tui-progress-sweep {
+    from { translate: -100% 0; }
+    to { translate: 250% 0; }
+  }
+
+  .tui-progress-ring.tui-progress-indeterminate {
+    background: conic-gradient(var(--tui-tone, var(--tui-brand)) 0 25%, var(--tui-progress-ring-track, var(--tui-surface-3)) 0);
+    animation: tui-spin 1s linear infinite;
+  }
+
   /* === Sizes === */
   .tui-progress-sm {
     --tui-progress-thickness: 0.25rem;

@@ -37,6 +37,24 @@ A `.tui-menu-item` is a flex row starting at the inline edge with a small gap, s
 | `.tui-menu-item:is([aria-current], [data-selected], .tui-selected)` | Hover background held, medium weight |
 | `.tui-menu-item:is([aria-disabled="true"], [data-disabled], .tui-disabled, :disabled)` | `--tui-text-3`, `not-allowed` cursor, no hover |
 
+## Checkbox and radio items <span class="tui-badge">self-driven JS</span>
+
+An item with `role="menuitemcheckbox"` or `role="menuitemradio"` reserves a slot at its start for a tick or a dot that shows while `aria-checked="true"`; the script flips the attribute, exclusively for a radio group.
+
+{% include demo.html file="check.html" %}
+
+## Descriptions
+
+Wrap the label in `.tui-menu-item-text` and add a `.tui-menu-item-desc` line under it for a secondary description in `--tui-text-xs` and `--tui-text-3`. The same pair exists on a [listbox](/ui/interactive/listbox/) option as `.tui-option-text` / `.tui-option-desc`.
+
+{% include demo.html file="desc.html" %}
+
+| Selector | Effect |
+|---|---|
+| `.tui-menu-item[role="menuitemcheckbox"]` | Start slot with a tick shown by `aria-checked="true"` |
+| `.tui-menu-item[role="menuitemradio"]` | Start slot with a dot shown by `aria-checked="true"` |
+| `.tui-menu-item-text` / `.tui-menu-item-desc` | Label column with a small muted description line |
+
 ## Custom properties
 
 | Property | Default | Effect |

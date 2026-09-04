@@ -51,6 +51,16 @@ A strip your script drives uses `<button class="tui-tab" role="tab">` in a `role
 | `.tui-tab:is([aria-selected="true"], [data-selected], .tui-selected)` | Rendered active, like `[aria-current]` |
 | `.tui-tab-panel[role="tabpanel"]` | Shown; `hidden` hides it |
 
+## Vertical strip
+
+`.tui-tabs-vertical` lays the strip out as a column beside the panel: a two-column grid with the tabs in the first column, each ruled on its end edge instead of underneath, and the shown panel spanning the rows of the second. Radio, link and script-driven tabs all work in it.
+
+{% include demo.html file="vertical.html" %}
+
+| Class | Effect |
+|---|---|
+| `.tui-tabs-vertical` | Two-column grid: tab column with end-edge rules, panel column beside it |
+
 ## Trailing slot
 
 `.tui-tabs-end` is a slot at the inline end of the row for badges, a "+" button or a filter. It takes `margin-inline-start: auto`, carries the rule to the edge itself and collapses the `::after` filler. When the row wraps, the slot lands alone on the last row — keep the strip short enough to fit.

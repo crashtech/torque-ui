@@ -83,8 +83,33 @@
   }
 
   /* === Selectable Rows === */
-  .tui-table-selectable tbody tr:has(input:checked) {
+  .tui-table-selectable tbody tr:has(input:checked),
+  tbody tr:is([aria-selected="true"], [data-selected], .tui-selected) {
     background-color: var(--tui-brand-soft);
+  }
+
+  /* === Expandable rows ===
+   * A row carrying aria-expanded turns a glyph in its first cell; the
+   * .tui-table-detail row after it is the script's to show with hidden. */
+  tbody tr[aria-expanded] {
+    cursor: pointer;
+
+    & > td:first-child::before {
+      content: '▸';
+      display: inline-block;
+      margin-inline-end: var(--tui-spacing-2);
+      color: var(--tui-text-3);
+      transition: rotate var(--tui-duration-fast);
+    }
+  }
+
+  tbody tr[aria-expanded="true"] > td:first-child::before {
+    rotate: 90deg;
+  }
+
+  tbody tr.tui-table-detail > td {
+    padding-block: var(--tui-spacing-4);
+    background-color: var(--tui-surface-1);
   }
 
   /* === Sort Indicators === */

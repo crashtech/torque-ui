@@ -1,0 +1,19 @@
+<nav class="tui-navbar" id="navbar-submenu-script">
+  <a class="tui-navbar-brand" href="#">Torque</a>
+  <ul class="tui-navbar-menu">
+    <li><button class="tui-navbar-item" type="button" aria-expanded="false" aria-controls="navbar-submenu-company">Company <span class="tui-caret"></span></button>
+      <div class="tui-navbar-submenu tui-menu" id="navbar-submenu-company" hidden>
+        <a class="tui-menu-item" href="#">About</a>
+        <a class="tui-menu-item" href="#">Careers</a>
+      </div></li>
+    <li><a class="tui-navbar-item" href="#">Pricing</a></li>
+  </ul>
+</nav>
+<script>
+  const trigger = document.querySelector('#navbar-submenu-script [aria-expanded]');
+  trigger.addEventListener('click', () => {
+    const open = trigger.getAttribute('aria-expanded') !== 'true';
+    trigger.setAttribute('aria-expanded', open);
+    document.getElementById(trigger.getAttribute('aria-controls')).hidden = !open;
+  });
+</script>

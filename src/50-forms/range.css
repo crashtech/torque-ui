@@ -1,0 +1,144 @@
+/* Torque UI — Range wrapper
+ * .tui-range wraps one or two native range inputs and paints the track
+ * itself, so it can show a fill between two thumbs, a value label riding
+ * each thumb and a row of marks. The positions are two registered numbers
+ * (0-100) read from data-value, or data-start and data-end, where typed
+ * attr() exists; a script writes them on input. The inputs stay native.
+ */
+
+
+  @property --tui-range-start {
+    syntax: '<number>';
+    inherits: true;
+    initial-value: 0;
+  }
+
+  @property --tui-range-end {
+    syntax: '<number>';
+    inherits: true;
+    initial-value: 0;
+  }
+
+  .tui-range {
+    --tui-range-thumb: var(--tui-spacing-5);
+
+    /* why: a thumb's centre travels from half a thumb in to half a thumb
+       short of the end, so every position is mapped onto that shorter span */
+    --_start: calc(var(--tui-range-thumb) / 2 + (100% - var(--tui-range-thumb)) * var(--tui-range-start) / 100);
+    --_end: calc(var(--tui-range-thumb) / 2 + (100% - var(--tui-range-thumb)) * var(--tui-range-end) / 100);
+
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr;
+    align-items: center;
+    inline-size: 100%;
+    transition: --tui-range-start var(--tui-duration-normal) var(--tui-easing-out), --tui-range-end var(--tui-duration-normal) var(--tui-easing-out);
+
+    &:has(> .tui-range-label) {
+      padding-block-start: var(--tui-spacing-6);
+    }
+
+    /* why: the track is an in-flow item in the same grid cell as the inputs,
+       so it is centred on their row whatever else the wrapper holds and
+       paints beneath them in DOM order */
+    &::before {
+      content: '';
+      grid-area: 1 / 1;
+      align-self: center;
+      block-size: 6px;
+      border-radius: var(--tui-radius-full);
+      background: linear-gradient(to right, var(--tui-surface-3) var(--_start), var(--tui-tone, var(--tui-brand)) var(--_start) var(--_end), var(--tui-surface-3) var(--_end));
+      pointer-events: none;
+    }
+
+    /* why: the wrapper paints the track, so the inputs only carry thumbs;
+       stacked in one grid cell a second input becomes the second thumb */
+    & > input[type="range"] {
+      grid-area: 1 / 1;
+      background: transparent;
+    }
+  }
+
+  /* why: gradient directions have no logical keywords */
+  :dir(rtl) .tui-range::before {
+    background: linear-gradient(to left, var(--tui-surface-3) var(--_start), var(--tui-tone, var(--tui-brand)) var(--_start) var(--_end), var(--tui-surface-3) var(--_end));
+  }
+
+  @supports (width: attr(x type(<length>))) {
+    .tui-range[data-value] {
+      /* stylelint-disable-next-line csstree/validator -- typed attr() is valid CSS Values 5 syntax (Chrome 133+); csstree's grammar doesn't yet know it */
+      --tui-range-end: attr(data-value type(<number>));
+    }
+
+    .tui-range[data-start] {
+      /* stylelint-disable-next-line csstree/validator -- typed attr() is valid CSS Values 5 syntax (Chrome 133+); csstree's grammar doesn't yet know it */
+      --tui-range-start: attr(data-start type(<number>));
+    }
+
+    .tui-range[data-end] {
+      /* stylelint-disable-next-line csstree/validator -- typed attr() is valid CSS Values 5 syntax (Chrome 133+); csstree's grammar doesn't yet know it */
+      --tui-range-end: attr(data-end type(<number>));
+    }
+  }
+
+  /* === Two thumbs ===
+   * why: only the top input would take the pointer; letting events through
+   * everywhere but the thumbs makes both thumbs draggable */
+  .tui-range-dual > input[type="range"] {
+    pointer-events: none;
+
+    &::-webkit-slider-thumb { pointer-events: auto; }
+
+    &::-moz-range-thumb { pointer-events: auto; }
+  }
+
+  /* === Value labels === */
+  .tui-range-label {
+    position: absolute;
+    inset-block-start: 0;
+    inset-inline-start: var(--_end);
+    translate: -50% 0;
+    padding: var(--tui-spacing-0-5) var(--tui-spacing-1);
+    font-size: var(--tui-text-xs);
+    font-weight: var(--tui-font-medium);
+    line-height: 1;
+    white-space: nowrap;
+    color: var(--tui-surface-0);
+    background-color: var(--tui-text-1);
+    border-radius: var(--tui-radius-sm);
+    pointer-events: none;
+  }
+
+  :dir(rtl) .tui-range-label {
+    translate: 50% 0;
+  }
+
+  .tui-range-label-start {
+    inset-inline-start: var(--_start);
+  }
+
+  /* === Marks === */
+  .tui-range-marks {
+    display: flex;
+    justify-content: space-between;
+    margin: var(--tui-spacing-1) 0 0;
+    padding: 0 calc(var(--tui-range-thumb) / 2);
+    font-size: var(--tui-text-xs);
+    color: var(--tui-text-3);
+    list-style: none;
+
+    & > li {
+      margin: 0;
+    }
+
+    /* why: the first and last marks centre on the thumb's end positions */
+    & > li:first-child { translate: -50% 0; }
+
+    & > li:last-child { translate: 50% 0; }
+  }
+
+  :dir(rtl) .tui-range-marks {
+    & > li:first-child { translate: 50% 0; }
+
+    & > li:last-child { translate: -50% 0; }
+  }

@@ -90,6 +90,22 @@
   border-color: var(--tui-tone, var(--tui-brand));
 }
 
+/* === Description line === */
+.tui-option-text {
+  display: grid;
+  gap: 2px;
+  min-inline-size: 0;
+}
+
+.tui-option-desc {
+  font-size: var(--tui-text-xs);
+  color: var(--tui-text-3);
+}
+
+.tui-option:is([aria-selected="true"], [data-selected], .tui-selected) .tui-option-desc {
+  color: inherit;
+}
+
 /* === Groups === */
 .tui-listbox-group {
   display: grid;

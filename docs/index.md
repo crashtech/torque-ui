@@ -26,45 +26,45 @@ nav:
     id: foundations
     note: "One brand colour, a handful of scales, and every component reads them"
     pages:
-      - title: Colors
-        url: /foundations/colors/
-      - title: Typography Scale
-        url: /foundations/typography-scale/
-      - title: Spacing
-        url: /foundations/spacing/
-      - title: Radius
-        url: /foundations/radius/
-      - title: Z-index
-        url: /foundations/z-index/
-      - title: Motion
-        url: /foundations/motion/
       - title: Chart Palette
         url: /foundations/chart-palette/
+      - title: Colors
+        url: /foundations/colors/
+      - title: Motion
+        url: /foundations/motion/
+      - title: Radius
+        url: /foundations/radius/
       - title: Reboot
         url: /foundations/reboot/
-      - title: Tone
-        url: /foundations/tone/
-      - title: State Inputs
-        url: /foundations/state-inputs/
       - title: Self-driven JS
         url: /foundations/self-driven-js/
+      - title: Spacing
+        url: /foundations/spacing/
+      - title: State Inputs
+        url: /foundations/state-inputs/
+      - title: Tone
+        url: /foundations/tone/
+      - title: Typography Scale
+        url: /foundations/typography-scale/
+      - title: Z-index
+        url: /foundations/z-index/
 
   - title: Elements
     id: elements
     note: "Plain HTML that already looks right, no classes required"
     pages:
-      - title: Typography
-        url: /elements/typography/
+      - title: Icons
+        url: /elements/icons/
+      - title: Images
+        url: /elements/images/
       - title: Links
         url: /elements/links/
       - title: Lists
         url: /elements/lists/
       - title: Tables
         url: /elements/tables/
-      - title: Images
-        url: /elements/images/
-      - title: Icons
-        url: /elements/icons/
+      - title: Typography
+        url: /elements/typography/
 
   - title: Components
     id: components
@@ -76,6 +76,8 @@ nav:
         url: /components/avatar/
       - title: Badge
         url: /components/badge/
+      - title: Bottom Navigation
+        url: /components/bottom-nav/
       - title: Breadcrumb
         url: /components/breadcrumb/
       - title: Busy
@@ -132,6 +134,8 @@ nav:
         url: /components/timeline/
       - title: Toast
         url: /components/toast/
+      - title: Toolbar
+        url: /components/toolbar/
       - title: Tree
         url: /components/tree/
       - title: Window
@@ -141,65 +145,75 @@ nav:
     id: forms
     note: "Native controls, restyled; errors only when the user has actually been there"
     pages:
-      - title: Form Layout
-        url: /forms/form-layout/
-      - title: Inputs
-        url: /forms/inputs/
-      - title: Input Group
-        url: /forms/input-group/
-      - title: Select
-        url: /forms/select/
       - title: Checkbox
         url: /forms/checkbox/
-      - title: Radio
-        url: /forms/radio/
-      - title: Switch
-        url: /forms/switch/
-      - title: Search
-        url: /forms/search/
-      - title: Password
-        url: /forms/password/
-      - title: Validation
-        url: /forms/validation/
-      - title: Form Table
-        url: /forms/form-table/
-      - title: Field States
-        url: /forms/field-states/
-      - title: Stepper
-        url: /forms/stepper/
       - title: Color Check
         url: /forms/color-check/
+      - title: Field States
+        url: /forms/field-states/
+      - title: Form Layout
+        url: /forms/form-layout/
+      - title: Form Table
+        url: /forms/form-table/
       - title: Image Check
         url: /forms/image-check/
+      - title: Input Group
+        url: /forms/input-group/
+      - title: Inputs
+        url: /forms/inputs/
+      - title: Password
+        url: /forms/password/
+      - title: Radio
+        url: /forms/radio/
+      - title: Range
+        url: /forms/range/
+      - title: Search
+        url: /forms/search/
+      - title: Select
+        url: /forms/select/
+      - title: Stepper
+        url: /forms/stepper/
+      - title: Switch
+        url: /forms/switch/
+      - title: Validation
+        url: /forms/validation/
 
   - title: Interactive
     id: interactive
     note: "Tabs, menus, dialogs and drawers driven by :checked, popover and dialog - no script"
     pages:
-      - title: Tabs
-        url: /interactive/tabs/
+      - title: Backdrop
+        url: /interactive/backdrop/
+      - title: Calendar
+        url: /interactive/calendar/
+      - title: Carousel
+        url: /interactive/carousel/
       - title: Collapse
         url: /interactive/collapse/
+      - title: Drag and Drop
+        url: /interactive/drag/
+      - title: Listbox
+        url: /interactive/listbox/
       - title: Menu
         url: /interactive/menu/
       - title: Modal
         url: /interactive/modal/
       - title: Offcanvas
         url: /interactive/offcanvas/
-      - title: Tooltip
-        url: /interactive/tooltip/
       - title: Popover
         url: /interactive/popover/
-      - title: Listbox
-        url: /interactive/listbox/
-      - title: Sheet
-        url: /interactive/sheet/
-      - title: Carousel
-        url: /interactive/carousel/
       - title: Rating
         url: /interactive/rating/
+      - title: Sheet
+        url: /interactive/sheet/
+      - title: Speed Dial
+        url: /interactive/speed-dial/
+      - title: Tabs
+        url: /interactive/tabs/
       - title: Toggle Group
         url: /interactive/toggle-group/
+      - title: Tooltip
+        url: /interactive/tooltip/
       - title: Wizard
         url: /interactive/wizard/
 
@@ -207,32 +221,32 @@ nav:
     id: layout
     note: "Gap, not margins - components carry no outer spacing of their own"
     pages:
-      - title: Container
-        url: /layout/container/
-      - title: Grid
-        url: /layout/grid/
-      - title: Flexbox
-        url: /layout/flexbox/
-      - title: Stack
-        url: /layout/stack/
       - title: App Shell
         url: /layout/shell/
-      - title: Hero
-        url: /layout/hero/
-      - title: Section
-        url: /layout/section/
-      - title: Media Object
-        url: /layout/media/
-      - title: Level
-        url: /layout/level/
-      - title: Page Header
-        url: /layout/page-header/
-      - title: Split Pane
-        url: /layout/split/
       - title: Board
         url: /layout/board/
+      - title: Container
+        url: /layout/container/
       - title: Container Queries
         url: /layout/container-queries/
+      - title: Flexbox
+        url: /layout/flexbox/
+      - title: Grid
+        url: /layout/grid/
+      - title: Hero
+        url: /layout/hero/
+      - title: Level
+        url: /layout/level/
+      - title: Media Object
+        url: /layout/media/
+      - title: Page Header
+        url: /layout/page-header/
+      - title: Section
+        url: /layout/section/
+      - title: Split Pane
+        url: /layout/split/
+      - title: Stack
+        url: /layout/stack/
 
   - title: Utilities
     id: utilities
@@ -240,37 +254,37 @@ nav:
     pages:
       - title: Colors
         url: /utilities/colors/
-      - title: Spacing
-        url: /utilities/spacing/
-      - title: Sizing
-        url: /utilities/sizing/
       - title: Display
         url: /utilities/display/
       - title: Overflow
         url: /utilities/overflow/
-      - title: Text
-        url: /utilities/text/
-      - title: Visual
-        url: /utilities/visual/
       - title: Pointer & Orientation
         url: /utilities/pointer-orientation/
       - title: Scroll
         url: /utilities/scroll/
+      - title: Sizing
+        url: /utilities/sizing/
+      - title: Spacing
+        url: /utilities/spacing/
+      - title: Text
+        url: /utilities/text/
+      - title: Visual
+        url: /utilities/visual/
 
   - title: Themes
     id: themes
     note: "Dark mode, contrast, motion, print - the user preferences honoured by default"
     pages:
+      - title: Accessibility
+        url: /themes/accessibility/
       - title: Dark Mode
         url: /themes/dark-mode/
       - title: High Contrast
         url: /themes/high-contrast/
-      - title: Accessibility
-        url: /themes/accessibility/
-      - title: View Transitions
-        url: /themes/view-transitions/
       - title: Print
         url: /themes/print/
+      - title: View Transitions
+        url: /themes/view-transitions/
 ---
 
 <section class="hero tui-grid tui-grid-md-2 tui-items-center tui-gap-8">

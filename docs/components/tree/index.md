@@ -2,6 +2,7 @@
 title: Tree
 section: components
 source: src/30-components/tree.css
+js: self-driven
 description: "Nested list of native <details> branches and link leaves with guide lines, no JavaScript."
 ---
 
@@ -18,6 +19,18 @@ A tree is a nested `<ul>` of `<li>` where a branch is a `<details class="tui-tre
 Because rows are flex, a status dot, a badge or an icon drops in before or after the text with no extra markup. A `<span>` leaf marks an item that is not a link.
 
 {% include demo.html file="extras.html" %}
+
+## Script-driven tree <span class="tui-badge">self-driven JS</span>
+
+A `role="tree"` of `role="treeitem"` rows, each a `.tui-tree-item` label followed by a `role="group"` list: `aria-expanded` on the item turns the disclosure glyph and shows or hides the group by itself, and `aria-selected="true"` (or `data-selected`, `.tui-selected`) paints the row. The script flips the attributes and moves focus with the arrow keys.
+
+{% include demo.html file="items.html" %}
+
+| Selector | Effect |
+|---|---|
+| `.tui-tree-item` | Row label: flex, padded, `--tui-radius-sm`, hover background |
+| `[role="treeitem"][aria-expanded]` | Disclosure glyph, turned when `"true"`; the `role="group"` inside is hidden when `"false"` |
+| `[role="treeitem"]:is([aria-selected="true"], [data-selected], .tui-selected)` | Soft tone row |
 
 ## Guides and indent
 
