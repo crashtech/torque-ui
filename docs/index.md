@@ -5,6 +5,9 @@ toc: false
 
 meta:
   title: UI
+  repository: crashtech/torque-ui
+  npm: "@crashtech/torque-ui"
+  version: 0.1.0
   footer:
     - Torque UI is MIT licensed
     - Chrome 123+, Safari 17.5+ and Firefox 128+
@@ -100,6 +103,8 @@ nav:
         url: /components/empty/
       - title: Flag
         url: /components/flag/
+      - title: Grid View
+        url: /components/grid-view/
       - title: Key/Value
         url: /components/key-value/
       - title: Label

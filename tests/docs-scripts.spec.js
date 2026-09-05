@@ -76,6 +76,16 @@ const behaviours = {
     await page.locator('#list-group-script-filter').fill('zzz');
     await expect(page.locator('#list-group-script .tui-list-empty')).toBeVisible();
   },
+  'docs/components/grid-view/examples/script.html': async (page) => {
+    const tiles = page.locator('#grid-view-script .tui-tile');
+    await tiles.nth(1).click();
+    await expect(tiles.nth(1)).toHaveAttribute('aria-selected', 'true');
+    await expect(tiles.nth(0)).toHaveAttribute('aria-selected', 'false');
+    await tiles.nth(3).click();
+    await expect(tiles.nth(1)).toHaveAttribute('aria-selected', 'true');
+    await page.locator('#grid-view-script-filter').fill('zzz');
+    await expect(page.locator('#grid-view-script .tui-grid-view-empty')).toBeVisible();
+  },
   'docs/components/progress/examples/attribute.html': async (page) => {
     await page.locator('#progress-attribute-advance').click();
     await expect(page.locator('#progress-attribute-bar')).toHaveAttribute('aria-valuenow', '55');

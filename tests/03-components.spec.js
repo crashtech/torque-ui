@@ -123,6 +123,128 @@ test.describe('Components — Tree', () => {
   });
 });
 
+test.describe('Components — Grid View', () => {
+  test.beforeEach(async ({ page }) => {
+    await page.goto('/examples/03-components.html');
+  });
+
+  const columns = (locator) => locator.evaluate((el) => getComputedStyle(el).gridTemplateColumns.split(' ').length);
+
+  test('tiles fill as many columns as the container allows and re-wrap when it narrows', async ({ page }) => {
+    const grid = page.locator('#grid-view');
+    await grid.evaluate((el) => { el.style.inlineSize = '40rem'; });
+    const wide = await columns(grid);
+    expect(wide).toBeGreaterThan(2);
+    await grid.evaluate((el) => { el.style.inlineSize = '15rem'; });
+    expect(await columns(grid)).toBeLessThan(wide);
+    await grid.evaluate((el) => { el.style.inlineSize = ''; });
+  });
+
+  test('a tile stacks a large icon above a centred name', async ({ page }) => {
+    const tile = page.locator('#tile-plain');
+    await expect(tile).toHaveCSS('flex-direction', 'column');
+    await expect(tile).toHaveCSS('align-items', 'center');
+    await expect(tile).toHaveCSS('text-decoration-line', 'none');
+    const icon = await tile.locator('.tui-icon').boundingBox();
+    const name = await tile.locator('.tui-tile-name').boundingBox();
+    expect(icon.height).toBeGreaterThanOrEqual(40);
+    expect(name.y).toBeGreaterThan(icon.y + icon.height);
+  });
+
+  test('a long name wraps inside its tile instead of widening the grid', async ({ page }) => {
+    const grid = page.locator('#grid-view');
+    const tile = page.locator('#tile-facts');
+    const gridBox = await grid.boundingBox();
+    const tileBox = await tile.boundingBox();
+    expect(tileBox.width).toBeLessThan(gridBox.width / 2);
+    expect(await grid.evaluate((el) => el.scrollWidth <= el.clientWidth)).toBe(true);
+  });
+
+  test('a checked state input, aria-selected and data-selected all paint the same selected tile', async ({ page }) => {
+    const bg = (l) => l.evaluate((el) => getComputedStyle(el).backgroundColor);
+    const plain = await bg(page.locator('#tile-unselected-attr'));
+    const checked = await bg(page.locator('#tile-checked'));
+    expect(checked).not.toBe(plain);
+    expect(await bg(page.locator('#tile-selected-attr'))).toBe(checked);
+    const target = page.locator('#tile-unselected-attr');
+    await target.evaluate((el) => el.setAttribute('data-selected', ''));
+    await expect.poll(() => bg(target)).toBe(checked);
+    await target.evaluate((el) => el.removeAttribute('data-selected'));
+    await expect.poll(() => bg(target)).toBe(plain);
+  });
+
+  test('a disabled tile mutes its text and refuses the pointer', async ({ page }) => {
+    const disabled = page.locator('#tile-disabled-attr');
+    const plain = page.locator('#tile-unselected-attr');
+    await expect(disabled).toHaveCSS('cursor', 'not-allowed');
+    const color = (l) => l.evaluate((el) => getComputedStyle(el).color);
+    expect(await color(disabled)).not.toBe(await color(plain));
+  });
+
+  test('the empty row appears only once every tile is hidden', async ({ page }) => {
+    const empty = page.locator('#grid-view-attr .tui-grid-view-empty');
+    await expect(empty).toBeHidden();
+    await page.evaluate(() => document.querySelectorAll('#grid-view-attr .tui-tile').forEach((li) => { li.hidden = true; }));
+    await expect(empty).toBeVisible();
+  });
+
+  test('a key/value tile mutes its term, weights its value and aligns to the start', async ({ page }) => {
+    const tile = page.locator('#tile-kv');
+    await expect(tile).toHaveCSS('align-items', 'flex-start');
+    const color = (l) => l.evaluate((el) => getComputedStyle(el).color);
+    expect(await color(tile.locator('dt'))).not.toBe(await color(tile.locator('dd')));
+    const weight = (l) => l.evaluate((el) => Number(getComputedStyle(el).fontWeight));
+    expect(await weight(tile.locator('dd'))).toBeGreaterThan(await weight(tile.locator('dt')));
+    await expect(tile.locator('dd')).toHaveCSS('margin-inline-start', '0px');
+  });
+
+  test('tiles keep their own height by default and share the row height under .tui-grid-view-stretch', async ({ page }) => {
+    const height = (id) => page.locator(id).evaluate((el) => el.getBoundingClientRect().height);
+    expect(await height('#tile-plain')).toBeLessThan(await height('#tile-facts'));
+    expect(await height('#tile-stretch-short')).toBe(await height('#tile-stretch-tall'));
+  });
+
+  test('uniform tiles are all the same size and clamp a long name with an ellipsis', async ({ page }) => {
+    const box = (id) => page.locator(id).boundingBox();
+    const short = await box('#tile-uniform-short');
+    const long = await box('#tile-uniform-long');
+    const last = await box('#tile-uniform-last');
+    expect(long.height).toBe(short.height);
+    expect(last.height).toBe(short.height);
+    expect(last.y).toBeGreaterThan(short.y);
+    const name = page.locator('#tile-uniform-long .tui-tile-name');
+    await expect(name).toHaveCSS('-webkit-line-clamp', '2');
+    expect(await name.evaluate((el) => el.scrollHeight > el.clientHeight)).toBe(true);
+  });
+
+  test('a filled tile stretches its image to the tile width as a square', async ({ page }) => {
+    const tile = page.locator('#tile-fill');
+    const img = tile.locator('img');
+    const padding = await tile.evaluate((el) => parseFloat(getComputedStyle(el).paddingInlineStart) * 2);
+    const tileBox = await tile.boundingBox();
+    const imgBox = await img.boundingBox();
+    expect(imgBox.width).toBeCloseTo(tileBox.width - padding, 0);
+    expect(imgBox.height).toBeCloseTo(imgBox.width, 0);
+    await expect(img).toHaveCSS('object-fit', 'cover');
+  });
+
+  test('an extra-large tile puts the name beside the icon and the facts underneath', async ({ page }) => {
+    const tile = page.locator('#tile-xl');
+    const icon = await tile.locator('.tui-icon').boundingBox();
+    const name = await tile.locator('.tui-tile-name').boundingBox();
+    const facts = await tile.locator('dl').boundingBox();
+    expect(name.x).toBeGreaterThan(icon.x + icon.width);
+    expect(name.y).toBeLessThan(icon.y + icon.height);
+    expect(facts.y).toBeGreaterThan(icon.y + icon.height);
+    expect(facts.x).toBeLessThan(name.x);
+    await expect(tile).toHaveCSS('border-top-width', '1px');
+  });
+
+  test('no axe violations', async ({ page }) => {
+    expect(await getViolations(page, ['color-contrast', 'label', 'button-name', 'link-name'], '.tui-grid-view')).toEqual([]);
+  });
+});
+
 test.describe('Components — Alerts', () => {
   test.beforeEach(async ({ page }) => {
     await page.goto('/examples/03-components.html');

@@ -1,0 +1,23 @@
+<div class="tui-stack">
+  <input type="search" placeholder="Filter files" aria-label="Filter files" id="grid-view-script-filter">
+  <ul class="tui-grid-view" aria-label="Files" id="grid-view-script">
+    <li class="tui-tile" aria-selected="true"><svg class="tui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 2h8l4 4v16H6z"/></svg><span class="tui-tile-name">Resume.pdf</span></li>
+    <li class="tui-tile" aria-selected="false"><svg class="tui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 2h8l4 4v16H6z"/></svg><span class="tui-tile-name">Notes.md</span></li>
+    <li class="tui-tile" aria-selected="false"><svg class="tui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h6l2 2h10v12H3z"/></svg><span class="tui-tile-name">Projects</span></li>
+    <li class="tui-tile" aria-selected="false" aria-disabled="true"><svg class="tui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 2h8l4 4v16H6z"/></svg><span class="tui-tile-name">locked.zip</span></li>
+    <li class="tui-grid-view-empty">No files match</li>
+  </ul>
+</div>
+<script>
+  const grid = document.getElementById('grid-view-script');
+  const tiles = grid.querySelectorAll('.tui-tile');
+  grid.addEventListener('click', (event) => {
+    const tile = event.target.closest('.tui-tile');
+    if (!tile || tile.getAttribute('aria-disabled') === 'true') return;
+    tiles.forEach((other) => other.setAttribute('aria-selected', other === tile));
+  });
+  document.getElementById('grid-view-script-filter').addEventListener('input', (event) => {
+    const query = event.target.value.toLowerCase();
+    tiles.forEach((tile) => { tile.hidden = !tile.textContent.toLowerCase().includes(query); });
+  });
+</script>

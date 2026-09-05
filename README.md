@@ -90,6 +90,7 @@ _Interactivity from native HTML alone — not a single script ships with it._
 - [Divider](https://torque.dev/ui/components/divider/)
 - [Empty State](https://torque.dev/ui/components/empty/)
 - [Flag](https://torque.dev/ui/components/flag/)
+- [Grid View](https://torque.dev/ui/components/grid-view/)
 - [Key/Value](https://torque.dev/ui/components/key-value/)
 - [Label](https://torque.dev/ui/components/label/)
 - [List Group](https://torque.dev/ui/components/list-group/)

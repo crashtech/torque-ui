@@ -1,0 +1,171 @@
+/* Torque UI — Grid View
+ * .tui-grid-view lays .tui-tile children out as an auto-filling grid of
+ * icon-above-name tiles — the third view of a file explorer next to the
+ * breadcrumb and the tree. The container is a <ul> of <li> tiles, or a <dl>
+ * whose <div> tiles each hold one dt/dd pair. A tile is an <a>, <label>,
+ * <button> or plain element; a label with a .tui-state-input checkbox
+ * becomes selectable, and ARIA, data or class hooks paint script-set state.
+ */
+
+.tui-grid-view {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(var(--tui-grid-view-min, 7rem), 100%), 1fr));
+  gap: var(--tui-grid-view-gap, var(--tui-spacing-3));
+  align-items: start;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* why: a <ul> tile sits inside its <li> cell, so the cell must become a grid
+   for the tile itself — and its hover or selected tint — to fill the row */
+.tui-grid-view-stretch,
+.tui-grid-view-uniform {
+  align-items: stretch;
+
+  & > li { display: grid; }
+}
+
+.tui-grid-view-uniform {
+  grid-auto-rows: 1fr;
+
+  & .tui-tile-name {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: var(--tui-tile-name-lines, 2);
+    overflow: hidden;
+  }
+
+  & .tui-tile > dd {
+    max-inline-size: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+.tui-grid-view-fill .tui-tile > :is(.tui-icon, img) {
+  inline-size: 100%;
+  block-size: auto;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: var(--tui-radius-md);
+}
+
+.tui-grid-view-lg {
+  --tui-grid-view-min: 10rem;
+  --tui-tile-icon-size: 4rem;
+}
+
+/* why: at this size a tile reads as a card, so it takes an edge; the name
+   sits beside the icon and any key/value list spans the tile below them */
+.tui-grid-view-xl {
+  --tui-grid-view-min: 16rem;
+
+  & .tui-tile {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+    gap: var(--tui-spacing-2) var(--tui-spacing-3);
+    padding: var(--tui-spacing-4);
+    border: 1px solid var(--tui-border);
+    text-align: start;
+
+    & > :not(.tui-icon, img, .tui-tile-name, .tui-state-input) {
+      grid-column: 1 / -1;
+    }
+  }
+}
+
+.tui-tile {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--tui-spacing-2);
+  min-inline-size: 0;
+  margin: 0;
+  padding: var(--tui-spacing-3);
+  border-radius: var(--tui-radius-md);
+  color: var(--tui-text-1);
+  text-align: center;
+  text-decoration: none;
+  background-color: var(--tui-tile-bg, transparent);
+  transition: background-color var(--tui-duration-fast);
+
+  & > .tui-icon,
+  & > img {
+    --tui-icon-size: var(--tui-tile-icon-size, 2.5rem);
+
+    inline-size: var(--tui-tile-icon-size, 2.5rem);
+    block-size: var(--tui-tile-icon-size, 2.5rem);
+  }
+
+  &:is(a, label, button):hover {
+    background-color: var(--tui-tile-hover-bg, var(--tui-surface-1));
+    cursor: pointer;
+  }
+
+  &:has(> .tui-state-input:focus-visible) {
+    outline: var(--tui-focus-ring-width) solid var(--tui-focus-ring-strong);
+    outline-offset: 2px;
+  }
+
+  /* why: --tui-tone-ink (not the raw --tui-tone) keeps selected-tile text at
+     AA contrast against the soft tinted background across brand colours */
+  &:has(> .tui-state-input:checked),
+  &.tui-tile-active,
+  &:is([aria-selected="true"], [data-selected], .tui-selected) {
+    background-color: var(--tui-tile-active-bg, var(--tui-tone-soft, var(--tui-brand-soft)));
+    color: var(--tui-tone-ink, var(--tui-brand-ink));
+  }
+
+  &:is([aria-disabled="true"], [data-disabled], .tui-disabled) {
+    color: var(--tui-text-3);
+    cursor: not-allowed;
+
+    &:hover { background-color: var(--tui-tile-bg, transparent); }
+  }
+
+  & > dt,
+  & > dd {
+    margin: 0;
+    text-box: normal;
+  }
+
+  & > dt {
+    font-size: var(--tui-text-sm);
+    font-weight: var(--tui-font-normal);
+    color: var(--tui-text-3);
+  }
+
+  & > dd {
+    font-weight: var(--tui-font-medium);
+    overflow-wrap: anywhere;
+  }
+}
+
+.tui-tile-name {
+  max-inline-size: 100%;
+  font-size: var(--tui-text-sm);
+  overflow-wrap: anywhere;
+}
+
+.tui-grid-view-start > .tui-tile {
+  align-items: flex-start;
+  text-align: start;
+}
+
+/* The row a filtering script leaves visible when it has hidden every other
+   tile — shown by CSS alone once nothing else in the grid is visible */
+.tui-grid-view-empty {
+  display: none;
+  grid-column: 1 / -1;
+  padding: var(--tui-spacing-3);
+  color: var(--tui-text-3);
+  text-box: trim-both cap alphabetic;
+}
+
+.tui-grid-view:not(:has(> :not([hidden], .tui-grid-view-empty))) > .tui-grid-view-empty {
+  display: block;
+}

@@ -47,6 +47,7 @@
 @import url('./30-components/panel.css') layer(tui.components);
 @import url('./30-components/list-group.css') layer(tui.components);
 @import url('./30-components/tree.css') layer(tui.components);
+@import url('./30-components/grid-view.css') layer(tui.components);
 @import url('./30-components/divider.css') layer(tui.components);
 @import url('./30-components/label.css') layer(tui.components);
 @import url('./30-components/flag.css') layer(tui.components);

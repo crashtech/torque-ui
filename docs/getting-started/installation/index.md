@@ -7,6 +7,20 @@ description: "Link one stylesheet, set one variable to re-theme, one to change d
 
 Torque UI is a zero-JavaScript CSS framework: link a single stylesheet and every component, layout and utility is available. Interactivity comes from native HTML — hidden checkboxes and radios, `<details>`, `popover`, `<dialog>` — driven by `:has()`, `:checked` and cascade layers, so there is no runtime to load, no build step to run and no configuration file to write.
 
+## Installing
+
+The package is published on npm as [`@crashtech/torque-ui`](https://www.npmjs.com/package/@crashtech/torque-ui), and the source lives on [GitHub](https://github.com/crashtech/torque-ui).
+
+```sh
+npm install @crashtech/torque-ui
+```
+
+Without a package manager, link the bundle straight from a CDN.
+
+```html
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@crashtech/torque-ui@0.1.0/dist/tui-all.css">
+```
+
 ## The bundle or the source
 
 Two entry points ship, and they are interchangeable. `dist/tui-all.css` is a single flat file: one `@layer` declaration followed by nine `@layer tui.<name> { … }` blocks, each containing the source files that belong to it. It is the right choice for production — one request, no `@import` chain.

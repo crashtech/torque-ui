@@ -537,6 +537,69 @@
 
     <section class="tui-card tui-mb-6">
       <div class="tui-card-header">
+        <h2 class="tui-m-0">Grid View</h2>
+      </div>
+      <div class="tui-card-body">
+        <div class="tui-stack">
+          <ul class="tui-grid-view" id="grid-view" aria-label="Files">
+            <li><a class="tui-tile" href="#grid-view" id="tile-plain"><svg class="tui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h6l2 2h10v12H3z"/></svg><span class="tui-tile-name">Documents</span></a></li>
+            <li><a class="tui-tile" href="#grid-view"><svg class="tui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h6l2 2h10v12H3z"/></svg><span class="tui-tile-name">Downloads</span></a></li>
+            <li><label class="tui-tile" id="tile-checked"><input class="tui-state-input" type="checkbox" checked><svg class="tui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 2h8l4 4v16H6z"/></svg><span class="tui-tile-name">Resume.pdf</span></label></li>
+            <li><label class="tui-tile"><input class="tui-state-input" type="checkbox"><svg class="tui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 2h8l4 4v16H6z"/></svg><span class="tui-tile-name">Notes.md</span></label></li>
+            <li><a class="tui-tile" href="#grid-view" id="tile-facts"><svg class="tui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 2h8l4 4v16H6z"/></svg><span class="tui-tile-name">quarterly-report-final-v3.xlsx</span><dl class="tui-kv tui-kv-stack"><dt>Size</dt><dd>2 MB</dd><dt>Modified</dt><dd>Aug 30</dd></dl></a></li>
+            <li><a class="tui-tile" href="#grid-view"><svg class="tui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 2h8l4 4v16H6z"/></svg><span class="tui-tile-name">invoice.pdf</span></a></li>
+          </ul>
+          <ul class="tui-grid-view tui-grid-view-stretch" id="grid-view-stretch" aria-label="Stretched tiles">
+            <li><a class="tui-tile" href="#grid-view-stretch" id="tile-stretch-short"><svg class="tui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h6l2 2h10v12H3z"/></svg><span class="tui-tile-name">Documents</span></a></li>
+            <li><a class="tui-tile" href="#grid-view-stretch" id="tile-stretch-tall"><svg class="tui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 2h8l4 4v16H6z"/></svg><span class="tui-tile-name">quarterly-report-final-v3.xlsx</span><dl class="tui-kv tui-kv-stack"><dt>Size</dt><dd>2 MB</dd></dl></a></li>
+            <li><a class="tui-tile" href="#grid-view-stretch"><svg class="tui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 2h8l4 4v16H6z"/></svg><span class="tui-tile-name">Notes.md</span></a></li>
+          </ul>
+          <ul class="tui-grid-view tui-grid-view-uniform tui-max-w-md" id="grid-view-uniform" aria-label="Uniform tiles">
+            <li><a class="tui-tile" href="#grid-view-uniform" id="tile-uniform-short"><svg class="tui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h6l2 2h10v12H3z"/></svg><span class="tui-tile-name">Documents</span></a></li>
+            <li><a class="tui-tile" href="#grid-view-uniform" id="tile-uniform-long"><svg class="tui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 2h8l4 4v16H6z"/></svg><span class="tui-tile-name">quarterly-report-final-v3-reviewed-by-finance.xlsx</span></a></li>
+            <li><a class="tui-tile" href="#grid-view-uniform"><svg class="tui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 2h8l4 4v16H6z"/></svg><span class="tui-tile-name">Notes.md</span></a></li>
+            <li><a class="tui-tile" href="#grid-view-uniform"><svg class="tui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 2h8l4 4v16H6z"/></svg><span class="tui-tile-name">invoice.pdf</span></a></li>
+            <li><a class="tui-tile" href="#grid-view-uniform"><svg class="tui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 2h8l4 4v16H6z"/></svg><span class="tui-tile-name">cover-letter.docx</span></a></li>
+            <li><a class="tui-tile" href="#grid-view-uniform"><svg class="tui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h6l2 2h10v12H3z"/></svg><span class="tui-tile-name">Downloads</span></a></li>
+            <li><a class="tui-tile" href="#grid-view-uniform"><svg class="tui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h6l2 2h10v12H3z"/></svg><span class="tui-tile-name">Projects</span></a></li>
+            <li><a class="tui-tile" href="#grid-view-uniform" id="tile-uniform-last"><svg class="tui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 2h8l4 4v16H6z"/></svg><span class="tui-tile-name">README.md</span></a></li>
+          </ul>
+          <ul class="tui-grid-view tui-grid-view-lg tui-grid-view-fill" id="grid-view-fill" aria-label="People">
+            <li><a class="tui-tile" href="#grid-view-fill" id="tile-fill"><img src="/docs/assets/demo/avatar-1.svg" alt=""><span class="tui-tile-name">Ada Lovelace</span></a></li>
+            <li><a class="tui-tile" href="#grid-view-fill"><img src="/docs/assets/demo/avatar-2.svg" alt=""><span class="tui-tile-name">Grace Hopper</span></a></li>
+            <li><a class="tui-tile" href="#grid-view-fill"><img src="/docs/assets/demo/avatar-3.svg" alt=""><span class="tui-tile-name">Alan Turing</span></a></li>
+          </ul>
+          <ul class="tui-grid-view tui-grid-view-xl" id="grid-view-xl" aria-label="Repositories">
+            <li><a class="tui-tile" href="#grid-view-xl" id="tile-xl"><svg class="tui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h6l2 2h10v12H3z"/></svg><span class="tui-tile-name">torque-ui</span><dl class="tui-kv"><dt>Language</dt><dd>CSS</dd><dt>Updated</dt><dd>Sep 4</dd></dl></a></li>
+            <li><a class="tui-tile" href="#grid-view-xl"><svg class="tui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h6l2 2h10v12H3z"/></svg><span class="tui-tile-name">torque</span><dl class="tui-kv"><dt>Language</dt><dd>Ruby</dd><dt>Updated</dt><dd>Aug 30</dd></dl></a></li>
+          </ul>
+          <dl class="tui-grid-view tui-grid-view-start" id="grid-view-kv">
+            <div class="tui-tile" id="tile-kv"><dt>Plan</dt><dd>Pro</dd></div>
+            <div class="tui-tile"><dt>Seats</dt><dd>12</dd></div>
+            <div class="tui-tile"><dt>Renewal</dt><dd>Oct 2026</dd></div>
+            <div class="tui-tile"><dt>Owner</dt><dd>Carlos Silva</dd></div>
+          </dl>
+        </div>
+      </div>
+    </section>
+
+    <section class="tui-card tui-mb-6">
+      <div class="tui-card-header">
+        <h2 class="tui-m-0">Script-driven grid view <span class="tui-badge">self-driven JS</span></h2>
+      </div>
+      <div class="tui-card-body">
+        <ul class="tui-grid-view" id="grid-view-attr" aria-label="Filtered files">
+          <li class="tui-tile" aria-selected="true" id="tile-selected-attr"><svg class="tui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 2h8l4 4v16H6z"/></svg><span class="tui-tile-name">Selected</span></li>
+          <li class="tui-tile" aria-selected="false" id="tile-unselected-attr"><svg class="tui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 2h8l4 4v16H6z"/></svg><span class="tui-tile-name">Plain</span></li>
+          <li class="tui-tile" aria-selected="false" aria-disabled="true" id="tile-disabled-attr"><svg class="tui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 2h8l4 4v16H6z"/></svg><span class="tui-tile-name">Disabled</span></li>
+          <li class="tui-tile" aria-selected="false" hidden><svg class="tui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 2h8l4 4v16H6z"/></svg><span class="tui-tile-name">Filtered out</span></li>
+          <li class="tui-grid-view-empty">No files match</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="tui-card tui-mb-6">
+      <div class="tui-card-header">
         <h2 class="tui-m-0">Divider</h2>
       </div>
       <div class="tui-card-body">
