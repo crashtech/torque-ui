@@ -9,7 +9,7 @@ A tooltip is a real element, not an `attr()` trick: `.tui-tooltip-host` wraps a 
 
 ## Hover and focus
 
-The host is `position: relative; display: inline-flex`, and the tip is absolutely positioned above it, centred, in `--tui-tooltip-bg` with `--tui-tooltip-fg` text at `--tui-text-sm` with balanced wrapping. It fades in over `--tui-duration-fast` and hides again on mouse-out or blur; there is no Escape-to-dismiss, unlike the [popover](/ui/interactive/popover/).
+The host is `position: relative; display: inline-flex`, and the tip is absolutely positioned above it, centered, in `--tui-tooltip-bg` with `--tui-tooltip-fg` text at `--tui-text-sm` with balanced wrapping. It fades in over `--tui-duration-fast` and hides again on mouse-out or blur; there is no Escape-to-dismiss, unlike the [popover](/ui/interactive/popover/).
 
 {% include demo.html file="buttons.html" %}
 
@@ -37,7 +37,7 @@ One contract follows from the anchored path: because the anchored tip is `positi
 | Property | Default | Effect |
 |---|---|---|
 | `--tui-tooltip-bg` | `var(--tui-text-1)` | Tip background |
-| `--tui-tooltip-fg` | `var(--tui-surface-0)` | Tip text colour |
+| `--tui-tooltip-fg` | `var(--tui-surface-0)` | Tip text color |
 | `--tui-tooltip-max-inline-size` | `20rem` | Widest the tip grows before wrapping |
 | `--tui-tooltip-delay` | `0s` | Delay before the tip appears |
 

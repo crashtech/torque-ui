@@ -5,7 +5,7 @@ source: src/20-elements/inputs.css, src/50-forms/input.css
 description: "Classless styling for every text-like input, textarea and select, plus size and tone modifiers."
 ---
 
-Bare `<input>`, `<textarea>` and `<select>` elements are styled directly — no base class. A text-like field fills its container, sits on `--tui-surface-0` with a 2px `--tui-border` outline and `--tui-radius-md` corners, and reacts to hover, focus and `disabled` on its own. Size and tone modifiers are opt-in classes on top of that, and a handful of special types (date, file, range, colour) get their own rules in the same file.
+Bare `<input>`, `<textarea>` and `<select>` elements are styled directly — no base class. A text-like field fills its container, sits on `--tui-surface-0` with a 2px `--tui-border` outline and `--tui-radius-md` corners, and reacts to hover, focus and `disabled` on its own. Size and tone modifiers are opt-in classes on top of that, and a handful of special types (date, file, range, color) get their own rules in the same file.
 
 ## Text-like fields
 
@@ -31,7 +31,7 @@ Input types that own their own look are left out of the base rule so they never 
 
 ## Tones
 
-The field's border reads the shared `--tui-tone` hook: with a tone set, the resting border and the focused border take the tone colour and the focus halo takes the tone's `-edge` value. `.tui-input-primary`, `.tui-input-success`, `.tui-input-error`, `.tui-input-warning` and `.tui-input-info` are aliases of the generic [tone classes](/ui/foundations/tone/) — `.tui-tone-warning` on an input does exactly what `.tui-input-warning` does. Use these for states you decide server-side; the browser-driven red border after interaction is covered at [Validation](/ui/forms/validation/).
+The field's border reads the shared `--tui-tone` hook: with a tone set, the resting border and the focused border take the tone color and the focus halo takes the tone's `-edge` value. `.tui-input-primary`, `.tui-input-success`, `.tui-input-error`, `.tui-input-warning` and `.tui-input-info` are aliases of the generic [tone classes](/ui/foundations/tone/) — `.tui-tone-warning` on an input does exactly what `.tui-input-warning` does. Use these for states you decide server-side; the browser-driven red border after interaction is covered at [Validation](/ui/forms/validation/).
 
 {% include demo.html file="tones.html" %}
 
@@ -63,7 +63,7 @@ Add `.tui-field-auto` to a `<textarea>` (or a text-like input) to size it to its
 
 ## File
 
-A file input keeps its native layout with `--tui-spacing-1` padding; the brand-coloured "choose file" button and the muted filename text come from `::file-selector-button`, documented at [Field States](/ui/forms/field-states/).
+A file input keeps its native layout with `--tui-spacing-1` padding; the brand-colored "choose file" button and the muted filename text come from `::file-selector-button`, documented at [Field States](/ui/forms/field-states/).
 
 {% include demo.html file="file.html" %}
 

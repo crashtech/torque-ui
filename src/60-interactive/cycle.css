@@ -1,0 +1,17 @@
+/* Torque UI — Cycle
+ * A run of radios, each followed by a label whose for points at the next
+ * radio: only the checked radio's label shows, so every click steps to the
+ * next state. The markup alone sets the states and their order. */
+.tui-cycle {
+  display: inline-flex;
+  align-items: center;
+  vertical-align: middle;
+}
+
+.tui-cycle > label {
+  cursor: pointer;
+}
+
+.tui-cycle > .tui-state-input:not(:checked) + label {
+  display: none;
+}

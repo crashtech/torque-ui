@@ -2,14 +2,14 @@
 title: Spinner
 section: components
 source: src/30-components/spinner.css
-description: "Rotating ring for indeterminate waits, in three sizes, with the arc always in the brand colour."
+description: "Rotating ring for indeterminate waits, in three sizes, with the arc always in the brand color."
 ---
 
-A spinner is an empty `inline-block` circle — a `--tui-surface-3` ring whose top edge is painted `--tui-brand` — rotating once every 0.75 seconds. Use it for waits with no known progress; when you do know the percentage, use a [progress](/ui/components/progress/) bar or ring instead. It has no outer margin, so place it in a flex row or a centred block.
+A spinner is an empty `inline-block` circle — a `--tui-surface-3` ring whose top edge is painted `--tui-brand` — rotating once every 0.75 seconds. Use it for waits with no known progress; when you do know the percentage, use a [progress](/ui/components/progress/) bar or ring instead. It has no outer margin, so place it in a flex row or a centered block.
 
 ## Sizes
 
-The default ring is 2.5rem with a 3px stroke. `.tui-spinner-sm` is 1.5rem with a 2px stroke, for inside buttons and table rows; `.tui-spinner-lg` is 4rem with a 4px stroke, for a whole panel or page. The arc colour is fixed to `--tui-brand` and does not read the tone hook.
+The default ring is 2.5rem with a 3px stroke. `.tui-spinner-sm` is 1.5rem with a 2px stroke, for inside buttons and table rows; `.tui-spinner-lg` is 4rem with a 4px stroke, for a whole panel or page. The arc color is fixed to `--tui-brand` and does not read the tone hook.
 
 {% include demo.html file="sizes.html" %}
 
@@ -19,7 +19,7 @@ The element is empty and purely visual, so give the wait a name: either `role="s
 
 {% include demo.html file="label.html" %}
 
-> **Reduced motion.** The global `prefers-reduced-motion: reduce` rule cuts the animation to a single near-instant iteration, so the ring stops spinning and shows as a static circle with a brand-coloured arc. Pair it with text so the wait is still communicated.
+> **Reduced motion.** The global `prefers-reduced-motion: reduce` rule cuts the animation to a single near-instant iteration, so the ring stops spinning and shows as a static circle with a brand-colored arc. Pair it with text so the wait is still communicated.
 
 | Class | Effect |
 |---|---|

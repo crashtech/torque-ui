@@ -6,7 +6,7 @@ js: self-driven
 description: "Scrim for an overlay of your own — a loader, a lightbox — that is neither a dialog nor a popover."
 ---
 
-A `<dialog>` and a `[popover]` bring their own `::backdrop`. `.tui-backdrop` is for the overlay you render yourself: it covers the viewport at `--tui-z-modal`, above sticky chrome, dims and blurs what is behind it, and centres whatever it holds. It fades in on first paint and out when it gains the `hidden` attribute. Focus, Escape and inertness are the script's — or use a [modal](/ui/interactive/modal/) and get them for free.
+A `<dialog>` and a `[popover]` bring their own `::backdrop`. `.tui-backdrop` is for the overlay you render yourself: it covers the viewport at `--tui-z-modal`, above sticky chrome, dims and blurs what is behind it, and centers whatever it holds. It fades in on first paint and out when it gains the `hidden` attribute. Focus, Escape and inertness are the script's — or use a [modal](/ui/interactive/modal/) and get them for free.
 
 ## Toggling with hidden <span class="tui-badge">self-driven JS</span>
 
@@ -21,6 +21,6 @@ A `<dialog>` and a `[popover]` bring their own `::backdrop`. `.tui-backdrop` is 
 
 | Property | Default | Effect |
 |---|---|---|
-| `--tui-backdrop-bg` | `light-dark(rgb(255 255 255 / 0.5), rgb(0 0 0 / 0.5))` | Scrim colour |
+| `--tui-backdrop-bg` | `light-dark(rgb(255 255 255 / 0.5), rgb(0 0 0 / 0.5))` | Scrim color |
 
 Related: [Modal](/ui/interactive/modal/) · [Busy](/ui/components/busy/) · [Z-index](/ui/foundations/z-index/) · [Self-driven JS](/ui/foundations/self-driven-js/)

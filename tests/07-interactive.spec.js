@@ -159,7 +159,7 @@ test.describe('Interactive — Carousel', () => {
   // why: the dot link is display:none whenever the browser natively supports
   // ::scroll-marker (true for the bundled Chromium 151), so a real Playwright
   // .click() would fail the visibility check; el.click() still fires the
-  // anchor's default navigation behaviour (sets :target) on both paths.
+  // anchor's default navigation behavior (sets :target) on both paths.
   test('clicking the "Slide 2" dot link scrolls hero-2 into view', async ({ page }) => {
     const dot2 = page.locator('.tui-carousel-dot[href="#hero-2"]');
     await dot2.evaluate(el => el.click());
@@ -302,6 +302,26 @@ test.describe('Interactive — Modal', () => {
     await page.locator('button[commandfor="confirm-delete"]').click();
     expect(await getViolations(page, ['color-contrast', 'label', 'button-name', 'link-name'], '#confirm-delete')).toEqual([]);
   });
+
+  for (const container of ['tui-card-body', 'tui-panel-body', 'tui-segment', 'tui-showcase-body', 'tui-alert', 'tui-media-body']) {
+    test(`stays centered when placed inside .${container}`, async ({ page }) => {
+      await page.setViewportSize({ width: 1200, height: 800 });
+      await page.goto('/examples/index.html');
+      await page.setContent(`
+        <link rel="stylesheet" href="/src/tui.css">
+        <div class="${container}">
+          <p>Before the dialog</p>
+          <button class="tui-button" commandfor="nested" command="show-modal">Open</button>
+          <dialog class="tui-modal" id="nested"><div class="tui-modal-body">Centered</div></dialog>
+        </div>`);
+      await page.locator('button[commandfor="nested"]').click();
+      await expect(page.locator('#nested')).toBeVisible();
+      await page.waitForFunction(() => getComputedStyle(document.getElementById('nested')).translate === '0px');
+      const box = await page.locator('#nested').boundingBox();
+      expect(Math.abs(box.x + box.width / 2 - 600)).toBeLessThan(1);
+      expect(Math.abs(box.y + box.height / 2 - 400)).toBeLessThan(1);
+    });
+  }
 });
 
 test.describe('Interactive — Offcanvas', () => {
@@ -392,7 +412,7 @@ test.describe('Interactive — Toggle variants', () => {
     return color;
   }, cssVar);
 
-  test('a checked .tui-toggle-success takes the positive colour', async ({ page }) => {
+  test('a checked .tui-toggle-success takes the positive color', async ({ page }) => {
     await expect(page.locator('label[for=sync-on]')).toHaveCSS('background-color', await resolve(page, '--tui-positive'));
   });
 
@@ -612,7 +632,7 @@ test.describe('Interactive — Tier gaps', () => {
     expect(await menuDesc.evaluate((el) => getComputedStyle(el).color)).not.toBe(await page.locator('#menu-desc-item').evaluate((el) => getComputedStyle(el).color));
   });
 
-  test('backdrop covers the viewport above sticky chrome, centres its child, and hides with the hidden attribute', async ({ page }) => {
+  test('backdrop covers the viewport above sticky chrome, centers its child, and hides with the hidden attribute', async ({ page }) => {
     const backdrop = page.locator('#backdrop-demo');
     await expect(backdrop).toBeHidden();
     await backdrop.evaluate((el) => { el.hidden = false; });

@@ -16,7 +16,7 @@ A list group is a bordered column of `.tui-list-item` rows sharing one `--tui-ra
 
 ## Links and selectable rows
 
-An `<a>`, `<label>` or `<button>` row gets a pointer cursor and `--tui-list-item-hover-bg` on hover. A label row with a `.tui-state-input` checkbox or radio as a direct child becomes selectable: when the input is checked the row paints `--tui-list-item-active-bg` — the tone's soft colour, brand by default — with the matching ink text for contrast. `.tui-list-item-active` sets the same look statically, for the current page in a navigation list. A `.tui-tone-*` class on a row recolours that selected state to its tone.
+An `<a>`, `<label>` or `<button>` row gets a pointer cursor and `--tui-list-item-hover-bg` on hover. A label row with a `.tui-state-input` checkbox or radio as a direct child becomes selectable: when the input is checked the row paints `--tui-list-item-active-bg` — the tone's soft color, brand by default — with the matching ink text for contrast. `.tui-list-item-active` sets the same look statically, for the current page in a navigation list. A `.tui-tone-*` class on a row recolors that selected state to its tone.
 
 {% include demo.html file="selectable.html" %}
 

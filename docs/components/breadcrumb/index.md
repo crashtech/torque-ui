@@ -9,7 +9,7 @@ A breadcrumb shows where the current page sits in a hierarchy. `.tui-breadcrumb`
 
 ## Basic
 
-Links inside the trail are muted (`--tui-text-2`) with no underline and turn brand-coloured on hover. Mark the current page with `.tui-breadcrumb-current`: it renders in `--tui-text-1` at medium weight and, being last, gets no separator. Use a `<nav>` with an `aria-label` so assistive technology announces the trail as navigation.
+Links inside the trail are muted (`--tui-text-2`) with no underline and turn brand-colored on hover. Mark the current page with `.tui-breadcrumb-current`: it renders in `--tui-text-1` at medium weight and, being last, gets no separator. Use a `<nav>` with an `aria-label` so assistive technology announces the trail as navigation.
 
 {% include demo.html file="basic.html" %}
 

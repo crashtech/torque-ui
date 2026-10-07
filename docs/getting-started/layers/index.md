@@ -17,7 +17,7 @@ The declaration line is the whole contract; everything after it is `@import … 
 
 | Layer | Folder | Holds |
 |---|---|---|
-| `tui.tokens` | `src/00-tokens/` | Custom properties only: colours, type scale, spacing, radius, z-index, motion, chart palette |
+| `tui.tokens` | `src/00-tokens/` | Custom properties only: colors, type scale, spacing, radius, z-index, motion, chart palette |
 | `tui.reboot` | `src/10-reboot/` | `box-sizing`, `html`/`body` base, selection, media, form inheritance, the focus ring |
 | `tui.elements` | `src/20-elements/` | Classless HTML — headings, links, lists, tables, images, icons, bare `<button>` and `<input>` |
 | `tui.components` | `src/30-components/` | Every `.tui-*` component, and the tone leak reset |
@@ -27,7 +27,7 @@ The declaration line is the whole contract; everything after it is `@import … 
 | `tui.utilities` | `src/70-utilities/` | Single-purpose classes, and the tone setters |
 | `tui.themes` | `src/80-themes/` | Dark-mode toggle, high contrast, accessibility preferences, view transitions, print |
 
-Two placements are deliberate. The tone setters (`.tui-tone-*` and every `.tui-badge-success`-style alias) live in `tui.utilities` so they beat the leak reset in `tui.components` regardless of specificity — see [Tone](/ui/foundations/tone/). And the preference rules in `tui.themes` (reduced motion, forced colours, print) win over any component's animation or layout by layer order alone, which is why none of them needs `!important`.
+Two placements are deliberate. The tone setters (`.tui-tone-*` and every `.tui-badge-success`-style alias) live in `tui.utilities` so they beat the leak reset in `tui.components` regardless of specificity — see [Tone](/ui/foundations/tone/). And the preference rules in `tui.themes` (reduced motion, forced colors, print) win over any component's animation or layout by layer order alone, which is why none of them needs `!important`.
 
 ## Utilities beat components
 

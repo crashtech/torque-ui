@@ -5,7 +5,7 @@ source: src/50-forms/password.css
 description: "Masked text input with a show/hide toggle driven by a hidden checkbox, no JavaScript."
 ---
 
-`.tui-password` is a flex row holding a masked `.tui-password-input`, a hidden `.tui-password-toggle` checkbox and the `.tui-password-label` (here dressed as a `.tui-button-icon` with an eye glyph) that flips it. The input is `type="text"` masked with `-webkit-text-security: disc`; checking the toggle removes the mask, so "show password" needs no script. Because the field is not `type="password"`, give it `autocomplete="current-password"` (or `new-password`) so password managers still recognise it.
+`.tui-password` is a flex row holding a masked `.tui-password-input`, a hidden `.tui-password-toggle` checkbox and the `.tui-password-label` (here dressed as a `.tui-button-icon` with an eye glyph) that flips it. The input is `type="text"` masked with `-webkit-text-security: disc`; checking the toggle removes the mask, so "show password" needs no script. Because the field is not `type="password"`, give it `autocomplete="current-password"` (or `new-password`) so password managers still recognize it.
 
 > **Browser note.** The masking rides `-webkit-text-security`, a prefixed property that every supported engine implements. In an engine without it the field would show its text in the clear — treat the component as enhancement over a native `type="password"` only where you have verified support.
 

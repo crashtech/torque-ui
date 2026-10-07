@@ -29,18 +29,18 @@ The default avatar is 3rem with `--tui-text-sm` initials. Four modifiers change 
 
 ## Palette
 
-`.tui-avatar-1` to `.tui-avatar-6` paint the six fixed `--tui-avatar-1…6` hues with `--tui-text-inverse` text. They are deliberately not theme-dependent, so a person keeps the same colour in light and dark mode; the app picks the class, for example by hashing the name.
+`.tui-avatar-1` to `.tui-avatar-6` paint the `--tui-avatar-1…6` tokens with `--tui-text-inverse` text: the [chart palette](/ui/foundations/chart-palette/)'s hues, darkened for white initials, so the set follows the brand. They are deliberately not theme-dependent, so a person keeps the same color in light and dark mode; the app picks the class, for example by hashing the name.
 
 {% include demo.html file="palette.html" %}
 
 | Class | Token |
 |---|---|
-| `.tui-avatar-1` | `--tui-avatar-1` (blue) |
-| `.tui-avatar-2` | `--tui-avatar-2` (orange) |
-| `.tui-avatar-3` | `--tui-avatar-3` (teal) |
-| `.tui-avatar-4` | `--tui-avatar-4` (magenta) |
-| `.tui-avatar-5` | `--tui-avatar-5` (olive) |
-| `.tui-avatar-6` | `--tui-avatar-6` (purple) |
+| `.tui-avatar-1` | `--tui-avatar-1` — the hue of chart series 1 |
+| `.tui-avatar-2` | `--tui-avatar-2` — the hue of chart series 2 |
+| `.tui-avatar-3` | `--tui-avatar-3` — the hue of chart series 3 |
+| `.tui-avatar-4` | `--tui-avatar-4` — the hue of chart series 4 |
+| `.tui-avatar-5` | `--tui-avatar-5` — the hue of chart series 5 |
+| `.tui-avatar-6` | `--tui-avatar-6` — the hue of chart series 6 |
 
 ## Group
 
@@ -50,7 +50,7 @@ Wrap sibling avatars in `.tui-avatar-group` to overlap them. Each avatar swaps i
 
 ## Status and badge
 
-`.tui-avatar-status` is a relative inline wrapper: put an avatar in it, then a `.tui-status-dot` (toned with `.tui-status-online`, `-busy`, `-away` or any `.tui-tone-*`) and the dot is pinned to the bottom end corner with a surface-coloured ring. `.tui-avatar-badge` fills the same slot with a 1rem glyph badge — a channel, a role, an origin — and takes its background from the tone hook, falling back to neutral.
+`.tui-avatar-status` is a relative inline wrapper: put an avatar in it, then a `.tui-status-dot` (toned with `.tui-status-online`, `-busy`, `-away` or any `.tui-tone-*`) and the dot is pinned to the bottom end corner with a surface-colored ring. `.tui-avatar-badge` fills the same slot with a 1rem glyph badge — a channel, a role, an origin — and takes its background from the tone hook, falling back to neutral.
 
 {% include demo.html file="status.html" %}
 
@@ -58,7 +58,7 @@ Wrap sibling avatars in `.tui-avatar-group` to overlap them. Each avatar swaps i
 
 | Property | Default | Effect |
 |---|---|---|
-| `--tui-avatar-ring` | `var(--tui-surface-0)` | Ring colour around each avatar in a `.tui-avatar-group` |
+| `--tui-avatar-ring` | `var(--tui-surface-0)` | Ring color around each avatar in a `.tui-avatar-group` |
 | `--tui-avatar-overlap` | `var(--tui-spacing-2)` | How far each grouped avatar overlaps the previous one |
 
 Related: [Status](/ui/components/status/) · [Badge](/ui/components/badge/) · [Media Object](/ui/layout/media/) · [Colors](/ui/foundations/colors/) · [Images](/ui/elements/images/)

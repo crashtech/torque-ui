@@ -33,7 +33,7 @@ Add a `.tui-shell-aside` as a direct child and the shell becomes `sidebar | main
 
 ## Persistent columns
 
-`.tui-shell-persistent` applies the same column templates and sticky behaviour unconditionally, keeping the sidebar and aside at every width — for desktop-only tools that ship no offcanvas fallback. The columns keep their token widths, so narrow layouts are the application's responsibility.
+`.tui-shell-persistent` applies the same column templates and sticky behavior unconditionally, keeping the sidebar and aside at every width — for desktop-only tools that ship no offcanvas fallback. The columns keep their token widths, so narrow layouts are the application's responsibility.
 
 {% include demo.html file="persistent.html" frame=true height="24rem" %}
 

@@ -3,10 +3,10 @@ title: Select
 section: forms
 source: src/50-forms/select.css
 js: self-driven
-description: "Native select with a tokenised chevron, an opt-in customisable picker with icon options, the datalist combobox, and the script-driven combobox with search and tags."
+description: "Native select with a tokenized chevron, an opt-in customizable picker with icon options, the datalist combobox, and the script-driven combobox with search and tags."
 ---
 
-A bare `<select>` already looks like every other field, with the native arrow replaced by a tokenised chevron. `.tui-select-rich` opts a select into the browser's customisable picker where it exists — icon options included — and an `<input list>` with a `<datalist>` gives a zero-JavaScript combobox. None of them needs a wrapper. Search, multi-select with tags and icon options everywhere are the [combobox](#combobox-self-driven-js) below: a field the framework styles and your script drives.
+A bare `<select>` already looks like every other field, with the native arrow replaced by a tokenized chevron. `.tui-select-rich` opts a select into the browser's customizable picker where it exists — icon options included — and an `<input list>` with a `<datalist>` gives a zero-JavaScript combobox. None of them needs a wrapper. Search, multi-select with tags and icon options everywhere are the [combobox](#combobox-self-driven-js) below: a field the framework styles and your script drives.
 
 ## Bare select
 
@@ -16,11 +16,11 @@ The base field rule in [Inputs](/ui/forms/inputs/) matches `<select>` too, then 
 
 ## Rich select
 
-Add `.tui-select-rich` to opt a `<select>` into the customisable select feature (`appearance: base-select`). The bare-select chevron background is dropped (the feature renders its own indicator) and the end padding relaxes to `--tui-spacing-3`. The open picker becomes a `--tui-surface-0` panel with a `--tui-border` outline, `--tui-radius-md` corners and `--tui-shadow-lg`; options get `--tui-spacing-2` / `--tui-spacing-3` padding and `--tui-radius-sm` corners, the checked option sits on `--tui-brand-soft`, and the `::checkmark` glyph is a plain tick. The rules live inside `@supports (appearance: base-select)`, so elsewhere the class is inert and the select renders natively.
+Add `.tui-select-rich` to opt a `<select>` into the customizable select feature (`appearance: base-select`). The bare-select chevron background is dropped (the feature renders its own indicator) and the end padding relaxes to `--tui-spacing-3`. The open picker becomes a `--tui-surface-0` panel with a `--tui-border` outline, `--tui-radius-md` corners and `--tui-shadow-lg`; options get `--tui-spacing-2` / `--tui-spacing-3` padding and `--tui-radius-sm` corners, the checked option sits on `--tui-brand-soft`, and the `::checkmark` glyph is a plain tick. The rules live inside `@supports (appearance: base-select)`, so elsewhere the class is inert and the select renders natively.
 
 {% include demo.html file="rich.html" %}
 
-> **Browser note.** Customisable select is Chrome/Edge 134+ only, above the framework's Chrome 123 floor. Safari and Firefox show the native picker.
+> **Browser note.** Customizable select is Chrome/Edge 134+ only, above the framework's Chrome 123 floor. Safari and Firefox show the native picker.
 
 | Selector | Effect |
 |---|---|
@@ -36,7 +36,7 @@ With `.tui-select-rich` an `<option>` may hold an icon before its text: the opti
 
 {% include demo.html file="icons.html" %}
 
-> **Browser note.** `<selectedcontent>` ships with customisable select (Chrome 134+). Elsewhere the button is ignored and the native picker shows the option text alone.
+> **Browser note.** `<selectedcontent>` ships with customizable select (Chrome 134+). Elsewhere the button is ignored and the native picker shows the option text alone.
 
 ## Datalist combobox
 

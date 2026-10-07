@@ -40,7 +40,7 @@
     transition: color var(--tui-duration-fast);
 
     & > .tui-icon {
-      --tui-icon-size: 1.5rem;
+      --tui-icon-size: var(--tui-spacing-6);
     }
 
     &:hover {

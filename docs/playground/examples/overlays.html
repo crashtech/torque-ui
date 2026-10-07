@@ -1,0 +1,70 @@
+<div class="tui-grid tui-grid-lg-2 tui-gap-6">
+  <div class="tui-card">
+    <div class="tui-card-header"><h3>Dialogs and menus</h3></div>
+    <div class="tui-card-body tui-stack">
+      <p class="tui-m-0">Every overlay here is native HTML: <code>&lt;dialog&gt;</code>, <code>popover</code> and focus.</p>
+      <div class="tui-flex tui-flex-wrap tui-gap-2 tui-items-center tui-pt-8">
+        <button class="tui-button tui-button-error" type="button" commandfor="playground-overlays-confirm" command="show-modal">Delete project…</button>
+        <button class="tui-button tui-button-primary" type="button" popovertarget="playground-overlays-menu">New ▾</button>
+        <div class="tui-popover tui-menu" id="playground-overlays-menu" popover>
+          <button class="tui-menu-item" type="button">Project</button>
+          <button class="tui-menu-item" type="button">Document</button>
+          <hr class="tui-menu-divider">
+          <button class="tui-menu-item" type="button">Import…</button>
+        </div>
+        <button class="tui-button" type="button" popovertarget="playground-overlays-sheet">Search</button>
+        <span class="tui-tooltip-host">
+          <button class="tui-button tui-button-icon" type="button" aria-describedby="playground-overlays-tip">?</button>
+          <span class="tui-tooltip" id="playground-overlays-tip" role="tooltip">Tooltips appear on hover and focus</span>
+        </span>
+        <dialog class="tui-modal" id="playground-overlays-confirm" aria-labelledby="playground-overlays-confirm-title">
+          <form method="dialog" class="tui-modal-header">
+            <h3 class="tui-m-0" id="playground-overlays-confirm-title">Delete project?</h3>
+            <button class="tui-close" aria-label="Close"></button>
+          </form>
+          <div class="tui-modal-body"><p class="tui-m-0">This removes the project and its history. It cannot be undone.</p></div>
+          <form method="dialog" class="tui-modal-footer">
+            <button class="tui-button">Cancel</button>
+            <button class="tui-button tui-button-error" value="delete">Delete</button>
+          </form>
+        </dialog>
+        <div class="tui-sheet" id="playground-overlays-sheet" popover aria-labelledby="playground-overlays-sheet-title">
+          <div class="tui-p-4">
+            <div class="tui-level">
+              <h3 class="tui-m-0" id="playground-overlays-sheet-title">Search</h3>
+              <button class="tui-close" popovertarget="playground-overlays-sheet" popovertargetaction="hide" aria-label="Close"></button>
+            </div>
+            <div class="tui-input-group tui-mt-4">
+              <span class="tui-input-addon">⌕</span>
+              <input type="search" placeholder="Search everything…" aria-label="Search">
+            </div>
+          </div>
+          <ul class="tui-list-group tui-list-group-flush">
+            <li><a class="tui-list-item" href="#playground-overlays-sheet">Annual contract with Marina Flores</a></li>
+            <li><a class="tui-list-item" href="#playground-overlays-sheet">proposal-v2.pdf</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tui-card">
+    <div class="tui-card-header"><h3>Questions</h3></div>
+    <div class="tui-card-body">
+      <div class="tui-accordion">
+        <details class="tui-collapse" name="playground-overlays-faq" open>
+          <summary class="tui-collapse-summary">Do I need a build step?</summary>
+          <div class="tui-collapse-body"><p class="tui-m-0">No. Link one stylesheet and set a few variables on <code>:root</code>.</p></div>
+        </details>
+        <details class="tui-collapse" name="playground-overlays-faq">
+          <summary class="tui-collapse-summary">Does it work with my framework?</summary>
+          <div class="tui-collapse-body"><p class="tui-m-0">It is plain CSS, so it works with any server or client renderer.</p></div>
+        </details>
+        <details class="tui-collapse" name="playground-overlays-faq">
+          <summary class="tui-collapse-summary">What about dark mode?</summary>
+          <div class="tui-collapse-body"><p class="tui-m-0">It follows the system by default. Try the switch in the top bar.</p></div>
+        </details>
+      </div>
+    </div>
+  </div>
+</div>

@@ -57,12 +57,19 @@
   initial-value: 0;
 }
 
+@property --tui-playing {
+  syntax: '<integer>';
+  inherits: false;
+  initial-value: 0;
+}
+
 :is([aria-expanded="true"], [data-expanded], .tui-expanded) { --tui-expanded: 1; }
 :is([aria-selected="true"], [aria-current], [data-selected], .tui-selected) { --tui-selected: 1; }
 :is([data-active], .tui-active) { --tui-active: 1; }
 :is([aria-pressed="true"], [aria-checked="true"], [data-pressed], .tui-pressed) { --tui-pressed: 1; }
 :is([aria-invalid="true"], [data-invalid], .tui-invalid) { --tui-invalid: 1; }
 :is([aria-disabled="true"], [data-disabled], .tui-disabled, :disabled) { --tui-disabled: 1; }
+:is([data-playing], .tui-playing) { --tui-playing: 1; }
 
 /* === Inert ===
  * The inert attribute removes a subtree from interaction and the

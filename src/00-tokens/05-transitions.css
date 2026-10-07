@@ -1,13 +1,17 @@
 /* Torque UI — Transition Tokens
- * Duration and easing custom properties for smooth transitions.
+ * Duration and easing custom properties for smooth transitions. One
+ * duration is the basis and the others are multiples of it, so overriding
+ * --tui-duration-normal on :root retimes the whole framework.
  */
 
 
   :root {
-    --tui-duration-fast: 150ms;
     --tui-duration-normal: 250ms;
-    --tui-duration-slow: 350ms;
-    --tui-duration-slower: 500ms;
+    --tui-duration-faster: calc(var(--tui-duration-normal) * 0.4);
+    --tui-duration-fast: calc(var(--tui-duration-normal) * 0.6);
+    --tui-duration-slow: calc(var(--tui-duration-normal) * 1.4);
+    --tui-duration-slower: calc(var(--tui-duration-normal) * 2);
+    --tui-duration-slowest: calc(var(--tui-duration-normal) * 2);
     --tui-easing-in: cubic-bezier(0.4, 0, 1, 1);
     --tui-easing-out: cubic-bezier(0, 0, 0.2, 1);
     --tui-easing-in-out: cubic-bezier(0.4, 0, 0.2, 1);

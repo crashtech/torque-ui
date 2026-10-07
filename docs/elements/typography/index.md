@@ -2,7 +2,7 @@
 title: Typography
 section: elements
 source: src/20-elements/typography.css
-description: "Headings, paragraphs, quotes, code and inline text elements styled with no classes, plus the labelled code block."
+description: "Headings, paragraphs, quotes, code and inline text elements styled with no classes, plus the labeled code block."
 ---
 
 Native text elements look right with no classes: six heading sizes on the rem scale, paragraphs with a trailing margin, blockquotes, inline and block code, keyboard keys and the small inline elements. Block elements carry a bottom margin for running text, and that margin is dropped on the last child of any box, so a paragraph never pads the card or panel it ends.
@@ -32,7 +32,7 @@ Native text elements look right with no classes: six heading sizes on the rem sc
 
 ## Inline elements
 
-`<small>` drops to `--tui-text-sm` in `--tui-text-3`; `<strong>` is `--tui-font-bold`; `<mark>` highlights with the warning colour and a small radius; `<abbr title>` gets a dotted underline and a help cursor; `<sub>` and `<sup>` are `--tui-text-xs` and positioned relative to the baseline with zero line-height, so they never open up the line they sit in.
+`<small>` drops to `--tui-text-sm` in `--tui-text-3`; `<strong>` is `--tui-font-bold`; `<mark>` highlights with the warning color and a small radius; `<abbr title>` gets a dotted underline and a help cursor; `<sub>` and `<sup>` are `--tui-text-xs` and positioned relative to the baseline with zero line-height, so they never open up the line they sit in.
 
 {% include demo.html file="inline.html" %}
 
@@ -62,7 +62,7 @@ Native text elements look right with no classes: six heading sizes on the rem sc
 
 ## Horizontal rule
 
-`<hr>` is a 1px `--tui-border` line with `--tui-spacing-6` above and below. The margin is dropped on whichever side touches the edge of its box (`:first-child` / `:last-child`). For a labelled or vertical rule use the [Divider](/ui/components/divider/) component.
+`<hr>` is a 1px `--tui-border` line with `--tui-spacing-6` above and below. The margin is dropped on whichever side touches the edge of its box (`:first-child` / `:last-child`). For a labeled or vertical rule use the [Divider](/ui/components/divider/) component.
 
 {% include demo.html file="hr.html" %}
 
@@ -74,7 +74,7 @@ Native text elements look right with no classes: six heading sizes on the rem sc
 
 ## Text selection
 
-Selected text is highlighted with the brand colour at 30% and keeps `--tui-text-1` for the glyphs, so it stays readable in both schemes. The rule lives in the [Reboot](/ui/foundations/reboot/), not in this file.
+Selected text is highlighted with the brand color at 30% and keeps `--tui-text-1` for the glyphs, so it stays readable in both schemes. The rule lives in the [Reboot](/ui/foundations/reboot/), not in this file.
 
 {% include demo.html file="selection.html" %}
 

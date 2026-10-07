@@ -1,0 +1,48 @@
+<form id="tables-select-all" class="tui-stack">
+  <table class="tui-table-selectable">
+    <tbody>
+      <tr><td><input type="checkbox" class="tui-checkbox-input" name="ids" value="1" aria-label="Select Alice Chen"></td><td>Alice Chen</td><td>Designer</td></tr>
+      <tr><td><input type="checkbox" class="tui-checkbox-input" name="ids" value="2" aria-label="Select Bob Martinez"></td><td>Bob Martinez</td><td>Developer</td></tr>
+      <tr><td><input type="checkbox" class="tui-checkbox-input" name="ids" value="3" aria-label="Select Carol Kim"></td><td>Carol Kim</td><td>Product manager</td></tr>
+    </tbody>
+    <tbody hidden>
+      <tr><td><input type="checkbox" class="tui-checkbox-input" name="ids" value="4" aria-label="Select Dan Okafor"></td><td>Dan Okafor</td><td>Support</td></tr>
+      <tr><td><input type="checkbox" class="tui-checkbox-input" name="ids" value="5" aria-label="Select Eva Lindqvist"></td><td>Eva Lindqvist</td><td>Marketing</td></tr>
+    </tbody>
+    <thead>
+      <tr>
+        <th scope="col">
+          <span class="tui-cycle" role="radiogroup" aria-label="Selection">
+            <input class="tui-state-input" type="radio" id="tables-select-all-none" name="selection" value="none" aria-label="Pick rows by hand" checked>
+            <label class="tui-checkbox-input" for="tables-select-all-visible"></label>
+            <input class="tui-state-input tui-table-select-visible" type="radio" id="tables-select-all-visible" name="selection" value="visible" aria-label="All rows on this page">
+            <label class="tui-checkbox-input" for="tables-select-all-all"></label>
+            <input class="tui-state-input tui-table-select-all" type="radio" id="tables-select-all-all" name="selection" value="all" aria-label="All rows">
+            <label class="tui-checkbox-input" for="tables-select-all-none"></label>
+          </span>
+          <span class="tui-badge tui-table-count"></span><span class="tui-sr-only"> selected</span>
+        </th>
+        <th>Name</th>
+        <th>Role</th>
+      </tr>
+    </thead>
+  </table>
+  <ul class="tui-pagination">
+    <li><a href="#tables-select-all" class="tui-link-active" aria-current="page">1</a></li>
+    <li><a href="#tables-select-all">2</a></li>
+  </ul>
+</form>
+<script>
+  document.querySelectorAll('#tables-select-all .tui-pagination a').forEach((link, index, links) => {
+    link.addEventListener('click', (event) => {
+      event.preventDefault();
+      document.querySelectorAll('#tables-select-all tbody').forEach((page, at) => { page.hidden = at !== index; });
+      links.forEach((other) => {
+        other.classList.remove('tui-link-active');
+        other.removeAttribute('aria-current');
+      });
+      link.classList.add('tui-link-active');
+      link.setAttribute('aria-current', 'page');
+    });
+  });
+</script>

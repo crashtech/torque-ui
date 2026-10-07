@@ -143,7 +143,7 @@ test.describe('docs class names exist in the bundle', () => {
   }
 });
 
-test.describe('self-driven JS sections are labelled consistently', () => {
+test.describe('self-driven JS sections are labeled consistently', () => {
   const BADGE = '<span class="tui-badge">self-driven JS</span>';
 
   for (const file of markdownFilesIn(DOCS_DIR)) {

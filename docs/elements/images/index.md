@@ -5,7 +5,7 @@ source: src/20-elements/images.css
 description: "Responsive, rounded images and captioned figures with no classes."
 ---
 
-An `<img>` never overflows its container and never distorts: `max-inline-size: 100%` with `block-size: auto` scales it down proportionally, and every image gets `--tui-radius-md` corners. A `<figure>` adds the flow margin and a centred caption.
+An `<img>` never overflows its container and never distorts: `max-inline-size: 100%` with `block-size: auto` scales it down proportionally, and every image gets `--tui-radius-md` corners. A `<figure>` adds the flow margin and a centered caption.
 
 ## Images
 
@@ -15,7 +15,7 @@ The rounding applies to every `<img>`, including one used as an icon or a thumbn
 
 ## Figures
 
-`<figure>` carries a `--tui-spacing-4` bottom margin, dropped when it is the last child of its box. `<figcaption>` is `--tui-text-sm` in `--tui-text-3`, centred, with `--tui-spacing-2` above it.
+`<figure>` carries a `--tui-spacing-4` bottom margin, dropped when it is the last child of its box. `<figcaption>` is `--tui-text-sm` in `--tui-text-3`, centered, with `--tui-spacing-2` above it.
 
 {% include demo.html file="figure.html" %}
 

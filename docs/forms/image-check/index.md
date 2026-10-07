@@ -5,7 +5,7 @@ source: src/50-forms/image-check.css
 description: "Radio group rendered as image thumbnails, with a brand ring and a check badge on the chosen one."
 ---
 
-An image check is a set of radios drawn as thumbnails: `.tui-image-check-group` holds `label.tui-image-check` items, each with a hidden `.tui-image-check-input` radio, a `.tui-image-check-frame` around an `<img>`, and an optional `.tui-image-check-label` caption. The radio keeps its form value and arrow-key navigation while the picture shows the choice. Use it for a theme, a layout, a cover image — anything where the option is easier to recognise than to name.
+An image check is a set of radios drawn as thumbnails: `.tui-image-check-group` holds `label.tui-image-check` items, each with a hidden `.tui-image-check-input` radio, a `.tui-image-check-frame` around an `<img>`, and an optional `.tui-image-check-label` caption. The radio keeps its form value and arrow-key navigation while the picture shows the choice. Use it for a theme, a layout, a cover image — anything where the option is easier to recognize than to name.
 
 ## Thumbnails
 
@@ -15,7 +15,7 @@ The group is a wrapping flex row with a `--tui-spacing-3` gap. Each `.tui-image-
 
 ## Captions
 
-`.tui-image-check-label` is a caption positioned just above the frame, centred, in `--tui-text-xs` `--tui-text-2`, hidden until the label is hovered — a tooltip-style hint rather than a permanent title. Because it is invisible by default and `pointer-events: none`, keep the `alt` as the accessible name and use the caption as a visual extra. Wrap the group in a `<fieldset>` with a `<legend>` so the question is announced with the options.
+`.tui-image-check-label` is a caption positioned just above the frame, centered, in `--tui-text-xs` `--tui-text-2`, hidden until the label is hovered — a tooltip-style hint rather than a permanent title. Because it is invisible by default and `pointer-events: none`, keep the `alt` as the accessible name and use the caption as a visual extra. Wrap the group in a `<fieldset>` with a `<legend>` so the question is announced with the options.
 
 {% include demo.html file="captions.html" %}
 

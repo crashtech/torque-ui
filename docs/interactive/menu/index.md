@@ -10,7 +10,7 @@ description: "Vertical list of actions — links, buttons and dividers — usual
 
 ## Dropdown menu
 
-Combine `.tui-popover` and `.tui-menu` on a `[popover]` element placed immediately after its invoker button. Escape and clicking outside close it, and Tab from the button moves into the first item — all native popover behaviour. There is no arrow-key roving between items; that would need script.
+Combine `.tui-popover` and `.tui-menu` on a `[popover]` element placed immediately after its invoker button. Escape and clicking outside close it, and Tab from the button moves into the first item — all native popover behavior. There is no arrow-key roving between items; that would need script.
 
 {% include demo.html file="dropdown.html" %}
 

@@ -2,14 +2,14 @@
 title: Colors
 section: utilities
 source: src/70-utilities/colors.css
-description: "Text, background, border, shadow, radius, opacity and chart-series utilities that read the colour tokens directly."
+description: "Text, background, border, shadow, radius, opacity and chart-series utilities that read the color tokens directly."
 ---
 
-These utilities paint one property from one token — a text colour, a background, a border colour, a shadow, a radius, an opacity. They live in the `tui.utilities` layer, so any of them beats a component's own declaration regardless of specificity, with no `!important`. The tokens they read are documented under [Colors](/ui/foundations/colors/), [Radius](/ui/foundations/radius/) and [Chart Palette](/ui/foundations/chart-palette/).
+These utilities paint one property from one token — a text color, a background, a border color, a shadow, a radius, an opacity. They live in the `tui.utilities` layer, so any of them beats a component's own declaration regardless of specificity, with no `!important`. The tokens they read are documented under [Colors](/ui/foundations/colors/), [Radius](/ui/foundations/radius/) and [Chart Palette](/ui/foundations/chart-palette/).
 
-## Text colours
+## Text colors
 
-Three hierarchy levels, the six semantic colours, and the inverse text colour for dark fills.
+Three hierarchy levels, the six semantic colors, and the inverse text color for dark fills.
 
 {% include demo.html file="text.html" %}
 
@@ -28,7 +28,7 @@ Three hierarchy levels, the six semantic colours, and the inverse text colour fo
 
 ## Text on solid fills
 
-For text placed over a solid tone fill — a label on a brand bar, a caption in a coloured chip — use the contrast-safe foreground utilities rather than guessing white. `.tui-text-tone-fg` follows whichever [tone](/ui/foundations/tone/) class is in scope.
+For text placed over a solid tone fill — a label on a brand bar, a caption in a colored chip — use the contrast-safe foreground utilities rather than guessing white. `.tui-text-tone-fg` follows whichever [tone](/ui/foundations/tone/) class is in scope.
 
 {% include demo.html file="fills.html" %}
 
@@ -43,12 +43,13 @@ For text placed over a solid tone fill — a label on a brand bar, a caption in 
 
 ## Chart series
 
-The chart utilities set `color`, so anything drawn with `currentColor` — SVG `fill` and `stroke`, a legend swatch — takes the series colour. `.tui-chart-measure` is a muted colour for a single-measure bar that must not read as a series. The [Chart](/ui/components/chart/) component and its legend build on these.
+The chart utilities set `color`, so anything drawn with `currentColor` — SVG `fill` and `stroke`, a legend swatch — takes the series color. Series 0 is the brand and each next series is one hue rotation on; the [Chart Palette](/ui/foundations/chart-palette/) page has the three knobs that shape them. `.tui-chart-measure` is a muted color for a single-measure bar that must not read as a series. The [Chart](/ui/components/chart/) component and its legend build on these.
 
 {% include demo.html file="chart.html" %}
 
 | Class | Effect |
 |---|---|
+| `.tui-chart-0` | `color: var(--tui-chart-0)` |
 | `.tui-chart-1` | `color: var(--tui-chart-1)` |
 | `.tui-chart-2` | `color: var(--tui-chart-2)` |
 | `.tui-chart-3` | `color: var(--tui-chart-3)` |
@@ -56,10 +57,11 @@ The chart utilities set `color`, so anything drawn with `currentColor` — SVG `
 | `.tui-chart-5` | `color: var(--tui-chart-5)` |
 | `.tui-chart-6` | `color: var(--tui-chart-6)` |
 | `.tui-chart-measure` | `color: var(--tui-chart-measure)` |
+| `.tui-chart-stagger` | Parent class: each child's `color` comes from the wheel at its `sibling-index()`, so series never run out; `--tui-chart-color-stagger` on the parent sets the hue step, `--tui-chart-rotation` by default |
 
 ## Backgrounds
 
-Solid fills for the brand, the semantic colours and the neutral, a 10% `-light` tint of the brand and semantic ones (built with relative colour syntax from the same token, so it follows the scheme), and the four surface levels.
+Solid fills for the brand, the semantic colors and the neutral, a 10% `-light` tint of the brand and semantic ones (built with relative color syntax from the same token, so it follows the scheme), and the four surface levels.
 
 {% include demo.html file="backgrounds.html" %}
 
@@ -83,13 +85,18 @@ Solid fills for the brand, the semantic colours and the neutral, a 10% `-light` 
 
 ## Gradient
 
-`.tui-bg-gradient` paints the current tone's gradient (`--tui-tone-gradient`, brand by default) with the matching foreground colour. Gradients are flat until the end colour exists: set `--tui-brand-end` on `:root` — or `--tui-positive-end` and friends for the other tones — because the library deliberately leaves the `-end` tokens undeclared. To change one element's gradient, override `--tui-brand-gradient` (or the tone's `-gradient`) on that element instead of its `-end` colour: the `-gradient` tokens resolve where they are declared.
+`.tui-bg-gradient` paints the current tone's gradient (`--tui-tone-gradient`, brand by default) with the matching foreground color. Gradients are flat until the end color exists: set `--tui-brand-end` on `:root` — or `--tui-positive-end` and friends for the other tones — because the library deliberately leaves the `-end` tokens undeclared. The direction is `--tui-gradient-angle`, 135° by default, also set on `:root`. To change one element's gradient, override `--tui-brand-gradient` (or the tone's `-gradient`) on that element instead of its `-end` color: the `-gradient` tokens resolve where they are declared.
 
 {% include demo.html file="gradient.html" %}
+
+`.tui-text-gradient` runs the same gradient through the letters instead: the background is clipped to the glyphs and the text color goes transparent, so it reads the tone exactly like `.tui-bg-gradient` and stays flat until the `-end` color exists. Use it on a `span` inside a heading or on the heading itself; it is inline, so a long run wraps like any other text. Paint stops at the box, and a trimmed heading's box ends at the baseline, so on a block the under edge moves from `alphabetic` to the font's descent (`text-box-edge: cap text`) to keep the descenders colored — the heading sits a few pixels deeper than a plain one. A `span` inside the heading leaves the heading's own trim untouched. In print and in forced-colors mode the gradient is dropped and the text falls back to a solid color rather than vanishing with the background.
+
+{% include demo.html file="text-gradient.html" %}
 
 | Class | Effect |
 |---|---|
 | `.tui-bg-gradient` | `background-color: var(--tui-tone, var(--tui-brand))`, `background-image: var(--tui-tone-gradient, var(--tui-brand-gradient))`, `color: var(--tui-tone-fg, var(--tui-brand-fg))` |
+| `.tui-text-gradient` | `background-image: var(--tui-tone-gradient, var(--tui-brand-gradient))`, `background-clip: text`, `color: transparent`; solid text in print and forced colors |
 
 ## Borders
 
@@ -120,7 +127,7 @@ The border utilities set only `border-color` or `border-style`; bring the width 
 
 ## Shadows
 
-The four elevation shadows; their colour is a `light-dark()` pair so they stay visible on dark surfaces.
+The four elevation shadows; their color is a `light-dark()` pair so they stay visible on dark surfaces.
 
 {% include demo.html file="shadows.html" %}
 

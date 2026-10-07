@@ -9,7 +9,7 @@ description: "The top of a content page: a bold title with an optional lead on t
 
 ## Title and actions
 
-`.tui-page-header-title` is `--tui-text-2xl` bold with its margin removed. It is itself a wrapping flex row aligned on the baseline — a text fragment placed inside it shares the title's baseline, while a `.tui-badge`, `.tui-tag`, `.tui-chip` or `.tui-label` centres on the title line instead, since a chip has no baseline relationship with display type. `.tui-page-header-actions` is a centred row with a `--tui-spacing-2` gap for the buttons.
+`.tui-page-header-title` is `--tui-text-2xl` bold with its margin removed. It is itself a wrapping flex row aligned on the baseline — a text fragment placed inside it shares the title's baseline, while a `.tui-badge`, `.tui-tag`, `.tui-chip` or `.tui-label` centers on the title line instead, since a chip has no baseline relationship with display type. `.tui-page-header-actions` is a centered row with a `--tui-spacing-2` gap for the buttons.
 
 {% include demo.html file="basic.html" %}
 
@@ -22,8 +22,8 @@ Put a `.tui-page-header-lead` inside the title and it drops to `--tui-text-base`
 | Class | Effect |
 |---|---|
 | `.tui-page-header` | Wrapping `space-between` row, bottom-aligned, `--tui-spacing-6` margin below |
-| `.tui-page-header-title` | `--tui-text-2xl` bold, baseline-aligned inner row; badge/tag/chip/label children centre on the title line |
+| `.tui-page-header-title` | `--tui-text-2xl` bold, baseline-aligned inner row; badge/tag/chip/label children center on the title line |
 | `.tui-page-header-lead` | Base size, normal weight, `--tui-text-3`, inside the title |
-| `.tui-page-header-actions` | Centred row with a `--tui-spacing-2` gap |
+| `.tui-page-header-actions` | Centered row with a `--tui-spacing-2` gap |
 
 Related: [Level](/ui/layout/level/) · [Hero](/ui/layout/hero/) · [Breadcrumb](/ui/components/breadcrumb/) · [Buttons](/ui/components/buttons/)

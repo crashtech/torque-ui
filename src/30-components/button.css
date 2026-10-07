@@ -4,11 +4,11 @@
  */
 
 
-  /* why: 20-elements/links.css sets :any-link colour at (0,1,0), which beats
-     the :where() base colour in 20-elements/buttons.css — an <a class="tui-button">
+  /* why: 20-elements/links.css sets :any-link color at (0,1,0), which beats
+     the :where() base color in 20-elements/buttons.css — an <a class="tui-button">
      rendered brand-on-brand with a hover underline. Reasserting it here wins
      (same specificity, later file); :where keeps hover/visited at (0,1,0) so
-     the variants below that set their own colour still win by source order. */
+     the variants below that set their own color still win by source order. */
   .tui-button,
   .tui-button:where(:hover, :visited) {
     color: var(--tui-tone-fg, var(--tui-text-1));
@@ -27,7 +27,7 @@
     box-shadow: var(--tui-tone, var(--tui-shadow-sm));
   }
 
-  /* why: the geometry is --tui-shadow-md; only the colour is toned, so an
+  /* why: the geometry is --tui-shadow-md; only the color is toned, so an
      untoned button falls back to the plain md shadow instead of an invalid
      value (a whole shadow spliced after the offsets computes to none). */
   .tui-button:hover {
@@ -74,14 +74,25 @@
   }
 
   /* === Gradient Button === */
+
+  /* why: the gradient is painted twice as wide as the button, so sliding
+     its position on hover sweeps the color across the face — the motion is
+     a transition, so the reduced-motion theme collapses it to a snap. It is
+     sized from the border box, or the transparent border would show the
+     lightened background color as a pale ring at either end of the slide. */
   .tui-button-gradient {
     background-color: var(--tui-tone, var(--tui-brand));
     background-image: var(--tui-tone-gradient, var(--tui-brand-gradient));
+    background-origin: border-box;
+    background-size: 200% 100%;
+    background-position: 0% 50%;
     color: var(--tui-tone-fg, var(--tui-brand-fg));
     border-color: transparent;
+    transition: background-position var(--tui-duration-slow) var(--tui-easing-in-out), box-shadow var(--tui-duration-fast), translate var(--tui-duration-fast);
   }
 
   .tui-button-gradient:hover {
+    background-position: 100% 50%;
     border-color: transparent;
     filter: brightness(1.08);
   }

@@ -27,10 +27,10 @@
       padding-inline-end: var(--tui-spacing-8);
     }
 
-    /* why: a compact control sized and inset to centre on the cap of the
+    /* why: a compact control sized and inset to center on the cap of the
        first text line, so a single-line alert reads as one row */
     & > .tui-close {
-      --tui-close-size: 1rem;
+      --tui-close-size: var(--tui-spacing-4);
 
       position: absolute;
       inset-block-start: var(--tui-spacing-3);
@@ -60,7 +60,7 @@
     }
 
     /* why: the body text is trimmed to its cap height, so the icon column
-       is lifted by one spacing step to centre a 1.5rem icon (or a glyph on
+       is lifted by one spacing step to center a 1.5rem icon (or a glyph on
        the body leading) on the cap of the first line */
     & > :first-child {
       margin-block-start: -0.25rem;

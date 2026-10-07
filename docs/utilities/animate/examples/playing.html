@@ -1,0 +1,18 @@
+<div class="tui-stack" id="animate-playing-demo">
+  <div class="tui-card tui-p-4 tui-animate tui-animate-tada tui-animate-when-playing" id="animate-playing-card">This card plays when a script says so.</div>
+  <div class="tui-flex tui-gap-2">
+    <button class="tui-button" type="button" id="animate-playing-data">Play with data-playing</button>
+    <button class="tui-button" type="button" id="animate-playing-class">Play with .tui-playing</button>
+  </div>
+</div>
+<script>
+  const card = document.getElementById('animate-playing-card');
+  const restart = (play) => {
+    card.removeAttribute('data-playing');
+    card.classList.remove('tui-playing');
+    void card.offsetWidth;
+    play();
+  };
+  document.getElementById('animate-playing-data').addEventListener('click', () => restart(() => card.setAttribute('data-playing', '')));
+  document.getElementById('animate-playing-class').addEventListener('click', () => restart(() => card.classList.add('tui-playing')));
+</script>

@@ -1,0 +1,93 @@
+<div class="tui-card tui-overflow-hidden">
+  <nav class="tui-navbar" aria-label="Dashboard">
+    <a class="tui-navbar-brand" href="#playground-dashboard"><img data-logo src="/ui/playground/logo.svg" alt="Your logo"></a>
+    <div class="tui-navbar-actions">
+      <div class="tui-input-group">
+        <span class="tui-input-addon">⌕</span>
+        <input type="search" placeholder="Search…" aria-label="Search">
+      </div>
+      <span class="tui-avatar-status">
+        <img class="tui-avatar tui-avatar-sm" src="/ui/assets/demo/avatar-2.svg" alt="Bruna Rocha">
+        <span class="tui-status-dot tui-status-online"></span>
+      </span>
+    </div>
+  </nav>
+  <div class="tui-shell" style="--tui-shell-min-block-size: 0">
+    <aside class="tui-shell-sidebar tui-p-2" aria-label="Sections">
+      <ul class="tui-list-group tui-list-group-flush">
+        <li><a class="tui-list-item tui-list-item-active" href="#playground-dashboard" aria-current="page">Overview</a></li>
+        <li><a class="tui-list-item" href="#playground-dashboard">Customers <span class="tui-badge">248</span></a></li>
+        <li><a class="tui-list-item" href="#playground-dashboard">Invoices</a></li>
+        <li><a class="tui-list-item" href="#playground-dashboard">Reports</a></li>
+        <li><a class="tui-list-item" href="#playground-dashboard">Settings</a></li>
+      </ul>
+    </aside>
+    <div class="tui-shell-main tui-stack">
+      <div class="tui-page-header">
+        <h2 class="tui-page-header-title">Good morning, Bruna <span class="tui-page-header-lead">Here is your week so far</span></h2>
+        <div class="tui-page-header-actions">
+          <button class="tui-button tui-button-sm" type="button">Export</button>
+          <button class="tui-button tui-button-sm tui-button-primary" type="button">New invoice</button>
+        </div>
+      </div>
+
+      <div class="tui-grid tui-grid-md-3 tui-gap-4">
+        <div class="tui-statistic">
+          <span class="tui-statistic-label">Revenue</span>
+          <span class="tui-statistic-value">$24.8k</span>
+          <span class="tui-statistic-delta tui-statistic-delta-up">▲ 8% vs last week</span>
+        </div>
+        <div class="tui-statistic">
+          <span class="tui-statistic-label">New customers</span>
+          <span class="tui-statistic-value">37</span>
+          <span class="tui-statistic-delta tui-statistic-delta-up">▲ 5</span>
+        </div>
+        <div class="tui-statistic">
+          <span class="tui-statistic-label">Overdue</span>
+          <span class="tui-statistic-value">3</span>
+          <span class="tui-statistic-delta tui-statistic-delta-down">▼ 2 since Monday</span>
+        </div>
+      </div>
+
+      <div class="tui-grid tui-grid-lg-2 tui-gap-4">
+        <div class="tui-card">
+          <div class="tui-card-header"><h3>Revenue by channel</h3></div>
+          <div class="tui-card-body tui-stack">
+            <div class="tui-chart">
+              <svg viewBox="0 0 320 120" role="img" aria-label="Revenue by channel over six weeks">
+                <g class="tui-chart-1" fill="currentColor"><rect x="8" y="50" width="20" height="70"/><rect x="60" y="40" width="20" height="80"/><rect x="112" y="30" width="20" height="90"/><rect x="164" y="45" width="20" height="75"/><rect x="216" y="20" width="20" height="100"/><rect x="268" y="10" width="20" height="110"/></g>
+                <g class="tui-chart-2" fill="currentColor"><rect x="30" y="80" width="20" height="40"/><rect x="82" y="70" width="20" height="50"/><rect x="134" y="75" width="20" height="45"/><rect x="186" y="60" width="20" height="60"/><rect x="238" y="55" width="20" height="65"/><rect x="290" y="50" width="20" height="70"/></g>
+              </svg>
+            </div>
+            <div class="tui-legend">
+              <span class="tui-legend-item tui-chart-1"><span class="tui-legend-swatch"></span><span>Online</span></span>
+              <span class="tui-legend-item tui-chart-2"><span class="tui-legend-swatch"></span><span>In store</span></span>
+            </div>
+          </div>
+        </div>
+        <div class="tui-card">
+          <div class="tui-card-header"><h3>Latest invoices</h3></div>
+          <div class="tui-card-body tui-table-responsive">
+            <table class="tui-table-compact">
+              <thead><tr><th>Invoice</th><th>Customer</th><th>Amount</th><th>Status</th></tr></thead>
+              <tbody>
+                <tr><td>#1042</td><td>Studio Prisma</td><td>$4,800</td><td><span class="tui-badge tui-badge-success">Paid</span></td></tr>
+                <tr><td>#1043</td><td>Clínica Viva</td><td>$1,200</td><td><span class="tui-badge tui-badge-warning">Due</span></td></tr>
+                <tr><td>#1044</td><td>Acme Agency</td><td>$12,000</td><td><span class="tui-badge tui-badge-error">Overdue</span></td></tr>
+                <tr><td>#1045</td><td>Northwind</td><td>$640</td><td><span class="tui-badge tui-badge-success">Paid</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="tui-alert tui-alert-callout tui-alert-info">
+        <span aria-hidden="true">ℹ</span>
+        <div>
+          <h4>Quarter closes on Friday</h4>
+          <p>Send the remaining invoices before then so they count this quarter.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -6,7 +6,7 @@ js: self-driven
 description: "Automatic dark mode from the OS preference, a checkbox toggle that inverts it, pinned schemes, and scheme-only visibility for sun and moon icons."
 ---
 
-Dark mode needs no class and no script: `:root` declares `color-scheme: light dark` and every colour token is a `light-dark()` pair, so the browser resolves each token from `prefers-color-scheme` and native controls, scrollbars and dialog backdrops follow along. This file adds what the preference alone cannot: a user-operated toggle, a way to pin a subtree to one scheme, and two visibility helpers for the toggle's icons.
+Dark mode needs no class and no script: `:root` declares `color-scheme: light dark` and every color token is a `light-dark()` pair, so the browser resolves each token from `prefers-color-scheme` and native controls, scrollbars and dialog backdrops follow along. This file adds what the preference alone cannot: a user-operated toggle, a way to pin a subtree to one scheme, and two visibility helpers for the toggle's icons.
 
 ## Automatic
 
@@ -18,7 +18,7 @@ Nothing needs a `data-theme` attribute; a script that persists a choice may set 
 
 ## Forced toggle
 
-A hidden `.tui-state-input.tui-theme-toggle-input` checkbox plus a label lets the user override their system preference. The input must be an **earlier sibling** of a `.tui-page` element: the rule is `:checked ~ .tui-page`, so only markup inside that `.tui-page` is affected. `.tui-page` is a plain hook — it carries no styles of its own, so give it a background (`.tui-bg-surface-0`) and a text colour (`.tui-text-1`) if it is not the whole document.
+A hidden `.tui-state-input.tui-theme-toggle-input` checkbox plus a label lets the user override their system preference. The input must be an **earlier sibling** of a `.tui-page` element: the rule is `:checked ~ .tui-page`, so only markup inside that `.tui-page` is affected. `.tui-page` is a plain hook — it carries no styles of its own, so give it a background (`.tui-bg-surface-0`) and a text color (`.tui-text-1`) if it is not the whole document.
 
 Checked means "the opposite of what the OS asked for". On a light system a checked toggle makes the page dark; on a dark system a checked toggle makes it light — so a dark-OS user can switch to light exactly as a light-OS user can switch to dark. The state does not persist across a reload; that would need JavaScript.
 

@@ -25,7 +25,7 @@
   }
 
   /* why: the 1.5rem track minus its 2px borders leaves 20px, so a 1rem knob
-     centres at 2px from each inner edge */
+     centers at 2px from each inner edge */
   .tui-switch-input::before {
     content: '';
     position: absolute;

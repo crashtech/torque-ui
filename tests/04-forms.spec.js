@@ -124,7 +124,7 @@ test.describe('Forms — Select', () => {
     expect(options.length).toBeGreaterThan(0);
   });
 
-  test('rich select opens its customised picker', async ({ page }) => {
+  test('rich select opens its customized picker', async ({ page }) => {
     test.skip(!(await page.evaluate(() => CSS.supports('appearance: base-select'))), 'appearance: base-select not supported');
 
     const richSelect = page.locator('.tui-select-rich').first();
@@ -559,7 +559,7 @@ test.describe('Forms — Input group', () => {
     await expect(group).toBeVisible();
   });
 
-  test('focusing a grouped input raises it above its neighbours', async ({ page }) => {
+  test('focusing a grouped input raises it above its neighbors', async ({ page }) => {
     const group = page.locator('.tui-input-group').first();
     const input = group.locator('input');
 
@@ -853,9 +853,9 @@ test.describe('Forms — Range wrapper', () => {
     expect(await wrapper.evaluate((el) => getComputedStyle(el, '::before').backgroundImage)).toContain('linear-gradient');
     const w = await wrapper.boundingBox();
     const label = await wrapper.locator('.tui-range-label').boundingBox();
-    const centre = label.x + label.width / 2 - w.x;
-    expect(centre).toBeGreaterThan(w.width * 0.25);
-    expect(centre).toBeLessThan(w.width * 0.35);
+    const center = label.x + label.width / 2 - w.x;
+    expect(center).toBeGreaterThan(w.width * 0.25);
+    expect(center).toBeLessThan(w.width * 0.35);
     await wrapper.evaluate((el) => el.setAttribute('data-value', '90'));
     const moved = await wrapper.locator('.tui-range-label').boundingBox();
     expect(moved.x).toBeGreaterThan(label.x + w.width * 0.4);
@@ -863,7 +863,7 @@ test.describe('Forms — Range wrapper', () => {
     expect((await marks.last().boundingBox()).x).toBeGreaterThan((await marks.first().boundingBox()).x + w.width * 0.7);
   });
 
-  test('range wrapper: the track is centred on the thumbs, paints beneath them, and the marks centre on the thumb travel', async ({ page }) => {
+  test('range wrapper: the track is centered on the thumbs, paints beneath them, and the marks center on the thumb travel', async ({ page }) => {
     for (const id of ['#range-single', '#range-dual']) {
       const wrapper = page.locator(id);
       const input = wrapper.locator('input').first();

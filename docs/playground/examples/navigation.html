@@ -1,0 +1,72 @@
+<div class="tui-stack">
+  <div class="tui-card">
+    <nav class="tui-navbar" aria-label="Sample">
+      <a class="tui-navbar-brand" href="#playground-navigation"><img data-logo src="/ui/playground/logo.svg" alt="Your logo"></a>
+      <ul class="tui-navbar-menu">
+        <li><a class="tui-navbar-item tui-navbar-item-active" href="#playground-navigation">Inbox</a></li>
+        <li><a class="tui-navbar-item" href="#playground-navigation">Reports</a></li>
+        <li><button class="tui-navbar-item" type="button" popovertarget="playground-navigation-more" aria-haspopup="menu">More <span class="tui-caret"></span></button>
+          <div class="tui-popover tui-menu" id="playground-navigation-more" popover>
+            <a class="tui-menu-item" href="#playground-navigation">Contacts</a>
+            <a class="tui-menu-item" href="#playground-navigation">Automations</a>
+          </div></li>
+      </ul>
+      <div class="tui-navbar-actions">
+        <span class="tui-badge tui-badge-solid">3</span>
+        <button class="tui-button tui-button-primary tui-button-sm" type="button">New</button>
+      </div>
+    </nav>
+  </div>
+
+  <div class="tui-grid tui-grid-lg-2 tui-gap-6">
+    <div class="tui-card">
+      <div class="tui-card-header"><h3>Tabs and trails</h3></div>
+      <div class="tui-card-body tui-stack">
+        <nav class="tui-breadcrumb" aria-label="Breadcrumb">
+          <a href="#playground-navigation">Home</a>
+          <a href="#playground-navigation">Projects</a>
+          <span class="tui-breadcrumb-current" aria-current="page">Website redesign</span>
+        </nav>
+        <div class="tui-tabs">
+          <input class="tui-state-input tui-tab-input" type="radio" name="playground-navigation-tabs" id="playground-navigation-tabs-overview" checked>
+          <label class="tui-tab" for="playground-navigation-tabs-overview">Overview</label>
+          <div class="tui-tab-panel"><p class="tui-m-0">Twelve tasks, three of them due this week.</p></div>
+          <input class="tui-state-input tui-tab-input" type="radio" name="playground-navigation-tabs" id="playground-navigation-tabs-activity">
+          <label class="tui-tab" for="playground-navigation-tabs-activity">Activity</label>
+          <div class="tui-tab-panel"><p class="tui-m-0">Bruna moved two cards to Done.</p></div>
+          <input class="tui-state-input tui-tab-input" type="radio" name="playground-navigation-tabs" id="playground-navigation-tabs-files">
+          <label class="tui-tab" for="playground-navigation-tabs-files">Files</label>
+          <div class="tui-tab-panel"><p class="tui-m-0">No files yet.</p></div>
+        </div>
+        <nav aria-label="Pagination">
+          <ul class="tui-pagination">
+            <li><a href="#playground-navigation" class="tui-pagination-prev" aria-label="Previous page"></a></li>
+            <li><a href="#playground-navigation">1</a></li>
+            <li><a href="#playground-navigation">2</a></li>
+            <li><a href="#playground-navigation" class="tui-pagination-item-active" aria-current="page">3</a></li>
+            <li><a href="#playground-navigation">4</a></li>
+            <li><span>…</span></li>
+            <li><a href="#playground-navigation">9</a></li>
+            <li><a href="#playground-navigation" class="tui-pagination-next" aria-label="Next page"></a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+
+    <div class="tui-card">
+      <div class="tui-card-header"><h3>Steps and lists</h3></div>
+      <div class="tui-card-body tui-stack">
+        <div class="tui-steps">
+          <div class="tui-step tui-step-complete"><div class="tui-step-number">✓</div><span class="tui-step-label">Account</span></div>
+          <div class="tui-step tui-step-active" aria-current="step"><div class="tui-step-number">2</div><span class="tui-step-label">Profile</span></div>
+          <div class="tui-step"><div class="tui-step-number">3</div><span class="tui-step-label">Verify</span></div>
+        </div>
+        <ul class="tui-list-group">
+          <li><a class="tui-list-item tui-list-item-active" href="#playground-navigation">Inbox <span class="tui-badge tui-badge-solid">12</span></a></li>
+          <li><a class="tui-list-item" href="#playground-navigation">Drafts <span class="tui-badge">3</span></a></li>
+          <li><a class="tui-list-item" href="#playground-navigation">Spam <span class="tui-badge tui-badge-error">41</span></a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

@@ -43,7 +43,7 @@
   }
 
   /* why: --tui-tone-ink (not the raw --tui-tone) keeps checked-row text at
-     AA contrast against the soft tinted background across brand colours */
+     AA contrast against the soft tinted background across brand colors */
   &:has(> .tui-state-input:checked),
   &.tui-list-item-active,
   &:is([aria-selected="true"], [aria-current], [data-selected], .tui-selected) {

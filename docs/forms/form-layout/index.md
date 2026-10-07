@@ -35,7 +35,7 @@ Form layout in Torque UI is a set of flex and grid wrappers: `.tui-form` stacks 
 
 ## Inline form
 
-`.tui-form-inline` is a wrapping, vertically centred flex row — a filter bar or a quick search. Inside it, `.tui-field-inline` puts a label and its control side by side (a `--tui-spacing-2` gap, centred) instead of stacking them.
+`.tui-form-inline` is a wrapping, vertically centered flex row — a filter bar or a quick search. Inside it, `.tui-field-inline` puts a label and its control side by side (a `--tui-spacing-2` gap, centered) instead of stacking them.
 
 {% include demo.html file="inline.html" %}
 
@@ -43,7 +43,7 @@ Form layout in Torque UI is a set of flex and grid wrappers: `.tui-form` stacks 
 |---|---|
 | `.tui-form` | Flex column, `--tui-spacing-4` gap |
 | `.tui-form-grid` | `repeat(auto-fit, minmax(200px, 1fr))` grid, `--tui-spacing-4` gap |
-| `.tui-form-inline` | Wrapping flex row, centred, `--tui-spacing-4` gap |
+| `.tui-form-inline` | Wrapping flex row, centered, `--tui-spacing-4` gap |
 | `.tui-field-inline` | Flex row: label beside control, `--tui-spacing-2` gap |
 
 ## Fieldset

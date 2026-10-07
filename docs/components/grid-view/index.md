@@ -10,7 +10,7 @@ A grid view is the icon view of a file explorer: the part that sits under a [bre
 
 ## Anatomy
 
-`.tui-grid-view` is a grid with `repeat(auto-fill, minmax(min(--tui-grid-view-min, 100%), 1fr))` columns — as many tracks of at least `--tui-grid-view-min` (`7rem`) as the container allows, re-wrapping on its own — separated by `--tui-grid-view-gap` (`--tui-spacing-3`), with the list margin, padding and bullets removed. A `.tui-tile` is a centred flex column with a `--tui-spacing-2` gap, `--tui-spacing-3` padding, `--tui-radius-md` corners, `--tui-text-1` text and no underline; an `<a>`, `<label>` or `<button>` tile takes a `--tui-surface-1` hover. The `.tui-icon` or `<img>` directly inside a tile is sized to `--tui-tile-icon-size` (`2.5rem`), and `.tui-tile-name` is `--tui-text-sm`, centred and wrap-safe, so a long file name breaks inside its tile instead of widening the column.
+`.tui-grid-view` is a grid with `repeat(auto-fill, minmax(min(--tui-grid-view-min, 100%), 1fr))` columns — as many tracks of at least `--tui-grid-view-min` (`7rem`) as the container allows, re-wrapping on its own — separated by `--tui-grid-view-gap` (`--tui-spacing-3`), with the list margin, padding and bullets removed. A `.tui-tile` is a centered flex column with a `--tui-spacing-2` gap, `--tui-spacing-3` padding, `--tui-radius-md` corners, `--tui-text-1` text and no underline; an `<a>`, `<label>` or `<button>` tile takes a `--tui-surface-1` hover. The `.tui-icon` or `<img>` directly inside a tile is sized to `--tui-tile-icon-size` (`2.5rem`), and `.tui-tile-name` is `--tui-text-sm`, centered and wrap-safe, so a long file name breaks inside its tile instead of widening the column.
 
 {% include demo.html file="basic.html" %}
 
@@ -28,7 +28,7 @@ A tile is a flex column, so a `dl.tui-kv.tui-kv-stack` ([key/value](/ui/componen
 
 ## Equal heights
 
-Tiles take their own height by default, so a tile with a two-line name or a list of facts stands taller than its neighbours. `.tui-grid-view-stretch` makes every tile fill its row, so hover and selected tints cover the whole cell and a row reads as one band.
+Tiles take their own height by default, so a tile with a two-line name or a list of facts stands taller than its neighbors. `.tui-grid-view-stretch` makes every tile fill its row, so hover and selected tints cover the whole cell and a row reads as one band.
 
 {% include demo.html file="stretch.html" %}
 
@@ -77,7 +77,7 @@ Override the hooks on the grid to change the track floor, the gap and the icon s
 | Class | Effect |
 |---|---|
 | `.tui-grid-view` | Auto-filling grid of tiles; a `<ul>` of `<li>` or a `<dl>` of `<div>` |
-| `.tui-grid-view-start` | Tile content aligned to the start instead of centred |
+| `.tui-grid-view-start` | Tile content aligned to the start instead of centered |
 | `.tui-grid-view-stretch` | Every tile fills its row's height |
 | `.tui-grid-view-uniform` | All rows one height, tiles filled, names clamped and values ellipsized |
 | `.tui-grid-view-fill` | The icon or image inside each tile spans the tile width as a square |

@@ -1,0 +1,84 @@
+<div class="tui-flex tui-flex-wrap tui-gap-6 tui-p-3">
+  <form class="tui-stack tui-flex-1 tui-max-w-sm" id="customize-color">
+    <div class="tui-field">
+      <label for="customize-brand-hex">Brand hex</label>
+      <input id="customize-brand-hex" name="brandHex" type="text" value="#5c60f0" pattern="#[0-9a-fA-F]{6}" required spellcheck="false" autocomplete="off">
+    </div>
+    <div class="tui-field">
+      <label for="customize-brand-l">Brand lightness <output for="customize-brand-l">0.57</output></label>
+      <input id="customize-brand-l" name="brandL" type="range" min="0.2" max="0.95" step="0.01" value="0.57">
+    </div>
+    <div class="tui-field">
+      <label for="customize-brand-c">Brand chroma <output for="customize-brand-c">0.21</output></label>
+      <input id="customize-brand-c" name="brandC" type="range" min="0" max="0.32" step="0.01" value="0.21">
+    </div>
+    <div class="tui-field">
+      <label for="customize-brand-h">Brand hue <output for="customize-brand-h">276</output></label>
+      <input id="customize-brand-h" name="brandH" type="range" min="0" max="360" value="276">
+    </div>
+    <div class="tui-field">
+      <label for="customize-neutral-h">Neutral hue <output for="customize-neutral-h">264</output></label>
+      <input id="customize-neutral-h" name="neutralH" type="range" min="0" max="360" value="264">
+    </div>
+    <div class="tui-field">
+      <label for="customize-neutral-c">Neutral chroma <output for="customize-neutral-c">0.023</output></label>
+      <input id="customize-neutral-c" name="neutralC" type="range" min="0" max="0.1" step="0.001" value="0.023">
+    </div>
+    <div class="tui-field">
+      <label for="customize-pivot">Contrast pivot <output for="customize-pivot">0.65</output></label>
+      <input id="customize-pivot" name="pivot" type="range" min="0.3" max="0.95" step="0.01" value="0.65">
+    </div>
+    <i hidden></i>
+  </form>
+  <div class="tui-card tui-max-w-sm">
+    <div class="tui-card-header"><h3>Derived from two colors</h3></div>
+    <div class="tui-card-body tui-stack">
+      <p class="tui-m-0">The surface, this text and the border come from the neutral. Everything tinted comes from the brand.</p>
+      <div class="tui-flex tui-flex-wrap tui-gap-2 tui-items-center">
+        <button class="tui-button tui-button-primary" type="button" id="customize-color-primary">Primary</button>
+        <button class="tui-button tui-button-outline" type="button">Outline</button>
+      </div>
+      <div class="tui-flex tui-flex-wrap tui-gap-2">
+        <span class="tui-badge tui-badge-primary">Brand</span>
+        <span class="tui-badge tui-badge-success">Success</span>
+        <span class="tui-badge tui-badge-warning">Warning</span>
+        <span class="tui-badge tui-badge-error">Error</span>
+        <span class="tui-badge tui-badge-info">Info</span>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  {
+    const form = document.getElementById('customize-color');
+    const root = document.documentElement.style;
+    const probe = form.querySelector('i');
+    const pixel = document.createElement('canvas').getContext('2d', { willReadFrequently: true });
+    const { brandHex, brandL, brandC, brandH, neutralH, neutralC, pivot } = form.elements;
+    const toHex = (color) => {
+      pixel.fillStyle = color;
+      pixel.fillRect(0, 0, 1, 1);
+      const rgb = [...pixel.getImageData(0, 0, 1, 1).data.slice(0, 3)];
+      return `#${rgb.map((channel) => channel.toString(16).padStart(2, '0')).join('')}`;
+    };
+    const fromHex = () => {
+      if (!brandHex.validity.valid) return;
+      probe.style.color = `oklch(from ${brandHex.value} l c h)`;
+      const [l, c, h = brandH.value] = getComputedStyle(probe).color.match(/[\d.]+/g);
+      [brandL.value, brandC.value, brandH.value] = [l, c, h];
+      root.setProperty('--tui-brand', brandHex.value);
+    };
+    const fromSliders = () => {
+      const brand = `oklch(${brandL.value} ${brandC.value} ${brandH.value})`;
+      root.setProperty('--tui-brand', brand);
+      brandHex.value = toHex(brand);
+    };
+    form.addEventListener('input', (event) => {
+      if (event.target === brandHex) fromHex();
+      if ([brandL, brandC, brandH].includes(event.target)) fromSliders();
+      root.setProperty('--tui-neutral', `oklch(0.55 ${neutralC.value} ${neutralH.value})`);
+      root.setProperty('--tui-contrast-pivot', pivot.value);
+      for (const output of form.querySelectorAll('output')) output.value = document.getElementById(output.htmlFor.value).value;
+    });
+  }
+</script>

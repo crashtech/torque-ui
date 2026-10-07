@@ -30,7 +30,7 @@ The popover element is anchored to the button that opened it — the popovertarg
 
 ## Positioning
 
-With anchor positioning the surface sits below the invoker, its start edge aligned to the button's (`position-area: block-end span-inline-end`) with a `--tui-spacing-1` gap and a transparent backdrop; when it would overflow it flips above, then to the other inline side (`position-try-fallbacks: flip-block, flip-inline`). Without it, a top-layer element can only be placed relative to the viewport, so the surface is centred at the bottom of the screen over a 20% dimmed backdrop.
+With anchor positioning the surface sits below the invoker, its start edge aligned to the button's (`position-area: block-end span-inline-end`) with a `--tui-spacing-1` gap and a transparent backdrop; when it would overflow it flips above, then to the other inline side (`position-try-fallbacks: flip-block, flip-inline`). Without it, a top-layer element can only be placed relative to the viewport, so the surface is centered at the bottom of the screen over a 20% dimmed backdrop.
 
 > **Browser note.** Anchor positioning is Chrome 125 and Safari 26. Chrome 123–124, Safari 17.5 and Firefox get the bottom-sheet fallback. The fade-in via `@starting-style` needs Chrome 117, Safari 17.4 or Firefox 129; below that the popover appears instantly.
 
@@ -39,7 +39,7 @@ With anchor positioning the surface sits below the invoker, its start edge align
 | Property | Default | Effect |
 |---|---|---|
 | `--tui-popover-bg` | `var(--tui-surface-0)` | Surface background |
-| `--tui-popover-border` | `var(--tui-border)` | Surface border colour |
+| `--tui-popover-border` | `var(--tui-border)` | Surface border color |
 | `--tui-popover-padding` | `var(--tui-spacing-1)` | Inner padding |
 | `--tui-popover-min-inline-size` | `12rem` | Narrowest the surface renders |
 | `--tui-popover-max-inline-size` | `24rem` | Widest the surface grows |

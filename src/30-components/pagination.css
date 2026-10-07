@@ -1,23 +1,32 @@
 /* Torque UI — Pagination Component
- * Page navigation with CSS-only active state.
+ * One joined group of page links with arrow ends, and a bar that lays it out
+ * beside a page-size select and a range text.
  */
 
 
   .tui-pagination {
-    display: flex;
-    align-items: center;
-    gap: var(--tui-spacing-1);
+    display: inline-flex;
+    inline-size: fit-content;
+    align-items: stretch;
     list-style: none;
     margin: 0;
     padding: 0;
+    border: 1px solid var(--tui-border);
+    border-radius: var(--tui-radius-md);
+    background-color: var(--tui-surface-0);
   }
 
   .tui-pagination > li {
+    display: flex;
     list-style: none;
   }
 
-  .tui-pagination a,
-  .tui-pagination span {
+  .tui-pagination > * + * {
+    border-inline-start: 1px solid var(--tui-border);
+  }
+
+  .tui-pagination > :is(a, span),
+  .tui-pagination > li > :is(a, span) {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -28,34 +37,99 @@
     font-weight: var(--tui-font-medium);
     color: var(--tui-text-2);
     text-decoration: none;
-    border-radius: var(--tui-radius-md);
-    border: 1px solid var(--tui-border);
-    background-color: var(--tui-surface-0);
-    transition: background-color var(--tui-duration-fast) var(--tui-easing-out), border-color var(--tui-duration-fast) var(--tui-easing-out), color var(--tui-duration-fast) var(--tui-easing-out), box-shadow var(--tui-duration-fast) var(--tui-easing-out), translate var(--tui-duration-fast) var(--tui-easing-out);
+    transition: background-color var(--tui-duration-fast) var(--tui-easing-out), color var(--tui-duration-fast) var(--tui-easing-out);
   }
 
-  .tui-pagination a:hover,
-  .tui-pagination span:hover {
+  /* why: the group draws the border, so the end items round inside it */
+  .tui-pagination > :first-child,
+  .tui-pagination > li:first-child > * {
+    border-start-start-radius: calc(var(--tui-radius-md) - 1px);
+    border-end-start-radius: calc(var(--tui-radius-md) - 1px);
+  }
+
+  .tui-pagination > :last-child,
+  .tui-pagination > li:last-child > * {
+    border-start-end-radius: calc(var(--tui-radius-md) - 1px);
+    border-end-end-radius: calc(var(--tui-radius-md) - 1px);
+  }
+
+  .tui-pagination a:hover {
     background-color: var(--tui-surface-2);
     color: var(--tui-text-1);
-    border-color: var(--tui-border-strong);
   }
 
-  .tui-pagination a.tui-link-active,
-  .tui-pagination-item-active {
+  /* why: the focus ring must paint above the next item's divider */
+  .tui-pagination a:focus-visible {
+    position: relative;
+    z-index: 1;
+  }
+
+  .tui-pagination .tui-pagination-item-active,
+  .tui-pagination a.tui-link-active {
     background-color: var(--tui-brand);
     color: var(--tui-brand-fg);
-    border-color: var(--tui-brand);
-  }
 
-  .tui-pagination a.tui-link-active:hover,
-  .tui-pagination-item-active:hover {
-    background-color: color-mix(in srgb, var(--tui-brand) 90%, white 10%);
-    color: var(--tui-brand-fg);
+    &:hover {
+      background-color: color-mix(in srgb, var(--tui-brand) 90%, white 10%);
+      color: var(--tui-brand-fg);
+    }
   }
 
   .tui-pagination a[aria-disabled="true"] {
     opacity: 0.5;
     cursor: not-allowed;
     pointer-events: none;
+  }
+
+  /* === Arrows ===
+   * The shared chevron turned sideways; first and last stack two of them
+   * in a tall box before the turn. */
+  .tui-pagination :is(.tui-pagination-first, .tui-pagination-prev, .tui-pagination-next, .tui-pagination-last)::before {
+    content: '';
+    inline-size: 1em;
+    block-size: 1em;
+    mask: var(--tui-icon-chevron) center / contain no-repeat;
+    background-color: currentcolor;
+    rotate: var(--tui-pagination-turn);
+  }
+
+  .tui-pagination :is(.tui-pagination-first, .tui-pagination-last)::before {
+    block-size: 1.25em;
+    mask:
+      var(--tui-icon-chevron) center top / 100% 70% no-repeat,
+      var(--tui-icon-chevron) center bottom / 100% 70% no-repeat;
+  }
+
+  .tui-pagination :is(.tui-pagination-first, .tui-pagination-prev) {
+    --tui-pagination-turn: 90deg;
+  }
+
+  .tui-pagination :is(.tui-pagination-next, .tui-pagination-last) {
+    --tui-pagination-turn: -90deg;
+  }
+
+  .tui-pagination:dir(rtl) :is(.tui-pagination-first, .tui-pagination-prev) {
+    --tui-pagination-turn: -90deg;
+  }
+
+  .tui-pagination:dir(rtl) :is(.tui-pagination-next, .tui-pagination-last) {
+    --tui-pagination-turn: 90deg;
+  }
+
+  /* === Bar ===
+   * Children keep their source order; the range text takes the free space,
+   * so whatever follows it sits at the far end. */
+  .tui-pagination-bar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--tui-spacing-3) var(--tui-spacing-4);
+  }
+
+  .tui-pagination-info {
+    flex: 1;
+    font-size: var(--tui-text-sm);
+    color: var(--tui-text-2);
+    white-space: nowrap;
   }

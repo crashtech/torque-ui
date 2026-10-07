@@ -15,8 +15,9 @@
   /* why: every component that sets its own display (menu rows, list items,
      chips, panels) would beat the UA's [hidden] rule; this layer sits above
      them all, so a script's el.hidden = true always works. until-found keeps
-     the UA's content-visibility so find-in-page can still reveal it */
-  [hidden]:not([hidden="until-found"]) { display: none; }
+     the UA's content-visibility so find-in-page can still reveal it; a
+     selectable table's row group collapses instead, to stay counted */
+  [hidden]:not([hidden="until-found"], .tui-table-selectable > tbody) { display: none; }
 
   .tui-d-none      { display: none; }
   .tui-d-block     { display: block; }

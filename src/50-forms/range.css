@@ -22,7 +22,7 @@
   .tui-range {
     --tui-range-thumb: var(--tui-spacing-5);
 
-    /* why: a thumb's centre travels from half a thumb in to half a thumb
+    /* why: a thumb's center travels from half a thumb in to half a thumb
        short of the end, so every position is mapped onto that shorter span */
     --_start: calc(var(--tui-range-thumb) / 2 + (100% - var(--tui-range-thumb)) * var(--tui-range-start) / 100);
     --_end: calc(var(--tui-range-thumb) / 2 + (100% - var(--tui-range-thumb)) * var(--tui-range-end) / 100);
@@ -39,7 +39,7 @@
     }
 
     /* why: the track is an in-flow item in the same grid cell as the inputs,
-       so it is centred on their row whatever else the wrapper holds and
+       so it is centered on their row whatever else the wrapper holds and
        paints beneath them in DOM order */
     &::before {
       content: '';
@@ -131,7 +131,7 @@
       margin: 0;
     }
 
-    /* why: the first and last marks centre on the thumb's end positions */
+    /* why: the first and last marks center on the thumb's end positions */
     & > li:first-child { translate: -50% 0; }
 
     & > li:last-child { translate: 50% 0; }

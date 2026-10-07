@@ -6,7 +6,7 @@ js: self-driven
 description: "Radio-driven tab strip with optional panels, link tabs, a trailing slot and a sticky row — no JavaScript."
 ---
 
-`.tui-tabs` is a wrapping flex row of tab labels with a rule underneath. State comes from a hidden radio per tab: the checked radio colours the label that follows it and reveals the panel after that, so switching tabs needs no script. The hidden radio is a [state input](/ui/foundations/state-inputs/) — it stays in the tab order and paints a focus ring on its label. The component carries no outer margin.
+`.tui-tabs` is a wrapping flex row of tab labels with a rule underneath. State comes from a hidden radio per tab: the checked radio colors the label that follows it and reveals the panel after that, so switching tabs needs no script. The hidden radio is a [state input](/ui/foundations/state-inputs/) — it stays in the tab order and paints a focus ring on its label. The component carries no outer margin.
 
 ## Radio tabs
 
@@ -85,8 +85,8 @@ A strip your script drives uses `<button class="tui-tab" role="tab">` in a `role
 
 | Property | Default | Effect |
 |---|---|---|
-| `--tui-tab-color` | `var(--tui-text-2)` | Resting tab text colour |
-| `--tui-tab-active-color` | `var(--tui-brand)` | Text and rule colour of the active (or hovered) tab |
+| `--tui-tab-color` | `var(--tui-text-2)` | Resting tab text color |
+| `--tui-tab-active-color` | `var(--tui-brand)` | Text and rule color of the active (or hovered) tab |
 | `--tui-tab-rule` | `2px solid var(--tui-border)` | The rule under the row |
 | `--tui-tab-panel-padding` | `var(--tui-spacing-4)` | Block padding of a panel |
 

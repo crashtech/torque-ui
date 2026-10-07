@@ -6,7 +6,7 @@ js: self-driven
 description: "The contract for plugging your own script in: which attributes and classes the framework styles, how value hooks read attributes, and what stays script-free."
 ---
 
-Torque UI ships no script, and the interactions it can get from the platform — tabs, collapse, popovers, dialogs, the rich select — stay script-free. Everything else is *self-driven*: your code owns the behaviour, and the framework already styles every state your code would set. A section marked **self-driven JS** anywhere in these docs follows the contract on this page, so plugging a script in never means writing CSS.
+Torque UI ships no script, and the interactions it can get from the platform — tabs, collapse, popovers, dialogs, the rich select — stay script-free. Everything else is *self-driven*: your code owns the behavior, and the framework already styles every state your code would set. A section marked **self-driven JS** anywhere in these docs follows the contract on this page, so plugging a script in never means writing CSS.
 
 ## Boolean states <span class="tui-badge">self-driven JS</span>
 
@@ -20,12 +20,13 @@ A state is expressed in one of three ways, and the framework paints all three: t
 | Pressed / checked | `aria-pressed="true"`, `aria-checked="true"` | `data-pressed` | `.tui-pressed` | `--tui-pressed: 1` |
 | Invalid | `aria-invalid="true"` | `data-invalid` | `.tui-invalid` | `--tui-invalid: 1` |
 | Disabled | `aria-disabled="true"`, `:disabled` | `data-disabled` | `.tui-disabled` | `--tui-disabled: 1` |
+| Playing | — | `data-playing` | `.tui-playing` | `--tui-playing: 1` |
 
 Each state is also a registered custom property (`@property`, integer 0 or 1) set on the element by the same selectors, so your own CSS can read `var(--tui-selected)` without repeating the attribute list. The framework consumes the selectors, not the property, so the paint works in every supported browser.
 
 {% include demo.html file="states.html" %}
 
-Components that read these states: [Buttons](/ui/components/buttons/) (pressed, the caret), [Toggle Group](/ui/interactive/toggle-group/), [Tabs](/ui/interactive/tabs/), [Listbox](/ui/interactive/listbox/), [List Group](/ui/components/list-group/), [Menu](/ui/interactive/menu/), [Validation](/ui/forms/validation/) and the [Combobox](/ui/forms/select/).
+Components that read these states: [Buttons](/ui/components/buttons/) (pressed, the caret), [Toggle Group](/ui/interactive/toggle-group/), [Tabs](/ui/interactive/tabs/), [Listbox](/ui/interactive/listbox/), [List Group](/ui/components/list-group/), [Menu](/ui/interactive/menu/), [Validation](/ui/forms/validation/), the [Combobox](/ui/forms/select/) and [Animate](/ui/utilities/animate/) (playing, plus expanded, pressed and invalid as animation triggers).
 
 ## Value hooks <span class="tui-badge">self-driven JS</span>
 
@@ -63,5 +64,6 @@ Open and close surfaces are native: a `[popover]` opens from `popovertarget` or 
 | `:is([aria-pressed="true"], [aria-checked="true"], [data-pressed], .tui-pressed)` | Sets `--tui-pressed: 1` |
 | `:is([aria-invalid="true"], [data-invalid], .tui-invalid)` | Sets `--tui-invalid: 1` |
 | `:is([aria-disabled="true"], [data-disabled], .tui-disabled, :disabled)` | Sets `--tui-disabled: 1` |
+| `:is([data-playing], .tui-playing)` | Sets `--tui-playing: 1`; plays a `.tui-animate-when-playing` animation on or under it |
 
 Related: [State Inputs](/ui/foundations/state-inputs/) · [Select](/ui/forms/select/) · [Listbox](/ui/interactive/listbox/) · [Browser Support](/ui/getting-started/browser-support/)

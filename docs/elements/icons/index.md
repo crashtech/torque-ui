@@ -2,10 +2,10 @@
 title: Icons
 section: elements
 source: src/20-elements/icons.css
-description: "The .tui-icon convention sizes an inline SVG to the current font size and fills it with the current text colour."
+description: "The .tui-icon convention sizes an inline SVG to the current font size and fills it with the current text color."
 ---
 
-There is no icon font. An icon is an inline `<svg>` with `.tui-icon`: it becomes an `inline-block` sized to `1em` on both axes, dropped `0.125em` below the baseline so it sits optically centred in a line of text, and — unless the SVG carries its own `fill` attribute — filled with `currentcolor`. It also refuses to shrink in a flex row, so a glyph next to a long label keeps its shape.
+There is no icon font. An icon is an inline `<svg>` with `.tui-icon`: it becomes an `inline-block` sized to `1em` on both axes, dropped `0.125em` below the baseline so it sits optically centered in a line of text, and — unless the SVG carries its own `fill` attribute — filled with `currentcolor`. It also refuses to shrink in a flex row, so a glyph next to a long label keeps its shape.
 
 ## In text and controls
 
@@ -25,9 +25,9 @@ Because the size is `1em`, the icon follows whatever font size surrounds it — 
 | `.tui-icon-sm` | `0.75em` |
 | `.tui-icon-lg` | `1.5em` |
 
-## Colour
+## Color
 
-The fill is `currentcolor`, so the icon takes the text colour of its parent: a text-colour utility such as `.tui-text-positive`, a toned badge, or a solid button's contrast foreground all colour the glyph for free. An SVG that draws with strokes should set `fill="none"` and `stroke="currentColor"` on itself, as the check mark below does.
+The fill is `currentcolor`, so the icon takes the text color of its parent: a text-color utility such as `.tui-text-positive`, a toned badge, or a solid button's contrast foreground all color the glyph for free. An SVG that draws with strokes should set `fill="none"` and `stroke="currentColor"` on itself, as the check mark below does.
 
 {% include demo.html file="color.html" %}
 

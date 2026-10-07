@@ -9,7 +9,7 @@ Busy is the loading state of a region you already rendered — a card whose data
 
 ## Busy overlay
 
-`.tui-busy` alone is a plain relative wrapper with no visual effect. With `aria-busy="true"` two pseudo-elements appear: `::before` covers the wrapper with `--tui-busy-backdrop` (70% of `--tui-surface-0` by default) and `::after` centres a 2rem spinner — a 3px `--tui-border` ring whose top arc is `--tui-brand` — spinning at `--tui-duration-slower`. Pointer events are blocked on the whole region, so buttons and inputs underneath cannot be clicked until the attribute is removed.
+`.tui-busy` alone is a plain relative wrapper with no visual effect. With `aria-busy="true"` two pseudo-elements appear: `::before` covers the wrapper with `--tui-busy-backdrop` (70% of `--tui-surface-0` by default) and `::after` centers a 2rem spinner — a 3px `--tui-border` ring whose top arc is `--tui-brand` — spinning at `--tui-duration-slower`. Pointer events are blocked on the whole region, so buttons and inputs underneath cannot be clicked until the attribute is removed.
 
 {% include demo.html file="overlay.html" %}
 
@@ -29,6 +29,6 @@ The same attribute on a `<button>` shows the [loading spinner](/ui/components/bu
 
 | Property | Default | Effect |
 |---|---|---|
-| `--tui-busy-backdrop` | `color-mix(in srgb, var(--tui-surface-0) 70%, transparent)` | Colour of the dimming layer |
+| `--tui-busy-backdrop` | `color-mix(in srgb, var(--tui-surface-0) 70%, transparent)` | Color of the dimming layer |
 
 Related: [Spinner](/ui/components/spinner/) · [Placeholder](/ui/components/placeholder/) · [Progress](/ui/components/progress/) · [Card](/ui/components/card/)

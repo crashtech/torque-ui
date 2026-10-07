@@ -5,7 +5,7 @@ source: src/tui.css
 description: "The feature floor, and how each component degrades below it."
 ---
 
-The floor is **Chrome 123 / Safari 17.5 / Firefox 128**. These features are used unconditionally throughout the library and are what the floor is built on: `:has()`, `@layer`, CSS nesting, `color-mix()`, relative colour syntax, `light-dark()`, `:user-invalid`, the `popover` attribute and `<details name>`.
+The floor is **Chrome 123 / Safari 17.5 / Firefox 128**. These features are used unconditionally throughout the library and are what the floor is built on: `:has()`, `@layer`, CSS nesting, `color-mix()`, relative color syntax, `light-dark()`, `:user-invalid`, the `popover` attribute and `<details name>`.
 
 ## Progressive enhancement
 
@@ -27,6 +27,7 @@ Components that lean on something newer enhance progressively — the feature si
 | `::details-content` (print forces closed collapses open) | Chrome 131 | A section closed on screen prints closed |
 | Scroll-driven animations (reading progress, shrinking header) | Chrome 115 / Safari 26 | Wrapped in `@supports (animation-timeline: scroll())` — unsupported browsers never see the bar or the shrink |
 | `@view-transition` (cross-document view transitions) | Chrome 126 / Safari 18.2 | Navigation happens with no transition |
+| `sibling-index()` (`.tui-stagger` child index) | Chrome 138 | `--tui-i` keeps its initial 0, so the children of a `.tui-stagger` move together; an inline `--tui-i` on a child works everywhere |
 | Leading trim (`text-box: trim-both cap alphabetic`) on headings, paragraphs, list items, cells, labels and other text blocks | Chrome 133 / Safari 18.2 / Firefox 154 | Text keeps its half-leading: it sits a few pixels lower in its box, and boxes and gaps are slightly taller. Declared unconditionally, since there is no second branch to gate; nothing misaligns. See [Typography Scale](/ui/foundations/typography-scale/) |
 
 ## A degradation you can see

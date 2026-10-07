@@ -1,0 +1,35 @@
+<div class="tui-flex tui-justify-center tui-bg-surface-1 tui-rounded-lg tui-p-8">
+  <div class="tui-card tui-max-w-sm tui-w-100">
+    <div class="tui-card-body tui-stack">
+      <div class="tui-flex tui-justify-center">
+        <img data-logo src="/ui/playground/logo.svg" alt="Your logo" height="48">
+      </div>
+      <div class="tui-text-center">
+        <h2>Welcome back</h2>
+        <p class="tui-text-2 tui-m-0">Sign in to continue to your workspace.</p>
+      </div>
+      <form class="tui-form" action="#" method="get">
+        <div class="tui-field">
+          <label for="playground-sign-in-email">Email</label>
+          <input id="playground-sign-in-email" type="email" value="bruna@example" aria-invalid="true" aria-describedby="playground-sign-in-email-error">
+          <span class="tui-error" id="playground-sign-in-email-error">Enter a full e-mail address.</span>
+        </div>
+        <div class="tui-field">
+          <label for="playground-sign-in-password">Password</label>
+          <input id="playground-sign-in-password" type="password" value="hunter22">
+        </div>
+        <div class="tui-level">
+          <label class="tui-checkbox" for="playground-sign-in-remember">
+            <input class="tui-checkbox-input" type="checkbox" id="playground-sign-in-remember" checked>
+            <span>Remember me</span>
+          </label>
+          <a class="tui-text-sm" href="#playground-sign-in">Forgot password?</a>
+        </div>
+        <button class="tui-button tui-button-gradient tui-button-block" type="button">Sign in</button>
+      </form>
+      <div class="tui-divider">or</div>
+      <button class="tui-button tui-button-outline tui-button-block" type="button">Continue with SSO</button>
+      <p class="tui-text-sm tui-text-2 tui-text-center tui-m-0">New here? <a href="#playground-sign-in">Create an account</a></p>
+    </div>
+  </div>
+</div>

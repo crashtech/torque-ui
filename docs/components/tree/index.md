@@ -6,7 +6,7 @@ js: self-driven
 description: "Nested list of native <details> branches and link leaves with guide lines, no JavaScript."
 ---
 
-A tree is a nested `<ul>` of `<li>` where a branch is a `<details class="tui-tree-node">` whose `<summary>` toggles the `<ul>` inside it, and a leaf is an `<a>` or `<span>` with `.tui-tree-leaf`. Open and closed state is native `<details>` behaviour, so it needs no script and works with the keyboard out of the box. Unlike a `.tui-collapse` ([collapse](/ui/interactive/collapse/)), a tree node has no open/close transition — only the disclosure triangle rotates.
+A tree is a nested `<ul>` of `<li>` where a branch is a `<details class="tui-tree-node">` whose `<summary>` toggles the `<ul>` inside it, and a leaf is an `<a>` or `<span>` with `.tui-tree-leaf`. Open and closed state is native `<details>` behavior, so it needs no script and works with the keyboard out of the box. Unlike a `.tui-collapse` ([collapse](/ui/interactive/collapse/)), a tree node has no open/close transition — only the disclosure triangle rotates.
 
 ## Anatomy
 
@@ -34,7 +34,7 @@ A `role="tree"` of `role="treeitem"` rows, each a `.tui-tree-item` label followe
 
 ## Guides and indent
 
-Override `--tui-tree-indent` and `--tui-tree-guide` on the tree to tighten the nesting or colour the guide lines; both are plain hooks, so a value set on any ancestor applies.
+Override `--tui-tree-indent` and `--tui-tree-guide` on the tree to tighten the nesting or color the guide lines; both are plain hooks, so a value set on any ancestor applies.
 
 {% include demo.html file="hooks.html" %}
 
@@ -51,6 +51,6 @@ Override `--tui-tree-indent` and `--tui-tree-guide` on the tree to tighten the n
 | Property | Default | Effect |
 |---|---|---|
 | `--tui-tree-indent` | `var(--tui-spacing-5)` | Start padding of each nested list |
-| `--tui-tree-guide` | `var(--tui-border)` | Colour of the vertical guide line |
+| `--tui-tree-guide` | `var(--tui-border)` | Color of the vertical guide line |
 
 Related: [Collapse](/ui/interactive/collapse/) · [List Group](/ui/components/list-group/) · [Lists](/ui/elements/lists/) · [Status](/ui/components/status/)

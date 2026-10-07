@@ -5,7 +5,7 @@ source: src/40-layout/patterns.css
 description: "A horizontal bar with a start group and an end group pushed to opposite edges, wrapping or shedding optional items when space runs out."
 ---
 
-`.tui-level` is a toolbar row: a flex container with `space-between`, vertically centred items, a `--tui-spacing-4` gap and wrapping on. Its two children, `.tui-level-start` and `.tui-level-end`, are themselves centred flex rows with a `--tui-spacing-3` gap, so buttons and text inside them line up without further classes. It suits a list header, a card toolbar or the row above a table.
+`.tui-level` is a toolbar row: a flex container with `space-between`, vertically centered items, a `--tui-spacing-4` gap and wrapping on. Its two children, `.tui-level-start` and `.tui-level-end`, are themselves centered flex rows with a `--tui-spacing-3` gap, so buttons and text inside them line up without further classes. It suits a list header, a card toolbar or the row above a table.
 
 ## Basic
 
@@ -27,8 +27,8 @@ A level cannot know when its end group no longer fits, so `.tui-level-collapsibl
 
 | Class | Effect |
 |---|---|
-| `.tui-level` | Wrapping `space-between` row, centred, `--tui-spacing-4` gap |
-| `.tui-level-start` / `.tui-level-end` | The two groups; centred rows with a `--tui-spacing-3` gap |
+| `.tui-level` | Wrapping `space-between` row, centered, `--tui-spacing-4` gap |
+| `.tui-level-start` / `.tui-level-end` | The two groups; centered rows with a `--tui-spacing-3` gap |
 | `.tui-level-nowrap` | Never wraps the groups onto separate rows |
 | `.tui-level-collapsible` | Makes the level an inline-size container |
 | `.tui-level-optional` | Hidden inside a collapsible level narrower than 40rem |

@@ -32,6 +32,7 @@
 @import url('./30-components/close.css') layer(tui.components);
 @import url('./30-components/button.css') layer(tui.components);
 @import url('./30-components/card.css') layer(tui.components);
+@import url('./30-components/showcase.css') layer(tui.components);
 @import url('./30-components/alert.css') layer(tui.components);
 @import url('./30-components/badge.css') layer(tui.components);
 @import url('./30-components/avatar.css') layer(tui.components);
@@ -88,6 +89,7 @@
 @import url('./50-forms/password.css') layer(tui.forms);
 @import url('./50-forms/validation.css') layer(tui.forms);
 @import url('./50-forms/form-table.css') layer(tui.forms);
+@import url('./50-forms/table-select.css') layer(tui.forms);
 @import url('./50-forms/form-enhancements.css') layer(tui.forms);
 @import url('./50-forms/stepper.css') layer(tui.forms);
 @import url('./50-forms/color-check.css') layer(tui.forms);
@@ -108,6 +110,7 @@
 @import url('./60-interactive/carousel.css') layer(tui.interactive);
 @import url('./60-interactive/rating.css') layer(tui.interactive);
 @import url('./60-interactive/toggle-group.css') layer(tui.interactive);
+@import url('./60-interactive/cycle.css') layer(tui.interactive);
 @import url('./60-interactive/wizard.css') layer(tui.interactive);
 @import url('./70-utilities/tone.css') layer(tui.utilities);
 @import url('./70-utilities/colors.css') layer(tui.utilities);
@@ -116,6 +119,7 @@
 @import url('./70-utilities/display.css') layer(tui.utilities);
 @import url('./70-utilities/overflow.css') layer(tui.utilities);
 @import url('./70-utilities/text.css') layer(tui.utilities);
+@import url('./70-utilities/animate.css') layer(tui.utilities);
 @import url('./70-utilities/visual.css') layer(tui.utilities);
 @import url('./70-utilities/pointer-orientation.css') layer(tui.utilities);
 @import url('./70-utilities/scroll.css') layer(tui.utilities);

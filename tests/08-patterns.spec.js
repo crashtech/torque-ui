@@ -390,7 +390,7 @@ test.describe('Patterns — Board', () => {
 test.describe('Patterns — Sheet', () => {
   test.beforeEach(({ page }) => page.goto('/examples/08-patterns.html'));
 
-  test('the popovertarget button opens the sheet centred horizontally', async ({ page }) => {
+  test('the popovertarget button opens the sheet centered horizontally', async ({ page }) => {
     await page.setViewportSize({ width: 1280, height: 800 });
     await page.getByRole('button', { name: 'Open search' }).click();
     const sheet = page.locator('#search-sheet');

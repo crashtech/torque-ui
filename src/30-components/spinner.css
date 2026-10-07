@@ -8,7 +8,7 @@
     border: 3px solid var(--tui-surface-3);
     border-block-start-color: var(--tui-brand);
     border-radius: 50%;
-    animation: tui-spin 0.75s linear infinite;
+    animation: tui-spin calc(var(--tui-duration-normal) * 3) linear infinite;
   }
 
   @keyframes tui-spin {

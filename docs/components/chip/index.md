@@ -30,7 +30,7 @@ Append a `.tui-state-input.tui-dismiss` checkbox and a `.tui-close` label as the
 
 ## Anchor chips
 
-An `<a>` works as a chip for a filter row that navigates. The chip asserts its own colour, so the link colour does not leak in.
+An `<a>` works as a chip for a filter row that navigates. The chip asserts its own color, so the link color does not leak in.
 
 {% include demo.html file="anchors.html" %}
 

@@ -56,7 +56,7 @@ button.tui-toggle {
   }
 }
 
-/* === Per-option active colours === */
+/* === Per-option active colors === */
 .tui-toggle-success {
   --tui-toggle-active-bg: var(--tui-positive);
   --tui-toggle-active-fg: var(--tui-positive-fg);

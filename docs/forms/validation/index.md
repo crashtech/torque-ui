@@ -28,7 +28,7 @@ Server-side or script validation has no `:user-invalid` to key on. Set `aria-inv
 
 ## No success state
 
-`:valid` and `:user-valid` are intentionally unstyled — only errors are signalled, so a filled form reads as calm rather than as a row of green ticks. If a flow needs a positive confirmation, say it in a `.tui-help` line or an [alert](/ui/components/alert/) instead of colouring the control.
+`:valid` and `:user-valid` are intentionally unstyled — only errors are signaled, so a filled form reads as calm rather than as a row of green ticks. If a flow needs a positive confirmation, say it in a `.tui-help` line or an [alert](/ui/components/alert/) instead of coloring the control.
 
 {% include demo.html file="no-success.html" %}
 

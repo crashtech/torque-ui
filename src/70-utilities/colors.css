@@ -3,8 +3,8 @@
  */
 
   /* === Text Colors ===
-   * why: coloured text sits on a surface, so it reads the ink — the raw
-   * tone is a fill colour and a bright one (yellow) is unreadable as text */
+   * why: colored text sits on a surface, so it reads the ink — the raw
+   * tone is a fill color and a bright one (yellow) is unreadable as text */
   .tui-text-primary   { color: var(--tui-brand-ink); }
   .tui-text-positive  { color: var(--tui-positive-ink); }
   .tui-text-negative  { color: var(--tui-negative-ink); }
@@ -25,6 +25,19 @@
   .tui-text-tone-fg     { color: var(--tui-tone-fg, var(--tui-text-1)); }
 
   /* === Chart series (fill="currentColor" in SVG) === */
+
+  /* why: color from the index instead of a fixed token — the first child is
+     series 0 and every next sibling turns the hue one more step, so a chart
+     never runs out of series. Declared before the fixed classes so one on a
+     child still wins; --tui-i is the hook .tui-stagger sets, so an inline
+     --tui-i repins a child */
+  .tui-chart-stagger > * {
+    --tui-i: calc(sibling-index() - 1);
+
+    color: oklch(from var(--tui-chart-base) calc(l + (0.86 - l) * var(--tui-chart-pastel)) calc(c + (0.08 - c) * var(--tui-chart-pastel)) calc(h + var(--tui-chart-color-stagger, var(--tui-chart-rotation)) * var(--tui-i)));
+  }
+
+  .tui-chart-0       { color: var(--tui-chart-0); }
   .tui-chart-1       { color: var(--tui-chart-1); }
   .tui-chart-2       { color: var(--tui-chart-2); }
   .tui-chart-3       { color: var(--tui-chart-3); }
@@ -52,6 +65,19 @@
     background-color: var(--tui-tone, var(--tui-brand));
     background-image: var(--tui-tone-gradient, var(--tui-brand-gradient));
     color: var(--tui-tone-fg, var(--tui-brand-fg));
+  }
+
+  /* why: the glyphs become a window onto the gradient — the text color must
+     be transparent for it to show, so print and forced-colors put a solid
+     color back (80-themes) or the words would vanish with the background.
+     A trimmed heading ends at the baseline, and paint stops with the box, so
+     descenders would lose their color: the under edge moves to the font's
+     descent, keeping the cap trim above. */
+  .tui-text-gradient {
+    background-image: var(--tui-tone-gradient, var(--tui-brand-gradient));
+    background-clip: text;
+    color: transparent;
+    text-box-edge: cap text;
   }
 
   /* === Avatar palette === */

@@ -13,7 +13,7 @@ The reboot is the second cascade layer and the only place the framework touches 
 |---|---|
 | `*, *::before, *::after` | `box-sizing: border-box` everywhere |
 | `html` | `font-size: var(--tui-root-size)` — the density knob; `text-size-adjust: 100%` so mobile browsers do not inflate text; `line-height: var(--tui-leading-normal)`; antialiased font smoothing |
-| `body` | Zero margin; `--tui-font-sans`, `--tui-text-base`, `--tui-font-normal`, `--tui-leading-normal`; `--tui-text-1` on `--tui-surface-0` — the two tokens that make the page flip with the colour scheme |
+| `body` | Zero margin; `--tui-font-sans`, `--tui-text-base`, `--tui-font-normal`, `--tui-leading-normal`; `--tui-text-1` on `--tui-surface-0` — the two tokens that make the page flip with the color scheme |
 | `::selection` | Brand at 30% behind `--tui-text-1`, so selected text stays readable in either scheme |
 | `img, picture, video, canvas, svg` | `display: block` and `max-inline-size: 100%` — media never overflows its container or sits on a text baseline |
 | `input, button, textarea, select` | `font: inherit; color: inherit` — form controls take the surrounding type instead of the browser's |

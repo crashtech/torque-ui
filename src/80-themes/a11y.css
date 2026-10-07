@@ -52,6 +52,14 @@
     *:focus-visible {
       outline: var(--tui-focus-ring-width) solid Highlight;
     }
+
+    /* why: forced colors replace the gradient with the Canvas backplate, so
+       transparent glyphs would disappear into it */
+    .tui-text-gradient {
+      background-image: none;
+      background-clip: border-box;
+      color: CanvasText;
+    }
   }
 
   /* === 3. Reduced data / live-data preference === */
@@ -61,7 +69,7 @@
     }
 
     .tui-spinner {
-      animation-duration: 3s;
+      animation-duration: calc(var(--tui-duration-normal) * 12);
     }
   }
 

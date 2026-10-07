@@ -2,10 +2,10 @@
 title: Color Check
 section: forms
 source: src/50-forms/color-check.css
-description: "Radio group rendered as round colour swatches, with a brand ring and tick on the chosen one."
+description: "Radio group rendered as round color swatches, with a brand ring and tick on the chosen one."
 ---
 
-A colour check is a set of radios drawn as swatches: `.tui-color-check-group` holds `label.tui-color-check` items, each with a hidden `.tui-color-check-input` radio and a `.tui-color-check-swatch` painted with `--tui-swatch`. The radio keeps its form value and keyboard behaviour — arrow keys move the selection through the group — while the swatch shows the choice. Use it for a theme accent, a label colour or any short palette a user picks from.
+A color check is a set of radios drawn as swatches: `.tui-color-check-group` holds `label.tui-color-check` items, each with a hidden `.tui-color-check-input` radio and a `.tui-color-check-swatch` painted with `--tui-swatch`. The radio keeps its form value and keyboard behavior — arrow keys move the selection through the group — while the swatch shows the choice. Use it for a theme accent, a label color or any short palette a user picks from.
 
 ## Swatches
 
@@ -13,11 +13,11 @@ The group is a wrapping inline-flex row with a `--tui-spacing-2` gap. Each `.tui
 
 {% include demo.html file="basic.html" %}
 
-## Naming the colours
+## Naming the colors
 
 A swatch has no text, so give each option an accessible name: a `title` on the label is the lightest option, and a `.tui-sr-only` span inside the label is announced by screen readers without changing the layout. Group the whole palette in a `<fieldset>` with a `<legend>` so the question is announced too.
 
-{% include demo.html file="labelled.html" %}
+{% include demo.html file="labeled.html" %}
 
 | Class | Effect |
 |---|---|
@@ -30,6 +30,6 @@ A swatch has no text, so give each option an accessible name: a `title` on the l
 
 | Property | Default | Effect |
 |---|---|---|
-| `--tui-swatch` | `--tui-neutral-400` | Fill colour of a `.tui-color-check-swatch` |
+| `--tui-swatch` | `--tui-neutral-400` | Fill color of a `.tui-color-check-swatch` |
 
 Related: [Image Check](/ui/forms/image-check/) · [Radio](/ui/forms/radio/) · [Colors](/ui/foundations/colors/) · [Form Layout](/ui/forms/form-layout/)

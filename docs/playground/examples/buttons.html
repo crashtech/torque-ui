@@ -1,0 +1,108 @@
+<div class="tui-grid tui-grid-lg-2 tui-gap-6">
+  <div class="tui-card">
+    <div class="tui-card-header"><h3>Buttons</h3></div>
+    <div class="tui-card-body tui-stack">
+      <div class="tui-flex tui-flex-wrap tui-gap-2 tui-items-center">
+        <button type="button" class="tui-button tui-button-primary">Primary</button>
+        <button type="button" class="tui-button">Default</button>
+        <button type="button" class="tui-button tui-button-secondary">Secondary</button>
+        <button type="button" class="tui-button tui-button-outline">Outline</button>
+        <button type="button" class="tui-button tui-button-ghost">Ghost</button>
+        <button type="button" class="tui-button tui-button-gradient">Gradient</button>
+      </div>
+      <div class="tui-flex tui-flex-wrap tui-gap-2 tui-items-center">
+        <button type="button" class="tui-button tui-button-success">Success</button>
+        <button type="button" class="tui-button tui-button-error">Error</button>
+        <button type="button" class="tui-button tui-button-warning">Warning</button>
+        <button type="button" class="tui-button tui-button-info">Info</button>
+        <button type="button" class="tui-button tui-button-primary" disabled>Disabled</button>
+        <button type="button" class="tui-button tui-button-primary" aria-busy="true">Saving</button>
+      </div>
+      <div class="tui-flex tui-flex-wrap tui-gap-2 tui-items-center">
+        <button type="button" class="tui-button tui-button-primary tui-button-sm">Small</button>
+        <button type="button" class="tui-button tui-button-primary">Medium</button>
+        <button type="button" class="tui-button tui-button-primary tui-button-lg">Large</button>
+        <button type="button" class="tui-button tui-button-primary tui-button-icon" aria-label="Search">
+          <svg class="tui-icon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg>
+        </button>
+      </div>
+      <div class="tui-flex tui-flex-wrap tui-gap-4 tui-items-center">
+        <div class="tui-button-group">
+          <button type="button" class="tui-button" aria-pressed="true">Day</button>
+          <button type="button" class="tui-button" aria-pressed="false">Week</button>
+          <button type="button" class="tui-button" aria-pressed="false">Month</button>
+        </div>
+        <div class="tui-split-button">
+          <button type="button" class="tui-button tui-button-primary">Deploy</button>
+          <button type="button" class="tui-button tui-button-primary tui-button-icon" popovertarget="playground-buttons-deploy" aria-label="More deploy options" aria-haspopup="menu">▾</button>
+        </div>
+        <div class="tui-popover tui-menu" id="playground-buttons-deploy" popover>
+          <button class="tui-menu-item" type="button">Deploy to staging</button>
+          <button class="tui-menu-item" type="button">Deploy to production</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tui-card">
+    <div class="tui-card-header"><h3>Badges, chips and tags</h3></div>
+    <div class="tui-card-body tui-stack">
+      <div class="tui-flex tui-flex-wrap tui-gap-2">
+        <span class="tui-badge">Default</span>
+        <span class="tui-badge tui-badge-primary">Primary</span>
+        <span class="tui-badge tui-badge-success">Success</span>
+        <span class="tui-badge tui-badge-error">Error</span>
+        <span class="tui-badge tui-badge-warning">Warning</span>
+        <span class="tui-badge tui-badge-info">Info</span>
+      </div>
+      <div class="tui-flex tui-flex-wrap tui-gap-2">
+        <span class="tui-badge tui-badge-solid">Brand</span>
+        <span class="tui-badge tui-badge-solid tui-badge-success">Live</span>
+        <span class="tui-badge tui-badge-solid tui-badge-error">99+</span>
+        <span class="tui-badge tui-badge-solid tui-badge-warning">Beta</span>
+        <span class="tui-badge tui-badge-solid tui-badge-info">New</span>
+      </div>
+      <div class="tui-flex tui-flex-wrap tui-gap-2">
+        <a class="tui-chip tui-chip-primary" href="#playground-chips">All</a>
+        <a class="tui-chip" href="#playground-chips">Open</a>
+        <a class="tui-chip" href="#playground-chips">Assigned to me</a>
+        <a class="tui-chip tui-chip-success" href="#playground-chips">Resolved</a>
+      </div>
+      <div class="tui-flex tui-flex-wrap tui-gap-2">
+        <span class="tui-tag tui-tag-primary">design</span>
+        <span class="tui-tag tui-tag-info">frontend</span>
+        <span class="tui-tag tui-tag-success">shipped</span>
+        <span class="tui-tag tui-tag-warning">review</span>
+        <span class="tui-tag tui-tag-error">blocked</span>
+      </div>
+      <div class="tui-flex tui-flex-wrap tui-gap-6 tui-items-center">
+        <div class="tui-avatar-group">
+          <img class="tui-avatar" src="/ui/assets/demo/avatar-1.svg" alt="Alexandra Collins">
+          <img class="tui-avatar" src="/ui/assets/demo/avatar-2.svg" alt="Bruna Rocha">
+          <img class="tui-avatar" src="/ui/assets/demo/avatar-3.svg" alt="Otávio Neves">
+          <span class="tui-avatar">+4</span>
+        </div>
+        <div class="tui-flex tui-gap-2">
+          <span class="tui-avatar tui-avatar-1">AC</span>
+          <span class="tui-avatar tui-avatar-2">BR</span>
+          <span class="tui-avatar tui-avatar-3">ON</span>
+          <span class="tui-avatar tui-avatar-4">JD</span>
+          <span class="tui-avatar tui-avatar-5">MK</span>
+          <span class="tui-avatar tui-avatar-6">LP</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tui-card tui-col-span-full">
+    <div class="tui-card-header"><h3>Typography</h3></div>
+    <div class="tui-card-body">
+      <h1>Ship <span class="tui-text-gradient">faster</span> with plain CSS</h1>
+      <h2>A heading for every section</h2>
+      <h3>And one for every card</h3>
+      <p class="tui-text-lg tui-text-2">Lead paragraphs set the tone of a page before the details begin.</p>
+      <p>Body copy reads in your text font, with <a href="#playground-type">links in the brand</a>, <strong>strong words</strong>, <em>emphasis</em>, <kbd>⌘ K</kbd> shortcuts and <code>inline code</code> in your code font.</p>
+      <blockquote><p>One variable re-themes everything.</p></blockquote>
+    </div>
+  </div>
+</div>

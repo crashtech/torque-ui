@@ -4,7 +4,7 @@
 
 ## Description
 
-Torque UI is a CSS framework with no build step, no SCSS and no JavaScript: link one stylesheet and every element, component, layout and utility is ready. Interactivity comes from the platform itself — hidden checkboxes and radios, `<details>`, the `popover` attribute, `<dialog>` — driven by `:has()`, `:checked` and cascade layers, so tabs, menus, drawers and modals work without a single script. The whole palette derives from one brand colour, nine `@layer`s settle precedence without `!important`, and WCAG AA contrast, visible focus rings, dark mode, reduced motion and forced colours are the default.
+Torque UI is a CSS framework with no build step, no SCSS and no JavaScript: link one stylesheet and every element, component, layout and utility is ready. Interactivity comes from the platform itself — hidden checkboxes and radios, `<details>`, the `popover` attribute, `<dialog>` — driven by `:has()`, `:checked` and cascade layers, so tabs, menus, drawers and modals work without a single script. The whole palette derives from one brand color, nine `@layer`s settle precedence without `!important`, and WCAG AA contrast, visible focus rings, dark mode, reduced motion and forced colors are the default.
 
 Where the platform stops, the framework stays **JS-friendly** rather than shipping script. Every state your own code would set is already styled: `aria-selected`, `aria-expanded`, `aria-busy`, `aria-invalid`, `hidden`, `inert`, a `data-*` attribute or a class all paint the same thing, and value hooks such as `--tui-progress-value` read themselves from `aria-valuenow`. A searchable combobox with tags (`.tui-combobox`), a listbox, a calendar grid, drag-and-drop states and a loading button are all there — you plug in the twenty lines of JavaScript that fit your app, and the docs show the minimal version of each. Sections built this way carry a **self-driven JS** label.
 
@@ -46,7 +46,7 @@ The documentation lives at [torque.dev/ui](https://torque.dev/ui/), one page per
 
 ### Foundations
 
-_One brand colour, a handful of scales, and every component reads them._
+_One brand color, a handful of scales, and every component reads them._
 
 - [Chart Palette](https://torque.dev/ui/foundations/chart-palette/)
 - [Colors](https://torque.dev/ui/foundations/colors/)
@@ -141,6 +141,7 @@ _Tabs, menus, dialogs and drawers driven by :checked, popover and dialog — no 
 - [Calendar](https://torque.dev/ui/interactive/calendar/)
 - [Carousel](https://torque.dev/ui/interactive/carousel/)
 - [Collapse](https://torque.dev/ui/interactive/collapse/)
+- [Cycle](https://torque.dev/ui/interactive/cycle/)
 - [Drag and Drop](https://torque.dev/ui/interactive/drag/)
 - [Listbox](https://torque.dev/ui/interactive/listbox/)
 - [Menu](https://torque.dev/ui/interactive/menu/)
@@ -177,6 +178,7 @@ _Gap, not margins — components carry no outer spacing of their own._
 
 _Single-purpose classes that win over any component._
 
+- [Animate](https://torque.dev/ui/utilities/animate/)
 - [Colors](https://torque.dev/ui/utilities/colors/)
 - [Display](https://torque.dev/ui/utilities/display/)
 - [Overflow](https://torque.dev/ui/utilities/overflow/)
@@ -189,7 +191,7 @@ _Single-purpose classes that win over any component._
 
 ### Themes
 
-_Dark mode, contrast, motion, print — the user preferences honoured by default._
+_Dark mode, contrast, motion, print — the user preferences honored by default._
 
 - [Accessibility](https://torque.dev/ui/themes/accessibility/)
 - [Dark Mode](https://torque.dev/ui/themes/dark-mode/)
@@ -201,7 +203,7 @@ _Dark mode, contrast, motion, print — the user preferences honoured by default
 
 ## Browser Support
 
-The floor is **Chrome 123 / Safari 17.5 / Firefox 128**: `:has()`, `@layer`, CSS nesting, `color-mix()`, relative colour syntax, `light-dark()`, `:user-invalid`, the `popover` attribute and `<details name>` are used unconditionally.
+The floor is **Chrome 123 / Safari 17.5 / Firefox 128**: `:has()`, `@layer`, CSS nesting, `color-mix()`, relative color syntax, `light-dark()`, `:user-invalid`, the `popover` attribute and `<details name>` are used unconditionally.
 
 Everything newer enhances progressively — the feature sits behind `@supports`, or the component has a documented soft degradation — so below its own floor a component still works and only loses the enhancement. The main ones:
 
@@ -232,7 +234,7 @@ Edit the CSS under `src/` (one file per component, imported into its layer from 
 ```bash
 npm run lint:css   # stylelint, logical properties, no !important
 npm run build      # regenerates dist/tui-all.css in the entry point's order
-npm test           # Playwright: behaviour, accessibility, RTL, print, visual and bundle-equivalence suites
+npm test           # Playwright: behavior, accessibility, RTL, print, visual and bundle-equivalence suites
 ```
 
 Every component has a docs page under `docs/`, an example on one of the `examples/` pages and a test; a change to any of them should carry the other two. Finally, fix and send a pull request.

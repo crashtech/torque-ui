@@ -1,0 +1,436 @@
+/* Torque UI — Animate
+ * A curated keyframe catalog on .tui-animate, with an exit for every
+ * entrance behind .tui-animate-out and a loop behind .tui-animate-loop; .tui-animate-when-*
+ * holds an animation until a state appears and replays it whenever the
+ * state returns; .tui-stagger delays each child by its index;
+ * .tui-animate-count runs --tui-animate-value from one number to another.
+ */
+
+/* === Base === */
+
+/* why: the first transform or opacity animation on an element promotes it
+   to its own layer and rasterizes it on the spot, which shows as a rough
+   first run; promoting it up front makes the first run like every other */
+.tui-animate {
+  animation-name: var(--tui-animate-name);
+  animation-duration: var(--tui-duration-normal);
+  animation-timing-function: var(--tui-easing-out);
+  animation-fill-mode: both;
+  will-change: opacity, transform, translate, scale, rotate;
+}
+
+/* === Catalog === */
+.tui-animate-fade {
+  --tui-animate-name: tui-fade;
+  --tui-animate-exit: tui-fade-out;
+}
+
+.tui-animate-scale {
+  --tui-animate-name: tui-scale;
+  --tui-animate-exit: tui-scale-out;
+}
+
+.tui-animate-slide-top {
+  --tui-animate-name: tui-slide-top;
+  --tui-animate-exit: tui-slide-top-out;
+}
+
+.tui-animate-slide-bottom {
+  --tui-animate-name: tui-slide-bottom;
+  --tui-animate-exit: tui-slide-bottom-out;
+}
+
+.tui-animate-slide-left {
+  --tui-animate-name: tui-slide-left;
+  --tui-animate-exit: tui-slide-left-out;
+}
+
+.tui-animate-slide-right {
+  --tui-animate-name: tui-slide-right;
+  --tui-animate-exit: tui-slide-right-out;
+}
+
+.tui-animate-fly-top {
+  --tui-animate-name: tui-fly-top;
+  --tui-animate-exit: tui-fly-top-out;
+}
+
+.tui-animate-fly-bottom {
+  --tui-animate-name: tui-fly-bottom;
+  --tui-animate-exit: tui-fly-bottom-out;
+}
+
+.tui-animate-fly-left {
+  --tui-animate-name: tui-fly-left;
+  --tui-animate-exit: tui-fly-left-out;
+}
+
+.tui-animate-fly-right {
+  --tui-animate-name: tui-fly-right;
+  --tui-animate-exit: tui-fly-right-out;
+}
+
+.tui-animate-flip-x {
+  --tui-animate-name: tui-flip-x;
+  --tui-animate-exit: tui-flip-x-out;
+}
+
+.tui-animate-flip-y {
+  --tui-animate-name: tui-flip-y;
+  --tui-animate-exit: tui-flip-y-out;
+}
+
+.tui-animate-shake {
+  --tui-animate-name: tui-shake;
+
+  animation-duration: var(--tui-duration-slowest);
+}
+
+.tui-animate-pulse {
+  --tui-animate-name: tui-pulse;
+
+  animation-duration: var(--tui-duration-slowest);
+}
+
+.tui-animate-bounce {
+  --tui-animate-name: tui-bounce;
+
+  animation-duration: var(--tui-duration-slowest);
+}
+
+.tui-animate-flash {
+  --tui-animate-name: tui-flash;
+
+  animation-duration: var(--tui-duration-slowest);
+}
+
+.tui-animate-jiggle {
+  --tui-animate-name: tui-jiggle;
+
+  animation-duration: var(--tui-duration-slowest);
+}
+
+.tui-animate-tada {
+  --tui-animate-name: tui-tada;
+
+  animation-duration: var(--tui-duration-slowest);
+}
+
+.tui-animate-count {
+  --tui-animate-name: tui-count;
+  --tui-animate-exit: tui-count-out;
+
+  counter-reset: tui-animate-value calc(var(--tui-animate-value));
+}
+
+.tui-animate-count-text::after {
+  content: counter(tui-animate-value);
+}
+
+/* === Modes === */
+
+/* why: an exit is its own keyframe rather than the entrance reversed, so a
+   gate can swap the two names and every swap restarts the animation; the
+   both-fill then holds the exit's last frame — transparent, offset and
+   visibility: hidden — and the element leaves the tab order and the
+   accessibility tree as well as the screen. Entrances that fade need no
+   hidden first frame; the slides keep one so a delayed child is not seen
+   waiting offset. */
+.tui-animate-out {
+  animation-name: var(--tui-animate-exit, var(--tui-animate-name));
+}
+
+.tui-animate-loop {
+  animation-iteration-count: infinite;
+}
+
+/* === Gated triggers ===
+ * A state counts on the element, inside it, on an ancestor or on an earlier
+ * sibling (the input-then-label contract of .tui-state-input), whether it is
+ * native or set the self-driven way. Flipping animation-name from none
+ * restarts the animation each time the state returns. An earlier sibling
+ * counts when it carries the state or wraps it, as a label wraps its input.
+ * why: hover counts on the element alone, or under a .tui-animate-host —
+ * every ancestor up to html is :hover while the pointer is anywhere on the
+ * page, so an unmarked parent would play every child at once, and a host
+ * gives a moving entrance a still target to hover.
+ * why: an idle exit plays its entrance instead of stopping, so the toggle
+ * runs both ways — out when the state arrives, in when it goes */
+.tui-animate-when-playing:not(:is([data-playing], .tui-playing), :is([data-playing], .tui-playing) *, :is([data-playing], .tui-playing) ~ *, :has([data-playing], .tui-playing) ~ *),
+.tui-animate-when-checked:not(:is(:checked, [aria-pressed="true"], [aria-checked="true"], [data-pressed], .tui-pressed), :has(:checked, [aria-pressed="true"], [aria-checked="true"], [data-pressed], .tui-pressed), :is(:checked, [aria-pressed="true"], [aria-checked="true"], [data-pressed], .tui-pressed) ~ *, :has(:checked, [aria-pressed="true"], [aria-checked="true"], [data-pressed], .tui-pressed) ~ *),
+.tui-animate-when-invalid:not(:is(:user-invalid, [aria-invalid="true"], [data-invalid], .tui-invalid), :has(:user-invalid, [aria-invalid="true"], [data-invalid], .tui-invalid), :is(:user-invalid, [aria-invalid="true"], [data-invalid], .tui-invalid) ~ *, :has(:user-invalid, [aria-invalid="true"], [data-invalid], .tui-invalid) ~ *),
+.tui-animate-when-open:not(:is([open], :popover-open, [aria-expanded="true"], [data-expanded], .tui-expanded), :has([open], :popover-open, [aria-expanded="true"], [data-expanded], .tui-expanded), :is([open], :popover-open, [aria-expanded="true"], [data-expanded], .tui-expanded) *, :is([open], :popover-open, [aria-expanded="true"], [data-expanded], .tui-expanded) ~ *, :has([open], :popover-open, [aria-expanded="true"], [data-expanded], .tui-expanded) ~ *),
+.tui-animate-when-target:not(:target, :has(:target), :target *, :target ~ *, :has(:target) ~ *),
+.tui-animate-when-hover:not(:hover, .tui-animate-host:hover *),
+.tui-animate-when-focus:not(:focus-visible, :has(:focus-visible), :focus-visible *, :focus-visible ~ *, :has(:focus-visible) ~ *) {
+  &:not(.tui-animate-out) {
+    animation-name: none;
+  }
+
+  &.tui-animate-out {
+    animation-name: var(--tui-animate-name);
+  }
+}
+
+/* === Stagger ===
+ * why: --tui-i is registered so a browser without sibling-index() computes
+ * it to the initial 0 and the whole list moves together, while an inline
+ * --tui-i on a child works everywhere */
+@property --tui-i {
+  syntax: '<integer>';
+  inherits: false;
+  initial-value: 0;
+}
+
+.tui-stagger > * {
+  --tui-i: calc(sibling-index() - 1);
+
+  animation-delay: calc(var(--tui-i) * var(--tui-stagger-step, calc(var(--tui-duration-normal) * 0.24)));
+}
+
+/* why: 80-themes/a11y.css shortens durations, not delays — a staggered
+   list would still wait out every delay before snapping into place */
+@media (prefers-reduced-motion: reduce) {
+  .tui-stagger > * {
+    animation-delay: 0s;
+  }
+}
+
+/* === Count ===
+ * why: an unregistered custom property flips at the halfway frame; the
+ * registered number interpolates, inherits into pseudo-elements and
+ * children, and rounds into the counter because content cannot print a
+ * number */
+@property --tui-animate-value {
+  syntax: '<number>';
+  inherits: true;
+  initial-value: 0;
+}
+
+/* === Keyframes === */
+@keyframes tui-fade {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes tui-scale {
+  from {
+    scale: 0.5;
+    opacity: 0;
+  }
+}
+
+@keyframes tui-slide-top {
+  from {
+    translate: 0 calc(-1 * var(--tui-animate-distance, 1rem));
+    visibility: hidden;
+  }
+}
+
+@keyframes tui-slide-bottom {
+  from {
+    translate: 0 var(--tui-animate-distance, 1rem);
+    visibility: hidden;
+  }
+}
+
+@keyframes tui-slide-left {
+  from {
+    translate: calc(-1 * var(--tui-animate-distance, 1rem)) 0;
+    visibility: hidden;
+  }
+}
+
+@keyframes tui-slide-right {
+  from {
+    translate: var(--tui-animate-distance, 1rem) 0;
+    visibility: hidden;
+  }
+}
+
+@keyframes tui-fly-top {
+  from {
+    opacity: 0;
+    translate: 0 calc(-1 * var(--tui-animate-distance, 1rem));
+  }
+}
+
+@keyframes tui-fly-bottom {
+  from {
+    opacity: 0;
+    translate: 0 var(--tui-animate-distance, 1rem);
+  }
+}
+
+@keyframes tui-fly-left {
+  from {
+    opacity: 0;
+    translate: calc(-1 * var(--tui-animate-distance, 1rem)) 0;
+  }
+}
+
+@keyframes tui-fly-right {
+  from {
+    opacity: 0;
+    translate: var(--tui-animate-distance, 1rem) 0;
+  }
+}
+
+@keyframes tui-flip-x {
+  from {
+    opacity: 0;
+    transform: perspective(24rem) rotateX(90deg);
+  }
+}
+
+@keyframes tui-flip-y {
+  from {
+    opacity: 0;
+    transform: perspective(24rem) rotateY(90deg);
+  }
+}
+
+@keyframes tui-fade-out {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+@keyframes tui-scale-out {
+  to {
+    scale: 0.5;
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+@keyframes tui-slide-top-out {
+  to {
+    translate: 0 calc(-1 * var(--tui-animate-distance, 1rem));
+    visibility: hidden;
+  }
+}
+
+@keyframes tui-slide-bottom-out {
+  to {
+    translate: 0 var(--tui-animate-distance, 1rem);
+    visibility: hidden;
+  }
+}
+
+@keyframes tui-slide-left-out {
+  to {
+    translate: calc(-1 * var(--tui-animate-distance, 1rem)) 0;
+    visibility: hidden;
+  }
+}
+
+@keyframes tui-slide-right-out {
+  to {
+    translate: var(--tui-animate-distance, 1rem) 0;
+    visibility: hidden;
+  }
+}
+
+@keyframes tui-fly-top-out {
+  to {
+    opacity: 0;
+    translate: 0 calc(-1 * var(--tui-animate-distance, 1rem));
+    visibility: hidden;
+  }
+}
+
+@keyframes tui-fly-bottom-out {
+  to {
+    opacity: 0;
+    translate: 0 var(--tui-animate-distance, 1rem);
+    visibility: hidden;
+  }
+}
+
+@keyframes tui-fly-left-out {
+  to {
+    opacity: 0;
+    translate: calc(-1 * var(--tui-animate-distance, 1rem)) 0;
+    visibility: hidden;
+  }
+}
+
+@keyframes tui-fly-right-out {
+  to {
+    opacity: 0;
+    translate: var(--tui-animate-distance, 1rem) 0;
+    visibility: hidden;
+  }
+}
+
+@keyframes tui-flip-x-out {
+  to {
+    opacity: 0;
+    transform: perspective(24rem) rotateX(90deg);
+    visibility: hidden;
+  }
+}
+
+@keyframes tui-flip-y-out {
+  to {
+    opacity: 0;
+    transform: perspective(24rem) rotateY(90deg);
+    visibility: hidden;
+  }
+}
+
+/* why: the moving attention animations scale their distance, growth and
+   tilt by --tui-animate-strength, so one number tunes them together */
+@keyframes tui-shake {
+  20%, 60% { translate: calc(-0.25rem * var(--tui-animate-strength, 1)) 0; }
+  40%, 80% { translate: calc(0.25rem * var(--tui-animate-strength, 1)) 0; }
+}
+
+@keyframes tui-pulse {
+  50% { scale: calc(1 + 0.06 * var(--tui-animate-strength, 1)); }
+}
+
+@keyframes tui-bounce {
+  30% { translate: 0 calc(-0.5rem * var(--tui-animate-strength, 1)); }
+  50% { translate: 0 0; }
+  70% { translate: 0 calc(-0.25rem * var(--tui-animate-strength, 1)); }
+}
+
+@keyframes tui-flash {
+  25%, 75% { opacity: 0; }
+}
+
+@keyframes tui-jiggle {
+  25% { rotate: calc(-3deg * var(--tui-animate-strength, 1)); }
+  75% { rotate: calc(3deg * var(--tui-animate-strength, 1)); }
+}
+
+@keyframes tui-tada {
+  10%, 20% {
+    scale: calc(1 - 0.1 * var(--tui-animate-strength, 1));
+    rotate: calc(-3deg * var(--tui-animate-strength, 1));
+  }
+
+  30%, 50%, 70%, 90% {
+    scale: calc(1 + 0.1 * var(--tui-animate-strength, 1));
+    rotate: calc(3deg * var(--tui-animate-strength, 1));
+  }
+
+  40%, 60%, 80% {
+    scale: calc(1 + 0.1 * var(--tui-animate-strength, 1));
+    rotate: calc(-3deg * var(--tui-animate-strength, 1));
+  }
+}
+
+@keyframes tui-count {
+  from { --tui-animate-value: var(--tui-animate-from, 0); }
+  to { --tui-animate-value: var(--tui-animate-to, 100); }
+}
+
+@keyframes tui-count-out {
+  from { --tui-animate-value: var(--tui-animate-to, 100); }
+  to { --tui-animate-value: var(--tui-animate-from, 0); }
+}

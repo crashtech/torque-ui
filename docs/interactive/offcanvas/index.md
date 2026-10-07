@@ -29,7 +29,7 @@ Add `.tui-offcanvas-end` to anchor the drawer to the inline-end edge and slide i
 
 ## Collapsible navbar menu
 
-`.tui-offcanvas-collapse` is the same drawer below 768px and a plain inline row above it: at that width the class resets position, size, padding, background and shadow and lays its children out as a centred flex row. It is what the [navbar](/ui/components/navbar/) uses for its `.tui-navbar-menu`, so the menu is a drawer on phones and a horizontal list on desktop with one markup. Resize the browser to see both states.
+`.tui-offcanvas-collapse` is the same drawer below 768px and a plain inline row above it: at that width the class resets position, size, padding, background and shadow and lays its children out as a centered flex row. It is what the [navbar](/ui/components/navbar/) uses for its `.tui-navbar-menu`, so the menu is a drawer on phones and a horizontal list on desktop with one markup. Resize the browser to see both states.
 
 {% include demo.html file="collapse.html" frame=true height="18rem" %}
 
@@ -49,6 +49,6 @@ Add `.tui-offcanvas-end` to anchor the drawer to the inline-end edge and slide i
 |---|---|---|
 | `--tui-offcanvas-inline-size` | `20rem` | Drawer width |
 | `--tui-offcanvas-bg` | `var(--tui-surface-0)` | Drawer background |
-| `--tui-offcanvas-backdrop` | `light-dark(rgb(255 255 255 / 0.5), rgb(0 0 0 / 0.5))` | `::backdrop` colour, behind a 4px blur |
+| `--tui-offcanvas-backdrop` | `light-dark(rgb(255 255 255 / 0.5), rgb(0 0 0 / 0.5))` | `::backdrop` color, behind a 4px blur |
 
 Related: [Navbar](/ui/components/navbar/) · [App Shell](/ui/layout/shell/) · [Popover](/ui/interactive/popover/) · [Sheet](/ui/interactive/sheet/) · [Modal](/ui/interactive/modal/) · [Close](/ui/components/close/)

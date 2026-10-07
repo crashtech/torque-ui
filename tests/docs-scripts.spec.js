@@ -6,7 +6,7 @@ const path = require('path');
 /**
  * Every demo fragment under a "self-driven JS" heading ships the minimal
  * script that drives it. The inventory test keeps that set exact; the
- * behaviour tests load each fragment on its own and use it like a reader
+ * behavior tests load each fragment on its own and use it like a reader
  * of the docs would, failing on any page error the script raises.
  */
 const ROOT = path.join(__dirname, '..');
@@ -40,6 +40,18 @@ function inventory() {
 
 const { badged, plain } = inventory();
 
+/**
+ * Fragments whose script only lets a reader watch a change live. The
+ * framework never needs it, so they carry no badge.
+ */
+const PREVIEWS = [
+  'docs/getting-started/customize/examples/color.html',
+  'docs/getting-started/customize/examples/scale.html',
+  'docs/getting-started/customize/examples/motion.html',
+  'docs/getting-started/customize/examples/gradient.html',
+  'docs/utilities/animate/examples/catalog.html',
+];
+
 test.describe('self-driven JS fragment inventory', () => {
   test('every badged fragment carries an inline script', () => {
     const missing = badged.filter((f) => !fs.readFileSync(path.join(ROOT, f), 'utf8').includes('<script>'));
@@ -47,9 +59,14 @@ test.describe('self-driven JS fragment inventory', () => {
     expect(badged.length).toBeGreaterThan(20);
   });
 
-  test('no fragment outside a badged section carries a script', () => {
-    const stray = plain.filter((f) => fs.readFileSync(path.join(ROOT, f), 'utf8').includes('<script'));
+  test('no fragment outside a badged section carries a script unless it is a live preview', () => {
+    const stray = plain.filter((f) => !PREVIEWS.includes(f) && fs.readFileSync(path.join(ROOT, f), 'utf8').includes('<script'));
     expect(stray).toEqual([]);
+  });
+
+  test('every live preview is an unbadged fragment with a script', () => {
+    const misfiled = PREVIEWS.filter((f) => !plain.includes(f) || !fs.readFileSync(path.join(ROOT, f), 'utf8').includes('<script>'));
+    expect(misfiled).toEqual([]);
   });
 });
 
@@ -57,7 +74,7 @@ test.describe('self-driven JS fragment inventory', () => {
  * One interaction per fragment, written the way a reader would use the demo.
  * @type {Record<string, (page: import('@playwright/test').Page) => Promise<void>>}
  */
-const behaviours = {
+const behaviors = {
   'docs/components/buttons/examples/pressed.html': async (page) => {
     const bold = page.locator('#buttons-pressed [aria-pressed]').first();
     await bold.click();
@@ -171,6 +188,25 @@ const behaviours = {
     await expect(email).toHaveAttribute('aria-invalid', 'false');
     await email.fill('someone@example');
     await expect(email).toHaveAttribute('aria-invalid', 'true');
+  },
+  'docs/utilities/animate/examples/catalog.html': async (page) => {
+    const tiles = page.locator('#animate-catalog [tabindex]');
+    await tiles.nth(0).click();
+    await expect(tiles.nth(0)).toHaveAttribute('data-playing', '');
+    await page.keyboard.press('Tab');
+    await expect(tiles.nth(1)).toHaveAttribute('data-playing', '');
+    await expect(tiles.nth(0)).not.toHaveAttribute('data-playing', '');
+    await page.keyboard.press('Shift+Tab');
+    await page.keyboard.press('Shift+Tab');
+    await expect(tiles.nth(1)).not.toHaveAttribute('data-playing', '');
+  },
+  'docs/utilities/animate/examples/playing.html': async (page) => {
+    const card = page.locator('#animate-playing-card');
+    await page.locator('#animate-playing-data').click();
+    await expect(card).toHaveAttribute('data-playing', '');
+    await page.locator('#animate-playing-class').click();
+    await expect(card).toHaveClass(/tui-playing/);
+    await expect(card).not.toHaveAttribute('data-playing', '');
   },
   'docs/foundations/self-driven-js/examples/states.html': async (page) => {
     const buttons = page.locator('#self-driven-states button');
@@ -303,6 +339,15 @@ const behaviours = {
     await expect(radios.nth(1)).toHaveAttribute('aria-checked', 'true');
     await expect(radios.nth(0)).toHaveAttribute('aria-checked', 'false');
   },
+  'docs/elements/tables/examples/select-all.html': async (page) => {
+    const pages = page.locator('#tables-select-all tbody');
+    await page.locator('#tables-select-all .tui-pagination a').nth(1).click();
+    await expect(pages.nth(0)).toHaveAttribute('hidden', '');
+    await expect(pages.nth(1)).not.toHaveAttribute('hidden', '');
+    await page.locator('#tables-select-all .tui-pagination a').nth(0).click();
+    await expect(pages.nth(1)).toHaveAttribute('hidden', '');
+    await expect(page.locator('#tables-select-all .tui-pagination a').nth(0)).toHaveAttribute('aria-current', 'page');
+  },
   'docs/elements/tables/examples/rows.html': async (page) => {
     const rows = page.locator('#tables-rows tbody tr');
     await rows.nth(1).click();
@@ -351,14 +396,58 @@ const behaviours = {
     await expect(root).toHaveAttribute('data-theme', 'light');
     expect(await page.evaluate(() => localStorage.getItem('tui-theme'))).toBe('light');
   },
+  'docs/getting-started/customize/examples/color.html': async (page) => {
+    const primary = page.locator('#customize-color-primary');
+    const paint = () => primary.evaluate((el) => { const c = getComputedStyle(el); return [c.backgroundColor, c.color]; });
+    const [background, text] = await paint();
+    await page.locator('#customize-brand-h').fill('150');
+    expect(await page.evaluate(() => document.documentElement.style.getPropertyValue('--tui-brand'))).toBe('oklch(0.57 0.21 150)');
+    await expect(page.locator('output[for="customize-brand-h"]')).toHaveText('150');
+    expect((await paint())[0]).not.toBe(background);
+    await page.locator('#customize-brand-l').fill('0.9');
+    expect((await paint())[1]).not.toBe(text);
+    await expect(page.locator('#customize-brand-hex')).not.toHaveValue('#5c60f0');
+    await page.locator('#customize-brand-hex').fill('#e11d48');
+    expect(await page.evaluate(() => document.documentElement.style.getPropertyValue('--tui-brand'))).toBe('#e11d48');
+    await expect(page.locator('#customize-brand-h')).toHaveValue('18');
+    await expect(page.locator('output[for="customize-brand-l"]')).toHaveText('0.59');
+  },
+  'docs/getting-started/customize/examples/scale.html': async (page) => {
+    const body = page.locator('#customize-scale-card .tui-card-body');
+    await expect(body).toHaveCSS('padding-top', '24px');
+    await page.locator('#customize-spacing').fill('0.5');
+    await expect(body).toHaveCSS('padding-top', '48px');
+    await page.locator('#customize-radius').fill('0');
+    await expect(page.locator('#customize-scale-primary')).toHaveCSS('border-top-left-radius', '0px');
+    await expect(page.locator('output[for="customize-spacing"]')).toHaveText('0.5');
+  },
+  'docs/getting-started/customize/examples/motion.html': async (page) => {
+    const spinner = page.locator('#customize-motion-spinner');
+    await expect(spinner).toHaveCSS('animation-duration', '0.75s');
+    await page.locator('#customize-duration').fill('1000');
+    await expect(spinner).toHaveCSS('animation-duration', '3s');
+    await expect(page.locator('output[for="customize-duration"]')).toHaveText('1000');
+  },
+  'docs/getting-started/customize/examples/gradient.html': async (page) => {
+    const banner = page.locator('#customize-gradient-banner');
+    await expect(banner).toHaveCSS('background-image', 'linear-gradient(135deg, rgb(92, 96, 240), rgb(225, 29, 72))');
+    await page.locator('#customize-gradient-end').fill('');
+    await expect(banner).toHaveCSS('background-image', 'linear-gradient(135deg, rgb(92, 96, 240), rgb(92, 96, 240))');
+    await page.locator('#customize-gradient-end').fill('#0ea5e9');
+    await page.locator('#customize-gradient-start').fill('#0f9d58');
+    await expect(banner).toHaveCSS('background-image', 'linear-gradient(135deg, rgb(15, 157, 88), rgb(14, 165, 233))');
+    await page.locator('#customize-gradient-angle').fill('90');
+    await expect(banner).toHaveCSS('background-image', 'linear-gradient(90deg, rgb(15, 157, 88), rgb(14, 165, 233))');
+    await expect(page.locator('output[for="customize-gradient-angle"]')).toHaveText('90');
+  },
 };
 
-test.describe('self-driven JS fragment behaviour', () => {
-  test('every badged fragment has a behaviour test', () => {
-    expect(badged.filter((f) => !behaviours[f])).toEqual([]);
+test.describe('self-driven JS fragment behavior', () => {
+  test('every badged fragment has a behavior test', () => {
+    expect([...badged, ...PREVIEWS].filter((f) => !behaviors[f])).toEqual([]);
   });
 
-  for (const [fragment, drive] of Object.entries(behaviours)) {
+  for (const [fragment, drive] of Object.entries(behaviors)) {
     test(fragment, async ({ page }) => {
       /** @type {string[]} */
       const errors = [];

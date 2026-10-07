@@ -18,7 +18,7 @@
 }
 
 /* why: the parent row pads spacing-2 before its 0.5rem disclosure triangle,
-   so the glyph centre sits at 0.75rem — the guide line starts there */
+   so the glyph center sits at 0.75rem — the guide line starts there */
 .tui-tree ul {
   padding-inline-start: var(--tui-tree-indent, var(--tui-spacing-5));
   border-inline-start: 1px solid var(--tui-tree-guide, var(--tui-border));

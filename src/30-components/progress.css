@@ -56,7 +56,7 @@
   .tui-progress-loading > .tui-progress-bar {
     background-image: repeating-linear-gradient(-45deg, transparent 0 0.5rem, rgb(255 255 255 / 0.25) 0.5rem 1rem);
     background-size: 1.414rem 100%;
-    animation: tui-progress-stripes 1s linear infinite;
+    animation: tui-progress-stripes calc(var(--tui-duration-normal) * 4) linear infinite;
   }
 
   @keyframes tui-progress-stripes {
@@ -68,7 +68,7 @@
   .tui-progress-indeterminate > .tui-progress-bar {
     inline-size: 40%;
     transition: none;
-    animation: tui-progress-sweep 1.4s var(--tui-easing-in-out) infinite;
+    animation: tui-progress-sweep calc(var(--tui-duration-normal) * 5.6) var(--tui-easing-in-out) infinite;
   }
 
   @keyframes tui-progress-sweep {
@@ -78,16 +78,16 @@
 
   .tui-progress-ring.tui-progress-indeterminate {
     background: conic-gradient(var(--tui-tone, var(--tui-brand)) 0 25%, var(--tui-progress-ring-track, var(--tui-surface-3)) 0);
-    animation: tui-spin 1s linear infinite;
+    animation: tui-spin calc(var(--tui-duration-normal) * 4) linear infinite;
   }
 
   /* === Sizes === */
   .tui-progress-sm {
-    --tui-progress-thickness: 0.25rem;
+    --tui-progress-thickness: var(--tui-spacing-1);
   }
 
   .tui-progress-lg {
-    --tui-progress-thickness: 1rem;
+    --tui-progress-thickness: var(--tui-spacing-4);
   }
 
   /* === Progress Ring === */
@@ -106,7 +106,7 @@
   }
 
   /* === Progress Meter (half-circle gauge) ===
-   * why: the conic sweep is centred on the bottom edge and starts at the
+   * why: the conic sweep is centered on the bottom edge and starts at the
    * left horizon, so 180° — half a turn — is the whole scale; the value
    * therefore maps to (value / 2)% of the full turn, and the radial mask
    * carves the same 0.5rem stroke the ring uses */

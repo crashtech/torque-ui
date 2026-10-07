@@ -1,9 +1,11 @@
 <nav aria-label="Pagination">
   <ul class="tui-pagination">
-    <li><a href="#" aria-disabled="true" aria-label="Previous page">←</a></li>
-    <li><a href="#" class="tui-pagination-item-active" aria-current="page">1</a></li>
-    <li><a href="#">2</a></li>
-    <li><a href="#">3</a></li>
-    <li><a href="#" aria-label="Next page">→</a></li>
+    <li><a class="tui-pagination-first" aria-label="First page" aria-disabled="true"></a></li>
+    <li><a class="tui-pagination-prev" aria-label="Previous page" aria-disabled="true"></a></li>
+    <li><a href="?page=1" class="tui-pagination-item-active" aria-current="page">1</a></li>
+    <li><a href="?page=2">2</a></li>
+    <li><a href="?page=3">3</a></li>
+    <li><a href="?page=2" class="tui-pagination-next" aria-label="Next page"></a></li>
+    <li><a href="?page=3" class="tui-pagination-last" aria-label="Last page"></a></li>
   </ul>
 </nav>

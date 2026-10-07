@@ -25,7 +25,7 @@
   /* === Caret ===
    * A chevron that turns when its expandable parent opens — a dropdown
    * button, a navbar item, the combobox. The glyph is the shared chevron
-   * token used as a mask, so it takes the text colour. */
+   * token used as a mask, so it takes the text color. */
   .tui-caret {
     display: inline-block;
     inline-size: 0.75em;

@@ -3,7 +3,7 @@ title: Toggle Group
 section: interactive
 source: src/60-interactive/toggle-group.css
 js: self-driven
-description: "Bordered row of toggle buttons backed by hidden checkboxes or radios, with per-option colours, a small size and wrapping."
+description: "Bordered row of toggle buttons backed by hidden checkboxes or radios, with per-option colors, a small size and wrapping."
 ---
 
 `.tui-toggle-group` is a `<fieldset>` rendered as a single bordered, rounded row of `.tui-toggle` labels. Each label follows its own hidden input: checkboxes make a multi-select group, radios a single-select one, and the checked input paints the label that follows it in `--tui-toggle-active-bg`. Every input needs an `id` and its label the matching `for`, and the pair must be adjacent siblings. The group is inline and carries no outer margin.
@@ -17,7 +17,7 @@ Checkbox inputs toggle independently. The inputs are [state inputs](/ui/foundati
 | Class | Effect |
 |---|---|
 | `.tui-toggle-group` | Inline-flex `<fieldset>`, `--tui-toggle-border` edge, `--tui-radius-md` corners, no padding |
-| `.tui-toggle-input` | The hidden input (add `.tui-state-input`); `:checked` colours the next `.tui-toggle` |
+| `.tui-toggle-input` | The hidden input (add `.tui-state-input`); `:checked` colors the next `.tui-toggle` |
 | `.tui-toggle` | An option: `--tui-text-sm`, `--tui-text-2`, no wrapping, a rule between options, outer corners inherited from the group |
 | `.tui-toggle:is([aria-pressed="true"], [aria-checked="true"], [data-pressed], [data-selected], .tui-pressed, .tui-selected)` | Painted as a checked option |
 
@@ -33,9 +33,9 @@ A group your script drives uses real `<button class="tui-toggle">` options in a 
 
 {% include demo.html file="buttons.html" %}
 
-## Per-option colours
+## Per-option colors
 
-A modifier on the label changes the colour that option takes when checked, by overriding `--tui-toggle-active-bg` and `--tui-toggle-active-fg` on that label only — so a three-state sync control reads green, grey and red without touching the group.
+A modifier on the label changes the color that option takes when checked, by overriding `--tui-toggle-active-bg` and `--tui-toggle-active-fg` on that label only — so a three-state sync control reads green, gray and red without touching the group.
 
 {% include demo.html file="tones.html" %}
 
@@ -70,6 +70,6 @@ Options never wrap internally (`white-space: nowrap`), and the group itself over
 |---|---|---|
 | `--tui-toggle-border` | `var(--tui-border)` | Group edge and the rules between options |
 | `--tui-toggle-active-bg` | `var(--tui-brand)` | Background of a checked option |
-| `--tui-toggle-active-fg` | `var(--tui-brand-fg)` | Text colour of a checked option |
+| `--tui-toggle-active-fg` | `var(--tui-brand-fg)` | Text color of a checked option |
 
 Related: [Segment](/ui/components/segment/) · [State Inputs](/ui/foundations/state-inputs/) · [Checkbox](/ui/forms/checkbox/) · [Radio](/ui/forms/radio/) · [Buttons](/ui/components/buttons/) · [Tabs](/ui/interactive/tabs/)

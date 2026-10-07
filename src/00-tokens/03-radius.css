@@ -1,14 +1,17 @@
 /* Torque UI — Border Radius Scale
+ * The smallest step is the unit (2px, in rem) and the rest are multiples of
+ * it, so overriding --tui-radius-sm on :root rounds or squares the whole
+ * framework; none and full are the two fixed ends.
  */
 
 
   :root {
     --tui-radius-none: 0;
-    --tui-radius-sm: 0.125rem;   /* 2px */
-    --tui-radius-md: 0.375rem;   /* 6px */
-    --tui-radius-lg: 0.5rem;     /* 8px */
-    --tui-radius-xl: 0.75rem;    /* 12px */
-    --tui-radius-2xl: 1rem;      /* 16px */
-    --tui-radius-3xl: 1.5rem;    /* 24px */
+    --tui-radius-sm: 0.125rem;
+    --tui-radius-md: calc(var(--tui-radius-sm) * 3);
+    --tui-radius-lg: calc(var(--tui-radius-sm) * 4);
+    --tui-radius-xl: calc(var(--tui-radius-sm) * 6);
+    --tui-radius-2xl: calc(var(--tui-radius-sm) * 8);
+    --tui-radius-3xl: calc(var(--tui-radius-sm) * 12);
     --tui-radius-full: 9999px;
   }

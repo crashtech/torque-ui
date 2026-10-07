@@ -5,11 +5,11 @@ source: src/70-utilities/visual.css
 description: "Glass surfaces, object-fit, image filters, blend modes, clip shapes, floated text wrap, edge masks, a light frame and a thumbnail figure."
 ---
 
-Polish utilities for images and surfaces: translucent glass, `object-fit` sizing, colour filters, blend modes, clip shapes, a text-wrap float, gradient masks, a white frame for artwork that needs a light ground, and a ready-made thumbnail figure. They set only what they name, so stack them with [sizing](/ui/utilities/sizing/) and [colour](/ui/utilities/colors/) utilities as needed.
+Polish utilities for images and surfaces: translucent glass, `object-fit` sizing, color filters, blend modes, clip shapes, a text-wrap float, gradient masks, a white frame for artwork that needs a light ground, and a ready-made thumbnail figure. They set only what they name, so stack them with [sizing](/ui/utilities/sizing/) and [color](/ui/utilities/colors/) utilities as needed.
 
 ## Glass
 
-`.tui-glass` is a 70% `--tui-surface-0` fill with a backdrop blur and saturation boost, edged with a plain `--tui-border` so it stays visible on a flat same-colour page. `.tui-glass-card` is the heavier version — more blur, slightly more transparent, plus `--tui-shadow-lg`. Both need something behind them to be worth it.
+`.tui-glass` is a 70% `--tui-surface-0` fill with a backdrop blur and saturation boost, edged with a plain `--tui-border` so it stays visible on a flat same-color page. `.tui-glass-card` is the heavier version — more blur, slightly more transparent, plus `--tui-shadow-lg`. Both need something behind them to be worth it.
 
 {% include demo.html file="glass.html" %}
 
@@ -43,7 +43,7 @@ The three `object-fit` utilities also stretch the image to `100%` of its box on 
 
 ## Blend modes
 
-`mix-blend-mode` blends the element with whatever is painted behind it — an image over a coloured block, a logo over a photo.
+`mix-blend-mode` blends the element with whatever is painted behind it — an image over a colored block, a logo over a photo.
 
 {% include demo.html file="blend.html" %}
 
@@ -62,7 +62,7 @@ The three `object-fit` utilities also stretch the image to `100%` of its box on 
 | Class | Effect |
 |---|---|
 | `.tui-clip-circle` | `border-radius: 50%; overflow: hidden` |
-| `.tui-clip-triangle` | Triangle `clip-path`, apex at the top centre |
+| `.tui-clip-triangle` | Triangle `clip-path`, apex at the top center |
 | `.tui-clip-hexagon` | Hexagon `clip-path`, flat top and bottom |
 
 ## Float wrap
@@ -89,7 +89,7 @@ A gradient mask fades the element's own pixels out towards one edge — a "read 
 
 ## Light frame
 
-`.tui-frame-light` is an inline-block white ground with dark text, padding and `--tui-radius-md` corners, regardless of colour scheme — for QR codes, scanned signatures and partner logos that must stay on white in [dark mode](/ui/themes/dark-mode/). Its `line-height: 0` removes the descender gap under an inline `<img>` or `<svg>`.
+`.tui-frame-light` is an inline-block white ground with dark text, padding and `--tui-radius-md` corners, regardless of color scheme — for QR codes, scanned signatures and partner logos that must stay on white in [dark mode](/ui/themes/dark-mode/). Its `line-height: 0` removes the descender gap under an inline `<img>` or `<svg>`.
 
 {% include demo.html file="frame-light.html" %}
 

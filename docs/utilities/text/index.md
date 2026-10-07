@@ -5,7 +5,7 @@ source: src/70-utilities/text.css
 description: "Alignment, weight, size, tracking, case, wrapping, truncation, hyphenation and line-clamp utilities."
 ---
 
-Text utilities set one typographic property from the [typography scale](/ui/foundations/typography-scale/). They win over any element or component rule, so `.tui-text-sm` on a heading or `.tui-font-normal` on a `<strong>` does what it says. Text colour utilities (`.tui-text-1`, `.tui-text-primary` and the rest) live on the [Colors](/ui/utilities/colors/) page.
+Text utilities set one typographic property from the [typography scale](/ui/foundations/typography-scale/). They win over any element or component rule, so `.tui-text-sm` on a heading or `.tui-font-normal` on a `<strong>` does what it says. Text color utilities (`.tui-text-1`, `.tui-text-primary` and the rest) live on the [Colors](/ui/utilities/colors/) page.
 
 ## Alignment
 

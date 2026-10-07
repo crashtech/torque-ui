@@ -97,7 +97,7 @@ button.tui-tab {
 .tui-tab-input:checked + .tui-tab + .tui-tab-panel { display: block; }
 
 /* why: a script-driven panel is shown by default and hidden with the hidden
-   attribute, which the utilities layer honours above this rule */
+   attribute, which the utilities layer honors above this rule */
 .tui-tab-panel[role="tabpanel"] { display: block; }
 
 /* === Vertical strip ===

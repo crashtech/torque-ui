@@ -18,8 +18,8 @@ Each slide needs an `id` for its dot to link to; the CSS never references the id
 | `.tui-carousel` | Positioned wrapper, rounded by `--tui-carousel-radius` |
 | `.tui-carousel-track` | Flex list, `overflow: auto hidden`, `scroll-snap-type: x mandatory`, hidden scrollbar, `--tui-carousel-gap` between slides |
 | `.tui-carousel-slide` | Full-width slide (`flex: 0 0 100%`), snaps to its start |
-| `.tui-carousel-dots` | Centred flex row of dots with `--tui-spacing-3` block padding |
-| `.tui-carousel-dot` | `--tui-carousel-dot-size` circle in `--tui-border`; `--tui-border-strong` on hover, active colour and `scale: 1.2` for the targeted slide |
+| `.tui-carousel-dots` | Centered flex row of dots with `--tui-spacing-3` block padding |
+| `.tui-carousel-dot` | `--tui-carousel-dot-size` circle in `--tui-border`; `--tui-border-strong` on hover, active color and `scale: 1.2` for the targeted slide |
 
 ## Gap and radius
 
@@ -40,6 +40,6 @@ Where the browser supports `::scroll-marker`, the `.tui-carousel-dots` nav is hi
 | `--tui-carousel-radius` | `var(--tui-radius-lg)` | Corner radius of the carousel and its track |
 | `--tui-carousel-gap` | `0` | Space between slides |
 | `--tui-carousel-dot-size` | `0.75rem` | Diameter of a dot or native marker |
-| `--tui-carousel-dot-active` | `var(--tui-brand)` | Colour of the active dot or marker |
+| `--tui-carousel-dot-active` | `var(--tui-brand)` | Color of the active dot or marker |
 
 Related: [Images](/ui/elements/images/) · [Radius](/ui/foundations/radius/) · [Motion](/ui/foundations/motion/) · [Visual](/ui/utilities/visual/)

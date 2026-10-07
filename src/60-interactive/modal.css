@@ -1,12 +1,17 @@
 /* Torque UI — Modal
  * Native <dialog>, opened declaratively with commandfor/command="show-modal"
  * (no JS). Closing, Escape, focus trap and the ::backdrop are all native
- * <dialog> behaviour.
+ * <dialog> behavior.
  */
 
 .tui-modal {
   inline-size: min(100% - 2 * var(--tui-spacing-4), var(--tui-modal-max-inline-size, 32rem));
   max-block-size: calc(100dvh - 2 * var(--tui-spacing-4));
+
+  /* why: the UA centers a modal dialog with margin: auto, below every author
+     layer, so a container rhythm (.tui-card-body > * + *) would pin it to the
+     top corner; declaring it here keeps it centered wherever it is placed */
+  margin: auto;
   padding: 0;
   border: 0;
   color: var(--tui-text-1);

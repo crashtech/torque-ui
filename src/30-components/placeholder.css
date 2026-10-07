@@ -13,7 +13,7 @@
       var(--tui-surface-2) 75%
     );
     background-size: 200% 100%;
-    animation: tui-placeholder-shimmer 1.5s var(--tui-easing-out) infinite;
+    animation: tui-placeholder-shimmer calc(var(--tui-duration-normal) * 6) var(--tui-easing-out) infinite;
     border-radius: var(--tui-radius-md);
     min-block-size: 1rem;
   }

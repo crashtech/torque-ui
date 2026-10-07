@@ -10,7 +10,7 @@ A navbar is a flex row on `--tui-surface-0` with a bottom border and a small sha
 
 ## Anatomy
 
-`.tui-navbar` lays its children out with `justify-content: space-between` and a `--tui-spacing-4` gap. The brand is an `--tui-text-xl` bold link in the brand colour that lightens on hover; the menu is a `<ul>` with its list style and margins removed; each item is a small, medium-weight `--tui-text-2` link with `--tui-radius-md` corners that lifts to `--tui-surface-2` on hover. `.tui-navbar-item-active` marks the current page with a 15% brand background and brand ink text.
+`.tui-navbar` lays its children out with `justify-content: space-between` and a `--tui-spacing-4` gap. The brand is an `--tui-text-xl` bold link in the brand color that lightens on hover; the menu is a `<ul>` with its list style and margins removed; each item is a small, medium-weight `--tui-text-2` link with `--tui-radius-md` corners that lifts to `--tui-surface-2` on hover. `.tui-navbar-item-active` marks the current page with a 15% brand background and brand ink text.
 
 {% include demo.html file="basic.html" %}
 
@@ -26,7 +26,7 @@ A navbar is a flex row on `--tui-surface-0` with a bottom border and a small sha
 
 ## Logo brand
 
-An inline `<svg>` or `<img>` placed directly inside `.tui-navbar-brand` is sized by the bar, not by the font: it becomes a block 2rem tall with automatic width. Text next to it still takes the brand colour.
+An inline `<svg>` or `<img>` placed directly inside `.tui-navbar-brand` is sized by the bar, not by the font: it becomes a block 2rem tall with automatic width. Text next to it still takes the brand color.
 
 {% include demo.html file="logo.html" %}
 

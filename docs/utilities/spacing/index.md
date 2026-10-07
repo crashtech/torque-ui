@@ -61,7 +61,7 @@ Margins, padding and gap on the [spacing scale](/ui/foundations/spacing/): steps
 
 ## Auto margins
 
-An `auto` margin pushes a flex or grid item to the far edge, or centres a block inside its container.
+An `auto` margin pushes a flex or grid item to the far edge, or centers a block inside its container.
 
 {% include demo.html file="auto.html" %}
 

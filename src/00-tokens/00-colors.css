@@ -38,22 +38,23 @@
        A fixed hue per name; lightness and chroma are inherited from
        --tui-brand via relative color syntax, so re-theming the brand
        still shifts the "vibe" of every name without drifting its hue.
-       Orange, yellow and pink floor their lightness — below it they stop
-       reading as their name no matter the brand.
+       Orange, yellow and pink follow the brand lightness inside a band —
+       below the floor they stop reading as their name, above the cap they
+       wash out to white.
        Use them through the .tui-tone-<name> classes (70-utilities/tone.css).
        ======================================== */
     --tui-red:    oklch(from var(--tui-brand) calc(l * 0.90) calc(c * 1.1) 25deg);
-    --tui-orange: oklch(from var(--tui-brand) max(l, 0.68) calc(c * 1.15) 55deg);
-    --tui-yellow: oklch(from var(--tui-brand) max(l, 0.8) calc(c * 1.0) 85deg);
+    --tui-orange: oklch(from var(--tui-brand) clamp(0.6, l * 1.2, 0.9) calc(c * 1.15) 55deg);
+    --tui-yellow: oklch(from var(--tui-brand) clamp(0.7, l * 1.4, 0.92) calc(c * 1.0) 85deg);
     --tui-olive:  oklch(from var(--tui-brand) calc(l * 0.85) calc(c * 0.9) 120deg);
     --tui-green:  oklch(from var(--tui-brand) calc(l * 0.90) calc(c * 1.1) 150deg);
     --tui-teal:   oklch(from var(--tui-brand) calc(l * 0.85) calc(c * 1.0) 190deg);
     --tui-blue:   oklch(from var(--tui-brand) calc(l * 0.95) calc(c * 1.0) 240deg);
     --tui-violet: oklch(from var(--tui-brand) calc(l * 0.90) calc(c * 1.1) 290deg);
     --tui-purple: oklch(from var(--tui-brand) calc(l * 0.85) calc(c * 1.15) 320deg);
-    --tui-pink:   oklch(from var(--tui-brand) max(l, 0.66) calc(c * 1.1) 350deg);
+    --tui-pink:   oklch(from var(--tui-brand) clamp(0.58, l * 1.15, 0.9) calc(c * 1.1) 350deg);
     --tui-brown:  oklch(from var(--tui-brand) calc(l * 0.65) calc(c * 0.55) 60deg);
-    --tui-grey:   var(--tui-neutral);
+    --tui-gray:   var(--tui-neutral);
     --tui-black:  color-mix(in srgb, var(--tui-neutral) 15%, black 85%);
 
     /* ========================================
@@ -100,28 +101,34 @@
 
     /* ========================================
        GRADIENTS
-       Each gradient runs from the tone to an explicit *-end colour that
-       the library does NOT declare — until you set --tui-brand-end (or
-       --tui-positive-end …) the gradient resolves to the flat tone.
+       Each gradient runs along --tui-gradient-angle from the tone to an
+       explicit *-end color that the library does NOT declare — until you
+       set --tui-brand-end (or --tui-positive-end …) the gradient resolves
+       to the flat tone.
        ======================================== */
-    --tui-brand-gradient:    linear-gradient(135deg, var(--tui-brand), var(--tui-brand-end, var(--tui-brand)));
-    --tui-positive-gradient: linear-gradient(135deg, var(--tui-positive), var(--tui-positive-end, var(--tui-positive)));
-    --tui-negative-gradient: linear-gradient(135deg, var(--tui-negative), var(--tui-negative-end, var(--tui-negative)));
-    --tui-warning-gradient:  linear-gradient(135deg, var(--tui-warning), var(--tui-warning-end, var(--tui-warning)));
-    --tui-info-gradient:     linear-gradient(135deg, var(--tui-info), var(--tui-info-end, var(--tui-info)));
-    --tui-neutral-gradient:  linear-gradient(135deg, var(--tui-neutral), var(--tui-neutral-end, var(--tui-neutral)));
+    --tui-gradient-angle:    135deg;
+    --tui-brand-gradient:    linear-gradient(var(--tui-gradient-angle), var(--tui-brand), var(--tui-brand-end, var(--tui-brand)));
+    --tui-positive-gradient: linear-gradient(var(--tui-gradient-angle), var(--tui-positive), var(--tui-positive-end, var(--tui-positive)));
+    --tui-negative-gradient: linear-gradient(var(--tui-gradient-angle), var(--tui-negative), var(--tui-negative-end, var(--tui-negative)));
+    --tui-warning-gradient:  linear-gradient(var(--tui-gradient-angle), var(--tui-warning), var(--tui-warning-end, var(--tui-warning)));
+    --tui-info-gradient:     linear-gradient(var(--tui-gradient-angle), var(--tui-info), var(--tui-info-end, var(--tui-info)));
+    --tui-neutral-gradient:  linear-gradient(var(--tui-gradient-angle), var(--tui-neutral), var(--tui-neutral-end, var(--tui-neutral)));
 
     /* ========================================
        AVATAR PALETTE
-       Six fixed hues, all dark enough for white initials. The app picks
-       .tui-avatar-1 … .tui-avatar-6 (e.g. hashed from the user id).
+       The chart wheel (00-tokens/06-chart.css) at full strength: avatar n
+       shares the hue of chart series n, at the base's own chroma. The app
+       picks .tui-avatar-1 … .tui-avatar-6 (e.g. hashed from the user id).
        ======================================== */
-    --tui-avatar-1: #2563eb;
-    --tui-avatar-2: #c2410c;
-    --tui-avatar-3: #0f766e;
-    --tui-avatar-4: #be185d;
-    --tui-avatar-5: #4d7c0f;
-    --tui-avatar-6: #7c3aed;
+
+    /* why: white initials need a dark fill — lightness is capped at 0.5,
+       where every hue still clears AA against --tui-text-inverse */
+    --tui-avatar-1: oklch(from var(--tui-chart-base) min(l, 0.5) c calc(h + var(--tui-chart-rotation)));
+    --tui-avatar-2: oklch(from var(--tui-chart-base) min(l, 0.5) c calc(h + var(--tui-chart-rotation) * 2));
+    --tui-avatar-3: oklch(from var(--tui-chart-base) min(l, 0.5) c calc(h + var(--tui-chart-rotation) * 3));
+    --tui-avatar-4: oklch(from var(--tui-chart-base) min(l, 0.5) c calc(h + var(--tui-chart-rotation) * 4));
+    --tui-avatar-5: oklch(from var(--tui-chart-base) min(l, 0.5) c calc(h + var(--tui-chart-rotation) * 5));
+    --tui-avatar-6: oklch(from var(--tui-chart-base) min(l, 0.5) c calc(h + var(--tui-chart-rotation) * 6));
 
     /* ========================================
        NEUTRAL PALETTE (grays)
@@ -178,13 +185,13 @@
     --tui-focus-ring: color-mix(in srgb, var(--tui-brand) 30%, transparent);
     --tui-focus-ring-strong: var(--tui-brand);
     --tui-focus-ring-width: 2px;
-    --tui-focus-halo-width: 3px;
+    --tui-focus-halo-width: calc(var(--tui-focus-ring-width) * 1.5);
 
     /* ========================================
        SHADOWS
        ======================================== */
 
-    /* why: light-dark() accepts only <color>, so the colour is the token and the
+    /* why: light-dark() accepts only <color>, so the color is the token and the
        offsets wrap it — a light-dark() shadow list computes to `none`. */
     --tui-shadow-color-sm: light-dark(color-mix(in srgb, var(--tui-neutral) 8%, transparent), color-mix(in srgb, black 30%, transparent));
     --tui-shadow-color-md: light-dark(color-mix(in srgb, var(--tui-neutral) 10%, transparent), color-mix(in srgb, black 35%, transparent));

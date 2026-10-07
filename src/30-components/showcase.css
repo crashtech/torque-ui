@@ -1,0 +1,83 @@
+/* Torque UI — Showcase Component
+ * .tui-showcase — a media cell beside a body of heading, copy and a footer
+ * pinned to the bottom. Layout only: compose with .tui-card for the frame.
+ */
+
+/* why: stacked, the body row takes every spare pixel so the footer can sit
+   on the bottom edge; a grid of stacked showcases then lines its footers up */
+.tui-showcase {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  align-items: stretch;
+  overflow: hidden;
+  border-radius: inherit;
+}
+
+/* why: the DOM stays media-first so narrow screens always stack the media on
+   top; the swap happens only once there are two columns to swap */
+@media (width >= 768px) {
+  .tui-showcase:not(.tui-showcase-stack) {
+    grid-template-columns: var(--tui-showcase-columns, 1fr 1fr);
+    grid-template-rows: auto;
+  }
+
+  .tui-showcase-reverse:not(.tui-showcase-stack) > .tui-showcase-media {
+    order: 1;
+  }
+}
+
+.tui-showcase-media {
+  display: grid;
+  place-items: center;
+  min-inline-size: 0;
+  margin: 0;
+  padding: var(--tui-showcase-padding, var(--tui-spacing-8));
+  background-color: var(--tui-showcase-media-bg, var(--tui-surface-1));
+
+  & > img,
+  & > svg {
+    max-inline-size: 100%;
+    block-size: auto;
+  }
+
+  /* why: code is the media on a developer page — it reads as a panel, so it
+     takes the whole cell instead of floating inside the padding */
+  &:has(> pre) {
+    padding: 0;
+  }
+
+  & > pre {
+    inline-size: 100%;
+    block-size: 100%;
+    margin: 0;
+    border: 0;
+    border-radius: 0;
+    background: none;
+    padding: var(--tui-showcase-padding, var(--tui-spacing-8));
+  }
+}
+
+.tui-showcase-body {
+  display: flex;
+  flex-direction: column;
+  min-inline-size: 0;
+  padding: var(--tui-showcase-padding, var(--tui-spacing-8));
+  overflow-wrap: break-word;
+  text-wrap: pretty;
+
+  & > * {
+    margin: 0;
+  }
+
+  & > * + * {
+    margin-block-start: var(--tui-spacing-4);
+  }
+}
+
+.tui-showcase-footer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--tui-spacing-2);
+  margin-block-start: auto;
+  padding-block-start: var(--tui-spacing-6);
+}

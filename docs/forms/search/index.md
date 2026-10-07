@@ -10,7 +10,7 @@ description: "Wrapper that gives a search input a magnifier glyph and a sensible
 
 ## Anatomy
 
-The wrapper is `position: relative`, `inline-size: 100%` and `max-inline-size: --tui-search-inline-size` (24rem). Its direct `<input>` child gets `--tui-spacing-10` of end padding to keep typed text clear of the glyph, and `::after` paints a 1rem magnifier at `--tui-spacing-3` from the end edge, vertically centred and with `pointer-events: none` so clicks land in the field. Give the input a visible `<label>` or an `aria-label`.
+The wrapper is `position: relative`, `inline-size: 100%` and `max-inline-size: --tui-search-inline-size` (24rem). Its direct `<input>` child gets `--tui-spacing-10` of end padding to keep typed text clear of the glyph, and `::after` paints a 1rem magnifier at `--tui-spacing-3` from the end edge, vertically centered and with `pointer-events: none` so clicks land in the field. Give the input a visible `<label>` or an `aria-label`.
 
 {% include demo.html file="basic.html" %}
 
@@ -22,13 +22,13 @@ Override `--tui-search-inline-size` on the wrapper for a wider, command-palette 
 
 ## Clear control <span class="tui-badge">self-driven JS</span>
 
-Add a `.tui-close` button after the input and it appears in place of the magnifier once the field has text — `:placeholder-shown` decides, so the input needs a `placeholder`. Clearing the value is your script's job; the button is already labelled and positioned.
+Add a `.tui-close` button after the input and it appears in place of the magnifier once the field has text — `:placeholder-shown` decides, so the input needs a `placeholder`. Clearing the value is your script's job; the button is already labeled and positioned.
 
 {% include demo.html file="clear.html" %}
 
 ## Icon tint
 
-The magnifier is a `mask-image` filled with `background-color`, so its colour is a token rather than a baked-in hex: `--tui-icon-color`, falling back to `--tui-neutral`. Set the property on the wrapper to tint it — for example to the brand colour, or to `currentColor` to follow the surrounding text.
+The magnifier is a `mask-image` filled with `background-color`, so its color is a token rather than a baked-in hex: `--tui-icon-color`, falling back to `--tui-neutral`. Set the property on the wrapper to tint it — for example to the brand color, or to `currentColor` to follow the surrounding text.
 
 {% include demo.html file="tint.html" %}
 
@@ -43,6 +43,6 @@ The magnifier is a `mask-image` filled with `background-color`, so its colour is
 | Property | Default | Effect |
 |---|---|---|
 | `--tui-search-inline-size` | `24rem` | Maximum width of the wrapper |
-| `--tui-icon-color` | `--tui-neutral` | Colour of the magnifier glyph |
+| `--tui-icon-color` | `--tui-neutral` | Color of the magnifier glyph |
 
 Related: [Inputs](/ui/forms/inputs/) · [Input Group](/ui/forms/input-group/) · [Form Layout](/ui/forms/form-layout/) · [Navbar](/ui/components/navbar/) · [Icons](/ui/elements/icons/)

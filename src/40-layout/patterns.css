@@ -115,7 +115,7 @@
   flex-wrap: wrap;
 
   /* why: a count chip has no baseline relationship with the display type —
-     hanging it from the title baseline drops it visually; centring it on
+     hanging it from the title baseline drops it visually; centering it on
      the title line reads as attached to the word */
   & > :is(.tui-badge, .tui-tag, .tui-chip, .tui-label) {
     align-self: center;

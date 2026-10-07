@@ -9,7 +9,7 @@ An alert is an inline banner for a message that belongs to the page — a save c
 
 ## Tones
 
-`.tui-alert` alone sits on `--tui-surface-1` with `--tui-text-1` text and a transparent border. A tone class (`.tui-alert-success`, `-error`, `-warning`, `-info`) sets the shared `--tui-tone` hook: the border takes the tone colour, the background its `-bg` value and the text its `-ink` value. Direct children have their margins reset and consecutive children are spaced by `--tui-spacing-3`, so a heading and a paragraph need no utility classes (and must not carry `.tui-m-0`, which would close that gap).
+`.tui-alert` alone sits on `--tui-surface-1` with `--tui-text-1` text and a transparent border. A tone class (`.tui-alert-success`, `-error`, `-warning`, `-info`) sets the shared `--tui-tone` hook: the border takes the tone color, the background its `-bg` value and the text its `-ink` value. Direct children have their margins reset and consecutive children are spaced by `--tui-spacing-3`, so a heading and a paragraph need no utility classes (and must not carry `.tui-m-0`, which would close that gap).
 
 {% include demo.html file="tones.html" %}
 
@@ -21,11 +21,11 @@ An alert is an inline banner for a message that belongs to the page — a save c
 | `.tui-alert-warning` | Warning tone |
 | `.tui-alert-info` | Info tone |
 
-The `.tui-alert-*` names are aliases of the generic [tone classes](/ui/foundations/tone/): `.tui-tone-brand` on an alert gives a brand-coloured banner with no dedicated class.
+The `.tui-alert-*` names are aliases of the generic [tone classes](/ui/foundations/tone/): `.tui-tone-brand` on an alert gives a brand-colored banner with no dedicated class.
 
 ## Callout
 
-Add `.tui-alert-callout` alongside `.tui-alert` for a two-column layout with a 4px accent rule on the start edge instead of the uniform border. The first child is the icon column (a `.tui-icon`, a glyph, an emoji) and is aligned with the first line of text; the second child is the body, whose own children keep a tighter `--tui-spacing-2` rhythm. Without a tone the rule is brand-coloured.
+Add `.tui-alert-callout` alongside `.tui-alert` for a two-column layout with a 4px accent rule on the start edge instead of the uniform border. The first child is the icon column (a `.tui-icon`, a glyph, an emoji) and is aligned with the first line of text; the second child is the body, whose own children keep a tighter `--tui-spacing-2` rhythm. Without a tone the rule is brand-colored.
 
 {% include demo.html file="callout.html" %}
 

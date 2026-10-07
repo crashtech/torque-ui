@@ -10,7 +10,7 @@ description: "Month grid of a date picker — today, selected, disabled, outside
 
 ## Anatomy and states <span class="tui-badge">self-driven JS</span>
 
-The header is a flex row: two `.tui-button-ghost.tui-button-icon` buttons around a `.tui-calendar-title`. The table drops every element-table style so its cells are bare `--tui-calendar-day-size` (2.25rem) squares under small-caps weekday headers. A day reads `aria-current="date"` for today (a tone ring), `aria-selected="true"` (or `data-selected`, `.tui-selected`) for the selection (tone fill), `disabled` or `aria-disabled` for a day that cannot be picked (struck through), and `data-outside` for a day of the neighbouring month (muted).
+The header is a flex row: two `.tui-button-ghost.tui-button-icon` buttons around a `.tui-calendar-title`. The table drops every element-table style so its cells are bare `--tui-calendar-day-size` (2.25rem) squares under small-caps weekday headers. A day reads `aria-current="date"` for today (a tone ring), `aria-selected="true"` (or `data-selected`, `.tui-selected`) for the selection (tone fill), `disabled` or `aria-disabled` for a day that cannot be picked (struck through), and `data-outside` for a day of the neighboring month (muted).
 
 {% include demo.html file="basic.html" %}
 
@@ -30,7 +30,7 @@ A date range is `data-range="start"` and `"end"` on the two ends, which take the
 | `[aria-selected="true"]`, `[data-selected]`, `.tui-selected` | Tone fill |
 | `[data-range="start"]` / `"end"` / `"middle"` | Range ends (fill, inner corners squared) and the soft run between |
 | `:disabled`, `[aria-disabled="true"]`, `[data-disabled]` | Muted, struck through, `not-allowed` cursor |
-| `[data-outside]` / `.tui-calendar-outside` | Muted day of a neighbouring month |
+| `[data-outside]` / `.tui-calendar-outside` | Muted day of a neighboring month |
 
 ## What your script does
 

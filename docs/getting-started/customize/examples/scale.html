@@ -1,0 +1,43 @@
+<div class="tui-flex tui-flex-wrap tui-gap-6 tui-p-3">
+  <form class="tui-stack tui-flex-1 tui-max-w-sm" id="customize-scale">
+    <div class="tui-field">
+      <label for="customize-text-base">Type base <output for="customize-text-base">1</output>rem</label>
+      <input id="customize-text-base" name="textBase" type="range" min="0.75" max="1.5" step="0.0625" value="1">
+    </div>
+    <div class="tui-field">
+      <label for="customize-spacing">Spacing unit <output for="customize-spacing">0.25</output>rem</label>
+      <input id="customize-spacing" name="spacing" type="range" min="0.125" max="0.5" step="0.025" value="0.25">
+    </div>
+    <div class="tui-field">
+      <label for="customize-radius">Smallest radius <output for="customize-radius">0.125</output>rem</label>
+      <input id="customize-radius" name="radius" type="range" min="0" max="0.5" step="0.025" value="0.125">
+    </div>
+  </form>
+  <div class="tui-card tui-max-w-sm" id="customize-scale-card">
+    <div class="tui-card-header"><h3>Proportions</h3></div>
+    <div class="tui-card-body tui-stack">
+      <p class="tui-m-0">Every padding, gap, corner and font size here is a multiple of one seed.</p>
+      <div class="tui-field">
+        <label for="customize-scale-email">Email</label>
+        <input id="customize-scale-email" type="email" placeholder="you@example.com">
+      </div>
+      <div class="tui-flex tui-flex-wrap tui-gap-2 tui-items-center">
+        <button class="tui-button tui-button-primary" type="button" id="customize-scale-primary">Subscribe</button>
+        <span class="tui-badge tui-badge-info">New</span>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  {
+    const form = document.getElementById('customize-scale');
+    const root = document.documentElement.style;
+    form.addEventListener('input', () => {
+      const { textBase, spacing, radius } = form.elements;
+      root.setProperty('--tui-text-base', `${textBase.value}rem`);
+      root.setProperty('--tui-spacing-1', `${spacing.value}rem`);
+      root.setProperty('--tui-radius-sm', `${radius.value}rem`);
+      for (const output of form.querySelectorAll('output')) output.value = document.getElementById(output.htmlFor.value).value;
+    });
+  }
+</script>

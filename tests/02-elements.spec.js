@@ -459,7 +459,7 @@ test.describe('Elements — Link buttons and gradient (Torby gaps B1, A1, D6)', 
     await page.goto('/examples/02-elements.html');
   });
 
-  test('anchor primary button uses the brand foreground, not the link colour', async ({ page }) => {
+  test('anchor primary button uses the brand foreground, not the link color', async ({ page }) => {
     const link = page.locator('#link-button-primary');
     const probe = page.locator('.tui-button-primary').first();
     const linkColor = await link.evaluate(el => getComputedStyle(el).color);
@@ -469,7 +469,7 @@ test.describe('Elements — Link buttons and gradient (Torby gaps B1, A1, D6)', 
     expect(decoration).toBe('none');
   });
 
-  test('anchor ghost button keeps the ghost colour on hover (variant still wins)', async ({ page }) => {
+  test('anchor ghost button keeps the ghost color on hover (variant still wins)', async ({ page }) => {
     const ghost = page.locator('#link-button-ghost');
     const brand = await ghost.evaluate(el => getComputedStyle(el).getPropertyValue('--tui-brand').trim());
     await ghost.hover();
@@ -485,7 +485,7 @@ test.describe('Elements — Link buttons and gradient (Torby gaps B1, A1, D6)', 
     expect(image).toContain('linear-gradient');
   });
 
-  test('disabled split button greys both halves', async ({ page }) => {
+  test('disabled split button grays both halves', async ({ page }) => {
     const halves = page.locator('#split-disabled > .tui-button');
     const opacities = await halves.evaluateAll(els => els.map(el => getComputedStyle(el).opacity));
     expect(opacities).toEqual(['0.6', '0.6']);
@@ -576,7 +576,7 @@ test.describe('Elements — Link styles', () => {
     await page.addStyleTag({ content: '*, ::before, ::after { transition: none !important; }' });
   });
 
-  test('link styles: colour hook, underline shapes and a growing underline on hover', async ({ page }) => {
+  test('link styles: color hook, underline shapes and a growing underline on hover', async ({ page }) => {
     const color = (id) => page.locator(id).evaluate((el) => getComputedStyle(el).color);
     expect(await color('#link-positive')).not.toBe(await color('#link-brand'));
     expect(await color('#link-positive')).toBe(await page.locator('#link-positive').evaluate((el) => { el.style.color = 'var(--tui-positive)'; const c = getComputedStyle(el).color; el.style.color = ''; return c; }));

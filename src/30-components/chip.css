@@ -26,7 +26,7 @@
   /* Scale the shared .tui-close (30-components/close.css) down to fit the
      chip's line-height instead of its 2rem default, sized for alerts/toasts. */
   .tui-chip > .tui-close {
-    --tui-close-size: 1rem;
+    --tui-close-size: var(--tui-spacing-4);
   }
 
   /* .tui-chip-warning / .tui-chip-info live with every other tone alias in

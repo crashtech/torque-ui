@@ -21,7 +21,7 @@
     color: color-mix(in srgb, var(--tui-link-color, var(--tui-brand)) 70%, var(--tui-neutral) 30%);
   }
 
-  /* === Colour ===
+  /* === Color ===
    * --tui-link-color is read at rest, on hover (darkened) and when visited
    * (desaturated); the aliases set it from the semantic tokens */
   .tui-link-positive { --tui-link-color: var(--tui-positive); }

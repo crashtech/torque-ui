@@ -2,14 +2,14 @@
 title: Tone
 section: foundations
 source: src/30-components/tone.css, src/70-utilities/tone.css
-description: "The --tui-tone hook contract every coloured component reads, the generic .tui-tone-* setters, their per-component aliases, and the reset that stops a tone leaking into nested components."
+description: "The --tui-tone hook contract every colored component reads, the generic .tui-tone-* setters, their per-component aliases, and the reset that stops a tone leaking into nested components."
 ---
 
-A tone is a colour with a job — an intent (brand, success, error, warning, info, neutral) or any of the thirteen [named colours](/ui/foundations/colors/) — expressed as a family of seven custom properties that every coloured component reads. A tone class sets the family; a badge paints `-soft` behind `-ink`, a button paints `--tui-tone` behind `-fg`, an alert paints `-bg` with an `-edge` border. One setter therefore colours any component the same way, and no component carries its own copy of the palette.
+A tone is a color with a job — an intent (brand, success, error, warning, info, neutral) or any of the thirteen [named colors](/ui/foundations/colors/) — expressed as a family of seven custom properties that every colored component reads. A tone class sets the family; a badge paints `-soft` behind `-ink`, a button paints `--tui-tone` behind `-fg`, an alert paints `-bg` with an `-edge` border. One setter therefore colors any component the same way, and no component carries its own copy of the palette.
 
 ## The hook contract
 
-Every tone-aware component reads these seven properties with a neutral fallback, so an element without a tone class renders in greys and an element with one renders in the tone. The values come from the matching [colour tokens](/ui/foundations/colors/).
+Every tone-aware component reads these seven properties with a neutral fallback, so an element without a tone class renders in grays and an element with one renders in the tone. The values come from the matching [color tokens](/ui/foundations/colors/).
 
 | Property | Value for tone `<t>` | Typical use |
 |---|---|---|
@@ -23,7 +23,7 @@ Every tone-aware component reads these seven properties with a neutral fallback,
 
 ## Generic setters
 
-`.tui-tone-brand`, `.tui-tone-success`, `.tui-tone-error`, `.tui-tone-warning`, `.tui-tone-info` and `.tui-tone-neutral` set the whole family on any element; `.tui-tone-primary` is an alias of `-brand` and `.tui-tone-negative` of `-error`. Every [named colour](/ui/foundations/colors/) works the same way: `.tui-tone-red`, `-orange`, `-yellow`, `-olive`, `-green`, `-teal`, `-blue`, `-violet`, `-purple`, `-pink`, `-brown`, `-grey` and `-black` derive the companion hooks from the name on the spot. Anything tonable therefore takes an intent or a colour interchangeably. Because the setters live in the utilities layer, they win over any component's own colour declarations regardless of specificity — and the per-component aliases below sit at zero specificity, so a generic setter also wins over them on the same element.
+`.tui-tone-brand`, `.tui-tone-success`, `.tui-tone-error`, `.tui-tone-warning`, `.tui-tone-info` and `.tui-tone-neutral` set the whole family on any element; `.tui-tone-primary` is an alias of `-brand` and `.tui-tone-negative` of `-error`. Every [named color](/ui/foundations/colors/) works the same way: `.tui-tone-red`, `-orange`, `-yellow`, `-olive`, `-green`, `-teal`, `-blue`, `-violet`, `-purple`, `-pink`, `-brown`, `-gray` and `-black` derive the companion hooks from the name on the spot. Anything tonable therefore takes an intent or a color interchangeably. Because the setters live in the utilities layer, they win over any component's own color declarations regardless of specificity — and the per-component aliases below sit at zero specificity, so a generic setter also wins over them on the same element.
 
 {% include demo.html file="generic.html" %}
 
@@ -46,7 +46,7 @@ Every tone-aware component reads these seven properties with a neutral fallback,
 | `.tui-tone-purple` | `--tui-purple` |
 | `.tui-tone-pink` | `--tui-pink` |
 | `.tui-tone-brown` | `--tui-brown` |
-| `.tui-tone-grey` | `--tui-grey` |
+| `.tui-tone-gray` | `--tui-gray` |
 | `.tui-tone-black` | `--tui-black` |
 
 ## Per-component aliases
@@ -70,7 +70,7 @@ Custom properties inherit, so a `.tui-alert-success` would otherwise turn every 
 
 {% include demo.html file="nested-reset.html" %}
 
-The reset selector is wrapped in `:where()` so it has zero specificity; it works purely by being in the components layer, below the utilities layer that holds the setters. Checkbox, radio, range, colour, file, hidden and image inputs are excluded from the element list: their checked-state colour is read from the `.tui-checkbox`, `.tui-radio` or `.tui-switch` wrapper, which is already in the list, and resetting the input itself would override that. Likewise `.tui-progress-success` carries the tone on the `.tui-progress` wrapper, so the wrapper is what resets, not the bar.
+The reset selector is wrapped in `:where()` so it has zero specificity; it works purely by being in the components layer, below the utilities layer that holds the setters. Checkbox, radio, range, color, file, hidden and image inputs are excluded from the element list: their checked-state color is read from the `.tui-checkbox`, `.tui-radio` or `.tui-switch` wrapper, which is already in the list, and resetting the input itself would override that. Likewise `.tui-progress-success` carries the tone on the `.tui-progress` wrapper, so the wrapper is what resets, not the bar.
 
 | Reset on | Why |
 |---|---|
@@ -83,7 +83,7 @@ The seven hook properties themselves are the override surface: set any of them i
 
 | Property | Default | Effect |
 |---|---|---|
-| `--tui-tone` … `--tui-tone-gradient` | unset (components fall back to neutral) | Set directly for a one-off colour without any class |
+| `--tui-tone` … `--tui-tone-gradient` | unset (components fall back to neutral) | Set directly for a one-off color without any class |
 | `--tui-tone-end` | undeclared | Second stop of a named tone's gradient — the intent tones use `--tui-<tone>-end` instead (see [Colors](/ui/foundations/colors/)) |
 
 Related: [Colors](/ui/foundations/colors/) · [Cascade Layers](/ui/getting-started/layers/) · [Badge](/ui/components/badge/) · [Alert](/ui/components/alert/) · [Buttons](/ui/components/buttons/) · [Color Utilities](/ui/utilities/colors/)

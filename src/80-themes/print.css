@@ -42,6 +42,14 @@
     break-inside: avoid;
   }
 
+  /* why: browsers skip background images on paper by default, which would
+     leave a gradient-text span as a gap in the sentence */
+  .tui-text-gradient {
+    background-image: none;
+    background-clip: border-box;
+    color: inherit;
+  }
+
   .tui-shell {
     display: block;
   }

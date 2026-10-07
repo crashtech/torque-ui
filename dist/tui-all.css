@@ -58,22 +58,23 @@
        A fixed hue per name; lightness and chroma are inherited from
        --tui-brand via relative color syntax, so re-theming the brand
        still shifts the "vibe" of every name without drifting its hue.
-       Orange, yellow and pink floor their lightness — below it they stop
-       reading as their name no matter the brand.
+       Orange, yellow and pink follow the brand lightness inside a band —
+       below the floor they stop reading as their name, above the cap they
+       wash out to white.
        Use them through the .tui-tone-<name> classes (70-utilities/tone.css).
        ======================================== */
     --tui-red:    oklch(from var(--tui-brand) calc(l * 0.90) calc(c * 1.1) 25deg);
-    --tui-orange: oklch(from var(--tui-brand) max(l, 0.68) calc(c * 1.15) 55deg);
-    --tui-yellow: oklch(from var(--tui-brand) max(l, 0.8) calc(c * 1.0) 85deg);
+    --tui-orange: oklch(from var(--tui-brand) clamp(0.6, l * 1.2, 0.9) calc(c * 1.15) 55deg);
+    --tui-yellow: oklch(from var(--tui-brand) clamp(0.7, l * 1.4, 0.92) calc(c * 1.0) 85deg);
     --tui-olive:  oklch(from var(--tui-brand) calc(l * 0.85) calc(c * 0.9) 120deg);
     --tui-green:  oklch(from var(--tui-brand) calc(l * 0.90) calc(c * 1.1) 150deg);
     --tui-teal:   oklch(from var(--tui-brand) calc(l * 0.85) calc(c * 1.0) 190deg);
     --tui-blue:   oklch(from var(--tui-brand) calc(l * 0.95) calc(c * 1.0) 240deg);
     --tui-violet: oklch(from var(--tui-brand) calc(l * 0.90) calc(c * 1.1) 290deg);
     --tui-purple: oklch(from var(--tui-brand) calc(l * 0.85) calc(c * 1.15) 320deg);
-    --tui-pink:   oklch(from var(--tui-brand) max(l, 0.66) calc(c * 1.1) 350deg);
+    --tui-pink:   oklch(from var(--tui-brand) clamp(0.58, l * 1.15, 0.9) calc(c * 1.1) 350deg);
     --tui-brown:  oklch(from var(--tui-brand) calc(l * 0.65) calc(c * 0.55) 60deg);
-    --tui-grey:   var(--tui-neutral);
+    --tui-gray:   var(--tui-neutral);
     --tui-black:  color-mix(in srgb, var(--tui-neutral) 15%, black 85%);
 
     /* ========================================
@@ -120,28 +121,34 @@
 
     /* ========================================
        GRADIENTS
-       Each gradient runs from the tone to an explicit *-end colour that
-       the library does NOT declare — until you set --tui-brand-end (or
-       --tui-positive-end …) the gradient resolves to the flat tone.
+       Each gradient runs along --tui-gradient-angle from the tone to an
+       explicit *-end color that the library does NOT declare — until you
+       set --tui-brand-end (or --tui-positive-end …) the gradient resolves
+       to the flat tone.
        ======================================== */
-    --tui-brand-gradient:    linear-gradient(135deg, var(--tui-brand), var(--tui-brand-end, var(--tui-brand)));
-    --tui-positive-gradient: linear-gradient(135deg, var(--tui-positive), var(--tui-positive-end, var(--tui-positive)));
-    --tui-negative-gradient: linear-gradient(135deg, var(--tui-negative), var(--tui-negative-end, var(--tui-negative)));
-    --tui-warning-gradient:  linear-gradient(135deg, var(--tui-warning), var(--tui-warning-end, var(--tui-warning)));
-    --tui-info-gradient:     linear-gradient(135deg, var(--tui-info), var(--tui-info-end, var(--tui-info)));
-    --tui-neutral-gradient:  linear-gradient(135deg, var(--tui-neutral), var(--tui-neutral-end, var(--tui-neutral)));
+    --tui-gradient-angle:    135deg;
+    --tui-brand-gradient:    linear-gradient(var(--tui-gradient-angle), var(--tui-brand), var(--tui-brand-end, var(--tui-brand)));
+    --tui-positive-gradient: linear-gradient(var(--tui-gradient-angle), var(--tui-positive), var(--tui-positive-end, var(--tui-positive)));
+    --tui-negative-gradient: linear-gradient(var(--tui-gradient-angle), var(--tui-negative), var(--tui-negative-end, var(--tui-negative)));
+    --tui-warning-gradient:  linear-gradient(var(--tui-gradient-angle), var(--tui-warning), var(--tui-warning-end, var(--tui-warning)));
+    --tui-info-gradient:     linear-gradient(var(--tui-gradient-angle), var(--tui-info), var(--tui-info-end, var(--tui-info)));
+    --tui-neutral-gradient:  linear-gradient(var(--tui-gradient-angle), var(--tui-neutral), var(--tui-neutral-end, var(--tui-neutral)));
 
     /* ========================================
        AVATAR PALETTE
-       Six fixed hues, all dark enough for white initials. The app picks
-       .tui-avatar-1 … .tui-avatar-6 (e.g. hashed from the user id).
+       The chart wheel (00-tokens/06-chart.css) at full strength: avatar n
+       shares the hue of chart series n, at the base's own chroma. The app
+       picks .tui-avatar-1 … .tui-avatar-6 (e.g. hashed from the user id).
        ======================================== */
-    --tui-avatar-1: #2563eb;
-    --tui-avatar-2: #c2410c;
-    --tui-avatar-3: #0f766e;
-    --tui-avatar-4: #be185d;
-    --tui-avatar-5: #4d7c0f;
-    --tui-avatar-6: #7c3aed;
+
+    /* why: white initials need a dark fill — lightness is capped at 0.5,
+       where every hue still clears AA against --tui-text-inverse */
+    --tui-avatar-1: oklch(from var(--tui-chart-base) min(l, 0.5) c calc(h + var(--tui-chart-rotation)));
+    --tui-avatar-2: oklch(from var(--tui-chart-base) min(l, 0.5) c calc(h + var(--tui-chart-rotation) * 2));
+    --tui-avatar-3: oklch(from var(--tui-chart-base) min(l, 0.5) c calc(h + var(--tui-chart-rotation) * 3));
+    --tui-avatar-4: oklch(from var(--tui-chart-base) min(l, 0.5) c calc(h + var(--tui-chart-rotation) * 4));
+    --tui-avatar-5: oklch(from var(--tui-chart-base) min(l, 0.5) c calc(h + var(--tui-chart-rotation) * 5));
+    --tui-avatar-6: oklch(from var(--tui-chart-base) min(l, 0.5) c calc(h + var(--tui-chart-rotation) * 6));
 
     /* ========================================
        NEUTRAL PALETTE (grays)
@@ -198,13 +205,13 @@
     --tui-focus-ring: color-mix(in srgb, var(--tui-brand) 30%, transparent);
     --tui-focus-ring-strong: var(--tui-brand);
     --tui-focus-ring-width: 2px;
-    --tui-focus-halo-width: 3px;
+    --tui-focus-halo-width: calc(var(--tui-focus-ring-width) * 1.5);
 
     /* ========================================
        SHADOWS
        ======================================== */
 
-    /* why: light-dark() accepts only <color>, so the colour is the token and the
+    /* why: light-dark() accepts only <color>, so the color is the token and the
        offsets wrap it — a light-dark() shadow list computes to `none`. */
     --tui-shadow-color-sm: light-dark(color-mix(in srgb, var(--tui-neutral) 8%, transparent), color-mix(in srgb, black 30%, transparent));
     --tui-shadow-color-md: light-dark(color-mix(in srgb, var(--tui-neutral) 10%, transparent), color-mix(in srgb, black 35%, transparent));
@@ -237,7 +244,8 @@
 
 
   /* Torque UI — Typography Tokens
- * Font families, sizes, weights, line heights.
+ * Font families, sizes, weights, line heights. The sizes multiply
+ * --tui-text-base and the tracking steps multiply --tui-tracking-wide.
  */
 
 
@@ -249,16 +257,16 @@
     --tui-font-sans: system-ui, -apple-system, "Segoe UI", roboto, "Helvetica Neue", arial, sans-serif;
     --tui-font-mono: ui-monospace, sfmono-regular, "SF Mono", menlo, consolas, "Liberation Mono", monospace;
 
-    /* Font sizes (rem — 16px base) */
-    --tui-text-xs: 0.75rem;    /* 12px */
-    --tui-text-sm: 0.875rem;   /* 14px */
-    --tui-text-base: 1rem;     /* 16px */
-    --tui-text-lg: 1.125rem;   /* 18px */
-    --tui-text-xl: 1.25rem;    /* 20px */
-    --tui-text-2xl: 1.5rem;    /* 24px */
-    --tui-text-3xl: 1.875rem;  /* 30px */
-    --tui-text-4xl: 2.25rem;   /* 36px */
-    --tui-text-5xl: 3rem;      /* 48px */
+    /* Font sizes: base is the basis, the rest are multiples of it */
+    --tui-text-base: 1rem;
+    --tui-text-xs: calc(var(--tui-text-base) * 0.75);
+    --tui-text-sm: calc(var(--tui-text-base) * 0.875);
+    --tui-text-lg: calc(var(--tui-text-base) * 1.125);
+    --tui-text-xl: calc(var(--tui-text-base) * 1.25);
+    --tui-text-2xl: calc(var(--tui-text-base) * 1.5);
+    --tui-text-3xl: calc(var(--tui-text-base) * 1.875);
+    --tui-text-4xl: calc(var(--tui-text-base) * 2.25);
+    --tui-text-5xl: calc(var(--tui-text-base) * 3);
 
     /* Font weights */
     --tui-font-normal: 400;
@@ -274,13 +282,13 @@
     --tui-leading-relaxed: 1.625;
     --tui-leading-loose: 1.75;
 
-    /* Letter spacing */
-    --tui-tracking-tighter: -0.05em;
-    --tui-tracking-tight: -0.025em;
+    /* Letter spacing: wide is the unit, the rest are multiples of it */
     --tui-tracking-normal: 0;
     --tui-tracking-wide: 0.025em;
-    --tui-tracking-wider: 0.05em;
-    --tui-tracking-widest: 0.1em;
+    --tui-tracking-tight: calc(var(--tui-tracking-wide) * -1);
+    --tui-tracking-tighter: calc(var(--tui-tracking-wide) * -2);
+    --tui-tracking-wider: calc(var(--tui-tracking-wide) * 2);
+    --tui-tracking-widest: calc(var(--tui-tracking-wide) * 4);
   }
 }
 
@@ -288,26 +296,28 @@
 
 
   /* Torque UI — Spacing Scale
- * 4px base unit. All spacing derives from this.
+ * One base unit (4px, in rem) and every other step a multiple of it: the
+ * name is the number of units, so overriding --tui-spacing-1 on :root
+ * loosens or tightens the whole framework.
  */
 
 
   :root {
     --tui-spacing-0: 0;
-    --tui-spacing-0-5: 0.125rem;   /* 2px */
-    --tui-spacing-1: 0.25rem;     /* 4px */
-    --tui-spacing-2: 0.5rem;      /* 8px */
-    --tui-spacing-3: 0.75rem;     /* 12px */
-    --tui-spacing-4: 1rem;        /* 16px */
-    --tui-spacing-5: 1.25rem;     /* 20px */
-    --tui-spacing-6: 1.5rem;      /* 24px */
-    --tui-spacing-8: 2rem;        /* 32px */
-    --tui-spacing-10: 2.5rem;     /* 40px */
-    --tui-spacing-12: 3rem;       /* 48px */
-    --tui-spacing-16: 4rem;       /* 64px */
-    --tui-spacing-20: 5rem;       /* 80px */
-    --tui-spacing-24: 6rem;       /* 96px */
-    --tui-spacing-32: 8rem;       /* 128px */
+    --tui-spacing-1: 0.25rem;
+    --tui-spacing-0-5: calc(var(--tui-spacing-1) * 0.5);
+    --tui-spacing-2: calc(var(--tui-spacing-1) * 2);
+    --tui-spacing-3: calc(var(--tui-spacing-1) * 3);
+    --tui-spacing-4: calc(var(--tui-spacing-1) * 4);
+    --tui-spacing-5: calc(var(--tui-spacing-1) * 5);
+    --tui-spacing-6: calc(var(--tui-spacing-1) * 6);
+    --tui-spacing-8: calc(var(--tui-spacing-1) * 8);
+    --tui-spacing-10: calc(var(--tui-spacing-1) * 10);
+    --tui-spacing-12: calc(var(--tui-spacing-1) * 12);
+    --tui-spacing-16: calc(var(--tui-spacing-1) * 16);
+    --tui-spacing-20: calc(var(--tui-spacing-1) * 20);
+    --tui-spacing-24: calc(var(--tui-spacing-1) * 24);
+    --tui-spacing-32: calc(var(--tui-spacing-1) * 32);
   }
 }
 
@@ -315,17 +325,20 @@
 
 
   /* Torque UI — Border Radius Scale
+ * The smallest step is the unit (2px, in rem) and the rest are multiples of
+ * it, so overriding --tui-radius-sm on :root rounds or squares the whole
+ * framework; none and full are the two fixed ends.
  */
 
 
   :root {
     --tui-radius-none: 0;
-    --tui-radius-sm: 0.125rem;   /* 2px */
-    --tui-radius-md: 0.375rem;   /* 6px */
-    --tui-radius-lg: 0.5rem;     /* 8px */
-    --tui-radius-xl: 0.75rem;    /* 12px */
-    --tui-radius-2xl: 1rem;      /* 16px */
-    --tui-radius-3xl: 1.5rem;    /* 24px */
+    --tui-radius-sm: 0.125rem;
+    --tui-radius-md: calc(var(--tui-radius-sm) * 3);
+    --tui-radius-lg: calc(var(--tui-radius-sm) * 4);
+    --tui-radius-xl: calc(var(--tui-radius-sm) * 6);
+    --tui-radius-2xl: calc(var(--tui-radius-sm) * 8);
+    --tui-radius-3xl: calc(var(--tui-radius-sm) * 12);
     --tui-radius-full: 9999px;
   }
 }
@@ -350,15 +363,19 @@
 
 
   /* Torque UI — Transition Tokens
- * Duration and easing custom properties for smooth transitions.
+ * Duration and easing custom properties for smooth transitions. One
+ * duration is the basis and the others are multiples of it, so overriding
+ * --tui-duration-normal on :root retimes the whole framework.
  */
 
 
   :root {
-    --tui-duration-fast: 150ms;
     --tui-duration-normal: 250ms;
-    --tui-duration-slow: 350ms;
-    --tui-duration-slower: 500ms;
+    --tui-duration-faster: calc(var(--tui-duration-normal) * 0.4);
+    --tui-duration-fast: calc(var(--tui-duration-normal) * 0.6);
+    --tui-duration-slow: calc(var(--tui-duration-normal) * 1.4);
+    --tui-duration-slower: calc(var(--tui-duration-normal) * 2);
+    --tui-duration-slowest: calc(var(--tui-duration-normal) * 2);
     --tui-easing-in: cubic-bezier(0.4, 0, 1, 1);
     --tui-easing-out: cubic-bezier(0, 0, 0.2, 1);
     --tui-easing-in-out: cubic-bezier(0.4, 0, 0.2, 1);
@@ -369,20 +386,33 @@
 
 
   /* Torque UI — Chart Tokens
- * Categorical series palette and a muted single-measure colour for
- * hand-authored SVG charts. Six hue families (blue, orange, teal, magenta,
- * olive, purple) chosen so adjacent series stay apart under deuteranopia
- * and protanopia; the dark values are lifted for contrast on dark surfaces.
+ * A branded categorical palette for hand-authored SVG charts. Series 0 is
+ * the base color (the brand, by default) pulled toward a pastel point, and
+ * each later series rotates the hue by one more step, so the whole palette
+ * follows a re-theme. Three knobs: the base, the rotation between series
+ * (a number of degrees) and the pastel strength (0 keeps the tone, 1 lands
+ * every series on the pastel point).
  */
 
 
   :root {
-    --tui-chart-1: light-dark(#2563eb, #60a5fa);
-    --tui-chart-2: light-dark(#ea580c, #fb923c);
-    --tui-chart-3: light-dark(#0d9488, #2dd4bf);
-    --tui-chart-4: light-dark(#db2777, #f472b6);
-    --tui-chart-5: light-dark(#65a30d, #a3e635);
-    --tui-chart-6: light-dark(#7c3aed, #a78bfa);
+    --tui-chart-base: var(--tui-brand);
+
+    /* why: four turns and a third of the wheel over seven series — each step
+       lands far from its neighbors without the even 360 / 7 spread's
+       rainbow feel */
+    --tui-chart-rotation: calc(1560 / 7);
+    --tui-chart-pastel: 0.35;
+
+    /* why: the pastel point is oklch lightness 0.86 and chroma 0.08 — light
+       and soft enough to read as pastel, still clearly a color */
+    --tui-chart-0: oklch(from var(--tui-chart-base) calc(l + (0.86 - l) * var(--tui-chart-pastel)) calc(c + (0.08 - c) * var(--tui-chart-pastel)) h);
+    --tui-chart-1: oklch(from var(--tui-chart-base) calc(l + (0.86 - l) * var(--tui-chart-pastel)) calc(c + (0.08 - c) * var(--tui-chart-pastel)) calc(h + var(--tui-chart-rotation)));
+    --tui-chart-2: oklch(from var(--tui-chart-base) calc(l + (0.86 - l) * var(--tui-chart-pastel)) calc(c + (0.08 - c) * var(--tui-chart-pastel)) calc(h + var(--tui-chart-rotation) * 2));
+    --tui-chart-3: oklch(from var(--tui-chart-base) calc(l + (0.86 - l) * var(--tui-chart-pastel)) calc(c + (0.08 - c) * var(--tui-chart-pastel)) calc(h + var(--tui-chart-rotation) * 3));
+    --tui-chart-4: oklch(from var(--tui-chart-base) calc(l + (0.86 - l) * var(--tui-chart-pastel)) calc(c + (0.08 - c) * var(--tui-chart-pastel)) calc(h + var(--tui-chart-rotation) * 4));
+    --tui-chart-5: oklch(from var(--tui-chart-base) calc(l + (0.86 - l) * var(--tui-chart-pastel)) calc(c + (0.08 - c) * var(--tui-chart-pastel)) calc(h + var(--tui-chart-rotation) * 5));
+    --tui-chart-6: oklch(from var(--tui-chart-base) calc(l + (0.86 - l) * var(--tui-chart-pastel)) calc(c + (0.08 - c) * var(--tui-chart-pastel)) calc(h + var(--tui-chart-rotation) * 6));
 
     /* why: a single-measure bar is not a series — it must read as
        "the value", never as "series #n" next to a legend */
@@ -545,7 +575,7 @@
   /* === Caret ===
    * A chevron that turns when its expandable parent opens — a dropdown
    * button, a navbar item, the combobox. The glyph is the shared chevron
-   * token used as a mask, so it takes the text colour. */
+   * token used as a mask, so it takes the text color. */
   .tui-caret {
     display: inline-block;
     inline-size: 0.75em;
@@ -787,7 +817,7 @@
     color: color-mix(in srgb, var(--tui-link-color, var(--tui-brand)) 70%, var(--tui-neutral) 30%);
   }
 
-  /* === Colour ===
+  /* === Color ===
    * --tui-link-color is read at rest, on hover (darkened) and when visited
    * (desaturated); the aliases set it from the semantic tokens */
   .tui-link-positive { --tui-link-color: var(--tui-positive); }
@@ -936,9 +966,9 @@
 
   /* why: a trimmed cell shrinks to its own cap height, so a control inside it
      (a button, badge, key cap, field, checkbox) would overflow the row; cells
-     holding one keep their leading, and middle alignment centres control and
+     holding one keep their leading, and middle alignment centers control and
      text cells on the same axis */
-  :is(th, td):not(:has(> :is(button, .tui-button, .tui-badge, .tui-tag, .tui-chip, .tui-label, .tui-avatar, kbd, img, input, select))) {
+  :is(th, td):not(:has(> :is(button, .tui-button, .tui-badge, .tui-tag, .tui-chip, .tui-label, .tui-avatar, .tui-cycle, kbd, img, input, select))) {
     text-box: trim-both cap alphabetic;
   }
 
@@ -1001,6 +1031,31 @@
   .tui-table-selectable tbody tr:has(input:checked),
   tbody tr:is([aria-selected="true"], [data-selected], .tui-selected) {
     background-color: var(--tui-brand-soft);
+  }
+
+  /* why: counters run in document order, so the count reads only after the
+     rows: a <tfoot> cell or an element following the table */
+  .tui-table-selectable {
+    counter-reset: tui-table-selected;
+  }
+
+  .tui-table-selectable tbody tr:is(:has(input:checked), [aria-selected="true"], [data-selected], .tui-selected) {
+    counter-increment: tui-table-selected;
+  }
+
+  .tui-table-count {
+    vertical-align: middle;
+  }
+
+  .tui-table-count::before {
+    content: counter(tui-table-selected);
+  }
+
+  /* why: a display:none row never increments a counter; a collapsed group
+     leaves the layout but keeps its rows counted */
+  .tui-table-selectable > tbody[hidden] {
+    display: table-row-group;
+    visibility: collapse;
   }
 
   /* === Expandable rows ===
@@ -1329,8 +1384,8 @@
   .tui-close {
     display: inline-grid;
     place-items: center;
-    inline-size: var(--tui-close-size, 2rem);
-    block-size: var(--tui-close-size, 2rem);
+    inline-size: var(--tui-close-size, var(--tui-spacing-8));
+    block-size: var(--tui-close-size, var(--tui-spacing-8));
     padding: 0;
     border: 0;
     background: none;
@@ -1372,11 +1427,11 @@
  */
 
 
-  /* why: 20-elements/links.css sets :any-link colour at (0,1,0), which beats
-     the :where() base colour in 20-elements/buttons.css — an <a class="tui-button">
+  /* why: 20-elements/links.css sets :any-link color at (0,1,0), which beats
+     the :where() base color in 20-elements/buttons.css — an <a class="tui-button">
      rendered brand-on-brand with a hover underline. Reasserting it here wins
      (same specificity, later file); :where keeps hover/visited at (0,1,0) so
-     the variants below that set their own colour still win by source order. */
+     the variants below that set their own color still win by source order. */
   .tui-button,
   .tui-button:where(:hover, :visited) {
     color: var(--tui-tone-fg, var(--tui-text-1));
@@ -1395,7 +1450,7 @@
     box-shadow: var(--tui-tone, var(--tui-shadow-sm));
   }
 
-  /* why: the geometry is --tui-shadow-md; only the colour is toned, so an
+  /* why: the geometry is --tui-shadow-md; only the color is toned, so an
      untoned button falls back to the plain md shadow instead of an invalid
      value (a whole shadow spliced after the offsets computes to none). */
   .tui-button:hover {
@@ -1442,14 +1497,25 @@
   }
 
   /* === Gradient Button === */
+
+  /* why: the gradient is painted twice as wide as the button, so sliding
+     its position on hover sweeps the color across the face — the motion is
+     a transition, so the reduced-motion theme collapses it to a snap. It is
+     sized from the border box, or the transparent border would show the
+     lightened background color as a pale ring at either end of the slide. */
   .tui-button-gradient {
     background-color: var(--tui-tone, var(--tui-brand));
     background-image: var(--tui-tone-gradient, var(--tui-brand-gradient));
+    background-origin: border-box;
+    background-size: 200% 100%;
+    background-position: 0% 50%;
     color: var(--tui-tone-fg, var(--tui-brand-fg));
     border-color: transparent;
+    transition: background-position var(--tui-duration-slow) var(--tui-easing-in-out), box-shadow var(--tui-duration-fast), translate var(--tui-duration-fast);
   }
 
   .tui-button-gradient:hover {
+    background-position: 100% 50%;
     border-color: transparent;
     filter: brightness(1.08);
   }
@@ -1679,6 +1745,93 @@
 
 @layer tui.components{
 
+/* Torque UI — Showcase Component
+ * .tui-showcase — a media cell beside a body of heading, copy and a footer
+ * pinned to the bottom. Layout only: compose with .tui-card for the frame.
+ */
+
+/* why: stacked, the body row takes every spare pixel so the footer can sit
+   on the bottom edge; a grid of stacked showcases then lines its footers up */
+.tui-showcase {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  align-items: stretch;
+  overflow: hidden;
+  border-radius: inherit;
+}
+
+/* why: the DOM stays media-first so narrow screens always stack the media on
+   top; the swap happens only once there are two columns to swap */
+@media (width >= 768px) {
+  .tui-showcase:not(.tui-showcase-stack) {
+    grid-template-columns: var(--tui-showcase-columns, 1fr 1fr);
+    grid-template-rows: auto;
+  }
+
+  .tui-showcase-reverse:not(.tui-showcase-stack) > .tui-showcase-media {
+    order: 1;
+  }
+}
+
+.tui-showcase-media {
+  display: grid;
+  place-items: center;
+  min-inline-size: 0;
+  margin: 0;
+  padding: var(--tui-showcase-padding, var(--tui-spacing-8));
+  background-color: var(--tui-showcase-media-bg, var(--tui-surface-1));
+
+  & > img,
+  & > svg {
+    max-inline-size: 100%;
+    block-size: auto;
+  }
+
+  /* why: code is the media on a developer page — it reads as a panel, so it
+     takes the whole cell instead of floating inside the padding */
+  &:has(> pre) {
+    padding: 0;
+  }
+
+  & > pre {
+    inline-size: 100%;
+    block-size: 100%;
+    margin: 0;
+    border: 0;
+    border-radius: 0;
+    background: none;
+    padding: var(--tui-showcase-padding, var(--tui-spacing-8));
+  }
+}
+
+.tui-showcase-body {
+  display: flex;
+  flex-direction: column;
+  min-inline-size: 0;
+  padding: var(--tui-showcase-padding, var(--tui-spacing-8));
+  overflow-wrap: break-word;
+  text-wrap: pretty;
+
+  & > * {
+    margin: 0;
+  }
+
+  & > * + * {
+    margin-block-start: var(--tui-spacing-4);
+  }
+}
+
+.tui-showcase-footer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--tui-spacing-2);
+  margin-block-start: auto;
+  padding-block-start: var(--tui-spacing-6);
+}
+}
+
+@layer tui.components{
+
 
   /* Torque UI — Alert Component
  * Semantic tone via .tui-alert-success/-error/-warning/-info, driven by the
@@ -1709,10 +1862,10 @@
       padding-inline-end: var(--tui-spacing-8);
     }
 
-    /* why: a compact control sized and inset to centre on the cap of the
+    /* why: a compact control sized and inset to center on the cap of the
        first text line, so a single-line alert reads as one row */
     & > .tui-close {
-      --tui-close-size: 1rem;
+      --tui-close-size: var(--tui-spacing-4);
 
       position: absolute;
       inset-block-start: var(--tui-spacing-3);
@@ -1742,7 +1895,7 @@
     }
 
     /* why: the body text is trimmed to its cap height, so the icon column
-       is lifted by one spacing step to centre a 1.5rem icon (or a glyph on
+       is lifted by one spacing step to center a 1.5rem icon (or a glyph on
        the body leading) on the cap of the first line */
     & > :first-child {
       margin-block-start: -0.25rem;
@@ -2015,7 +2168,7 @@
   /* Scale the shared .tui-close (30-components/close.css) down to fit the
      chip's line-height instead of its 2rem default, sized for alerts/toasts. */
   .tui-chip > .tui-close {
-    --tui-close-size: 1rem;
+    --tui-close-size: var(--tui-spacing-4);
   }
 
   /* .tui-chip-warning / .tui-chip-info live with every other tone alias in
@@ -2083,7 +2236,7 @@
   .tui-progress-loading > .tui-progress-bar {
     background-image: repeating-linear-gradient(-45deg, transparent 0 0.5rem, rgb(255 255 255 / 0.25) 0.5rem 1rem);
     background-size: 1.414rem 100%;
-    animation: tui-progress-stripes 1s linear infinite;
+    animation: tui-progress-stripes calc(var(--tui-duration-normal) * 4) linear infinite;
   }
 
   @keyframes tui-progress-stripes {
@@ -2095,7 +2248,7 @@
   .tui-progress-indeterminate > .tui-progress-bar {
     inline-size: 40%;
     transition: none;
-    animation: tui-progress-sweep 1.4s var(--tui-easing-in-out) infinite;
+    animation: tui-progress-sweep calc(var(--tui-duration-normal) * 5.6) var(--tui-easing-in-out) infinite;
   }
 
   @keyframes tui-progress-sweep {
@@ -2105,16 +2258,16 @@
 
   .tui-progress-ring.tui-progress-indeterminate {
     background: conic-gradient(var(--tui-tone, var(--tui-brand)) 0 25%, var(--tui-progress-ring-track, var(--tui-surface-3)) 0);
-    animation: tui-spin 1s linear infinite;
+    animation: tui-spin calc(var(--tui-duration-normal) * 4) linear infinite;
   }
 
   /* === Sizes === */
   .tui-progress-sm {
-    --tui-progress-thickness: 0.25rem;
+    --tui-progress-thickness: var(--tui-spacing-1);
   }
 
   .tui-progress-lg {
-    --tui-progress-thickness: 1rem;
+    --tui-progress-thickness: var(--tui-spacing-4);
   }
 
   /* === Progress Ring === */
@@ -2133,7 +2286,7 @@
   }
 
   /* === Progress Meter (half-circle gauge) ===
-   * why: the conic sweep is centred on the bottom edge and starts at the
+   * why: the conic sweep is centered on the bottom edge and starts at the
    * left horizon, so 180° — half a turn — is the whole scale; the value
    * therefore maps to (value / 2)% of the full turn, and the radial mask
    * carves the same 0.5rem stroke the ring uses */
@@ -2184,7 +2337,7 @@
     border: 3px solid var(--tui-surface-3);
     border-block-start-color: var(--tui-brand);
     border-radius: 50%;
-    animation: tui-spin 0.75s linear infinite;
+    animation: tui-spin calc(var(--tui-duration-normal) * 3) linear infinite;
   }
 
   @keyframes tui-spin {
@@ -2332,7 +2485,7 @@
   /* why: steps are equal flex tracks separated by --tui-steps-gap, so the next
      circle's edge sits at 150% + gap - size/2 of this step; the connector runs
      from this circle's edge to that edge with the same inset on both sides,
-     centred on the circle rather than on circle + label. */
+     centered on the circle rather than on circle + label. */
   .tui-step:not(:last-child)::after {
     --_inset: var(--tui-step-connector-inset, var(--tui-spacing-2));
 
@@ -2385,25 +2538,34 @@
 
 
   /* Torque UI — Pagination Component
- * Page navigation with CSS-only active state.
+ * One joined group of page links with arrow ends, and a bar that lays it out
+ * beside a page-size select and a range text.
  */
 
 
   .tui-pagination {
-    display: flex;
-    align-items: center;
-    gap: var(--tui-spacing-1);
+    display: inline-flex;
+    inline-size: fit-content;
+    align-items: stretch;
     list-style: none;
     margin: 0;
     padding: 0;
+    border: 1px solid var(--tui-border);
+    border-radius: var(--tui-radius-md);
+    background-color: var(--tui-surface-0);
   }
 
   .tui-pagination > li {
+    display: flex;
     list-style: none;
   }
 
-  .tui-pagination a,
-  .tui-pagination span {
+  .tui-pagination > * + * {
+    border-inline-start: 1px solid var(--tui-border);
+  }
+
+  .tui-pagination > :is(a, span),
+  .tui-pagination > li > :is(a, span) {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -2414,36 +2576,101 @@
     font-weight: var(--tui-font-medium);
     color: var(--tui-text-2);
     text-decoration: none;
-    border-radius: var(--tui-radius-md);
-    border: 1px solid var(--tui-border);
-    background-color: var(--tui-surface-0);
-    transition: background-color var(--tui-duration-fast) var(--tui-easing-out), border-color var(--tui-duration-fast) var(--tui-easing-out), color var(--tui-duration-fast) var(--tui-easing-out), box-shadow var(--tui-duration-fast) var(--tui-easing-out), translate var(--tui-duration-fast) var(--tui-easing-out);
+    transition: background-color var(--tui-duration-fast) var(--tui-easing-out), color var(--tui-duration-fast) var(--tui-easing-out);
   }
 
-  .tui-pagination a:hover,
-  .tui-pagination span:hover {
+  /* why: the group draws the border, so the end items round inside it */
+  .tui-pagination > :first-child,
+  .tui-pagination > li:first-child > * {
+    border-start-start-radius: calc(var(--tui-radius-md) - 1px);
+    border-end-start-radius: calc(var(--tui-radius-md) - 1px);
+  }
+
+  .tui-pagination > :last-child,
+  .tui-pagination > li:last-child > * {
+    border-start-end-radius: calc(var(--tui-radius-md) - 1px);
+    border-end-end-radius: calc(var(--tui-radius-md) - 1px);
+  }
+
+  .tui-pagination a:hover {
     background-color: var(--tui-surface-2);
     color: var(--tui-text-1);
-    border-color: var(--tui-border-strong);
   }
 
-  .tui-pagination a.tui-link-active,
-  .tui-pagination-item-active {
+  /* why: the focus ring must paint above the next item's divider */
+  .tui-pagination a:focus-visible {
+    position: relative;
+    z-index: 1;
+  }
+
+  .tui-pagination .tui-pagination-item-active,
+  .tui-pagination a.tui-link-active {
     background-color: var(--tui-brand);
     color: var(--tui-brand-fg);
-    border-color: var(--tui-brand);
-  }
 
-  .tui-pagination a.tui-link-active:hover,
-  .tui-pagination-item-active:hover {
-    background-color: color-mix(in srgb, var(--tui-brand) 90%, white 10%);
-    color: var(--tui-brand-fg);
+    &:hover {
+      background-color: color-mix(in srgb, var(--tui-brand) 90%, white 10%);
+      color: var(--tui-brand-fg);
+    }
   }
 
   .tui-pagination a[aria-disabled="true"] {
     opacity: 0.5;
     cursor: not-allowed;
     pointer-events: none;
+  }
+
+  /* === Arrows ===
+   * The shared chevron turned sideways; first and last stack two of them
+   * in a tall box before the turn. */
+  .tui-pagination :is(.tui-pagination-first, .tui-pagination-prev, .tui-pagination-next, .tui-pagination-last)::before {
+    content: '';
+    inline-size: 1em;
+    block-size: 1em;
+    mask: var(--tui-icon-chevron) center / contain no-repeat;
+    background-color: currentcolor;
+    rotate: var(--tui-pagination-turn);
+  }
+
+  .tui-pagination :is(.tui-pagination-first, .tui-pagination-last)::before {
+    block-size: 1.25em;
+    mask:
+      var(--tui-icon-chevron) center top / 100% 70% no-repeat,
+      var(--tui-icon-chevron) center bottom / 100% 70% no-repeat;
+  }
+
+  .tui-pagination :is(.tui-pagination-first, .tui-pagination-prev) {
+    --tui-pagination-turn: 90deg;
+  }
+
+  .tui-pagination :is(.tui-pagination-next, .tui-pagination-last) {
+    --tui-pagination-turn: -90deg;
+  }
+
+  .tui-pagination:dir(rtl) :is(.tui-pagination-first, .tui-pagination-prev) {
+    --tui-pagination-turn: -90deg;
+  }
+
+  .tui-pagination:dir(rtl) :is(.tui-pagination-next, .tui-pagination-last) {
+    --tui-pagination-turn: 90deg;
+  }
+
+  /* === Bar ===
+   * Children keep their source order; the range text takes the free space,
+   * so whatever follows it sits at the far end. */
+  .tui-pagination-bar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--tui-spacing-3) var(--tui-spacing-4);
+  }
+
+  .tui-pagination-info {
+    flex: 1;
+    font-size: var(--tui-text-sm);
+    color: var(--tui-text-2);
+    white-space: nowrap;
   }
 }
 
@@ -2569,7 +2796,7 @@
   }
 
   /* why: --tui-tone-ink (not the raw --tui-tone) keeps checked-row text at
-     AA contrast against the soft tinted background across brand colours */
+     AA contrast against the soft tinted background across brand colors */
   &:has(> .tui-state-input:checked),
   &.tui-list-item-active,
   &:is([aria-selected="true"], [aria-current], [data-selected], .tui-selected) {
@@ -2651,7 +2878,7 @@
 }
 
 /* why: the parent row pads spacing-2 before its 0.5rem disclosure triangle,
-   so the glyph centre sits at 0.75rem — the guide line starts there */
+   so the glyph center sits at 0.75rem — the guide line starts there */
 .tui-tree ul {
   padding-inline-start: var(--tui-tree-indent, var(--tui-spacing-5));
   border-inline-start: 1px solid var(--tui-tree-guide, var(--tui-border));
@@ -2779,7 +3006,7 @@
 
 .tui-grid-view-lg {
   --tui-grid-view-min: 10rem;
-  --tui-tile-icon-size: 4rem;
+  --tui-tile-icon-size: var(--tui-spacing-16);
 }
 
 /* why: at this size a tile reads as a card, so it takes an edge; the name
@@ -2820,10 +3047,10 @@
 
   & > .tui-icon,
   & > img {
-    --tui-icon-size: var(--tui-tile-icon-size, 2.5rem);
+    --tui-icon-size: var(--tui-tile-icon-size, var(--tui-spacing-10));
 
-    inline-size: var(--tui-tile-icon-size, 2.5rem);
-    block-size: var(--tui-tile-icon-size, 2.5rem);
+    inline-size: var(--tui-tile-icon-size, var(--tui-spacing-10));
+    block-size: var(--tui-tile-icon-size, var(--tui-spacing-10));
   }
 
   &:is(a, label, button):hover {
@@ -2837,7 +3064,7 @@
   }
 
   /* why: --tui-tone-ink (not the raw --tui-tone) keeps selected-tile text at
-     AA contrast against the soft tinted background across brand colours */
+     AA contrast against the soft tinted background across brand colors */
   &:has(> .tui-state-input:checked),
   &.tui-tile-active,
   &:is([aria-selected="true"], [data-selected], .tui-selected) {
@@ -2925,7 +3152,7 @@
     background-color: var(--tui-divider-line, var(--tui-border));
   }
 
-  /* A tone class on the divider colours the line and its text */
+  /* A tone class on the divider colors the line and its text */
   .tui-divider[class*="tui-tone-"] {
     --tui-divider-line: var(--tui-tone-edge);
 
@@ -3005,7 +3232,7 @@
     color: var(--tui-text-inverse);
 
     /* why: fixed black outline (stacked shadows, not a single blur) for
-       legibility over arbitrary inline flag colours, including light ones —
+       legibility over arbitrary inline flag colors, including light ones —
        flag backgrounds don't follow the light/dark theme, so this can't use
        a light-dark() shadow token without changing appearance. */
     text-shadow:
@@ -3356,7 +3583,7 @@
 
   /* Vertical line */
 
-  /* why: the marker is 1.5rem wide, so its centre sits at 0.75rem; the 2px
+  /* why: the marker is 1.5rem wide, so its center sits at 0.75rem; the 2px
      spine backs off half its own width to share that axis */
   .tui-timeline::before {
     content: '';
@@ -3367,7 +3594,7 @@
     background-color: var(--tui-timeline-line, var(--tui-border));
   }
 
-  /* A tone class on the list colours the spine */
+  /* A tone class on the list colors the spine */
   .tui-timeline[class*="tui-tone-"] {
     --tui-timeline-line: var(--tui-tone-edge);
   }
@@ -3384,8 +3611,8 @@
 
   /* Marker dot on the line */
 
-  /* why: the block offset centres the marker on the title's first line box
-     (title size × normal leading), and the grid centres the glyph on both
+  /* why: the block offset centers the marker on the title's first line box
+     (title size × normal leading), and the grid centers the glyph on both
      axes with a line box no taller than itself */
   .tui-timeline-marker {
     position: absolute;
@@ -3646,7 +3873,7 @@
       var(--tui-surface-2) 75%
     );
     background-size: 200% 100%;
-    animation: tui-placeholder-shimmer 1.5s var(--tui-easing-out) infinite;
+    animation: tui-placeholder-shimmer calc(var(--tui-duration-normal) * 6) var(--tui-easing-out) infinite;
     border-radius: var(--tui-radius-md);
     min-block-size: 1rem;
   }
@@ -3680,7 +3907,7 @@
 
   /* Torque UI — Chart + Legend
  * .tui-chart frames a hand-authored SVG; .tui-legend / .tui-legend-item /
- * .tui-legend-swatch describe its series. Colour comes from the
+ * .tui-legend-swatch describe its series. Color comes from the
  * .tui-chart-N utilities (70-utilities/colors.css): put fill="currentColor"
  * on SVG shapes inside a <g class="tui-chart-2"> and the swatch of a
  * .tui-legend-item.tui-chart-2 matches it.
@@ -3713,7 +3940,7 @@
   }
 
   /* why: the swatch is currentColor so one .tui-chart-N class on the item
-     colours the swatch while the label keeps the legend's text colour */
+     colors the swatch while the label keeps the legend's text color */
   .tui-legend-swatch {
     inline-size: 0.625rem;
     block-size: 0.625rem;
@@ -3824,7 +4051,7 @@
     border-block-end: 1px solid var(--tui-border);
 
     & > .tui-close {
-      --tui-close-size: 1.25rem;
+      --tui-close-size: var(--tui-spacing-5);
 
       margin-inline-start: auto;
     }
@@ -4011,7 +4238,7 @@
     transition: color var(--tui-duration-fast);
 
     & > .tui-icon {
-      --tui-icon-size: 1.5rem;
+      --tui-icon-size: var(--tui-spacing-6);
     }
 
     &:hover {
@@ -4033,7 +4260,7 @@
   /* Torque UI — Backdrop
  * .tui-backdrop is the scrim for an overlay of your own — a custom loader,
  * a lightbox — that is neither a <dialog> nor a popover. It covers the
- * viewport above sticky chrome, centres whatever it holds, and fades in;
+ * viewport above sticky chrome, centers whatever it holds, and fades in;
  * the hidden attribute removes it.
  */
 
@@ -4628,7 +4855,7 @@ html:has(.tui-shell-header) {
   flex-wrap: wrap;
 
   /* why: a count chip has no baseline relationship with the display type —
-     hanging it from the title baseline drops it visually; centring it on
+     hanging it from the title baseline drops it visually; centering it on
      the title line reads as attached to the word */
   & > :is(.tui-badge, .tui-tag, .tui-chip, .tui-label) {
     align-self: center;
@@ -4920,7 +5147,7 @@ html:has(.tui-shell-header) {
       min-inline-size: 0;
     }
 
-    /* why: the focused control must paint above its neighbours' borders */
+    /* why: the focused control must paint above its neighbors' borders */
     & > :focus-visible {
       position: relative;
       z-index: 1;
@@ -4941,7 +5168,7 @@ html:has(.tui-shell-header) {
 
 
   /* Torque UI — Rich Select
- * .tui-select-rich opts a <select> into the browser's customisable
+ * .tui-select-rich opts a <select> into the browser's customizable
  * select picker (Chrome 134+). Degrades to the native select elsewhere.
  */
 
@@ -4949,7 +5176,7 @@ html:has(.tui-shell-header) {
   @supports (appearance: base-select) {
     .tui-select-rich,
     .tui-select-rich::picker(select) {
-      /* stylelint-disable-next-line csstree/validator -- appearance: base-select is valid CSS customisable-select syntax (Chrome 134+); csstree's grammar doesn't yet know it */
+      /* stylelint-disable-next-line csstree/validator -- appearance: base-select is valid CSS customizable-select syntax (Chrome 134+); csstree's grammar doesn't yet know it */
       appearance: base-select;
     }
 
@@ -4986,7 +5213,7 @@ html:has(.tui-shell-header) {
        <selectedcontent> inside the select's <button> clones that row so the
        closed control shows the same icon */
     .tui-select-rich option,
-    /* stylelint-disable-next-line selector-type-no-unknown -- selectedcontent is the customisable-select element (Chrome 134+) */
+    /* stylelint-disable-next-line selector-type-no-unknown -- selectedcontent is the customizable-select element (Chrome 134+) */
     .tui-select-rich selectedcontent {
       display: flex;
       align-items: center;
@@ -5016,7 +5243,7 @@ html:has(.tui-shell-header) {
  * the field border and focus ring; a .tui-combobox-input (role="combobox")
  * or a .tui-combobox-value <button> sits inside; the .tui-listbox that
  * follows is documented in 60-interactive/listbox.css. Open state is read
- * from aria-expanded on the trigger; the script owns every other behaviour.
+ * from aria-expanded on the trigger; the script owns every other behavior.
  */
 
 
@@ -5136,7 +5363,7 @@ html:has(.tui-shell-header) {
     }
 
     & > .tui-chip > .tui-close {
-      --tui-close-size: 1rem;
+      --tui-close-size: var(--tui-spacing-4);
     }
   }
 }
@@ -5168,7 +5395,7 @@ html:has(.tui-shell-header) {
   .tui-range {
     --tui-range-thumb: var(--tui-spacing-5);
 
-    /* why: a thumb's centre travels from half a thumb in to half a thumb
+    /* why: a thumb's center travels from half a thumb in to half a thumb
        short of the end, so every position is mapped onto that shorter span */
     --_start: calc(var(--tui-range-thumb) / 2 + (100% - var(--tui-range-thumb)) * var(--tui-range-start) / 100);
     --_end: calc(var(--tui-range-thumb) / 2 + (100% - var(--tui-range-thumb)) * var(--tui-range-end) / 100);
@@ -5185,7 +5412,7 @@ html:has(.tui-shell-header) {
     }
 
     /* why: the track is an in-flow item in the same grid cell as the inputs,
-       so it is centred on their row whatever else the wrapper holds and
+       so it is centered on their row whatever else the wrapper holds and
        paints beneath them in DOM order */
     &::before {
       content: '';
@@ -5277,7 +5504,7 @@ html:has(.tui-shell-header) {
       margin: 0;
     }
 
-    /* why: the first and last marks centre on the thumb's end positions */
+    /* why: the first and last marks center on the thumb's end positions */
     & > li:first-child { translate: -50% 0; }
 
     & > li:last-child { translate: 50% 0; }
@@ -5443,7 +5670,7 @@ html:has(.tui-shell-header) {
   }
 
   /* why: the 1.5rem track minus its 2px borders leaves 20px, so a 1rem knob
-     centres at 2px from each inner edge */
+     centers at 2px from each inner edge */
   .tui-switch-input::before {
     content: '';
     position: absolute;
@@ -5500,7 +5727,7 @@ html:has(.tui-shell-header) {
     inline-size: 1rem;
     block-size: 1rem;
 
-    /* why: mask-image so the icon's colour comes from background-color
+    /* why: mask-image so the icon's color comes from background-color
        (a token) instead of a baked-in hex — fill/stroke here is irrelevant,
        only the shape's alpha matters. */
     mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cpath d='m21 21-4.3-4.3'/%3E%3C/svg%3E");
@@ -5516,7 +5743,7 @@ html:has(.tui-shell-header) {
    * replaces the magnifier; clearing the value is the script's job. The
    * input needs a placeholder for :placeholder-shown to have a meaning. */
   .tui-search > .tui-close {
-    --tui-close-size: 1.5rem;
+    --tui-close-size: var(--tui-spacing-6);
 
     position: absolute;
     inset-inline-end: var(--tui-spacing-2);
@@ -5639,6 +5866,58 @@ html:has(.tui-shell-header) {
 @layer tui.forms{
 
 
+  /* Torque UI — Table Select
+ * A .tui-cycle of .tui-checkbox-input labels in a selectable table is its
+ * select-all box. A checked .tui-table-select-visible radio selects every row
+ * of the shown row groups, a checked .tui-table-select-all every row; any
+ * other state leaves the rows to their own inputs, and the box shows a dash
+ * once one of them is checked. In the two modes the row inputs keep their own
+ * state underneath, locked: the form submits the radio's value instead.
+ */
+
+
+  .tui-table-selectable:has(.tui-table-select-visible:checked) tbody tr {
+    counter-increment: none;
+  }
+
+  .tui-table-selectable:has(.tui-table-select-visible:checked) tbody:not([hidden]) tr:not(.tui-table-detail),
+  .tui-table-selectable:has(.tui-table-select-all:checked) tbody tr:not(.tui-table-detail) {
+    counter-increment: tui-table-selected;
+    background-color: var(--tui-brand-soft);
+
+    & .tui-checkbox-input {
+      pointer-events: none;
+    }
+  }
+
+  .tui-table-selectable:has(.tui-table-select-visible:checked) tbody:not([hidden]) .tui-checkbox-input,
+  .tui-table-selectable:has(.tui-table-select-all:checked) tbody .tui-checkbox-input,
+  :is(.tui-table-select-visible, .tui-table-select-all):checked + .tui-checkbox-input {
+    background-color: var(--tui-tone, var(--tui-brand));
+    border-color: var(--tui-tone, var(--tui-brand));
+    background-image: var(--tui-table-select-mark, url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='white' d='M10 3L4.5 8.5 2 6l-1 1 3.5 3.5 6.5-6.5z'/%3E%3C/svg%3E"));
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 0.75rem;
+  }
+
+  .tui-table-select-visible:checked + .tui-checkbox-input {
+    --tui-table-select-mark: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Ccircle cx='6' cy='6' r='3.5' fill='none' stroke='white' stroke-width='2'/%3E%3C/svg%3E");
+  }
+
+  .tui-table-selectable:has(tbody input:checked, tbody tr:is([aria-selected="true"], [data-selected], .tui-selected)) .tui-cycle > .tui-state-input:checked:not(.tui-table-select-visible, .tui-table-select-all) + .tui-checkbox-input {
+    background-color: var(--tui-tone, var(--tui-brand));
+    border-color: var(--tui-tone, var(--tui-brand));
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Crect x='2' y='5' width='8' height='2' rx='1' fill='white'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 0.75rem;
+  }
+}
+
+@layer tui.forms{
+
+
   /* Torque UI — Form Control Enhancements
  * Group 2: accent-color, read-only/read-write, range feedback, placeholder-shown.
  */
@@ -5753,7 +6032,7 @@ html:has(.tui-shell-header) {
   }
 
   /* why: one selector list would be dropped whole by Chromium because it
-     does not recognise ::-moz-progress-bar — each engine gets its own rule */
+     does not recognize ::-moz-progress-bar — each engine gets its own rule */
   progress::-webkit-progress-value {
     background-color: var(--tui-tone, var(--tui-brand));
     border-radius: inherit;
@@ -6113,12 +6392,19 @@ html:has(.tui-shell-header) {
   initial-value: 0;
 }
 
+@property --tui-playing {
+  syntax: '<integer>';
+  inherits: false;
+  initial-value: 0;
+}
+
 :is([aria-expanded="true"], [data-expanded], .tui-expanded) { --tui-expanded: 1; }
 :is([aria-selected="true"], [aria-current], [data-selected], .tui-selected) { --tui-selected: 1; }
 :is([data-active], .tui-active) { --tui-active: 1; }
 :is([aria-pressed="true"], [aria-checked="true"], [data-pressed], .tui-pressed) { --tui-pressed: 1; }
 :is([aria-invalid="true"], [data-invalid], .tui-invalid) { --tui-invalid: 1; }
 :is([aria-disabled="true"], [data-disabled], .tui-disabled, :disabled) { --tui-disabled: 1; }
+:is([data-playing], .tui-playing) { --tui-playing: 1; }
 
 /* === Inert ===
  * The inert attribute removes a subtree from interaction and the
@@ -6235,7 +6521,7 @@ button.tui-tab {
 .tui-tab-input:checked + .tui-tab + .tui-tab-panel { display: block; }
 
 /* why: a script-driven panel is shown by default and hidden with the hidden
-   attribute, which the utilities layer honours above this rule */
+   attribute, which the utilities layer honors above this rule */
 .tui-tab-panel[role="tabpanel"] { display: block; }
 
 /* === Vertical strip ===
@@ -6444,12 +6730,17 @@ button.tui-tab {
 /* Torque UI — Modal
  * Native <dialog>, opened declaratively with commandfor/command="show-modal"
  * (no JS). Closing, Escape, focus trap and the ::backdrop are all native
- * <dialog> behaviour.
+ * <dialog> behavior.
  */
 
 .tui-modal {
   inline-size: min(100% - 2 * var(--tui-spacing-4), var(--tui-modal-max-inline-size, 32rem));
   max-block-size: calc(100dvh - 2 * var(--tui-spacing-4));
+
+  /* why: the UA centers a modal dialog with margin: auto, below every author
+     layer, so a container rhythm (.tui-card-body > * + *) would pin it to the
+     top corner; declaring it here keeps it centered wherever it is placed */
+  margin: auto;
   padding: 0;
   border: 0;
   color: var(--tui-text-1);
@@ -6656,8 +6947,8 @@ button.tui-tab {
   text-wrap: balance;
   text-box: trim-both cap alphabetic;
 
-  /* why: the tip inverts the theme — its background is the text colour, so
-     its text is the surface colour; --tui-text-inverse stays white in both
+  /* why: the tip inverts the theme — its background is the text color, so
+     its text is the surface color; --tui-text-inverse stays white in both
      schemes (it sits on colored fills) and would vanish on a light tip */
   color: var(--tui-tooltip-fg, var(--tui-surface-0));
   background-color: var(--tui-tooltip-bg, var(--tui-text-1));
@@ -7170,8 +7461,8 @@ button.tui-tab {
 @layer tui.interactive{
 
 /* Torque UI — Sheet
- * [popover].tui-sheet — a non-modal floating surface centred near the top of the viewport.
- * Opened with a popovertarget button; light-dismiss and Escape are native popover behaviour.
+ * [popover].tui-sheet — a non-modal floating surface centered near the top of the viewport.
+ * Opened with a popovertarget button; light-dismiss and Escape are native popover behavior.
  */
 
 [popover].tui-sheet {
@@ -7393,7 +7684,7 @@ button.tui-toggle {
   }
 }
 
-/* === Per-option active colours === */
+/* === Per-option active colors === */
 .tui-toggle-success {
   --tui-toggle-active-bg: var(--tui-positive);
   --tui-toggle-active-fg: var(--tui-positive-fg);
@@ -7424,6 +7715,26 @@ button.tui-toggle {
    the second row stay square — accepted */
 .tui-toggle-group-wrap {
   flex-wrap: wrap;
+}
+}
+
+@layer tui.interactive{
+/* Torque UI — Cycle
+ * A run of radios, each followed by a label whose for points at the next
+ * radio: only the checked radio's label shows, so every click steps to the
+ * next state. The markup alone sets the states and their order. */
+.tui-cycle {
+  display: inline-flex;
+  align-items: center;
+  vertical-align: middle;
+}
+
+.tui-cycle > label {
+  cursor: pointer;
+}
+
+.tui-cycle > .tui-state-input:not(:checked) + label {
+  display: none;
 }
 }
 
@@ -7480,7 +7791,7 @@ button.tui-toggle {
 
 /* Torque UI — Tone Hook Setters
  * One block per semantic. Each selector list is every legacy variant class
- * name that used to carry its own copy-pasted colour declarations (button,
+ * name that used to carry its own copy-pasted color declarations (button,
  * badge, chip, label, tag, input, alert, toast, ribbon, segment, statistic,
  * timeline, progress, status, checkbox, radio, step…). Living in the
  * utilities layer means a setter here always beats the leak reset in
@@ -7627,7 +7938,7 @@ button.tui-toggle {
 }
 
 /* === Named tones ===
- * why: one setter per colour name plus a shared block that derives the rest
+ * why: one setter per color name plus a shared block that derives the rest
  * of the hooks from --tui-tone with the same formulas the semantic tokens
  * use, so .tui-tone-purple works anywhere .tui-tone-info does. */
 .tui-tone-red { --tui-tone: var(--tui-red); }
@@ -7641,7 +7952,7 @@ button.tui-toggle {
 .tui-tone-purple { --tui-tone: var(--tui-purple); }
 .tui-tone-pink { --tui-tone: var(--tui-pink); }
 .tui-tone-brown { --tui-tone: var(--tui-brown); }
-.tui-tone-grey { --tui-tone: var(--tui-grey); }
+.tui-tone-gray { --tui-tone: var(--tui-gray); }
 .tui-tone-black { --tui-tone: var(--tui-black); }
 
 .tui-tone-red,
@@ -7655,14 +7966,14 @@ button.tui-toggle {
 .tui-tone-purple,
 .tui-tone-pink,
 .tui-tone-brown,
-.tui-tone-grey,
+.tui-tone-gray,
 .tui-tone-black {
   --tui-tone-fg: oklch(from var(--tui-tone) clamp(0, (var(--tui-contrast-pivot) - l) * 1000, 1) 0 h);
   --tui-tone-soft: color-mix(in srgb, var(--tui-tone) 15%, transparent);
   --tui-tone-edge: color-mix(in srgb, var(--tui-tone) 30%, transparent);
   --tui-tone-bg: light-dark(color-mix(in srgb, var(--tui-tone) 2%, white 98%), color-mix(in srgb, var(--tui-tone) 15%, var(--tui-surface-1)));
   --tui-tone-ink: light-dark(oklch(from var(--tui-tone) min(l, 0.45) c h), oklch(from var(--tui-tone) max(l, 0.8) c h));
-  --tui-tone-gradient: linear-gradient(135deg, var(--tui-tone), var(--tui-tone-end, var(--tui-tone)));
+  --tui-tone-gradient: linear-gradient(var(--tui-gradient-angle), var(--tui-tone), var(--tui-tone-end, var(--tui-tone)));
 }
 }
 
@@ -7673,8 +7984,8 @@ button.tui-toggle {
  */
 
   /* === Text Colors ===
-   * why: coloured text sits on a surface, so it reads the ink — the raw
-   * tone is a fill colour and a bright one (yellow) is unreadable as text */
+   * why: colored text sits on a surface, so it reads the ink — the raw
+   * tone is a fill color and a bright one (yellow) is unreadable as text */
   .tui-text-primary   { color: var(--tui-brand-ink); }
   .tui-text-positive  { color: var(--tui-positive-ink); }
   .tui-text-negative  { color: var(--tui-negative-ink); }
@@ -7695,6 +8006,19 @@ button.tui-toggle {
   .tui-text-tone-fg     { color: var(--tui-tone-fg, var(--tui-text-1)); }
 
   /* === Chart series (fill="currentColor" in SVG) === */
+
+  /* why: color from the index instead of a fixed token — the first child is
+     series 0 and every next sibling turns the hue one more step, so a chart
+     never runs out of series. Declared before the fixed classes so one on a
+     child still wins; --tui-i is the hook .tui-stagger sets, so an inline
+     --tui-i repins a child */
+  .tui-chart-stagger > * {
+    --tui-i: calc(sibling-index() - 1);
+
+    color: oklch(from var(--tui-chart-base) calc(l + (0.86 - l) * var(--tui-chart-pastel)) calc(c + (0.08 - c) * var(--tui-chart-pastel)) calc(h + var(--tui-chart-color-stagger, var(--tui-chart-rotation)) * var(--tui-i)));
+  }
+
+  .tui-chart-0       { color: var(--tui-chart-0); }
   .tui-chart-1       { color: var(--tui-chart-1); }
   .tui-chart-2       { color: var(--tui-chart-2); }
   .tui-chart-3       { color: var(--tui-chart-3); }
@@ -7722,6 +8046,19 @@ button.tui-toggle {
     background-color: var(--tui-tone, var(--tui-brand));
     background-image: var(--tui-tone-gradient, var(--tui-brand-gradient));
     color: var(--tui-tone-fg, var(--tui-brand-fg));
+  }
+
+  /* why: the glyphs become a window onto the gradient — the text color must
+     be transparent for it to show, so print and forced-colors put a solid
+     color back (80-themes) or the words would vanish with the background.
+     A trimmed heading ends at the baseline, and paint stops with the box, so
+     descenders would lose their color: the under edge moves to the font's
+     descent, keeping the cap trim above. */
+  .tui-text-gradient {
+    background-image: var(--tui-tone-gradient, var(--tui-brand-gradient));
+    background-clip: text;
+    color: transparent;
+    text-box-edge: cap text;
   }
 
   /* === Avatar palette === */
@@ -7933,8 +8270,9 @@ button.tui-toggle {
   /* why: every component that sets its own display (menu rows, list items,
      chips, panels) would beat the UA's [hidden] rule; this layer sits above
      them all, so a script's el.hidden = true always works. until-found keeps
-     the UA's content-visibility so find-in-page can still reveal it */
-  [hidden]:not([hidden="until-found"]) { display: none; }
+     the UA's content-visibility so find-in-page can still reveal it; a
+     selectable table's row group collapses instead, to stay counted */
+  [hidden]:not([hidden="until-found"], .tui-table-selectable > tbody) { display: none; }
 
   .tui-d-none      { display: none; }
   .tui-d-block     { display: block; }
@@ -8089,6 +8427,446 @@ button.tui-toggle {
 
 @layer tui.utilities{
 
+/* Torque UI — Animate
+ * A curated keyframe catalog on .tui-animate, with an exit for every
+ * entrance behind .tui-animate-out and a loop behind .tui-animate-loop; .tui-animate-when-*
+ * holds an animation until a state appears and replays it whenever the
+ * state returns; .tui-stagger delays each child by its index;
+ * .tui-animate-count runs --tui-animate-value from one number to another.
+ */
+
+/* === Base === */
+
+/* why: the first transform or opacity animation on an element promotes it
+   to its own layer and rasterizes it on the spot, which shows as a rough
+   first run; promoting it up front makes the first run like every other */
+.tui-animate {
+  animation-name: var(--tui-animate-name);
+  animation-duration: var(--tui-duration-normal);
+  animation-timing-function: var(--tui-easing-out);
+  animation-fill-mode: both;
+  will-change: opacity, transform, translate, scale, rotate;
+}
+
+/* === Catalog === */
+.tui-animate-fade {
+  --tui-animate-name: tui-fade;
+  --tui-animate-exit: tui-fade-out;
+}
+
+.tui-animate-scale {
+  --tui-animate-name: tui-scale;
+  --tui-animate-exit: tui-scale-out;
+}
+
+.tui-animate-slide-top {
+  --tui-animate-name: tui-slide-top;
+  --tui-animate-exit: tui-slide-top-out;
+}
+
+.tui-animate-slide-bottom {
+  --tui-animate-name: tui-slide-bottom;
+  --tui-animate-exit: tui-slide-bottom-out;
+}
+
+.tui-animate-slide-left {
+  --tui-animate-name: tui-slide-left;
+  --tui-animate-exit: tui-slide-left-out;
+}
+
+.tui-animate-slide-right {
+  --tui-animate-name: tui-slide-right;
+  --tui-animate-exit: tui-slide-right-out;
+}
+
+.tui-animate-fly-top {
+  --tui-animate-name: tui-fly-top;
+  --tui-animate-exit: tui-fly-top-out;
+}
+
+.tui-animate-fly-bottom {
+  --tui-animate-name: tui-fly-bottom;
+  --tui-animate-exit: tui-fly-bottom-out;
+}
+
+.tui-animate-fly-left {
+  --tui-animate-name: tui-fly-left;
+  --tui-animate-exit: tui-fly-left-out;
+}
+
+.tui-animate-fly-right {
+  --tui-animate-name: tui-fly-right;
+  --tui-animate-exit: tui-fly-right-out;
+}
+
+.tui-animate-flip-x {
+  --tui-animate-name: tui-flip-x;
+  --tui-animate-exit: tui-flip-x-out;
+}
+
+.tui-animate-flip-y {
+  --tui-animate-name: tui-flip-y;
+  --tui-animate-exit: tui-flip-y-out;
+}
+
+.tui-animate-shake {
+  --tui-animate-name: tui-shake;
+
+  animation-duration: var(--tui-duration-slowest);
+}
+
+.tui-animate-pulse {
+  --tui-animate-name: tui-pulse;
+
+  animation-duration: var(--tui-duration-slowest);
+}
+
+.tui-animate-bounce {
+  --tui-animate-name: tui-bounce;
+
+  animation-duration: var(--tui-duration-slowest);
+}
+
+.tui-animate-flash {
+  --tui-animate-name: tui-flash;
+
+  animation-duration: var(--tui-duration-slowest);
+}
+
+.tui-animate-jiggle {
+  --tui-animate-name: tui-jiggle;
+
+  animation-duration: var(--tui-duration-slowest);
+}
+
+.tui-animate-tada {
+  --tui-animate-name: tui-tada;
+
+  animation-duration: var(--tui-duration-slowest);
+}
+
+.tui-animate-count {
+  --tui-animate-name: tui-count;
+  --tui-animate-exit: tui-count-out;
+
+  counter-reset: tui-animate-value calc(var(--tui-animate-value));
+}
+
+.tui-animate-count-text::after {
+  content: counter(tui-animate-value);
+}
+
+/* === Modes === */
+
+/* why: an exit is its own keyframe rather than the entrance reversed, so a
+   gate can swap the two names and every swap restarts the animation; the
+   both-fill then holds the exit's last frame — transparent, offset and
+   visibility: hidden — and the element leaves the tab order and the
+   accessibility tree as well as the screen. Entrances that fade need no
+   hidden first frame; the slides keep one so a delayed child is not seen
+   waiting offset. */
+.tui-animate-out {
+  animation-name: var(--tui-animate-exit, var(--tui-animate-name));
+}
+
+.tui-animate-loop {
+  animation-iteration-count: infinite;
+}
+
+/* === Gated triggers ===
+ * A state counts on the element, inside it, on an ancestor or on an earlier
+ * sibling (the input-then-label contract of .tui-state-input), whether it is
+ * native or set the self-driven way. Flipping animation-name from none
+ * restarts the animation each time the state returns. An earlier sibling
+ * counts when it carries the state or wraps it, as a label wraps its input.
+ * why: hover counts on the element alone, or under a .tui-animate-host —
+ * every ancestor up to html is :hover while the pointer is anywhere on the
+ * page, so an unmarked parent would play every child at once, and a host
+ * gives a moving entrance a still target to hover.
+ * why: an idle exit plays its entrance instead of stopping, so the toggle
+ * runs both ways — out when the state arrives, in when it goes */
+.tui-animate-when-playing:not(:is([data-playing], .tui-playing), :is([data-playing], .tui-playing) *, :is([data-playing], .tui-playing) ~ *, :has([data-playing], .tui-playing) ~ *),
+.tui-animate-when-checked:not(:is(:checked, [aria-pressed="true"], [aria-checked="true"], [data-pressed], .tui-pressed), :has(:checked, [aria-pressed="true"], [aria-checked="true"], [data-pressed], .tui-pressed), :is(:checked, [aria-pressed="true"], [aria-checked="true"], [data-pressed], .tui-pressed) ~ *, :has(:checked, [aria-pressed="true"], [aria-checked="true"], [data-pressed], .tui-pressed) ~ *),
+.tui-animate-when-invalid:not(:is(:user-invalid, [aria-invalid="true"], [data-invalid], .tui-invalid), :has(:user-invalid, [aria-invalid="true"], [data-invalid], .tui-invalid), :is(:user-invalid, [aria-invalid="true"], [data-invalid], .tui-invalid) ~ *, :has(:user-invalid, [aria-invalid="true"], [data-invalid], .tui-invalid) ~ *),
+.tui-animate-when-open:not(:is([open], :popover-open, [aria-expanded="true"], [data-expanded], .tui-expanded), :has([open], :popover-open, [aria-expanded="true"], [data-expanded], .tui-expanded), :is([open], :popover-open, [aria-expanded="true"], [data-expanded], .tui-expanded) *, :is([open], :popover-open, [aria-expanded="true"], [data-expanded], .tui-expanded) ~ *, :has([open], :popover-open, [aria-expanded="true"], [data-expanded], .tui-expanded) ~ *),
+.tui-animate-when-target:not(:target, :has(:target), :target *, :target ~ *, :has(:target) ~ *),
+.tui-animate-when-hover:not(:hover, .tui-animate-host:hover *),
+.tui-animate-when-focus:not(:focus-visible, :has(:focus-visible), :focus-visible *, :focus-visible ~ *, :has(:focus-visible) ~ *) {
+  &:not(.tui-animate-out) {
+    animation-name: none;
+  }
+
+  &.tui-animate-out {
+    animation-name: var(--tui-animate-name);
+  }
+}
+
+/* === Stagger ===
+ * why: --tui-i is registered so a browser without sibling-index() computes
+ * it to the initial 0 and the whole list moves together, while an inline
+ * --tui-i on a child works everywhere */
+@property --tui-i {
+  syntax: '<integer>';
+  inherits: false;
+  initial-value: 0;
+}
+
+.tui-stagger > * {
+  --tui-i: calc(sibling-index() - 1);
+
+  animation-delay: calc(var(--tui-i) * var(--tui-stagger-step, calc(var(--tui-duration-normal) * 0.24)));
+}
+
+/* why: 80-themes/a11y.css shortens durations, not delays — a staggered
+   list would still wait out every delay before snapping into place */
+@media (prefers-reduced-motion: reduce) {
+  .tui-stagger > * {
+    animation-delay: 0s;
+  }
+}
+
+/* === Count ===
+ * why: an unregistered custom property flips at the halfway frame; the
+ * registered number interpolates, inherits into pseudo-elements and
+ * children, and rounds into the counter because content cannot print a
+ * number */
+@property --tui-animate-value {
+  syntax: '<number>';
+  inherits: true;
+  initial-value: 0;
+}
+
+/* === Keyframes === */
+@keyframes tui-fade {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes tui-scale {
+  from {
+    scale: 0.5;
+    opacity: 0;
+  }
+}
+
+@keyframes tui-slide-top {
+  from {
+    translate: 0 calc(-1 * var(--tui-animate-distance, 1rem));
+    visibility: hidden;
+  }
+}
+
+@keyframes tui-slide-bottom {
+  from {
+    translate: 0 var(--tui-animate-distance, 1rem);
+    visibility: hidden;
+  }
+}
+
+@keyframes tui-slide-left {
+  from {
+    translate: calc(-1 * var(--tui-animate-distance, 1rem)) 0;
+    visibility: hidden;
+  }
+}
+
+@keyframes tui-slide-right {
+  from {
+    translate: var(--tui-animate-distance, 1rem) 0;
+    visibility: hidden;
+  }
+}
+
+@keyframes tui-fly-top {
+  from {
+    opacity: 0;
+    translate: 0 calc(-1 * var(--tui-animate-distance, 1rem));
+  }
+}
+
+@keyframes tui-fly-bottom {
+  from {
+    opacity: 0;
+    translate: 0 var(--tui-animate-distance, 1rem);
+  }
+}
+
+@keyframes tui-fly-left {
+  from {
+    opacity: 0;
+    translate: calc(-1 * var(--tui-animate-distance, 1rem)) 0;
+  }
+}
+
+@keyframes tui-fly-right {
+  from {
+    opacity: 0;
+    translate: var(--tui-animate-distance, 1rem) 0;
+  }
+}
+
+@keyframes tui-flip-x {
+  from {
+    opacity: 0;
+    transform: perspective(24rem) rotateX(90deg);
+  }
+}
+
+@keyframes tui-flip-y {
+  from {
+    opacity: 0;
+    transform: perspective(24rem) rotateY(90deg);
+  }
+}
+
+@keyframes tui-fade-out {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+@keyframes tui-scale-out {
+  to {
+    scale: 0.5;
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+@keyframes tui-slide-top-out {
+  to {
+    translate: 0 calc(-1 * var(--tui-animate-distance, 1rem));
+    visibility: hidden;
+  }
+}
+
+@keyframes tui-slide-bottom-out {
+  to {
+    translate: 0 var(--tui-animate-distance, 1rem);
+    visibility: hidden;
+  }
+}
+
+@keyframes tui-slide-left-out {
+  to {
+    translate: calc(-1 * var(--tui-animate-distance, 1rem)) 0;
+    visibility: hidden;
+  }
+}
+
+@keyframes tui-slide-right-out {
+  to {
+    translate: var(--tui-animate-distance, 1rem) 0;
+    visibility: hidden;
+  }
+}
+
+@keyframes tui-fly-top-out {
+  to {
+    opacity: 0;
+    translate: 0 calc(-1 * var(--tui-animate-distance, 1rem));
+    visibility: hidden;
+  }
+}
+
+@keyframes tui-fly-bottom-out {
+  to {
+    opacity: 0;
+    translate: 0 var(--tui-animate-distance, 1rem);
+    visibility: hidden;
+  }
+}
+
+@keyframes tui-fly-left-out {
+  to {
+    opacity: 0;
+    translate: calc(-1 * var(--tui-animate-distance, 1rem)) 0;
+    visibility: hidden;
+  }
+}
+
+@keyframes tui-fly-right-out {
+  to {
+    opacity: 0;
+    translate: var(--tui-animate-distance, 1rem) 0;
+    visibility: hidden;
+  }
+}
+
+@keyframes tui-flip-x-out {
+  to {
+    opacity: 0;
+    transform: perspective(24rem) rotateX(90deg);
+    visibility: hidden;
+  }
+}
+
+@keyframes tui-flip-y-out {
+  to {
+    opacity: 0;
+    transform: perspective(24rem) rotateY(90deg);
+    visibility: hidden;
+  }
+}
+
+/* why: the moving attention animations scale their distance, growth and
+   tilt by --tui-animate-strength, so one number tunes them together */
+@keyframes tui-shake {
+  20%, 60% { translate: calc(-0.25rem * var(--tui-animate-strength, 1)) 0; }
+  40%, 80% { translate: calc(0.25rem * var(--tui-animate-strength, 1)) 0; }
+}
+
+@keyframes tui-pulse {
+  50% { scale: calc(1 + 0.06 * var(--tui-animate-strength, 1)); }
+}
+
+@keyframes tui-bounce {
+  30% { translate: 0 calc(-0.5rem * var(--tui-animate-strength, 1)); }
+  50% { translate: 0 0; }
+  70% { translate: 0 calc(-0.25rem * var(--tui-animate-strength, 1)); }
+}
+
+@keyframes tui-flash {
+  25%, 75% { opacity: 0; }
+}
+
+@keyframes tui-jiggle {
+  25% { rotate: calc(-3deg * var(--tui-animate-strength, 1)); }
+  75% { rotate: calc(3deg * var(--tui-animate-strength, 1)); }
+}
+
+@keyframes tui-tada {
+  10%, 20% {
+    scale: calc(1 - 0.1 * var(--tui-animate-strength, 1));
+    rotate: calc(-3deg * var(--tui-animate-strength, 1));
+  }
+
+  30%, 50%, 70%, 90% {
+    scale: calc(1 + 0.1 * var(--tui-animate-strength, 1));
+    rotate: calc(3deg * var(--tui-animate-strength, 1));
+  }
+
+  40%, 60%, 80% {
+    scale: calc(1 + 0.1 * var(--tui-animate-strength, 1));
+    rotate: calc(-3deg * var(--tui-animate-strength, 1));
+  }
+}
+
+@keyframes tui-count {
+  from { --tui-animate-value: var(--tui-animate-from, 0); }
+  to { --tui-animate-value: var(--tui-animate-to, 100); }
+}
+
+@keyframes tui-count-out {
+  from { --tui-animate-value: var(--tui-animate-to, 100); }
+  to { --tui-animate-value: var(--tui-animate-from, 0); }
+}
+}
+
+@layer tui.utilities{
+
 
   /* Torque UI — Visual Effects & Polish
  * Group 5: glassmorphism, blend modes, image fitting, masks, shapes, filters.
@@ -8103,7 +8881,7 @@ button.tui-toggle {
     -webkit-backdrop-filter: blur(8px) saturate(180%);
     /* stylelint-enable property-no-vendor-prefix */
 
-    /* why: a translucent edge vanishes on a same-colour backdrop; the
+    /* why: a translucent edge vanishes on a same-color backdrop; the
        plain border keeps the surface visible on flat pages */
     border: 1px solid var(--tui-border);
   }
@@ -8206,7 +8984,7 @@ button.tui-toggle {
 
   /* === 8. Light frame (QR codes, logos that need a white ground) ===
    * why: a scanner needs a real white ground and real black marks in every
-   * colour scheme, so these are keywords on purpose, not scheme tokens. */
+   * color scheme, so these are keywords on purpose, not scheme tokens. */
   .tui-frame-light {
     display: inline-block;
     padding: var(--tui-spacing-3);
@@ -8539,6 +9317,14 @@ button.tui-toggle {
     *:focus-visible {
       outline: var(--tui-focus-ring-width) solid Highlight;
     }
+
+    /* why: forced colors replace the gradient with the Canvas backplate, so
+       transparent glyphs would disappear into it */
+    .tui-text-gradient {
+      background-image: none;
+      background-clip: border-box;
+      color: CanvasText;
+    }
   }
 
   /* === 3. Reduced data / live-data preference === */
@@ -8548,7 +9334,7 @@ button.tui-toggle {
     }
 
     .tui-spinner {
-      animation-duration: 3s;
+      animation-duration: calc(var(--tui-duration-normal) * 12);
     }
   }
 
@@ -8635,6 +9421,14 @@ button.tui-toggle {
   .tui-card,
   .tui-list-group {
     break-inside: avoid;
+  }
+
+  /* why: browsers skip background images on paper by default, which would
+     leave a gradient-text span as a gap in the sentence */
+  .tui-text-gradient {
+    background-image: none;
+    background-clip: border-box;
+    color: inherit;
   }
 
   .tui-shell {

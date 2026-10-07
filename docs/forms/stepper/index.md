@@ -10,7 +10,7 @@ description: "Number input flanked by decrement and increment buttons that share
 
 ## Anatomy
 
-The wrapper is an inline-flex row on `--tui-surface-0` with a 2px `--tui-border` border, `--tui-radius-md` corners and `overflow: hidden`, so the flat-sided children are clipped to the rounded box. `:focus-within` swaps the border for `--tui-border-focus` and adds the `--tui-focus-ring` halo. Each `.tui-stepper-btn` is a 2.5rem-wide, borderless, `--tui-surface-2` cell in `--tui-text-2` that darkens through `--tui-surface-3` on hover and `--tui-surface-4` on press, with an inset outline for keyboard focus. `.tui-stepper-input` is a 3.5rem, centred, borderless number field on a transparent background that tints to `--tui-surface-1` when focused; its WebKit and Firefox spin buttons are removed. Give each button an `aria-label` and the input a visible label or an `aria-label`.
+The wrapper is an inline-flex row on `--tui-surface-0` with a 2px `--tui-border` border, `--tui-radius-md` corners and `overflow: hidden`, so the flat-sided children are clipped to the rounded box. `:focus-within` swaps the border for `--tui-border-focus` and adds the `--tui-focus-ring` halo. Each `.tui-stepper-btn` is a 2.5rem-wide, borderless, `--tui-surface-2` cell in `--tui-text-2` that darkens through `--tui-surface-3` on hover and `--tui-surface-4` on press, with an inset outline for keyboard focus. `.tui-stepper-input` is a 3.5rem, centered, borderless number field on a transparent background that tints to `--tui-surface-1` when focused; its WebKit and Firefox spin buttons are removed. Give each button an `aria-label` and the input a visible label or an `aria-label`.
 
 {% include demo.html file="basic.html" %}
 
@@ -36,6 +36,6 @@ The buttons are presentation; the number input steps on its own with the arrow k
 |---|---|
 | `.tui-stepper` | Bordered inline-flex wrapper; focus ring on `:focus-within` |
 | `.tui-stepper-btn` | Decrement or increment cell; hover, active, focus-visible and disabled states |
-| `.tui-stepper-input` | Centred number input with native spinners hidden |
+| `.tui-stepper-input` | Centered number input with native spinners hidden |
 
 Related: [Inputs](/ui/forms/inputs/) · [Input Group](/ui/forms/input-group/) · [Buttons](/ui/components/buttons/) · [Form Layout](/ui/forms/form-layout/)

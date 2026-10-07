@@ -6,7 +6,7 @@ js: self-driven
 description: "Bare buttons already look right; .tui-button adds tones, sizes, icon, block, gradient, groups, split buttons and the floating action button."
 ---
 
-Every `<button>` and every `input:is([type="submit"], [type="reset"], [type="button"])` gets the base button look with no class at all. `.tui-button` carries the same look onto links and adds the variant system: colour comes from the shared `--tui-tone` hook, so each `.tui-button-<tone>` modifier is a one-line tone setter and the outline, gradient and icon variants compose with it. Buttons carry no outer margin; space them with `gap`.
+Every `<button>` and every `input:is([type="submit"], [type="reset"], [type="button"])` gets the base button look with no class at all. `.tui-button` carries the same look onto links and adds the variant system: color comes from the shared `--tui-tone` hook, so each `.tui-button-<tone>` modifier is a one-line tone setter and the outline, gradient and icon variants compose with it. Buttons carry no outer margin; space them with `gap`.
 
 ## Base look
 
@@ -16,7 +16,7 @@ The element defaults give a semibold `--tui-text-base` label, `--tui-spacing-2 -
 
 ## Variants
 
-A tone modifier fills the button solidly with the tone and uses the tone's contrast foreground; on hover the fill and the border lighten together and the ambient shadow becomes a coloured one. `.tui-button-secondary` is the neutral fill with a strong border, `.tui-button-ghost` a transparent brand-text button that tints on hover, and `.tui-button-outline` a transparent button whose border and text come from whatever tone class the element also carries — alone it is a neutral outlined button.
+A tone modifier fills the button solidly with the tone and uses the tone's contrast foreground; on hover the fill and the border lighten together and the ambient shadow becomes a colored one. `.tui-button-secondary` is the neutral fill with a strong border, `.tui-button-ghost` a transparent brand-text button that tints on hover, and `.tui-button-outline` a transparent button whose border and text come from whatever tone class the element also carries — alone it is a neutral outlined button.
 
 {% include demo.html file="variants.html" %}
 
@@ -32,7 +32,7 @@ A tone modifier fills the button solidly with the tone and uses the tone's contr
 | `.tui-button-warning` | `--tui-warning` | `--tui-warning-fg` |
 | `.tui-button-info` | `--tui-info` | `--tui-info-fg` |
 
-The `.tui-button-*` tone names are aliases of the generic [tone classes](/ui/foundations/tone/), so `.tui-button.tui-tone-neutral` is a solid grey button.
+The `.tui-button-*` tone names are aliases of the generic [tone classes](/ui/foundations/tone/), so `.tui-button.tui-tone-neutral` is a solid gray button.
 
 ## Sizes
 
@@ -72,19 +72,19 @@ Wrap sibling buttons in `.tui-button-group` to merge their borders: each button 
 
 ## Split button
 
-`.tui-split-button` is a two-button group: the first child is the main action and the last child a `.tui-button-icon` invoker that opens a `.tui-popover.tui-menu` through the native `popovertarget` attribute. The popover must immediately follow the group so it stays anchored to its invoker. Disabling the main half greys the whole group — the menu half follows through `:has(> :disabled)`.
+`.tui-split-button` is a two-button group: the first child is the main action and the last child a `.tui-button-icon` invoker that opens a `.tui-popover.tui-menu` through the native `popovertarget` attribute. The popover must immediately follow the group so it stays anchored to its invoker. Disabling the main half grays the whole group — the menu half follows through `:has(> :disabled)`.
 
 {% include demo.html file="split.html" %}
 
 ## Link buttons
 
-Any `<a>` can carry `.tui-button`. The component reasserts its own text colour and `text-decoration: none`, so a solid link button never inherits the brand link colour, the hover underline or the visited tint.
+Any `<a>` can carry `.tui-button`. The component reasserts its own text color and `text-decoration: none`, so a solid link button never inherits the brand link color, the hover underline or the visited tint.
 
 {% include demo.html file="links.html" %}
 
 ## Gradient
 
-`.tui-button-gradient` paints `--tui-tone-gradient`, falling back to `--tui-brand-gradient`, and brightens slightly on hover. Each gradient runs from a tone colour to its `-end` token, which the library leaves undeclared — set `--tui-brand-end` (or `--tui-positive-end`, `--tui-negative-end`, …) on `:root` to switch it on. Until then the button renders flat in the tone colour, as the first button here does; the second overrides `--tui-tone-gradient` inline to show the effect. Combine with a tone class for a toned gradient.
+`.tui-button-gradient` paints `--tui-tone-gradient`, falling back to `--tui-brand-gradient`, twice as wide as the button; on hover the gradient slides across the face over `--tui-duration-slow` and the button brightens slightly. Reduced motion collapses the slide to a snap. Each gradient runs from a tone color to its `-end` token, which the library leaves undeclared — set `--tui-brand-end` (or `--tui-positive-end`, `--tui-negative-end`, …) on `:root` to switch it on, and `--tui-gradient-angle` there to turn it. Until then the button renders flat in the tone color (this site sets `--tui-brand-end`, so the first button here already runs to it); the second overrides `--tui-tone-gradient` inline to show the effect. Combine with a tone class for a toned gradient.
 
 {% include demo.html file="gradient.html" %}
 
@@ -103,18 +103,18 @@ A toggle button your script marks with `aria-pressed="true"` (or `data-pressed`,
 | Selector | Effect |
 |---|---|
 | `.tui-button:is([aria-pressed="true"], [data-pressed], .tui-pressed)` | Held-down look: darker tone fill, inset shadow, no lift |
-| `.tui-caret` | 0.75em chevron in the text colour |
+| `.tui-caret` | 0.75em chevron in the text color |
 | `:is([aria-expanded="true"], [data-expanded], .tui-expanded) .tui-caret` | Turned 180° |
 
 ## Loading <span class="tui-badge">self-driven JS</span>
 
-`aria-busy="true"` (or `.tui-loading`) on any `<button>`, styled or bare, turns its label transparent — so the width holds — and centres a 1em spinner in the button's text colour over it; pointer events are off until the attribute goes. The demo's script sets it for two seconds on click.
+`aria-busy="true"` (or `.tui-loading`) on any `<button>`, styled or bare, turns its label transparent — so the width holds — and centers a 1em spinner in the button's text color over it; pointer events are off until the attribute goes. The demo's script sets it for two seconds on click.
 
 {% include demo.html file="loading.html" %}
 
 | Selector | Effect |
 |---|---|
-| `:is(button, .tui-button):is([aria-busy="true"], .tui-loading)` | Transparent label, centred spinner, `pointer-events: none` |
+| `:is(button, .tui-button):is([aria-busy="true"], .tui-loading)` | Transparent label, centered spinner, `pointer-events: none` |
 | `:is(form, fieldset)[aria-busy="true"] button[type="submit"]` | The same spinner, from the [busy form](/ui/forms/form-layout/) |
 
 ## Custom properties
@@ -123,7 +123,7 @@ A toggle button your script marks with `aria-pressed="true"` (or `data-pressed`,
 |---|---|---|
 | `--tui-button-padding` | `var(--tui-spacing-2) var(--tui-spacing-4)` | Base padding of every button; the size modifiers and `.tui-button-icon` override it |
 | `--tui-button-radius` | `var(--tui-radius-md)` | Corner radius; `.tui-button-icon` and `.tui-fab` force `--tui-radius-full` |
-| `--tui-button-border` | `var(--tui-border)` on a bare element, `transparent` on `.tui-button` | Border colour when no tone is set |
+| `--tui-button-border` | `var(--tui-border)` on a bare element, `transparent` on `.tui-button` | Border color when no tone is set |
 | `--tui-fab-inset` | `var(--tui-spacing-6)` | Distance of `.tui-fab` from the bottom and end edges of the viewport |
 
 Related: [Toggle Group](/ui/interactive/toggle-group/) · [Menu](/ui/interactive/menu/) · [Popover](/ui/interactive/popover/) · [Input Group](/ui/forms/input-group/) · [Tone](/ui/foundations/tone/)

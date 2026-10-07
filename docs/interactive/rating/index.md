@@ -15,13 +15,13 @@ Put a `.tui-state-input.tui-rating-input` radio immediately before each `.tui-ra
 
 | Class | Effect |
 |---|---|
-| `.tui-rating` | Inline-flex `<fieldset>` with no border or padding; sets the star size (`--tui-rating-size`), gap and idle colour |
+| `.tui-rating` | Inline-flex `<fieldset>` with no border or padding; sets the star size (`--tui-rating-size`), gap and idle color |
 | `.tui-rating-input` | The hidden radio (add `.tui-state-input`); `:checked` lights its star and every star before it |
 | `.tui-rating-star` | A star label: pointer cursor, lit in `--tui-rating-active`, `scale: 1.1` on hover |
 
-## Size and colours
+## Size and colors
 
-The size, gap and both colours are custom properties read on the fieldset, so a compact inline rating or a hero-sized one is one inline style away.
+The size, gap and both colors are custom properties read on the fieldset, so a compact inline rating or a hero-sized one is one inline style away.
 
 {% include demo.html file="sizes.html" %}
 
@@ -31,7 +31,7 @@ The size, gap and both colours are custom properties read on the fieldset, so a 
 |---|---|---|
 | `--tui-rating-size` | `var(--tui-text-2xl)` | Font size of the stars |
 | `--tui-rating-gap` | `var(--tui-spacing-1)` | Space between stars |
-| `--tui-rating-idle` | `var(--tui-border)` | Colour of an unlit star |
-| `--tui-rating-active` | `var(--tui-warning)` | Colour of a lit star |
+| `--tui-rating-idle` | `var(--tui-border)` | Color of an unlit star |
+| `--tui-rating-active` | `var(--tui-warning)` | Color of a lit star |
 
 Related: [State Inputs](/ui/foundations/state-inputs/) · [Radio](/ui/forms/radio/) · [Form Layout](/ui/forms/form-layout/) · [Toggle Group](/ui/interactive/toggle-group/)

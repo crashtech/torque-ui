@@ -1,0 +1,39 @@
+<div class="tui-flex tui-flex-wrap tui-gap-6 tui-p-3">
+  <form class="tui-stack tui-flex-1 tui-max-w-sm" id="customize-gradient">
+    <div class="tui-field">
+      <label for="customize-gradient-start">Brand hex</label>
+      <input id="customize-gradient-start" name="gradientStart" type="text" value="#5c60f0" pattern="#[0-9a-fA-F]{6}" required spellcheck="false" autocomplete="off">
+    </div>
+    <div class="tui-field">
+      <label for="customize-gradient-end">Gradient end hex (clear it for a flat brand)</label>
+      <input id="customize-gradient-end" name="gradientEnd" type="text" value="#e11d48" pattern="#[0-9a-fA-F]{6}" spellcheck="false" autocomplete="off">
+    </div>
+    <div class="tui-field">
+      <label for="customize-gradient-angle">Gradient angle <output for="customize-gradient-angle">135</output>deg</label>
+      <input id="customize-gradient-angle" name="gradientAngle" type="range" min="0" max="360" step="5" value="135">
+    </div>
+  </form>
+  <div class="tui-stack tui-flex-1 tui-max-w-sm">
+    <h3 class="tui-m-0">Ship <span class="tui-text-gradient">faster</span> with plain CSS</h3>
+    <div class="tui-bg-gradient tui-p-4 tui-rounded-md" id="customize-gradient-banner">A gradient banner with its contrast foreground</div>
+    <div>
+      <button class="tui-button tui-button-gradient" type="button">Get started</button>
+    </div>
+  </div>
+</div>
+<script>
+  {
+    const form = document.getElementById('customize-gradient');
+    const root = document.documentElement.style;
+    const { gradientStart, gradientEnd, gradientAngle } = form.elements;
+    const apply = () => {
+      root.setProperty('--tui-gradient-angle', `${gradientAngle.value}deg`);
+      form.querySelector('output').value = gradientAngle.value;
+      if (gradientStart.validity.valid) root.setProperty('--tui-brand', gradientStart.value);
+      if (!gradientEnd.value) root.removeProperty('--tui-brand-end');
+      if (gradientEnd.value && gradientEnd.validity.valid) root.setProperty('--tui-brand-end', gradientEnd.value);
+    };
+    form.addEventListener('input', apply);
+    apply();
+  }
+</script>

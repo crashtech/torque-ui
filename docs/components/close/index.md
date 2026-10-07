@@ -21,9 +21,9 @@ Inside a `.tui-alert`, `.tui-toast` or `.tui-chip`, a `.tui-state-input.tui-dism
 
 Each component positions the control itself: the alert pins it to the top end corner and pads its text away from it, the toast lets it sit at the end of the row, the chip shrinks it to 1rem.
 
-## Sizing and colour
+## Sizing and color
 
-`--tui-close-size` sets the square and `--tui-close-color` the resting glyph colour. Set them inline or on a parent — the chip does exactly this to fit the control into its line height.
+`--tui-close-size` sets the square and `--tui-close-color` the resting glyph color. Set them inline or on a parent — the chip does exactly this to fit the control into its line height.
 
 {% include demo.html file="hooks.html" %}
 
@@ -32,6 +32,6 @@ Each component positions the control itself: the alert pins it to the top end co
 | Property | Default | Effect |
 |---|---|---|
 | `--tui-close-size` | `2rem` | Inline and block size of the control |
-| `--tui-close-color` | `var(--tui-text-3)` | Glyph colour at rest; hover always uses `--tui-text-1` |
+| `--tui-close-color` | `var(--tui-text-3)` | Glyph color at rest; hover always uses `--tui-text-1` |
 
 Related: [Alert](/ui/components/alert/) · [Toast](/ui/components/toast/) · [Chip](/ui/components/chip/) · [Modal](/ui/interactive/modal/) · [State Inputs](/ui/foundations/state-inputs/)

@@ -6,9 +6,9 @@ js: self-driven
 description: "Native control enhancements: brand accent-color, read-only and placeholder dimming, range fill, file button, progress and meter."
 ---
 
-These rules polish native controls that have no component class: they tint unstyled checkboxes, radios, ranges and progress bars with the brand colour, dim read-only fields and fields that only show a placeholder, paint a range track up to its value, style the file input's button and draw native `<progress>` and `<meter>`. Everything here is attribute- or state-driven, so it applies to plain HTML without further markup.
+These rules polish native controls that have no component class: they tint unstyled checkboxes, radios, ranges and progress bars with the brand color, dim read-only fields and fields that only show a placeholder, paint a range track up to its value, style the file input's button and draw native `<progress>` and `<meter>`. Everything here is attribute- or state-driven, so it applies to plain HTML without further markup.
 
-## Accent colour
+## Accent color
 
 Native `input[type="checkbox"]`, `input[type="radio"]`, `input[type="range"]`, `input[type="color"]`, `<progress>` and `<meter>` take `accent-color: var(--tui-brand)`. A bare checkbox in a table cell, or a radio you never gave the component class, still matches the palette — including in dark mode, where the brand token flips with the scheme.
 
@@ -46,7 +46,7 @@ A bare range is a flat track ([Inputs](/ui/forms/inputs/)); add `.tui-range-fill
 
 ## Progress and meter
 
-A native `<progress value max>` is a full-width 0.5rem bar with fully rounded ends on `--tui-surface-3`, its value painted in `--tui-tone` (brand by default) — so any [tone class](/ui/foundations/tone/) recolours it. `<meter>` gets the same width and height and keeps the native low/high/optimum colouring on top of the brand accent. `progress.tui-progress-inline` restates the inline variant from [Progress](/ui/components/progress/) at this layer, turning a native bar into an inline-block of `--tui-progress-inline-size` (8rem) that sits mid-line with text.
+A native `<progress value max>` is a full-width 0.5rem bar with fully rounded ends on `--tui-surface-3`, its value painted in `--tui-tone` (brand by default) — so any [tone class](/ui/foundations/tone/) recolors it. `<meter>` gets the same width and height and keeps the native low/high/optimum coloring on top of the brand accent. `progress.tui-progress-inline` restates the inline variant from [Progress](/ui/components/progress/) at this layer, turning a native bar into an inline-block of `--tui-progress-inline-size` (8rem) that sits mid-line with text.
 
 {% include demo.html file="progress.html" %}
 

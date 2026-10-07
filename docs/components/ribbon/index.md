@@ -9,7 +9,7 @@ A ribbon is a rotated strip pinned across a corner of its host — a "New" or "S
 
 ## On a card
 
-By default the ribbon sits in the top end corner: `--tui-spacing-5` from the top, `--tui-ribbon-offset` past the end edge, rotated 45 degrees, with the tone colour behind `--tui-tone-fg` text (brand behind `--tui-text-inverse` when untoned), a small shadow and `z-index: 1` so it paints above the card body.
+By default the ribbon sits in the top end corner: `--tui-spacing-5` from the top, `--tui-ribbon-offset` past the end edge, rotated 45 degrees, with the tone color behind `--tui-tone-fg` text (brand behind `--tui-text-inverse` when untoned), a small shadow and `z-index: 1` so it paints above the card body.
 
 {% include demo.html file="basic.html" %}
 

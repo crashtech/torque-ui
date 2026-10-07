@@ -13,7 +13,7 @@ An avatar next to a name and a paragraph. The figure aligns with the first line 
 
 {% include demo.html file="basic.html" %}
 
-## Centred figure
+## Centered figure
 
 `.tui-media-center` switches `align-items` to `center`, for a short body beside a tall figure — a name and a role next to a large avatar.
 

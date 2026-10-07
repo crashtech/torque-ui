@@ -19,8 +19,8 @@
   text-wrap: balance;
   text-box: trim-both cap alphabetic;
 
-  /* why: the tip inverts the theme — its background is the text colour, so
-     its text is the surface colour; --tui-text-inverse stays white in both
+  /* why: the tip inverts the theme — its background is the text color, so
+     its text is the surface color; --tui-text-inverse stays white in both
      schemes (it sits on colored fills) and would vanish on a light tip */
   color: var(--tui-tooltip-fg, var(--tui-surface-0));
   background-color: var(--tui-tooltip-bg, var(--tui-text-1));

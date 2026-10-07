@@ -112,7 +112,7 @@
   }
 
   /* why: one selector list would be dropped whole by Chromium because it
-     does not recognise ::-moz-progress-bar — each engine gets its own rule */
+     does not recognize ::-moz-progress-bar — each engine gets its own rule */
   progress::-webkit-progress-value {
     background-color: var(--tui-tone, var(--tui-brand));
     border-radius: inherit;

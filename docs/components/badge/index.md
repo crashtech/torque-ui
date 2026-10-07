@@ -26,7 +26,7 @@ The `.tui-badge-*` names are aliases of the generic [tone classes](/ui/foundatio
 
 ## Solid
 
-Add `.tui-badge-solid` for the inverse pill — a solid tone background with the auto-picked contrast foreground (`--tui-tone-fg`). Without a tone it falls back to the brand colour; `.tui-tone-neutral` gives a solid grey.
+Add `.tui-badge-solid` for the inverse pill — a solid tone background with the auto-picked contrast foreground (`--tui-tone-fg`). Without a tone it falls back to the brand color; `.tui-tone-neutral` gives a solid gray.
 
 {% include demo.html file="solid.html" %}
 

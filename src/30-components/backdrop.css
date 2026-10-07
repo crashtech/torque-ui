@@ -1,7 +1,7 @@
 /* Torque UI — Backdrop
  * .tui-backdrop is the scrim for an overlay of your own — a custom loader,
  * a lightbox — that is neither a <dialog> nor a popover. It covers the
- * viewport above sticky chrome, centres whatever it holds, and fades in;
+ * viewport above sticky chrome, centers whatever it holds, and fades in;
  * the hidden attribute removes it.
  */
 

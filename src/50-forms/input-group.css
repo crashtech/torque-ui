@@ -32,7 +32,7 @@
       min-inline-size: 0;
     }
 
-    /* why: the focused control must paint above its neighbours' borders */
+    /* why: the focused control must paint above its neighbors' borders */
     & > :focus-visible {
       position: relative;
       z-index: 1;

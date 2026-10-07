@@ -1,5 +1,5 @@
 /* Torque UI — Rich Select
- * .tui-select-rich opts a <select> into the browser's customisable
+ * .tui-select-rich opts a <select> into the browser's customizable
  * select picker (Chrome 134+). Degrades to the native select elsewhere.
  */
 
@@ -7,7 +7,7 @@
   @supports (appearance: base-select) {
     .tui-select-rich,
     .tui-select-rich::picker(select) {
-      /* stylelint-disable-next-line csstree/validator -- appearance: base-select is valid CSS customisable-select syntax (Chrome 134+); csstree's grammar doesn't yet know it */
+      /* stylelint-disable-next-line csstree/validator -- appearance: base-select is valid CSS customizable-select syntax (Chrome 134+); csstree's grammar doesn't yet know it */
       appearance: base-select;
     }
 
@@ -44,7 +44,7 @@
        <selectedcontent> inside the select's <button> clones that row so the
        closed control shows the same icon */
     .tui-select-rich option,
-    /* stylelint-disable-next-line selector-type-no-unknown -- selectedcontent is the customisable-select element (Chrome 134+) */
+    /* stylelint-disable-next-line selector-type-no-unknown -- selectedcontent is the customizable-select element (Chrome 134+) */
     .tui-select-rich selectedcontent {
       display: flex;
       align-items: center;

@@ -1,6 +1,6 @@
 /* Torque UI — Tone Hook Setters
  * One block per semantic. Each selector list is every legacy variant class
- * name that used to carry its own copy-pasted colour declarations (button,
+ * name that used to carry its own copy-pasted color declarations (button,
  * badge, chip, label, tag, input, alert, toast, ribbon, segment, statistic,
  * timeline, progress, status, checkbox, radio, step…). Living in the
  * utilities layer means a setter here always beats the leak reset in
@@ -147,7 +147,7 @@
 }
 
 /* === Named tones ===
- * why: one setter per colour name plus a shared block that derives the rest
+ * why: one setter per color name plus a shared block that derives the rest
  * of the hooks from --tui-tone with the same formulas the semantic tokens
  * use, so .tui-tone-purple works anywhere .tui-tone-info does. */
 .tui-tone-red { --tui-tone: var(--tui-red); }
@@ -161,7 +161,7 @@
 .tui-tone-purple { --tui-tone: var(--tui-purple); }
 .tui-tone-pink { --tui-tone: var(--tui-pink); }
 .tui-tone-brown { --tui-tone: var(--tui-brown); }
-.tui-tone-grey { --tui-tone: var(--tui-grey); }
+.tui-tone-gray { --tui-tone: var(--tui-gray); }
 .tui-tone-black { --tui-tone: var(--tui-black); }
 
 .tui-tone-red,
@@ -175,12 +175,12 @@
 .tui-tone-purple,
 .tui-tone-pink,
 .tui-tone-brown,
-.tui-tone-grey,
+.tui-tone-gray,
 .tui-tone-black {
   --tui-tone-fg: oklch(from var(--tui-tone) clamp(0, (var(--tui-contrast-pivot) - l) * 1000, 1) 0 h);
   --tui-tone-soft: color-mix(in srgb, var(--tui-tone) 15%, transparent);
   --tui-tone-edge: color-mix(in srgb, var(--tui-tone) 30%, transparent);
   --tui-tone-bg: light-dark(color-mix(in srgb, var(--tui-tone) 2%, white 98%), color-mix(in srgb, var(--tui-tone) 15%, var(--tui-surface-1)));
   --tui-tone-ink: light-dark(oklch(from var(--tui-tone) min(l, 0.45) c h), oklch(from var(--tui-tone) max(l, 0.8) c h));
-  --tui-tone-gradient: linear-gradient(135deg, var(--tui-tone), var(--tui-tone-end, var(--tui-tone)));
+  --tui-tone-gradient: linear-gradient(var(--tui-gradient-angle), var(--tui-tone), var(--tui-tone-end, var(--tui-tone)));
 }

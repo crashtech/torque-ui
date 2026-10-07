@@ -2,19 +2,21 @@
 title: Motion
 section: foundations
 source: src/00-tokens/05-transitions.css
-description: "Four durations and three easings shared by every transition, all collapsed to nothing under reduced motion."
+description: "One base duration, four multiples of it and three easings shared by every transition and animation, all collapsed to nothing under reduced motion."
 ---
 
-Every transition and animation in the framework reads its timing from seven tokens: four durations and three easing curves. Components never write a literal `200ms` — buttons, switches, hover lifts and dismiss fades all say `var(--tui-duration-fast)`, so a single `:root` override speeds up or slows down the whole interface.
+Every transition and animation in the framework reads its timing from nine tokens: six durations and three easing curves. `--tui-duration-normal` is the basis and the other five are multiples of it, and components never write a literal `200ms` — buttons, switches, hover lifts and dismiss fades say `var(--tui-duration-fast)`, spinners and shimmers multiply the base — so overriding `--tui-duration-normal` on `:root` speeds up or slows down the whole interface at once. Each token is read where it is used, so any of them can also be set on a wrapper to retime just that subtree; only the multiples themselves resolve on `:root`.
 
 ## Durations and easings
 
 | Token | Value | Used for |
 |---|---|---|
-| `--tui-duration-fast` | 150ms | Hover and focus colour changes, switch thumbs, dismiss fades, the `.tui-hoverable` lift |
-| `--tui-duration-normal` | 250ms | Collapse, offcanvas and modal movement, card and progress transitions, the toast slide-in |
-| `--tui-duration-slow` | 350ms | Declared for your own transitions — nothing in the framework reads it |
-| `--tui-duration-slower` | 500ms | The `.tui-busy` spinner rotation and the `.tui-status-pulse` dot animation |
+| `--tui-duration-normal` | 250ms | The basis. Collapse, offcanvas and modal movement, card and progress transitions, the toast slide-in, every [Animate](/ui/utilities/animate/) entrance; multiplied by the spinner (×3, ×12 under `prefers-reduced-data`), progress stripes and ring (×4), the shimmer (×6) and the stagger step (×0.24) |
+| `--tui-duration-faster` | ×0.4 = 100ms | Declared for your own micro-interactions |
+| `--tui-duration-fast` | ×0.6 = 150ms | Hover and focus color changes, switch thumbs, dismiss fades, the `.tui-hoverable` lift |
+| `--tui-duration-slow` | ×1.4 = 350ms | The `.tui-button-gradient` slide on hover |
+| `--tui-duration-slower` | ×2 = 500ms | The `.tui-busy` spinner rotation and the `.tui-status-pulse` dot animation |
+| `--tui-duration-slowest` | ×2 = 500ms | The attention animations in [Animate](/ui/utilities/animate/) — one token to retime shake, pulse, bounce, flash, jiggle and tada |
 | `--tui-easing-in` | `cubic-bezier(0.4, 0, 1, 1)` | Leaving — accelerates out |
 | `--tui-easing-out` | `cubic-bezier(0, 0, 0.2, 1)` | Arriving — decelerates in; the default for most component transitions |
 | `--tui-easing-in-out` | `cubic-bezier(0.4, 0, 0.2, 1)` | Movement that starts and ends on screen |
@@ -33,4 +35,4 @@ Every transition and animation in the framework reads its timing from seven toke
 
 Under `prefers-reduced-motion: reduce` the [accessibility](/ui/themes/accessibility/) theme cuts every animation and transition to `0.01ms` and sets `scroll-behavior: auto`. That rule lives in the last cascade layer, so it wins over any component's timing — including one you set through these tokens — without `!important`.
 
-Related: [Accessibility](/ui/themes/accessibility/) · [Pointer & Orientation](/ui/utilities/pointer-orientation/) · [Card](/ui/components/card/) · [View Transitions](/ui/themes/view-transitions/)
+Related: [Animate](/ui/utilities/animate/) · [Accessibility](/ui/themes/accessibility/) · [Pointer & Orientation](/ui/utilities/pointer-orientation/) · [Card](/ui/components/card/) · [View Transitions](/ui/themes/view-transitions/)

@@ -13,7 +13,7 @@ const PAGES = ['02-elements', '03-components', '04-forms', '07-interactive', '08
 
 const PROPS = [
   'display', 'position',
-  'margin-block-start', 'margin-block-end', 'margin-inline-start', 'margin-inline-end',
+  'margin-block-start', 'margin-block-end',
   'padding-block-start', 'padding-block-end', 'padding-inline-start', 'padding-inline-end',
   'color', 'background-color',
   'border-top-width', 'border-right-width', 'border-bottom-width', 'border-left-width',
@@ -30,7 +30,7 @@ const PROPS = [
 /**
  * why: the modular entry is a chain of @imports; sampling computed styles
  * before every import has resolved compares a half-loaded cascade to the
- * bundle and reports margins and colours that are not real differences.
+ * bundle and reports margins and colors that are not real differences.
  * @param {import('@playwright/test').Page} page
  */
 async function settle(page) {
@@ -50,12 +50,19 @@ async function settle(page) {
   await page.evaluate(() => document.fonts.ready.then(() => new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve)))));
 }
 
+/**
+ * why: Chromium reports a used `auto` inline margin as 0px from
+ * getComputedStyle once a page settles, while the box sits centered — the
+ * value flips between the two states over time, so the inline margins are
+ * compared through the geometry they produce instead of the resolved value.
+ */
 async function collectStyles(page, props) {
   return page.evaluate((props) => {
     return Array.from(document.querySelectorAll('*')).map((el, i) => {
       const cs = getComputedStyle(el);
+      const rect = el.getBoundingClientRect();
       /** @type {Record<string, string>} */
-      const styles = {};
+      const styles = { x: String(Math.round(rect.x)), width: String(Math.round(rect.width)) };
       for (const p of props) styles[p] = cs.getPropertyValue(p);
       return { i, tag: el.tagName.toLowerCase(), cls: el.getAttribute('class') || '', styles };
     });
@@ -90,7 +97,7 @@ for (const url of PAGES) {
     for (let i = 0; i < entryStyles.length; i++) {
       const a = entryStyles[i];
       const b = bundleStyles[i];
-      for (const p of PROPS) {
+      for (const p of ['x', 'width', ...PROPS]) {
         if (a.styles[p] !== b.styles[p]) {
           diffs.push(`[${i}] <${a.tag} class="${a.cls}"> ${p}: entry="${a.styles[p]}" bundle="${b.styles[p]}"`);
         }

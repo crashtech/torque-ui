@@ -4,7 +4,7 @@
  * the field border and focus ring; a .tui-combobox-input (role="combobox")
  * or a .tui-combobox-value <button> sits inside; the .tui-listbox that
  * follows is documented in 60-interactive/listbox.css. Open state is read
- * from aria-expanded on the trigger; the script owns every other behaviour.
+ * from aria-expanded on the trigger; the script owns every other behavior.
  */
 
 
@@ -124,6 +124,6 @@
     }
 
     & > .tui-chip > .tui-close {
-      --tui-close-size: 1rem;
+      --tui-close-size: var(--tui-spacing-4);
     }
   }

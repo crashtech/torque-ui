@@ -834,6 +834,83 @@
       </div>
     </section>
 
+    <section class="tui-card tui-mb-6">
+      <div class="tui-card-header"><h2>Gradient button</h2></div>
+      <div class="tui-card-body">
+        <button type="button" class="tui-button tui-button-gradient" id="gradient-button" style="--tui-tone-gradient: linear-gradient(135deg, var(--tui-brand), #7a00ff)">Gradient</button>
+      </div>
+    </section>
+
+    <section class="tui-card tui-mb-6">
+      <div class="tui-card-header"><h2>Showcase</h2></div>
+      <div class="tui-card-body">
+        <div class="tui-stack tui-stack-lg">
+          <article class="tui-card tui-showcase" id="showcase">
+            <figure class="tui-showcase-media">
+              <pre><code>ui.table(collection) do |t|
+  t.column :name
+  t.column :created_at, as: :date
+  t.column :status
+  t.column :owner
+  t.column :updated_at, as: :date
+end</code></pre>
+            </figure>
+            <div class="tui-showcase-body">
+              <h2>Three in one</h2>
+              <p>Each layer stands on the one below it, and each one stands on its own.</p>
+              <div class="tui-showcase-footer">
+                <a class="tui-button tui-button-outline" href="#">Explore</a>
+              </div>
+            </div>
+          </article>
+          <article class="tui-card tui-showcase tui-showcase-reverse" id="showcase-reverse">
+            <figure class="tui-showcase-media">
+              <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='120'%3E%3Crect width='160' height='120' fill='%23888'/%3E%3C/svg%3E" alt="">
+            </figure>
+            <div class="tui-showcase-body">
+              <h2>Reversed</h2>
+              <p>The body comes first at wide widths, the media stays on top when stacked.</p>
+              <div class="tui-showcase-footer">
+                <a class="tui-button tui-button-outline" href="#">Explore</a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="tui-card tui-mb-6">
+      <div class="tui-card-header"><h2>Showcase grid</h2></div>
+      <div class="tui-card-body">
+        <div class="tui-grid tui-grid-md-3 tui-gap-6" id="showcase-grid">
+          <article class="tui-card tui-showcase tui-showcase-stack">
+            <figure class="tui-showcase-media"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='120'%3E%3Crect width='160' height='120' fill='%23888'/%3E%3C/svg%3E" alt=""></figure>
+            <div class="tui-showcase-body">
+              <h3>Short</h3>
+              <p>One line.</p>
+              <div class="tui-showcase-footer"><a class="tui-button tui-button-outline" href="#">Explore</a></div>
+            </div>
+          </article>
+          <article class="tui-card tui-showcase tui-showcase-stack">
+            <figure class="tui-showcase-media"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='120'%3E%3Crect width='160' height='120' fill='%23888'/%3E%3C/svg%3E" alt=""></figure>
+            <div class="tui-showcase-body">
+              <h3>Long</h3>
+              <p>A much longer paragraph that wraps over several lines so this card is the tallest of the three and the other two have to catch up with it to keep their footers on one line.</p>
+              <div class="tui-showcase-footer"><a class="tui-button tui-button-outline" href="#">Explore</a></div>
+            </div>
+          </article>
+          <article class="tui-card tui-showcase tui-showcase-stack tui-showcase-reverse">
+            <figure class="tui-showcase-media"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='120'%3E%3Crect width='160' height='120' fill='%23888'/%3E%3C/svg%3E" alt=""></figure>
+            <div class="tui-showcase-body">
+              <h3>Medium</h3>
+              <p>Two lines of copy, more or less, sitting here.</p>
+              <div class="tui-showcase-footer"><a class="tui-button tui-button-outline" href="#">Explore</a></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
     <div class="tui-speed-dial" id="speed-dial">
       <button class="tui-button tui-button-primary tui-fab" type="button" popovertarget="speed-dial-actions" aria-label="Create">+</button>
       <div class="tui-speed-dial-actions" id="speed-dial-actions" popover>

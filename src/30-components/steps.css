@@ -26,7 +26,7 @@
   /* why: steps are equal flex tracks separated by --tui-steps-gap, so the next
      circle's edge sits at 150% + gap - size/2 of this step; the connector runs
      from this circle's edge to that edge with the same inset on both sides,
-     centred on the circle rather than on circle + label. */
+     centered on the circle rather than on circle + label. */
   .tui-step:not(:last-child)::after {
     --_inset: var(--tui-step-connector-inset, var(--tui-spacing-2));
 

@@ -13,7 +13,7 @@
 
   /* Vertical line */
 
-  /* why: the marker is 1.5rem wide, so its centre sits at 0.75rem; the 2px
+  /* why: the marker is 1.5rem wide, so its center sits at 0.75rem; the 2px
      spine backs off half its own width to share that axis */
   .tui-timeline::before {
     content: '';
@@ -24,7 +24,7 @@
     background-color: var(--tui-timeline-line, var(--tui-border));
   }
 
-  /* A tone class on the list colours the spine */
+  /* A tone class on the list colors the spine */
   .tui-timeline[class*="tui-tone-"] {
     --tui-timeline-line: var(--tui-tone-edge);
   }
@@ -41,8 +41,8 @@
 
   /* Marker dot on the line */
 
-  /* why: the block offset centres the marker on the title's first line box
-     (title size × normal leading), and the grid centres the glyph on both
+  /* why: the block offset centers the marker on the title's first line box
+     (title size × normal leading), and the grid centers the glyph on both
      axes with a line box no taller than itself */
   .tui-timeline-marker {
     position: absolute;

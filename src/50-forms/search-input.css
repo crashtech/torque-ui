@@ -22,7 +22,7 @@
     inline-size: 1rem;
     block-size: 1rem;
 
-    /* why: mask-image so the icon's colour comes from background-color
+    /* why: mask-image so the icon's color comes from background-color
        (a token) instead of a baked-in hex — fill/stroke here is irrelevant,
        only the shape's alpha matters. */
     mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cpath d='m21 21-4.3-4.3'/%3E%3C/svg%3E");
@@ -38,7 +38,7 @@
    * replaces the magnifier; clearing the value is the script's job. The
    * input needs a placeholder for :placeholder-shown to have a meaning. */
   .tui-search > .tui-close {
-    --tui-close-size: 1.5rem;
+    --tui-close-size: var(--tui-spacing-6);
 
     position: absolute;
     inset-inline-end: var(--tui-spacing-2);

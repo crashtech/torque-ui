@@ -9,13 +9,13 @@ description: "Joins an addon, a field and a button into one control with a singl
 
 ## Addon and button
 
-The first child keeps the start corners and the last child the end corners; the group's radius is inherited by both. An `<input>` or `<select>` inside the group grows to fill the remaining width. When a child is keyboard-focused (`:focus-visible`) it is raised above its neighbours so its focus ring is not cut off by the next border.
+The first child keeps the start corners and the last child the end corners; the group's radius is inherited by both. An `<input>` or `<select>` inside the group grows to fill the remaining width. When a child is keyboard-focused (`:focus-visible`) it is raised above its neighbors so its focus ring is not cut off by the next border.
 
 {% include demo.html file="leading.html" %}
 
 ## Trailing addon
 
-`.tui-input-addon` is an inline-flex, vertically centred label on `--tui-input-addon-bg` (`--tui-surface-2`) with `--tui-text-2` text and the same 2px border as a field; it works on either side of the control, or on both.
+`.tui-input-addon` is an inline-flex, vertically centered label on `--tui-input-addon-bg` (`--tui-surface-2`) with `--tui-text-2` text and the same 2px border as a field; it works on either side of the control, or on both.
 
 {% include demo.html file="trailing.html" %}
 

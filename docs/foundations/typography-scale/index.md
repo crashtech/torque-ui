@@ -30,21 +30,21 @@ Two stacks, both system-first so no font file ships with the framework. `body` u
 
 ## Sizes
 
-Nine steps from `xs` to `5xl`. Headings map onto the top of the scale (`<h1>` is `4xl`, `<h6>` is `base` — see [Typography](/ui/elements/typography/)); components use `sm` for badges and labels and `xs` for captions. The utilities stop at `4xl`; `5xl` is display text, read from the token directly.
+Nine steps from `xs` to `5xl`, every one a multiple of `--tui-text-base`, so overriding the base on `:root` rescales the type without touching the spacing (`--tui-root-size` scales both). Headings map onto the top of the scale (`<h1>` is `4xl`, `<h6>` is `base` — see [Typography](/ui/elements/typography/)); components use `sm` for badges and labels and `xs` for captions. The utilities stop at `4xl`; `5xl` is display text, read from the token directly.
 
 {% include demo.html file="sizes.html" %}
 
 | Token | Size | Utility |
 |---|---|---|
-| `--tui-text-xs` | 0.75rem (12px) | `.tui-text-xs` |
-| `--tui-text-sm` | 0.875rem (14px) | `.tui-text-sm` |
-| `--tui-text-base` | 1rem (16px) | `.tui-text-base` |
-| `--tui-text-lg` | 1.125rem (18px) | `.tui-text-lg` |
-| `--tui-text-xl` | 1.25rem (20px) | `.tui-text-xl` |
-| `--tui-text-2xl` | 1.5rem (24px) | `.tui-text-2xl` |
-| `--tui-text-3xl` | 1.875rem (30px) | `.tui-text-3xl` |
-| `--tui-text-4xl` | 2.25rem (36px) | `.tui-text-4xl` |
-| `--tui-text-5xl` | 3rem (48px) | — |
+| `--tui-text-xs` | ×0.75 = 0.75rem (12px) | `.tui-text-xs` |
+| `--tui-text-sm` | ×0.875 = 0.875rem (14px) | `.tui-text-sm` |
+| `--tui-text-base` | 1rem (16px) — the basis | `.tui-text-base` |
+| `--tui-text-lg` | ×1.125 = 1.125rem (18px) | `.tui-text-lg` |
+| `--tui-text-xl` | ×1.25 = 1.25rem (20px) | `.tui-text-xl` |
+| `--tui-text-2xl` | ×1.5 = 1.5rem (24px) | `.tui-text-2xl` |
+| `--tui-text-3xl` | ×1.875 = 1.875rem (30px) | `.tui-text-3xl` |
+| `--tui-text-4xl` | ×2.25 = 2.25rem (36px) | `.tui-text-4xl` |
+| `--tui-text-5xl` | ×3 = 3rem (48px) | — |
 
 ## Weights
 
@@ -80,7 +80,7 @@ Text blocks are trimmed with `text-box: trim-both cap alphabetic`: the half-lead
 
 {% include demo.html file="leading-trim.html" %}
 
-What trims: headings, paragraphs, bare list items, `<dt>`/`<dd>`, blockquotes, table cells, `<kbd>`, form labels, help and error lines, `.tui-label`, tabs, toggles, tooltips, toast and statistic text, empty-state text and the hero and page-header leads. `<pre>` and `.tui-code-block` are deliberately untrimmed — trimming a scroll container leaves the cut leading as scrollable overflow — and key/value rows keep their natural leading so the small row gap reads comfortably. The property applies only to block containers, so flex and grid boxes with bare text — buttons, badges, tags, chips, avatars, navbar items, pagination, menu and list-group items — keep their leading and centre it with flex, which lands within a pixel of cap centring for system fonts. Form fields ignore the property in every engine.
+What trims: headings, paragraphs, bare list items, `<dt>`/`<dd>`, blockquotes, table cells, `<kbd>`, form labels, help and error lines, `.tui-label`, tabs, toggles, tooltips, toast and statistic text, empty-state text and the hero and page-header leads. `<pre>` and `.tui-code-block` are deliberately untrimmed — trimming a scroll container leaves the cut leading as scrollable overflow — and key/value rows keep their natural leading so the small row gap reads comfortably. The property applies only to block containers, so flex and grid boxes with bare text — buttons, badges, tags, chips, avatars, navbar items, pagination, menu and list-group items — keep their leading and center it with flex, which lands within a pixel of cap centering for system fonts. Form fields ignore the property in every engine.
 
 Two things to know. A trimmed box is only as tall as its own cap height, so an inline control taller than that — a `<kbd>`, a badge, a button — overflows it into the surrounding margin or padding; paragraphs and default cells have room for this, and a cell whose direct child is a control is left untrimmed on purpose (see [Tables](/ui/elements/tables/)). And the `cap` and `alphabetic` edges are Latin metrics: under `:lang(ja)`, `:lang(zh)` or `:lang(ko)` ideographs sit slightly proud of the trimmed box, by about 0.15em top and bottom.
 
@@ -88,17 +88,17 @@ Needs Chrome 133 / Safari 18.2 / Firefox 154 (Baseline 2026). Below that the tex
 
 ## Letter spacing
 
-Six tracking steps; three have utility classes. The classic pairing is a small uppercase caption with `.tui-tracking-wide`.
+Six tracking steps, `wide` the unit and the others multiples of it; three have utility classes. The classic pairing is a small uppercase caption with `.tui-tracking-wide`.
 
 {% include demo.html file="tracking.html" %}
 
 | Token | Value | Utility |
 |---|---|---|
-| `--tui-tracking-tighter` | -0.05em | — |
-| `--tui-tracking-tight` | -0.025em | `.tui-tracking-tight` |
+| `--tui-tracking-tighter` | ×-2 = -0.05em | — |
+| `--tui-tracking-tight` | ×-1 = -0.025em | `.tui-tracking-tight` |
 | `--tui-tracking-normal` | 0 | — |
-| `--tui-tracking-wide` | 0.025em | `.tui-tracking-wide` |
-| `--tui-tracking-wider` | 0.05em | `.tui-tracking-wider` |
-| `--tui-tracking-widest` | 0.1em | — |
+| `--tui-tracking-wide` | 0.025em — the unit | `.tui-tracking-wide` |
+| `--tui-tracking-wider` | ×2 = 0.05em | `.tui-tracking-wider` |
+| `--tui-tracking-widest` | ×4 = 0.1em | — |
 
 Related: [Typography](/ui/elements/typography/) · [Text](/ui/utilities/text/) · [Reboot](/ui/foundations/reboot/) · [Installation](/ui/getting-started/installation/)

@@ -21,9 +21,9 @@
 
   /* why: a trimmed cell shrinks to its own cap height, so a control inside it
      (a button, badge, key cap, field, checkbox) would overflow the row; cells
-     holding one keep their leading, and middle alignment centres control and
+     holding one keep their leading, and middle alignment centers control and
      text cells on the same axis */
-  :is(th, td):not(:has(> :is(button, .tui-button, .tui-badge, .tui-tag, .tui-chip, .tui-label, .tui-avatar, kbd, img, input, select))) {
+  :is(th, td):not(:has(> :is(button, .tui-button, .tui-badge, .tui-tag, .tui-chip, .tui-label, .tui-avatar, .tui-cycle, kbd, img, input, select))) {
     text-box: trim-both cap alphabetic;
   }
 
@@ -86,6 +86,31 @@
   .tui-table-selectable tbody tr:has(input:checked),
   tbody tr:is([aria-selected="true"], [data-selected], .tui-selected) {
     background-color: var(--tui-brand-soft);
+  }
+
+  /* why: counters run in document order, so the count reads only after the
+     rows: a <tfoot> cell or an element following the table */
+  .tui-table-selectable {
+    counter-reset: tui-table-selected;
+  }
+
+  .tui-table-selectable tbody tr:is(:has(input:checked), [aria-selected="true"], [data-selected], .tui-selected) {
+    counter-increment: tui-table-selected;
+  }
+
+  .tui-table-count {
+    vertical-align: middle;
+  }
+
+  .tui-table-count::before {
+    content: counter(tui-table-selected);
+  }
+
+  /* why: a display:none row never increments a counter; a collapsed group
+     leaves the layout but keeps its rows counted */
+  .tui-table-selectable > tbody[hidden] {
+    display: table-row-group;
+    visibility: collapse;
   }
 
   /* === Expandable rows ===

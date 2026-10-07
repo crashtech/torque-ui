@@ -9,8 +9,8 @@
   .tui-close {
     display: inline-grid;
     place-items: center;
-    inline-size: var(--tui-close-size, 2rem);
-    block-size: var(--tui-close-size, 2rem);
+    inline-size: var(--tui-close-size, var(--tui-spacing-8));
+    block-size: var(--tui-close-size, var(--tui-spacing-8));
     padding: 0;
     border: 0;
     background: none;

@@ -23,7 +23,7 @@
     border-block-end: 1px solid var(--tui-border);
 
     & > .tui-close {
-      --tui-close-size: 1.25rem;
+      --tui-close-size: var(--tui-spacing-5);
 
       margin-inline-start: auto;
     }

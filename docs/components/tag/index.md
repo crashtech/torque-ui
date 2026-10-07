@@ -5,7 +5,7 @@ source: src/30-components/tag.css
 description: "Compact rounded-corner label for categories and keywords, toned through the shared --tui-tone hook."
 ---
 
-A tag is the categorisation label: an inline-flex box with `--tui-radius-md` corners, `--tui-text-sm` medium text on a single non-wrapping line, and tight `--tui-spacing-0-5` / `--tui-spacing-2` padding. Where a [badge](/ui/components/badge/) is a pill for a count or a state, a tag is squarer and quieter — topics, skills, file types. It has no outer margin: space tags with a flex gap.
+A tag is the categorization label: an inline-flex box with `--tui-radius-md` corners, `--tui-text-sm` medium text on a single non-wrapping line, and tight `--tui-spacing-0-5` / `--tui-spacing-2` padding. Where a [badge](/ui/components/badge/) is a pill for a count or a state, a tag is squarer and quieter — topics, skills, file types. It has no outer margin: space tags with a flex gap.
 
 ## Tones
 

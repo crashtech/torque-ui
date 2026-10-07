@@ -24,7 +24,7 @@
     background-color: var(--tui-divider-line, var(--tui-border));
   }
 
-  /* A tone class on the divider colours the line and its text */
+  /* A tone class on the divider colors the line and its text */
   .tui-divider[class*="tui-tone-"] {
     --tui-divider-line: var(--tui-tone-edge);
 

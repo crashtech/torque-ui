@@ -1,6 +1,6 @@
 /* Torque UI — Chart + Legend
  * .tui-chart frames a hand-authored SVG; .tui-legend / .tui-legend-item /
- * .tui-legend-swatch describe its series. Colour comes from the
+ * .tui-legend-swatch describe its series. Color comes from the
  * .tui-chart-N utilities (70-utilities/colors.css): put fill="currentColor"
  * on SVG shapes inside a <g class="tui-chart-2"> and the swatch of a
  * .tui-legend-item.tui-chart-2 matches it.
@@ -33,7 +33,7 @@
   }
 
   /* why: the swatch is currentColor so one .tui-chart-N class on the item
-     colours the swatch while the label keeps the legend's text colour */
+     colors the swatch while the label keeps the legend's text color */
   .tui-legend-swatch {
     inline-size: 0.625rem;
     block-size: 0.625rem;

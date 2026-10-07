@@ -1,6 +1,6 @@
 /* Torque UI — Sheet
- * [popover].tui-sheet — a non-modal floating surface centred near the top of the viewport.
- * Opened with a popovertarget button; light-dismiss and Escape are native popover behaviour.
+ * [popover].tui-sheet — a non-modal floating surface centered near the top of the viewport.
+ * Opened with a popovertarget button; light-dismiss and Escape are native popover behavior.
  */
 
 [popover].tui-sheet {

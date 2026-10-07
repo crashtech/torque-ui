@@ -1,0 +1,100 @@
+<div class="tui-grid tui-grid-lg-2 tui-gap-6">
+  <div class="tui-card">
+    <div class="tui-card-header"><h3>Fields</h3></div>
+    <div class="tui-card-body">
+      <form class="tui-form-grid" action="#" method="get">
+        <div class="tui-field">
+          <label for="playground-forms-first">First name</label>
+          <input id="playground-forms-first" type="text" value="Ada">
+        </div>
+        <div class="tui-field">
+          <label for="playground-forms-last">Last name</label>
+          <input id="playground-forms-last" type="text" placeholder="Last name">
+        </div>
+        <div class="tui-field">
+          <label for="playground-forms-email">Email</label>
+          <input id="playground-forms-email" type="email" value="ada@example" aria-invalid="true" aria-describedby="playground-forms-email-error">
+          <span class="tui-error" id="playground-forms-email-error">This address bounced.</span>
+        </div>
+        <div class="tui-field">
+          <label for="playground-forms-plan">Plan</label>
+          <select id="playground-forms-plan">
+            <option>Prototype</option>
+            <option selected>Team</option>
+            <option>Enterprise</option>
+          </select>
+        </div>
+        <div class="tui-field">
+          <label for="playground-forms-date">Start date</label>
+          <input id="playground-forms-date" type="date" value="2026-10-02">
+        </div>
+        <div class="tui-field">
+          <label for="playground-forms-disabled">Workspace</label>
+          <input id="playground-forms-disabled" type="text" value="acme" disabled>
+        </div>
+        <div class="tui-field tui-col-span-full">
+          <label for="playground-forms-bio">Bio</label>
+          <textarea id="playground-forms-bio" rows="3" placeholder="A line or two about you"></textarea>
+          <span class="tui-help">Shown on your profile and in comments.</span>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="tui-card">
+    <div class="tui-card-header"><h3>Choices</h3></div>
+    <div class="tui-card-body tui-stack">
+      <div class="tui-flex tui-flex-wrap tui-gap-4">
+        <label class="tui-checkbox" for="playground-forms-check-on">
+          <input class="tui-checkbox-input" type="checkbox" id="playground-forms-check-on" checked>
+          <span>Checked</span>
+        </label>
+        <label class="tui-checkbox" for="playground-forms-check-off">
+          <input class="tui-checkbox-input" type="checkbox" id="playground-forms-check-off">
+          <span>Unchecked</span>
+        </label>
+        <label class="tui-radio" for="playground-forms-radio-yes">
+          <input class="tui-radio-input" type="radio" id="playground-forms-radio-yes" name="playground-forms-radio" checked>
+          <span>Monthly</span>
+        </label>
+        <label class="tui-radio" for="playground-forms-radio-no">
+          <input class="tui-radio-input" type="radio" id="playground-forms-radio-no" name="playground-forms-radio">
+          <span>Yearly</span>
+        </label>
+      </div>
+      <div class="tui-flex tui-flex-wrap tui-gap-4">
+        <label class="tui-switch" for="playground-forms-switch-on">
+          <input class="tui-switch-input" type="checkbox" id="playground-forms-switch-on" checked>
+          <span class="tui-switch-label">Email notifications</span>
+        </label>
+        <label class="tui-switch" for="playground-forms-switch-off">
+          <input class="tui-switch-input" type="checkbox" id="playground-forms-switch-off">
+          <span class="tui-switch-label">Two-factor</span>
+        </label>
+      </div>
+      <fieldset class="tui-toggle-group">
+        <legend class="tui-sr-only">Period</legend>
+        <input class="tui-state-input tui-toggle-input" type="radio" id="playground-forms-day" name="playground-forms-period"><label class="tui-toggle" for="playground-forms-day">Day</label>
+        <input class="tui-state-input tui-toggle-input" type="radio" id="playground-forms-week" name="playground-forms-period" checked><label class="tui-toggle" for="playground-forms-week">Week</label>
+        <input class="tui-state-input tui-toggle-input" type="radio" id="playground-forms-month" name="playground-forms-period"><label class="tui-toggle" for="playground-forms-month">Month</label>
+      </fieldset>
+      <div class="tui-field">
+        <label for="playground-forms-volume">Volume</label>
+        <input id="playground-forms-volume" type="range" min="0" max="100" value="60">
+      </div>
+      <div class="tui-input-group">
+        <span class="tui-input-addon">https://</span>
+        <input type="text" value="acme.example" aria-label="Website">
+        <button class="tui-button tui-button-primary" type="button">Save</button>
+      </div>
+      <fieldset class="tui-rating">
+        <legend class="tui-sr-only">Rating</legend>
+        <input class="tui-state-input tui-rating-input" type="radio" name="playground-forms-rating" id="playground-forms-rating-1" value="1"><label class="tui-rating-star" for="playground-forms-rating-1" aria-label="1 star">★</label>
+        <input class="tui-state-input tui-rating-input" type="radio" name="playground-forms-rating" id="playground-forms-rating-2" value="2"><label class="tui-rating-star" for="playground-forms-rating-2" aria-label="2 stars">★</label>
+        <input class="tui-state-input tui-rating-input" type="radio" name="playground-forms-rating" id="playground-forms-rating-3" value="3"><label class="tui-rating-star" for="playground-forms-rating-3" aria-label="3 stars">★</label>
+        <input class="tui-state-input tui-rating-input" type="radio" name="playground-forms-rating" id="playground-forms-rating-4" value="4" checked><label class="tui-rating-star" for="playground-forms-rating-4" aria-label="4 stars">★</label>
+        <input class="tui-state-input tui-rating-input" type="radio" name="playground-forms-rating" id="playground-forms-rating-5" value="5"><label class="tui-rating-star" for="playground-forms-rating-5" aria-label="5 stars">★</label>
+      </fieldset>
+    </div>
+  </div>
+</div>

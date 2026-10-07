@@ -20,6 +20,8 @@ nav:
     pages:
       - title: Installation
         url: /getting-started/installation/
+      - title: How to Customize
+        url: /getting-started/customize/
       - title: Cascade Layers
         url: /getting-started/layers/
       - title: Browser Support
@@ -27,7 +29,7 @@ nav:
 
   - title: Foundations
     id: foundations
-    note: "One brand colour, a handful of scales, and every component reads them"
+    note: "One brand color, a handful of scales, and every component reads them"
     pages:
       - title: Chart Palette
         url: /foundations/chart-palette/
@@ -125,6 +127,8 @@ nav:
         url: /components/ribbon/
       - title: Segment
         url: /components/segment/
+      - title: Showcase
+        url: /components/showcase/
       - title: Spinner
         url: /components/spinner/
       - title: Statistic
@@ -195,6 +199,8 @@ nav:
         url: /interactive/carousel/
       - title: Collapse
         url: /interactive/collapse/
+      - title: Cycle
+        url: /interactive/cycle/
       - title: Drag and Drop
         url: /interactive/drag/
       - title: Listbox
@@ -257,6 +263,8 @@ nav:
     id: utilities
     note: "Single-purpose classes that win over any component"
     pages:
+      - title: Animate
+        url: /utilities/animate/
       - title: Colors
         url: /utilities/colors/
       - title: Display
@@ -278,7 +286,7 @@ nav:
 
   - title: Themes
     id: themes
-    note: "Dark mode, contrast, motion, print - the user preferences honoured by default"
+    note: "Dark mode, contrast, motion, print - the user preferences honored by default"
     pages:
       - title: Accessibility
         url: /themes/accessibility/
@@ -297,8 +305,9 @@ nav:
     <h1><s>Build</s>, <s>SCSS</s>, <s>JavaScript</s>.</h1>
     <h1>Effortless design with plain <span class="accent">CSS</span> and clever usages of <span class="ror">HTML</span></h1>
     <div class="tui-hero-actions">
-      <a class="tui-button tui-button-primary" href="/ui/getting-started/installation/">Read the docs</a>
-      <a class="tui-button tui-button-outline" href="#install">Install</a>
+      <a class="tui-button tui-button-gradient tui-button-lg" href="/ui/getting-started/installation/">Read the docs</a>
+      <a class="tui-button tui-button-outline tui-button-lg" href="/ui/playground/">Make it your own</a>
+      <a class="tui-button tui-button-outline tui-button-lg" href="#install">Install</a>
     </div>
   </div>
   <img src="/assets/images/ui2.svg" alt="TORQUE UI" />
@@ -312,7 +321,7 @@ nav:
         native HTML - hidden checkboxes and radios, <code>&lt;details&gt;</code>,
         <code>popover</code>, <code>&lt;dialog&gt;</code> - driven by <code>:has()</code>,
         <code>:checked</code> and cascade layers; not a single script ships with it.</p>
-      <p>The whole palette derives from <strong>one brand colour</strong>, and nine
+      <p>The whole palette derives from <strong>one brand color</strong>, and nine
         <code>@layer</code>s settle precedence without a single <code>!important</code>. Flex and
         grid components space their children with <code>gap</code> and carry no outer margins.
         WCAG AA contrast, visible focus rings, reduced-motion, forced-colors and high-contrast

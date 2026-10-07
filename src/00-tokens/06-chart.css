@@ -1,18 +1,31 @@
 /* Torque UI — Chart Tokens
- * Categorical series palette and a muted single-measure colour for
- * hand-authored SVG charts. Six hue families (blue, orange, teal, magenta,
- * olive, purple) chosen so adjacent series stay apart under deuteranopia
- * and protanopia; the dark values are lifted for contrast on dark surfaces.
+ * A branded categorical palette for hand-authored SVG charts. Series 0 is
+ * the base color (the brand, by default) pulled toward a pastel point, and
+ * each later series rotates the hue by one more step, so the whole palette
+ * follows a re-theme. Three knobs: the base, the rotation between series
+ * (a number of degrees) and the pastel strength (0 keeps the tone, 1 lands
+ * every series on the pastel point).
  */
 
 
   :root {
-    --tui-chart-1: light-dark(#2563eb, #60a5fa);
-    --tui-chart-2: light-dark(#ea580c, #fb923c);
-    --tui-chart-3: light-dark(#0d9488, #2dd4bf);
-    --tui-chart-4: light-dark(#db2777, #f472b6);
-    --tui-chart-5: light-dark(#65a30d, #a3e635);
-    --tui-chart-6: light-dark(#7c3aed, #a78bfa);
+    --tui-chart-base: var(--tui-brand);
+
+    /* why: four turns and a third of the wheel over seven series — each step
+       lands far from its neighbors without the even 360 / 7 spread's
+       rainbow feel */
+    --tui-chart-rotation: calc(1560 / 7);
+    --tui-chart-pastel: 0.35;
+
+    /* why: the pastel point is oklch lightness 0.86 and chroma 0.08 — light
+       and soft enough to read as pastel, still clearly a color */
+    --tui-chart-0: oklch(from var(--tui-chart-base) calc(l + (0.86 - l) * var(--tui-chart-pastel)) calc(c + (0.08 - c) * var(--tui-chart-pastel)) h);
+    --tui-chart-1: oklch(from var(--tui-chart-base) calc(l + (0.86 - l) * var(--tui-chart-pastel)) calc(c + (0.08 - c) * var(--tui-chart-pastel)) calc(h + var(--tui-chart-rotation)));
+    --tui-chart-2: oklch(from var(--tui-chart-base) calc(l + (0.86 - l) * var(--tui-chart-pastel)) calc(c + (0.08 - c) * var(--tui-chart-pastel)) calc(h + var(--tui-chart-rotation) * 2));
+    --tui-chart-3: oklch(from var(--tui-chart-base) calc(l + (0.86 - l) * var(--tui-chart-pastel)) calc(c + (0.08 - c) * var(--tui-chart-pastel)) calc(h + var(--tui-chart-rotation) * 3));
+    --tui-chart-4: oklch(from var(--tui-chart-base) calc(l + (0.86 - l) * var(--tui-chart-pastel)) calc(c + (0.08 - c) * var(--tui-chart-pastel)) calc(h + var(--tui-chart-rotation) * 4));
+    --tui-chart-5: oklch(from var(--tui-chart-base) calc(l + (0.86 - l) * var(--tui-chart-pastel)) calc(c + (0.08 - c) * var(--tui-chart-pastel)) calc(h + var(--tui-chart-rotation) * 5));
+    --tui-chart-6: oklch(from var(--tui-chart-base) calc(l + (0.86 - l) * var(--tui-chart-pastel)) calc(c + (0.08 - c) * var(--tui-chart-pastel)) calc(h + var(--tui-chart-rotation) * 6));
 
     /* why: a single-measure bar is not a series — it must read as
        "the value", never as "series #n" next to a legend */

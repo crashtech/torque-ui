@@ -16,7 +16,7 @@ A `.tui-option` is a flex row starting at the inline edge, with a tick reserved 
 
 ## Multi-select <span class="tui-badge">self-driven JS</span>
 
-With `aria-multiselectable="true"` on the listbox the tick becomes a box, so an unselected row still reads as something the user can tick; the selected row fills it in the tone colour.
+With `aria-multiselectable="true"` on the listbox the tick becomes a box, so an unselected row still reads as something the user can tick; the selected row fills it in the tone color.
 
 {% include demo.html file="multi.html" %}
 
@@ -28,7 +28,7 @@ Wrap the label in `.tui-option-text` and add a `.tui-option-desc` line under it 
 
 ## Groups and empty row <span class="tui-badge">self-driven JS</span>
 
-A `.tui-listbox-group` (`role="group"`, labelled by its `.tui-listbox-group-label`) headlines a run of options. `.tui-listbox-empty` is hidden until a filtering script has hidden every `.tui-option` in the list — then it shows by CSS alone, so "no matches" needs no code of its own. `.tui-listbox-search` is a row pinned to the top of the scrolling list for a filter field that lives inside the dropdown.
+A `.tui-listbox-group` (`role="group"`, labeled by its `.tui-listbox-group-label`) headlines a run of options. `.tui-listbox-empty` is hidden until a filtering script has hidden every `.tui-option` in the list — then it shows by CSS alone, so "no matches" needs no code of its own. `.tui-listbox-search` is a row pinned to the top of the scrolling list for a filter field that lives inside the dropdown.
 
 {% include demo.html file="groups.html" %}
 
@@ -39,7 +39,7 @@ A `.tui-listbox-group` (`role="group"`, labelled by its `.tui-listbox-group-labe
 | `.tui-option:is([aria-selected="true"], [data-selected], .tui-selected)` | Selected: `--tui-option-selected-bg`, tone ink, tick shown |
 | `.tui-option:is([data-active], .tui-active)` | Keyboard highlight: `--tui-option-active-bg` |
 | `.tui-option:is([aria-disabled="true"], [data-disabled], .tui-disabled)` | `--tui-text-3`, `not-allowed` cursor, no hover |
-| `[aria-multiselectable="true"] .tui-option` | Box tick, filled in the tone colour when selected |
+| `[aria-multiselectable="true"] .tui-option` | Box tick, filled in the tone color when selected |
 | `.tui-option-text` / `.tui-option-desc` | Label column with a small muted description line |
 | `.tui-listbox-group` / `.tui-listbox-group-label` | Group container and its small-caps label |
 | `.tui-listbox-search` | Sticky top row for a filter field |

@@ -11,7 +11,7 @@ Two utilities driven by CSS scroll-linked animations (`animation-timeline: scrol
 
 ## Reading progress
 
-Place an empty `<div class="tui-reading-progress">` anywhere in the body. It is a 3px `position: fixed` bar across the top of the viewport at `--tui-z-sticky`, coloured by `--tui-reading-progress-color` and scaled from `0` to full width by the scroll-driven animation, and it tracks the root scroll — so it measures the document, not any inner scroll container.
+Place an empty `<div class="tui-reading-progress">` anywhere in the body. It is a 3px `position: fixed` bar across the top of the viewport at `--tui-z-sticky`, colored by `--tui-reading-progress-color` and scaled from `0` to full width by the scroll-driven animation, and it tracks the root scroll — so it measures the document, not any inner scroll container.
 
 {% include demo.html file="reading-progress.html" frame=true height="20rem" %}
 
@@ -33,6 +33,6 @@ Add `.tui-shell-header-shrink` to a `.tui-shell-header`. Over the first `8rem` o
 
 | Property | Default | Effect |
 |---|---|---|
-| `--tui-reading-progress-color` | `var(--tui-brand)` | Colour of the progress bar |
+| `--tui-reading-progress-color` | `var(--tui-brand)` | Color of the progress bar |
 
 Related: [App Shell](/ui/layout/shell/) · [Navbar](/ui/components/navbar/) · [Progress](/ui/components/progress/) · [Motion](/ui/foundations/motion/) · [Z-index](/ui/foundations/z-index/)

@@ -54,7 +54,7 @@
 
 .tui-grid-view-lg {
   --tui-grid-view-min: 10rem;
-  --tui-tile-icon-size: 4rem;
+  --tui-tile-icon-size: var(--tui-spacing-16);
 }
 
 /* why: at this size a tile reads as a card, so it takes an edge; the name
@@ -95,10 +95,10 @@
 
   & > .tui-icon,
   & > img {
-    --tui-icon-size: var(--tui-tile-icon-size, 2.5rem);
+    --tui-icon-size: var(--tui-tile-icon-size, var(--tui-spacing-10));
 
-    inline-size: var(--tui-tile-icon-size, 2.5rem);
-    block-size: var(--tui-tile-icon-size, 2.5rem);
+    inline-size: var(--tui-tile-icon-size, var(--tui-spacing-10));
+    block-size: var(--tui-tile-icon-size, var(--tui-spacing-10));
   }
 
   &:is(a, label, button):hover {
@@ -112,7 +112,7 @@
   }
 
   /* why: --tui-tone-ink (not the raw --tui-tone) keeps selected-tile text at
-     AA contrast against the soft tinted background across brand colours */
+     AA contrast against the soft tinted background across brand colors */
   &:has(> .tui-state-input:checked),
   &.tui-tile-active,
   &:is([aria-selected="true"], [data-selected], .tui-selected) {

@@ -50,7 +50,7 @@ test.describe('Components — List group', () => {
     await page.goto('/examples/03-components.html');
   });
 
-  test('checking a selectable list item turns its background to the active colour', async ({ page }) => {
+  test('checking a selectable list item turns its background to the active color', async ({ page }) => {
     const label = page.locator('.tui-list-group label.tui-list-item').nth(1);
     const checkbox = label.locator('.tui-state-input');
 
@@ -140,7 +140,7 @@ test.describe('Components — Grid View', () => {
     await grid.evaluate((el) => { el.style.inlineSize = ''; });
   });
 
-  test('a tile stacks a large icon above a centred name', async ({ page }) => {
+  test('a tile stacks a large icon above a centered name', async ({ page }) => {
     const tile = page.locator('#tile-plain');
     await expect(tile).toHaveCSS('flex-direction', 'column');
     await expect(tile).toHaveCSS('align-items', 'center');
@@ -817,7 +817,7 @@ test.describe('Components — Pagination', () => {
     const pagination = page.locator('.tui-pagination').first();
     const display = await pagination.evaluate(el => getComputedStyle(el).display);
     
-    expect(display).toBe('flex');
+    expect(display).toBe('inline-flex');
   });
 
   test('active page item should be visually distinct', async ({ page }) => {
@@ -827,11 +827,14 @@ test.describe('Components — Pagination', () => {
     expect(backgroundColor).not.toBe('transparent');
   });
 
-  test('pagination items should have border radius', async ({ page }) => {
-    const item = page.locator('.tui-pagination-item').first();
-    const borderRadius = await item.evaluate(el => getComputedStyle(el).borderRadius);
-    
-    expect(borderRadius).not.toBe('0px');
+  test('pagination rounds only the outer corners of the group', async ({ page }) => {
+    const pagination = page.locator('.tui-pagination').first();
+    const items = pagination.locator('.tui-pagination-item');
+    const radius = (el) => getComputedStyle(el).borderStartStartRadius;
+
+    expect(await pagination.evaluate(radius)).not.toBe('0px');
+    expect(await items.first().evaluate(radius)).not.toBe('0px');
+    expect(await items.nth(1).evaluate(radius)).toBe('0px');
   });
 
   test('pagination items should have padding', async ({ page }) => {
@@ -1398,7 +1401,7 @@ test.describe('Components — Torby gap closure (group 2)', () => {
     await page.goto('/examples/03-components.html');
   });
 
-  test('text inside an anchor card is text-1, not the link colour', async ({ page }) => {
+  test('text inside an anchor card is text-1, not the link color', async ({ page }) => {
     const p = page.locator('#anchor-card p');
     const color = await p.evaluate(el => getComputedStyle(el).color);
     const text1 = await p.evaluate(el => { const s = document.createElement('span'); s.style.color = 'var(--tui-text-1)'; document.body.append(s); const c = getComputedStyle(s).color; s.remove(); return c; });
@@ -1426,7 +1429,7 @@ test.describe('Components — Torby gap closure (group 2)', () => {
     expect(await page.locator('#dot-in-cell').evaluate(el => getComputedStyle(el).display)).toBe('inline-block');
   });
 
-  test('steps connector is centred on the number circle', async ({ page }) => {
+  test('steps connector is centered on the number circle', async ({ page }) => {
     const step = page.locator('.tui-steps .tui-step').first();
     const number = step.locator('.tui-step-number');
     const numberBox = await number.boundingBox();
@@ -1435,9 +1438,9 @@ test.describe('Components — Torby gap closure (group 2)', () => {
       return { top: parseFloat(cs.top), height: parseFloat(cs.height), transform: cs.transform };
     });
     const stepBox = await step.boundingBox();
-    const connectorCentre = stepBox.y + connector.top; // translateY(-50%) centres the 2px line on `top`
-    const numberCentre = numberBox.y + numberBox.height / 2;
-    expect(Math.abs(connectorCentre - numberCentre)).toBeLessThanOrEqual(1);
+    const connectorCenter = stepBox.y + connector.top; // translateY(-50%) centers the 2px line on `top`
+    const numberCenter = numberBox.y + numberBox.height / 2;
+    expect(Math.abs(connectorCenter - numberCenter)).toBeLessThanOrEqual(1);
   });
 
   test('callout icon and body columns start at the same height', async ({ page }) => {
@@ -1462,7 +1465,7 @@ test.describe('Components — Torby gap closure (group 2)', () => {
     expect(bg).toBe(brand);
   });
 
-  test('toned tag gets the info edge colour', async ({ page }) => {
+  test('toned tag gets the info edge color', async ({ page }) => {
     const tag = page.locator('#tag-info');
     const border = await tag.evaluate(el => getComputedStyle(el).borderColor);
     const neutral = await page.locator('.tui-tag').first().evaluate(el => getComputedStyle(el).borderColor);
@@ -1813,5 +1816,95 @@ test.describe('Components — Progress loading', () => {
     expect(await bar.evaluate((el) => getComputedStyle(el).backgroundImage)).toContain('repeating-linear-gradient');
     const track = await page.locator('#progress-loading').boundingBox();
     expect(Math.round(((await bar.boundingBox()).width / track.width) * 100)).toBe(45);
+  });
+});
+
+test.describe('Components — Gradient button motion', () => {
+  test('the gradient is wider than the button and slides across it on hover', async ({ page }) => {
+    await page.goto('/examples/03-components.html');
+    const button = page.locator('#gradient-button');
+    await button.evaluate(el => { el.style.transition = 'none'; });
+    expect(await button.evaluate(el => getComputedStyle(el).backgroundSize)).toBe('200% 100%');
+    const rest = await button.evaluate(el => getComputedStyle(el).backgroundPosition);
+    await button.hover();
+    await expect.poll(() => button.evaluate(el => getComputedStyle(el).backgroundPosition)).not.toBe(rest);
+  });
+
+  test('the gradient covers the border strips at both ends of the slide', async ({ page }) => {
+    await page.goto('/examples/03-components.html');
+    const button = page.locator('#gradient-button');
+    expect(await button.evaluate(el => getComputedStyle(el).backgroundOrigin)).toBe('border-box');
+    expect(await button.evaluate(el => getComputedStyle(el).backgroundClip)).toBe('border-box');
+  });
+});
+
+test.describe('Components — Showcase', () => {
+  test.beforeEach(({ page }) => page.goto('/examples/03-components.html'));
+
+  test('at a wide viewport the media sits beside the body and the reverse modifier swaps them', async ({ page }) => {
+    await page.setViewportSize({ width: 1200, height: 800 });
+    const media = await page.locator('#showcase .tui-showcase-media').boundingBox();
+    const body = await page.locator('#showcase .tui-showcase-body').boundingBox();
+    expect(body.x).toBeGreaterThanOrEqual(media.x + media.width);
+    expect(Math.abs(body.y - media.y)).toBeLessThan(2);
+    const reversedMedia = await page.locator('#showcase-reverse .tui-showcase-media').boundingBox();
+    const reversedBody = await page.locator('#showcase-reverse .tui-showcase-body').boundingBox();
+    expect(reversedMedia.x).toBeGreaterThanOrEqual(reversedBody.x + reversedBody.width);
+  });
+
+  test('at a narrow viewport both showcases stack with the media on top', async ({ page }) => {
+    await page.setViewportSize({ width: 400, height: 800 });
+    for (const id of ['#showcase', '#showcase-reverse']) {
+      const media = await page.locator(`${id} .tui-showcase-media`).boundingBox();
+      const body = await page.locator(`${id} .tui-showcase-body`).boundingBox();
+      expect(body.y).toBeGreaterThanOrEqual(media.y + media.height);
+      expect(Math.abs(body.x - media.x)).toBeLessThan(2);
+    }
+  });
+
+  test('the body is padded and its footer is pinned to the bottom edge', async ({ page }) => {
+    await page.setViewportSize({ width: 1200, height: 800 });
+    const body = page.locator('#showcase .tui-showcase-body');
+    const media = await page.locator('#showcase .tui-showcase-media').boundingBox();
+    const bodyBox = await body.boundingBox();
+    const padding = await body.evaluate(el => parseFloat(getComputedStyle(el).paddingBlockEnd));
+    expect(padding).toBeGreaterThan(0);
+    expect(Math.abs(bodyBox.height - media.height)).toBeLessThan(2);
+    const footer = await page.locator('#showcase .tui-showcase-footer').boundingBox();
+    expect(Math.abs((footer.y + footer.height) - (bodyBox.y + bodyBox.height - padding))).toBeLessThan(2);
+  });
+
+  test('stacked showcases in a grid keep the media on top and line their footers up', async ({ page }) => {
+    await page.setViewportSize({ width: 1200, height: 800 });
+    const cards = page.locator('#showcase-grid .tui-showcase');
+    const footers = [];
+    for (let i = 0; i < 3; i++) {
+      const media = await cards.nth(i).locator('.tui-showcase-media').boundingBox();
+      const body = await cards.nth(i).locator('.tui-showcase-body').boundingBox();
+      expect(body.y).toBeGreaterThanOrEqual(media.y + media.height);
+      const footer = await cards.nth(i).locator('.tui-showcase-footer').boundingBox();
+      footers.push(footer.y + footer.height);
+    }
+    expect(Math.max(...footers) - Math.min(...footers)).toBeLessThan(2);
+  });
+
+  test('a wide code block scrolls inside the media cell instead of widening it', async ({ page }) => {
+    await page.setViewportSize({ width: 400, height: 800 });
+    const media = await page.locator('#showcase .tui-showcase-media').boundingBox();
+    const showcase = await page.locator('#showcase').boundingBox();
+    const pre = page.locator('#showcase .tui-showcase-media pre');
+    const preBox = await pre.boundingBox();
+    expect(preBox.width).toBeLessThanOrEqual(showcase.width);
+    expect(Math.abs(media.width - showcase.width)).toBeLessThanOrEqual(2);
+    expect(await pre.evaluate(el => el.scrollWidth > el.clientWidth)).toBe(true);
+    expect(await pre.evaluate(el => getComputedStyle(el).overflowX)).toBe('auto');
+  });
+
+  test('a code block in the media fills the cell edge to edge', async ({ page }) => {
+    await page.setViewportSize({ width: 1200, height: 800 });
+    const media = await page.locator('#showcase .tui-showcase-media').boundingBox();
+    const pre = await page.locator('#showcase .tui-showcase-media pre').boundingBox();
+    expect(Math.abs(pre.width - media.width)).toBeLessThan(2);
+    expect(Math.abs(pre.height - media.height)).toBeLessThan(2);
   });
 });

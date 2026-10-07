@@ -2,14 +2,14 @@
 title: Hero
 section: layout
 source: src/40-layout/patterns.css
-description: "A centred introductory block: display title, capped lead paragraph and a wrapping row of actions, spaced by gap."
+description: "A centered introductory block: display title, capped lead paragraph and a wrapping row of actions, spaced by gap."
 ---
 
-`.tui-hero` is the opening block of a landing or marketing page: a centred flex column with a `--tui-spacing-6` gap between its children and generous block padding. Every direct child has its margin zeroed, so the heading, lead and action row need no spacing utilities.
+`.tui-hero` is the opening block of a landing or marketing page: a centered flex column with a `--tui-spacing-6` gap between its children and generous block padding. Every direct child has its margin zeroed, so the heading, lead and action row need no spacing utilities.
 
 ## Anatomy
 
-`.tui-hero-title` sets `--tui-text-4xl` and balances line breaks; `.tui-hero-lead` is `--tui-text-lg` in `--tui-text-2`, capped at `60ch` and centred; `.tui-hero-actions` is a centred, wrapping flex row with a `--tui-spacing-3` gap for the buttons. The hero itself has no background — the demo adds one with a utility so the padding is visible.
+`.tui-hero-title` sets `--tui-text-4xl` and balances line breaks; `.tui-hero-lead` is `--tui-text-lg` in `--tui-text-2`, capped at `60ch` and centered; `.tui-hero-actions` is a centered, wrapping flex row with a `--tui-spacing-3` gap for the buttons. The hero itself has no background — the demo adds one with a utility so the padding is visible.
 
 {% include demo.html file="hero.html" %}
 
@@ -21,10 +21,10 @@ The block padding defaults to `--tui-spacing-24` (6rem) and reads `--tui-hero-pa
 
 | Class | Effect |
 |---|---|
-| `.tui-hero` | Centred flex column, `--tui-spacing-6` gap, child margins zeroed |
+| `.tui-hero` | Centered flex column, `--tui-spacing-6` gap, child margins zeroed |
 | `.tui-hero-title` | `--tui-text-4xl`, `text-wrap: balance` |
-| `.tui-hero-lead` | `--tui-text-lg`, `--tui-text-2`, `max-inline-size: 60ch`, centred |
-| `.tui-hero-actions` | Centred wrapping row with a `--tui-spacing-3` gap |
+| `.tui-hero-lead` | `--tui-text-lg`, `--tui-text-2`, `max-inline-size: 60ch`, centered |
+| `.tui-hero-actions` | Centered wrapping row with a `--tui-spacing-3` gap |
 
 ## Custom properties
 

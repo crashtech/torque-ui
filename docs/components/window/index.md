@@ -41,7 +41,7 @@ Put a static popover inside a window body to picture a whole interaction without
 | `--tui-popover-min-inline-size` | `12rem` | Minimum width |
 | `--tui-popover-max-inline-size` | `24rem` | Maximum width |
 | `--tui-popover-bg` | `var(--tui-surface-0)` | Background |
-| `--tui-popover-border` | `var(--tui-border)` | Border colour |
+| `--tui-popover-border` | `var(--tui-border)` | Border color |
 
 These are the same hooks the live `[popover].tui-popover` reads, so one override styles both.
 
